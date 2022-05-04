@@ -23,8 +23,10 @@ public class UserController {
 
 	// 아이디 찾기
 	@GetMapping("/findId")
-	public void findIdGET() {
+	public String findIdGET() {
 		log.info("findIdGET() 호출");
+		
+		return "/user/findId";
 	}
 
 	@ResponseBody
@@ -38,8 +40,10 @@ public class UserController {
 
 	// 비밀번호 찾기
 	@GetMapping("/findPw")
-	public void findPwGET() {
+	public String findPwGET() {
 		log.info("findPwGET() 호출");
+		
+		return "/user/findPw";
 	}
 
 	@ResponseBody
@@ -53,5 +57,4 @@ public class UserController {
 		return result;
 	}
 	
-	// 
 }

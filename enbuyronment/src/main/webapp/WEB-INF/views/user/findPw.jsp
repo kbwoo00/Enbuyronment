@@ -45,9 +45,9 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					
-
+					
 					<!-- Start Sign In Form -->
-					<form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					<form class="fh5co-form animate-box" data-animate-effect="fadeIn">
 						<h2>비밀번호 찾기</h2>
 							<div class="form-group">
 							<label for="id" class="sr-only">아이디</label>
@@ -55,13 +55,13 @@
 						</div>
 						<div class="form-group">
 							<label for="email" class="sr-only">이메일</label>
-							<input type="email" name="email" class="form-control" id="email" placeholder="Email" autocomplete="off">
+							<input type="email" name="email" class="form-control" id="email" placeholder="이메일" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<p><a href="index.html">로그인</a> | <a href="sign-up.html">회원가입</a></p>
+							<p><a href="/user/login">로그인</a> | <a href="/user/userJoin">회원가입</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="임시 비밀번호 발급" class="btn btn-primary">
+							<input type="button" value="임시 비밀번호 발급" class="btn btn-primary" id="findPwBtn">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
@@ -82,10 +82,9 @@
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('.btn-primary').click(function() {
+		$('#findPwBtn').click(function() {
 			$.ajax({
 				url: '/user/findPw',
 				type: 'post',

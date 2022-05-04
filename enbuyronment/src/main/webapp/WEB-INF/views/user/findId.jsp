@@ -33,7 +33,7 @@
 	<link rel="stylesheet" href="/resources/user/css/style.css">
 
 	<!-- Modernizr JS -->
-	<script src="./resources/user/js/modernizr-2.6.2.min.js"></script>
+	<script src="/resources/user/js/modernizr-2.6.2.min.js"></script>
 
 	</head>
 	<body>
@@ -48,7 +48,7 @@
 					
 
 					<!-- Start Sign In Form -->
-					<form method="post" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					<form class="fh5co-form animate-box" data-animate-effect="fadeIn">
 						<h2>아이디 찾기</h2>
 							<div class="form-group">
 							<label for="username" class="sr-only">이름</label>
@@ -62,10 +62,10 @@
 							<div class="alert alert-success" id="foundId" role="alert"></div>
 						</div>
 						<div class="form-group">
-							<p><a href="index.html">로그인</a> | <a href="sign-up.html">회원가입</a></p>
+							<p><a href="/user/login">로그인</a> | <a href="/user/userJoin">회원가입</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="아이디 찾기" class="btn btn-primary">
+							<input type="button" value="아이디 찾기" class="btn btn-primary" id="findIdBtn">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
@@ -86,10 +86,9 @@
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('.btn-primary').click(function() {
+		$('#findIdBtn').click(function() {
 			$.ajax({
 				url: '/user/findId',
 				type: 'post',
