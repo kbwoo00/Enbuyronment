@@ -8,7 +8,6 @@ target
 pom.properties
 .classpath
 MANIFEST.MF
-log4j.xml
 
 ### Eclipse ###
 .metadata
