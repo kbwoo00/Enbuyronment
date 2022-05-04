@@ -9,20 +9,20 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="/resources/login/image/x-icon" href="/resources/login/img/favicon.ico">
+		<link rel="shortcut icon" type="/resources/main/image/x-icon" href="/resources/main/img/favicon.ico">
 
 		<!-- CSS here -->
-            <link rel="stylesheet" href="/resources/login/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/resources/login/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="/resources/login/css/flaticon.css">
-            <link rel="stylesheet" href="/resources/login/css/slicknav.css">
-            <link rel="stylesheet" href="/resources/login/css/animate.min.css">
-            <link rel="stylesheet" href="/resources/login/css/magnific-popup.css">
-            <link rel="stylesheet" href="/resources/login/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="/resources/login/css/themify-icons.css">
-            <link rel="stylesheet" href="/resources/login/css/slick.css">
-            <link rel="stylesheet" href="/resources/login/acss/nice-select.css">
-            <link rel="stylesheet" href="/resources/login/css/style.css">
+            <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/resources/main/css/owl.carousel.min.css">
+            <link rel="stylesheet" href="/resources/main/css/flaticon.css">
+            <link rel="stylesheet" href="/resources/main/css/slicknav.css">
+            <link rel="stylesheet" href="/resources/main/css/animate.min.css">
+            <link rel="stylesheet" href="/resources/main/css/magnific-popup.css">
+            <link rel="stylesheet" href="/resources/main/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="/resources/main/css/themify-icons.css">
+            <link rel="stylesheet" href="/resources/main/css/slick.css">
+            <link rel="stylesheet" href="/resources/main/acss/nice-select.css">
+            <link rel="stylesheet" href="/resources/main/css/style.css">
    </head>
    
 <%@include file ="include/header.jsp" %>
@@ -57,7 +57,7 @@
                     <div class="col-xl-4 col-lg-6">
                         <div class="single-category mb-30">
                             <div class="category-img">
-                                <img src="/resources/login/img/categori/cat1.jpg">
+                                <img src="/resources/main/img/categori/cat1.jpg">
                                 <div class="category-caption">
                                     <h2>Owmen`s</h2>
                                     <span class="best"><a href="#">Best New Deals</a></span>
@@ -69,7 +69,7 @@
                      <div class="col-xl-4 col-lg-6">
                         <div class="single-category mb-30">
                             <div class="category-img text-center">
-                                <img src="/resources/login/img/categori/cat2.jpg">
+                                <img src="/resources/main/img/categori/cat2.jpg">
                                 <div class="category-caption">
                                     <span class="collection">Discount!</span>
                                     <h2>Winter Cloth</h2>
@@ -81,7 +81,7 @@
                     <div class="col-xl-4 col-lg-6">
                         <div class="single-category mb-30">
                             <div class="category-img">
-                                <img src="/resources/login/img/categori/cat3.jpg">
+                                <img src="/resources/main/img/categori/cat3.jpg">
                                 <div class="category-caption">
                                     <h2>Man`s Cloth</h2>
                                     <span class="best"><a href="#">Best New Deals</a></span>
@@ -127,7 +127,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product1.png">
+                                        <img src="/resources/main/img/categori/product1.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -153,7 +153,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product2.png">
+                                        <img src="/resources/main/img/categori/product2.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -176,7 +176,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product3.png">
+                                        <img src="/resources/main/img/categori/product3.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -202,7 +202,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product4.png">
+                                        <img src="/resources/main/img/categori/product4.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -225,7 +225,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product5.png">
+                                        <img src="/resources/main/img/categori/product5.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -248,7 +248,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product6.png">
+                                        <img src="/resources/main/img/categori/product6.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -279,7 +279,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product4.png">
+                                        <img src="/resources/main/img/categori/product4.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -302,7 +302,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product5.png">
+                                        <img src="/resources/main/img/categori/product5.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -325,7 +325,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product6.png">
+                                        <img src="/resources/main/img/categori/product6.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -454,7 +454,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product3.png">
+                                        <img src="/resources/main/img/categori/product3.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -480,7 +480,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product1.png">
+                                        <img src="/resources/main/img/categori/product1.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -506,7 +506,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product4.png">
+                                        <img src="/resources/main/img/categori/product4.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -529,7 +529,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product6.png">
+                                        <img src="/resources/main/img/categori/product6.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -555,7 +555,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product5.png">
+                                        <img src="/resources/main/img/categori/product5.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -583,7 +583,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product1.png">
+                                        <img src="/resources/main/img/categori/product1.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -609,7 +609,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product2.png">
+                                        <img src="/resources/main/img/categori/product2.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -632,7 +632,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product3.png">
+                                        <img src="/resources/main/img/categori/product3.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -658,7 +658,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product4.png">
+                                        <img src="/resources/main/img/categori/product4.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -681,7 +681,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product5.png">
+                                        <img src="/resources/main/img/categori/product5.png">
                                     </div>
                                     <div class="product-caption">
                                         <div class="product-ratting">
@@ -704,7 +704,7 @@
                             <div class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single-product mb-60">
                                     <div class="product-img">
-                                        <img src="/resources/login/img/categori/product6.png">
+                                        <img src="/resources/main/img/categori/product6.png">
                                         <div class="new-product">
                                             <span>New</span>
                                         </div>
@@ -740,7 +740,7 @@
                 <div class="container position-relative">
                     <div class="row justify-content-between align-items-end">
                         <div class="product-man position-absolute  d-none d-lg-block">
-                            <img src="/resources/login/img/categori/card-man.png">
+                            <img src="/resources/main/img/categori/card-man.png">
                         </div>
                         <div class="col-xl-2 col-lg-2 col-md-2 d-none d-block">
                             <div class="vertical-text">
@@ -759,7 +759,7 @@
            </div>
            <!-- Shape -->
            <div class="shape bounce-animate d-none d-md-block">
-               <img src="/resources/login/img/categori/card-shape.png">
+               <img src="/resources/main/img/categori/card-shape.png">
            </div>
         </div>
         <!-- Best Product End-->
@@ -775,13 +775,13 @@
                             <a href="#" class="btn shop1-btn">Shop Now</a>
                         </div>
                         <div class="best-left-img mb-30 d-none d-sm-block">
-                            <img src="/resources/login/img/collection/collection1.png">
+                            <img src="/resources/main/img/collection/collection1.png">
                         </div>
                     </div>
                     <!-- Mid Img -->
                      <div class="col-xl-2 col-lg-2 d-none d-lg-block">
                         <div class="best-mid-img mb-30 ">
-                            <img src="/resources/login/img/collection/collection2.png">
+                            <img src="/resources/main/img/collection/collection2.png">
                         </div>
                     </div>
                     <!-- Riht Caption -->
@@ -792,7 +792,7 @@
                                    <h4>Menz Winter<br> Jacket</h4>
                                </div>
                                <div class="single-img">
-                                  <img src="/resources/login/img/collection/collection3.png">
+                                  <img src="/resources/main/img/collection/collection3.png">
                                </div>
                            </div>
                         </div>
@@ -802,7 +802,7 @@
                                    <h4>Menz Winter<br>Jacket</h4>
                                </div>
                                <div class="single-img">
-                                  <img src="/resources/login/img/collection/collection4.png">
+                                  <img src="/resources/main/img/collection/collection4.png">
                                </div>
                            </div>
                         </div>
@@ -812,7 +812,7 @@
                                    <h4>Menz Winter<br> Jacket</h4>
                                </div>
                                <div class="single-img">
-                                  <img src="/resources/login/img/collection/collection5.png">
+                                  <img src="/resources/main/img/collection/collection5.png">
                                </div>
                            </div>
                         </div>
@@ -844,7 +844,7 @@
                 </div>
                 <!-- man Shape -->
                 <div class="man-shape">
-                    <img src="/resources/login/img/collection/latest-man.png">
+                    <img src="/resources/main/img/collection/latest-man.png">
                 </div>
             </div>
         </div>
@@ -884,19 +884,19 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="gallery-items">
-                            <img src="/resources/login/img/gallery/gallery1.jpg">
+                            <img src="/resources/main/img/gallery/gallery1.jpg">
                         </div> 
                         <div class="gallery-items">
-                            <img src="/resources/login/img/gallery/gallery2.jpg">
+                            <img src="/resources/main/img/gallery/gallery2.jpg">
                         </div>
                         <div class="gallery-items">
-                            <img src="/resources/login/img/gallery/gallery3.jpg">
+                            <img src="/resources/main/img/gallery/gallery3.jpg">
                         </div>
                         <div class="gallery-items">
-                            <img src="/resources/login/img/gallery/gallery4.jpg">
+                            <img src="/resources/main/img/gallery/gallery4.jpg">
                         </div>
                         <div class="gallery-items">
-                            <img src="/resources/login/img/gallery/gallery5.jpg">
+                            <img src="/resources/main/img/gallery/gallery5.jpg">
                         </div>
                     </div>
                 </div>
@@ -916,7 +916,7 @@
                         <div class="single-footer-caption mb-30">
                              <!-- logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="/resources/login/img/logo/logo2_footer.png"></a>
+                                <a href="index.html"><img src="/resources/main/img/logo/logo2_footer.png"></a>
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
@@ -994,38 +994,38 @@
 	<!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
-        <script src="/resources/login//js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="/resources/main/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="/resources/login//js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="/resources/login//js/popper.min.js"></script>
-        <script src="/resources/login//js/bootstrap.min.js"></script>
+		<script src="/resources/main/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="/resources/main/js/popper.min.js"></script>
+        <script src="/resources/main/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->
-        <script src="/resources/login//js/jquery.slicknav.min.js"></script>
+        <script src="/resources/main/js/jquery.slicknav.min.js"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="/resources/login//js/owl.carousel.min.js"></script>
-        <script src="/resources/login//js/slick.min.js"></script>
+        <script src="/resources/main/js/owl.carousel.min.js"></script>
+        <script src="/resources/main/js/slick.min.js"></script>
 
 		<!-- One Page, Animated-HeadLin -->
-        <script src="/resources/login//js/wow.min.js"></script>
-		<script src="/resources/login//js/animated.headline.js"></script>
-        <script src="/resources/login//js/jquery.magnific-popup.js"></script>
+        <script src="/resources/main/js/wow.min.js"></script>
+		<script src="/resources/main/js/animated.headline.js"></script>
+        <script src="/resources/main/js/jquery.magnific-popup.js"></script>
 
 		<!-- Scrollup, nice-select, sticky -->
-        <script src="/resources/login//js/jquery.scrollUp.min.js"></script>
-        <script src="/resources/login//js/jquery.nice-select.min.js"></script>
-		<script src="/resources/login//js/jquery.sticky.js"></script>
+        <script src="/resources/main/js/jquery.scrollUp.min.js"></script>
+        <script src="/resources/main/js/jquery.nice-select.min.js"></script>
+		<script src="/resources/main/js/jquery.sticky.js"></script>
         
         <!-- contact js -->
-        <script src="/resources/login//js/contact.js"></script>
-        <script src="/resources/login//js/jquery.form.js"></script>
-        <script src="/resources/login//js/jquery.validate.min.js"></script>
-        <script src="/resources/login//js/mail-script.js"></script>
-        <script src="/resources/login//js/jquery.ajaxchimp.min.js"></script>
+        <script src="/resources/main/js/contact.js"></script>
+        <script src="/resources/main/js/jquery.form.js"></script>
+        <script src="/resources/main/js/jquery.validate.min.js"></script>
+        <script src="/resources/main/js/mail-script.js"></script>
+        <script src="/resources/main/js/jquery.ajaxchimp.min.js"></script>
         
 		<!-- Jquery Plugins, main Jquery -->	
-        <script src="/resources/login//js/plugins.js"></script>
-        <script src="/resources/login//js/main.js"></script>
+        <script src="/resources/main/js/plugins.js"></script>
+        <script src="/resources/main/js/main.js"></script>
         
     </body>
 </html>
