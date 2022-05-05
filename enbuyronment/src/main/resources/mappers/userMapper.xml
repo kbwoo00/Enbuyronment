@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.itwill.enbuyronment.mapper.UserMapper">
+
+	<!-- 회원가입 동작 -->
+	<insert id="join">
+		insert into user(uid, pass, email, name, phone, jumin)
+		values (#{uid}, #{pass}, #{email}, #{name}, #{phone}, #{jumin})
+	</insert>
+	<insert id="initAddr">
+		insert into address(postcode, addr, dt_addr, ex_addr, uid)
+		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid})
+	</insert>
+	
+	<!-- 로그인 유저 조회 -->
+	<select id="login" resultType="UserVO">
+		select * from user
+		where uid = #{uid} and pass = #{pass}
+	</select>
+	
+	<!-- 아이디 찾기 동작 -->
+	<select id="findId" resultType="String">
+		select uid from user where name = #{name} and email = #{email}
+	</select>
+	
+	<!-- 비밀번호 수정 동작 -->
+	<update id="modPw">
+		update user set pass = #{pass} where uid = #{uid}
+	</update>
+	
+	<!-- 회원정보 조회 (비밀번호 찾기 시) 동작 -->
+	<select id="getUser" resultType="UserVO">
+		select * from user where uid = #{uid}
+	</select>
+	
+
+</mapper> 
