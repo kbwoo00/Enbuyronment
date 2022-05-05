@@ -2,9 +2,16 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-  
-  <configuration>
-  
-  
-  </configuration>
+
+<configuration>
+
+	<settings>
+		<!-- Camel Case, Snake Case로만 다를 경우 바꿔주는 코드 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+	<typeAliases>
+		<package name="com.itwill.enbuyronment.domain" />
+	</typeAliases>
+</configuration>
   
