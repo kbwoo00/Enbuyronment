@@ -78,8 +78,9 @@
 					<!-- 						</div> -->
 					<div class="form-group">
 						<label for="id" class="sr-only">Id</label> <input type="text"
-							class="form-control" id="id" placeholder="아이디" autocomplete="off"
-							name="uid">
+							class="form-control" id="uid" placeholder="아이디" autocomplete="off"
+							name="uid"> <input type="button" id="checkIdBtn"
+							class="btn btn-primary" value="아이디 중복 체크">
 					</div>
 					<div class="form-group">
 						<label for="name" class="sr-only">Name</label> <input type="text"
@@ -103,18 +104,19 @@
 					</div>
 					<div class="form-group">
 						<div>
-							<input type="text" class="form-control col-md-3" id="sample6_postcode"
-								placeholder="우편번호" autocomplete="off" name="postcode"> <input
-								type="button" class="btn btn-primary col-md-3"
-								onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+							<input type="text" class="form-control col-md-3" id="postcode"
+								placeholder="우편번호" autocomplete="off" name="postcode"
+								readonly="readonly"> <input type="button"
+								class="btn btn-primary col-md-3" onclick="execDaumPostcode()"
+								value="우편번호 찾기">
 						</div>
 						<label for="address" class="sr-only">Address</label> <input
-							type="text" class="form-control" id="sample6_address"
-							placeholder="주소" autocomplete="off" name="addr"> <input type="text"
-							class="form-control" id="sample6_detailAddress"
-							placeholder="상세주소" autocomplete="off" name="dtAddr"> <input type="text"
-							class="form-control" id="sample6_extraAddress" name="exAddr" placeholder="참고항목"
-							autocomplete="off">
+							type="text" class="form-control" id="address" placeholder="주소"
+							autocomplete="off" name="addr" readonly="readonly"> <input
+							type="text" class="form-control" id="detailAddress"
+							placeholder="상세주소" autocomplete="off" name="dtAddr"> <input
+							type="text" class="form-control" id="extraAddress" name="exAddr"
+							placeholder="참고항목" autocomplete="off" readonly="readonly">
 					</div>
 					<div class="form-group">
 						<label for="phone" class="sr-only">Phone</label> <input
@@ -155,7 +157,7 @@
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		function sample6_execDaumPostcode() {
+		function execDaumPostcode() {
 			new daum.Postcode(
 					{
 						oncomplete : function(data) {
@@ -193,21 +195,37 @@
 									extraAddr = ' (' + extraAddr + ')';
 								}
 								// 조합된 참고항목을 해당 필드에 넣는다.
-								document.getElementById("sample6_extraAddress").value = extraAddr;
+								document.getElementById("extraAddress").value = extraAddr;
 
 							} else {
-								document.getElementById("sample6_extraAddress").value = '';
+								document.getElementById("extraAddress").value = '';
 							}
 
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('sample6_postcode').value = data.zonecode;
-							document.getElementById("sample6_address").value = addr;
+							document.getElementById('postcode').value = data.zonecode;
+							document.getElementById("address").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("sample6_detailAddress")
+							document.getElementById("detailAddress")
 									.focus();
 						}
 					}).open();
 		}
+		
+		$(document).ready(function() {
+			$('#checkIdBtn').click(function() {
+				console.log($('#uid').val());
+				$.ajax({
+					url: '/user/checkId',
+					type: 'post',
+					data: {
+						'uid' : $('#uid').val()
+					},
+					success: function(result) {
+						alert(result);
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>

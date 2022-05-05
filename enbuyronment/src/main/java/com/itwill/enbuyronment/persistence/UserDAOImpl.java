@@ -38,11 +38,11 @@ public class UserDAOImpl implements UserDAO {
 		
 		sqlSession.insert(NAMESPACE + ".initAddr", addr);
 	}
-
-	// 아이디 중복 체크 동작
+	
+	// 로그인 동작
 	@Override
-	public String checkId(String uid) {
-		return sqlSession.selectOne(NAMESPACE + ".checkId", uid);
+	public UserVO login(UserVO vo) {
+		return sqlSession.selectOne(NAMESPACE + ".login", vo);
 	}
 
 	// 아이디 찾기 동작
@@ -80,5 +80,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return vo;
 	}
+
+	
 
 }

@@ -54,7 +54,7 @@ public class UserTest {
 	public void 아이디중복체크() {
 		log.info("아이디 중복체크 테스트");
 		String uid = "test";
-		if(userDao.checkId(uid) == null) {
+		if(userDao.getUser(uid) == null) {
 			log.info("중복 X");
 		} else {
 			log.info("중복된 아이디입니다.");

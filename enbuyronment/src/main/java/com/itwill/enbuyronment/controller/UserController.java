@@ -1,13 +1,16 @@
 package com.itwill.enbuyronment.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.service.UserService;
@@ -21,22 +24,55 @@ public class UserController {
 
 	@Inject
 	private UserService userService;
-	
+
+	// 회원가입
 	@GetMapping("/join")
 	public String joinForm() {
 		return "/user/signup";
 	}
+
 	@PostMapping("/join")
 	public String join(@ModelAttribute UserVO vo) {
 		userService.join(vo);
 		return "redirect:/user/login";
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/checkId", produces = "application/text; charset=UTF-8")
+	public String checkDuplId(UserVO user) {
+		log.info(user.getUid());
+		log.info("유저 = {}", userService.checkId(user.getUid()));
+		if(userService.checkId(user.getUid()) != null) {
+			return "중복된 아이디입니다.";
+		}
+		
+		return "사용가능한 아이디입니다.";
+	}
+
+	// 로그인
+	@GetMapping("/login")
+	public String loginForm() {
+		return "/user/login";
+	}
+
+	@PostMapping("/login")
+	public String login(@ModelAttribute UserVO vo, HttpSession session) {
+		UserVO user = userService.login(vo);
+		
+		if (user == null) {
+			return "/user/login";
+		}
+		
+		session.setAttribute("userId", user.getUid());
+
+		return "redirect:/";
 	}
 
 	// 아이디 찾기
 	@GetMapping("/findId")
 	public String findIdGET() {
 		log.info("findIdGET() 호출");
-		
+
 		return "/user/findId";
 	}
 
@@ -53,7 +89,7 @@ public class UserController {
 	@GetMapping("/findPw")
 	public String findPwGET() {
 		log.info("findPwGET() 호출");
-		
+
 		return "/user/findPw";
 	}
 
@@ -67,5 +103,5 @@ public class UserController {
 
 		return result;
 	}
-	
+
 }

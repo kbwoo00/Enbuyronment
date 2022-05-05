@@ -34,6 +34,16 @@ public class UserServiceImpl implements UserService {
 		userDao.join(vo);
 	}
 	
+	@Override
+	public UserVO login(UserVO vo) {
+		return userDao.login(vo);
+	}
+	
+	@Override
+	public UserVO checkId(String uid) {
+		return userDao.getUser(uid);
+	}
+	
 	// 아이디 찾기
 	@Override
 	public String findId(UserVO vo) {
@@ -143,6 +153,8 @@ public class UserServiceImpl implements UserService {
 			return 3;
 		}
 	}
+
+	
 
 	
 

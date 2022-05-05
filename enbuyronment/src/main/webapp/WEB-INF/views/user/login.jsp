@@ -53,14 +53,14 @@
 						<h2>로그인</h2>
 						<div class="form-group">
 							<label for="username" class="sr-only">아이디</label>
-							<input type="text" class="form-control" id="username" placeholder="아이디" autocomplete="off">
+							<input type="text" class="form-control" id="username" placeholder="아이디" autocomplete="off" name="uid">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">비밀번호</label>
-							<input type="password" class="form-control" id="password" placeholder="비밀번호" autocomplete="off">
+							<input type="password" class="form-control" id="password" placeholder="비밀번호" autocomplete="off" name="pass">
 						</div>
 						<div class="form-group">
-							<p> 아직 회원이 아니십니까? <a href="sign-up.html">회원가입</a> | <a href="forgot.html">아이디 찾기</a> | <a href="forgot.html">비밀번호 찾기</a></p>
+							<p> 아직 회원이 아니십니까? <a href="/user/join">회원가입</a> | <a href="/user/findId">아이디 찾기</a> | <a href="/user/findPw">비밀번호 찾기</a></p>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="로그인" class="btn btn-primary">
