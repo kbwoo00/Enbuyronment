@@ -35,6 +35,7 @@ public class UserDAOImpl implements UserDAO {
 		addr.setDtAddr(user.getDtAddr());
 		addr.setExAddr(user.getExAddr());
 		addr.setUid(user.getUid());
+		addr.setReciver(user.getName());
 		
 		sqlSession.insert(NAMESPACE + ".initAddr", addr);
 	}
