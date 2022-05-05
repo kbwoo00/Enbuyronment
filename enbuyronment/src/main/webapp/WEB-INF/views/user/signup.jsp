@@ -92,10 +92,26 @@
 							class="form-control" id="name" placeholder="이름"
 							autocomplete="off" name="name">
 					</div>
-					<div class="form-group">
-						<label for="email" class="sr-only">Email</label> <input
-							type="email" class="form-control" id="email" placeholder="이메일"
-							autocomplete="off" name="email">
+					<div class="row">
+						<div class="col-md-8 form-group">
+							<label for="email" class="sr-only">Email</label> <input
+								type="email" class="form-control" id="email" placeholder="이메일"
+								autocomplete="off" name="email">
+						</div>
+						<div class="col-md-4 form-group">
+							<input type="button" class="btn btn-primary col-md-12"
+								id="emailCheckBtn" value="인증번호 보내기">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8 form-group">
+							<input type="text" class="form-control" id="certifyNum"
+								placeholder="이메일로 보낸 인증번호를 입력해주세요" autocomplete="off">
+						</div>
+						<div class="col-md-4 form-group">
+							<input type="button" class="btn btn-primary col-md-12" id="numCheckBtn"
+								value="인증 번호 확인">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="password" class="sr-only">Password</label> <input
@@ -220,8 +236,12 @@
 		}
 
 		$(document).ready(function() {
+			var emailCheck = false;
+			var idCheck = false;
+			var certiNum;
+
+			// 아이디 중복 체크
 			$('#checkIdBtn').click(function() {
-				console.log($('#uid').val());
 				$.ajax({
 					url : '/user/checkId',
 					type : 'post',
@@ -229,10 +249,44 @@
 						'uid' : $('#uid').val()
 					},
 					success : function(result) {
+						idCheck = true;
 						alert(result);
 					}
 				});
 			});
+
+			// 이메일에 인증번호 보내기
+			$('#emailCheckBtn').click(function() {
+				var email = $('#email').val();
+				console.log(email);
+				
+				$.ajax({
+					url : '/user/checkEmail',
+					type : 'post',
+					contentType: "application/text; charset=utf-8",
+					data : email,
+					success : function(result) {
+						if(result == '인증실패'){
+							alert('인증에 실패했습니다. 이메일을 다시 입력해주세요');
+						} else{
+							certiNum = result;
+							alert('인증번호를 발급하였습니다. 이메일을 확인해주세요');
+						}
+					}
+				});
+			});
+			
+			// 인증번호 확인
+			$('#numCheckBtn').click(function() {
+				if(certiNum == $('#certifyNum').val()){
+					emailCheck = true;
+					alert('정상적으로 인증되었습니다. 나머지 정보를 입력해주세요');
+				} else{
+					alert('인증번호가 틀렸습니다. 다시 입력해주세요');
+				}
+			});
+			
+
 		});
 	</script>
 </body>

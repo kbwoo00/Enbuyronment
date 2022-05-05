@@ -48,6 +48,13 @@ public class UserController {
 		
 		return "사용가능한 아이디입니다.";
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/checkEmail", produces = "application/text; charset=UTF-8")
+	public String checkEmail(@RequestBody String email) {
+		log.info(email);
+		return userService.checkEmail(email);
+	}
 
 	// 로그인
 	@GetMapping("/login")

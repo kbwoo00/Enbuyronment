@@ -3,6 +3,7 @@ package com.itwill.enbuyronment.service;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.mail.Authenticator;
@@ -152,6 +153,47 @@ public class UserServiceImpl implements UserService {
 		} else { // id 입력 오류
 			return 3;
 		}
+	}
+
+	@Override
+	public String checkEmail(String email) {
+		
+		String certiNum = String.valueOf(UUID.randomUUID()).substring(1,8); 
+		
+		String sender = "bss05007@gmail.com";
+		String appPw = "luvruaxpspnqkjnz";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587"); // 구글 포트번호
+		props.put("mail.smtp.auth", "true"); // 인증절차 필요함(앱 비밀번호)
+		props.put("mail.smtp.starttls.enable", "true"); // TLS
+
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
+
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(sender, appPw); // 구글계정 및 앱 비밀번호 체크
+			}
+
+		});
+		
+		try {
+			Message msg = new MimeMessage(session);
+
+			msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는계정
+			msg.setSubject("[ENBUYRONMENT] 인증번호 입니다.");
+			msg.setText("회원님의 인증번호는 " + certiNum + " 입니다.");
+			Transport.send(msg);
+
+			log.info("메일 발송 완료");
+			return certiNum;
+
+		} catch (Exception e) {
+			return "인증실패";
+		}
+		
 	}
 
 	
