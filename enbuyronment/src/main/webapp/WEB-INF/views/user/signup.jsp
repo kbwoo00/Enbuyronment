@@ -80,7 +80,7 @@
 						<div class="col-md-8 form-group">
 							<label for="id" class="sr-only">Id</label> <input type="text"
 								class="form-control" id="uid" placeholder="아이디"
-								autocomplete="off" name="uid">
+								autocomplete="off" name="uid" required="required">
 						</div>
 						<div class="col-md-2 form-group">
 							<input type="button" id="checkIdBtn" class="btn btn-primary"
@@ -90,13 +90,13 @@
 					<div class="form-group">
 						<label for="name" class="sr-only">Name</label> <input type="text"
 							class="form-control" id="name" placeholder="이름"
-							autocomplete="off" name="name">
+							autocomplete="off" name="name" required="required">
 					</div>
 					<div class="row">
 						<div class="col-md-8 form-group">
 							<label for="email" class="sr-only">Email</label> <input
 								type="email" class="form-control" id="email" placeholder="이메일"
-								autocomplete="off" name="email">
+								autocomplete="off" name="email" required="required">
 						</div>
 						<div class="col-md-4 form-group">
 							<input type="button" class="btn btn-primary col-md-12"
@@ -106,28 +106,30 @@
 					<div class="row">
 						<div class="col-md-8 form-group">
 							<input type="text" class="form-control" id="certifyNum"
-								placeholder="이메일로 보낸 인증번호를 입력해주세요" autocomplete="off">
+								placeholder="이메일로 보낸 인증번호를 입력해주세요" autocomplete="off"
+								required="required">
 						</div>
 						<div class="col-md-4 form-group">
-							<input type="button" class="btn btn-primary col-md-12" id="numCheckBtn"
-								value="인증 번호 확인">
+							<input type="button" class="btn btn-primary col-md-12"
+								id="numCheckBtn" value="인증 번호 확인">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="password" class="sr-only">Password</label> <input
-							type="password" class="form-control" id="password"
-							placeholder="비밀번호" autocomplete="off" name="pass">
+							type="password" class="form-control" id="pass" placeholder="비밀번호"
+							autocomplete="off" name="pass" required="required">
 					</div>
 					<div class="form-group">
 						<label for="re-password" class="sr-only">Re-type Password</label>
-						<input type="password" class="form-control" id="re-password"
-							placeholder="비밀번호 확인" autocomplete="off">
+						<input type="password" class="form-control" id="rePass"
+							placeholder="비밀번호 확인" autocomplete="off" required="required">
 					</div>
+					<p class="text-danger" id="passCfErMsg"></p>
 					<div class="row">
 						<div class="col-md-6 form-group">
 							<input type="text" class="form-control" id="postcode"
 								placeholder="우편번호" autocomplete="off" name="postcode"
-								readonly="readonly">
+								readonly="readonly" required="required">
 						</div>
 						<div class="col-md-6 form-group">
 							<input type="button" class="btn btn-primary col-md-12"
@@ -137,21 +139,22 @@
 					<div class="form-group">
 						<label for="address" class="sr-only">Address</label> <input
 							type="text" class="form-control" id="address" placeholder="주소"
-							autocomplete="off" name="addr" readonly="readonly"> <input
-							type="text" class="form-control" id="detailAddress"
-							placeholder="상세주소" autocomplete="off" name="dtAddr"> <input
+							autocomplete="off" name="addr" readonly="readonly"
+							required="required"> <input type="text"
+							class="form-control" id="detailAddress" placeholder="상세주소"
+							autocomplete="off" name="dtAddr" required="required"> <input
 							type="text" class="form-control" id="extraAddress" name="exAddr"
 							placeholder="참고항목" autocomplete="off" readonly="readonly">
 					</div>
 					<div class="form-group">
-						<label for="phone" class="sr-only">Phone</label> <input
-							type="text" class="form-control" id="phone" placeholder="휴대폰"
-							autocomplete="off" name="phone">
+						<label for="phone" class="sr-only">Phone</label> <input type="tel"
+							class="form-control" id="phone" placeholder="휴대폰"
+							autocomplete="off" name="phone" required="required">
 					</div>
 					<div class="form-group">
 						<label for="jumin" class="sr-only">Jumin</label> <input
 							type="text" class="form-control" id="jumin" placeholder="주민번호"
-							autocomplete="off" name="jumin">
+							autocomplete="off" name="jumin" required="required">
 					</div>
 					<div class="form-group">
 						<p>
@@ -159,7 +162,7 @@
 						</p>
 					</div>
 					<div class="form-group">
-						<input type="submit" value="회원가입"
+						<input type="submit" value="회원가입" id="signupBtn"
 							class="btn btn-primary btn-lg col-md-offset-5">
 					</div>
 				</form>
@@ -239,6 +242,9 @@
 			var emailCheck = false;
 			var idCheck = false;
 			var certiNum;
+			var pass = $('#pass');
+			var rePass = $('#rePass');
+			var passCfErMsg = $('#passCfErMsg');
 
 			// 아이디 중복 체크
 			$('#checkIdBtn').click(function() {
@@ -258,34 +264,55 @@
 			// 이메일에 인증번호 보내기
 			$('#emailCheckBtn').click(function() {
 				var email = $('#email').val();
-				console.log(email);
-				
-				$.ajax({
-					url : '/user/checkEmail',
-					type : 'post',
-					contentType: "application/text; charset=utf-8",
-					data : email,
-					success : function(result) {
-						if(result == '인증실패'){
-							alert('인증에 실패했습니다. 이메일을 다시 입력해주세요');
-						} else{
-							certiNum = result;
-							alert('인증번호를 발급하였습니다. 이메일을 확인해주세요');
+				if (email == '') {
+					alert('이메일을 입력해주세요');
+				} else {
+					$.ajax({
+						url : '/user/checkEmail',
+						type : 'post',
+						contentType : "application/text; charset=utf-8",
+						data : email,
+						success : function(result) {
+							if (result == '인증실패') {
+								alert('인증에 실패했습니다. 이메일을 다시 입력해주세요');
+							} else {
+								certiNum = result;
+								$('#email').attr("readonly", true);
+								alert('인증번호를 발급하였습니다. 이메일을 확인해주세요');
+							}
 						}
-					}
-				});
+					});
+				}
 			});
-			
+
 			// 인증번호 확인
 			$('#numCheckBtn').click(function() {
-				if(certiNum == $('#certifyNum').val()){
+				if (certiNum == $('#certifyNum').val()) {
 					emailCheck = true;
+					$('#certifyNum').attr("readonly", true);
 					alert('정상적으로 인증되었습니다. 나머지 정보를 입력해주세요');
-				} else{
+				} else {
 					alert('인증번호가 틀렸습니다. 다시 입력해주세요');
 				}
 			});
-			
+
+			// 비밀번호 확인
+			rePass.keyup(function() {
+				if (rePass.val() != pass.val()) {
+					passCfErMsg.text('비밀번호가 일치하지 않습니다.');
+				} else {
+					passCfErMsg.text('비밀번호가 일치합니다');
+				}
+			});
+			pass.keyup(function() {
+				if (rePass.val() != pass.val()) {
+					passCfErMsg.text('비밀번호가 일치하지 않습니다.');
+				} else {
+					passCfErMsg.text('비밀번호가 일치합니다');
+				}
+			});
+
+			// 유효성 검증
 
 		});
 	</script>
