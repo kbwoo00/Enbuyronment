@@ -58,7 +58,7 @@
 							<input type="email" name="email" class="form-control" id="email" placeholder="이메일" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<p><a href="/user/login">로그인</a> | <a href="/user/userJoin">회원가입</a></p>
+							<p><a href="/user/login">로그인</a> | <a href="/user/join">회원가입</a></p>
 						</div>
 						<div class="form-group">
 							<input type="button" value="임시 비밀번호 발급" class="btn btn-primary" id="findPwBtn">
