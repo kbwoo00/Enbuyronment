@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <head>
@@ -14,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
 		<link rel="shortcut icon" type="/resources/main/image/x-icon" href="/resources/main/img/favicon.ico">
-<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
             <link rel="stylesheet" href="/resources/main/css/owl.carousel.min.css">
             <link rel="stylesheet" href="/resources/main/css/flaticon.css">
             <link rel="stylesheet" href="/resources/main/css/slicknav.css">
