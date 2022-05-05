@@ -33,6 +33,34 @@ public class UserTest {
 	@Inject
 	private UserDAO userDao;
 	
+//	@Test
+	public void 회원가입() {
+		log.info("회원가입 테스트");
+		UserVO user = new UserVO();
+		user.setAddr("주소");
+		user.setAddrName("설정 주소 닉네임");
+		user.setDtAddr("상세주소");
+		user.setUid("test");
+		user.setEmail("test@email.com");
+		user.setPass("password");
+		user.setJumin("123456-1234567");
+		user.setName("이름");
+		user.setPostcode("150305");
+		user.setPhone("010-1234-5678");
+		
+		userDao.join(user);
+	}
+//	@Test
+	public void 아이디중복체크() {
+		log.info("아이디 중복체크 테스트");
+		String uid = "test";
+		if(userDao.checkId(uid) == null) {
+			log.info("중복 X");
+		} else {
+			log.info("중복된 아이디입니다.");
+		}
+	}
+	
 	//@Test
 	public void 아이디찾기() {
 		log.info("아이디찾기 테스트");

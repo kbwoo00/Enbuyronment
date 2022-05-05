@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO userDao;
 	
+	@Override
+	public void join(UserVO vo) {
+		userDao.join(vo);
+	}
+	
 	// 아이디 찾기
 	@Override
 	public String findId(UserVO vo) {
@@ -138,5 +143,7 @@ public class UserServiceImpl implements UserService {
 			return 3;
 		}
 	}
+
+	
 
 }

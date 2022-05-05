@@ -10,6 +10,7 @@ import lombok.ToString;
 public class AddressVO {
 	
 	private Integer addrNo;
+	private String addrName;
 	private String postcode;
 	private String addr;
 	private String dtAddr;

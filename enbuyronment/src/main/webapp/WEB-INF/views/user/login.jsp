@@ -28,12 +28,12 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
 
-	<link rel="stylesheet" href="/resources/login/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/login/css/animate.css">
-	<link rel="stylesheet" href="/resources/login/css/style.css">
+	<link rel="stylesheet" href="/resources/user/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/user/css/animate.css">
+	<link rel="stylesheet" href="/resources/user/css/style.css">
 	
 	<!-- Modernizr JS -->
-	<script src="/resources/login/js/modernizr-2.6.2.min.js"></script>
+	<script src="/resources/user/js/modernizr-2.6.2.min.js"></script>
 
 
 	</head>
@@ -49,7 +49,7 @@
 				<div class="col-xs-10">
 					<div class="wrap">
 					<!-- Start Sign In Form -->
-					<form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					<form action="/user/login" method="post" class="fh5co-form animate-box" data-animate-effect="fadeIn">
 						<h2>로그인</h2>
 						<div class="form-group">
 							<label for="username" class="sr-only">아이디</label>
@@ -59,9 +59,6 @@
 							<label for="password" class="sr-only">비밀번호</label>
 							<input type="password" class="form-control" id="password" placeholder="비밀번호" autocomplete="off">
 						</div>
-<!-- 						<div class="form-group"> -->
-<!-- 							<label for="remember"><input type="checkbox" id="remember"> 아이디 저장</label> -->
-<!-- 						</div> -->
 						<div class="form-group">
 							<p> 아직 회원이 아니십니까? <a href="sign-up.html">회원가입</a> | <a href="forgot.html">아이디 찾기</a> | <a href="forgot.html">비밀번호 찾기</a></p>
 						</div>
@@ -76,15 +73,15 @@
 		</div>
 	
 	<!-- jQuery -->
-	<script src="/resources/login/js/jquery.min.js"></script>
+	<script src="/resources/user/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="/resources/login/js/bootstrap.min.js"></script>
+	<script src="/resources/user/js/bootstrap.min.js"></script>
 	<!-- Placeholder -->
-	<script src="/resources/login/js/jquery.placeholder.min.js"></script>
+	<script src="/resources/user/js/jquery.placeholder.min.js"></script>
 	<!-- Waypoints -->
-	<script src="/resources/login/js/jquery.waypoints.min.js"></script>
+	<script src="/resources/user/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
-	<script src="/resources/login/js/main.js"></script>
+	<script src="/resources/user/js/main.js"></script>
 
 
 	</body>

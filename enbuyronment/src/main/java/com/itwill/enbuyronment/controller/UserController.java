@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,16 @@ public class UserController {
 
 	@Inject
 	private UserService userService;
+	
+	@GetMapping("/join")
+	public String joinForm() {
+		return "/user/signup";
+	}
+	@PostMapping("/join")
+	public String join(@ModelAttribute UserVO vo) {
+		userService.join(vo);
+		return "redirect:/user/login";
+	}
 
 	// 아이디 찾기
 	@GetMapping("/findId")
