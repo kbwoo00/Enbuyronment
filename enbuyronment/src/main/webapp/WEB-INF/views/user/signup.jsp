@@ -76,11 +76,16 @@
 					<!-- 						<div class="form-group"> -->
 					<!-- 							<div class="alert alert-success" role="alert">Your info has been saved.</div> -->
 					<!-- 						</div> -->
-					<div class="form-group">
-						<label for="id" class="sr-only">Id</label> <input type="text"
-							class="form-control" id="uid" placeholder="아이디" autocomplete="off"
-							name="uid"> <input type="button" id="checkIdBtn"
-							class="btn btn-primary" value="아이디 중복 체크">
+					<div class="row">
+						<div class="col-md-8 form-group">
+							<label for="id" class="sr-only">Id</label> <input type="text"
+								class="form-control" id="uid" placeholder="아이디"
+								autocomplete="off" name="uid">
+						</div>
+						<div class="col-md-2 form-group">
+							<input type="button" id="checkIdBtn" class="btn btn-primary"
+								value="아이디 중복 체크">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="name" class="sr-only">Name</label> <input type="text"
@@ -102,14 +107,18 @@
 						<input type="password" class="form-control" id="re-password"
 							placeholder="비밀번호 확인" autocomplete="off">
 					</div>
-					<div class="form-group">
-						<div>
-							<input type="text" class="form-control col-md-3" id="postcode"
+					<div class="row">
+						<div class="col-md-6 form-group">
+							<input type="text" class="form-control" id="postcode"
 								placeholder="우편번호" autocomplete="off" name="postcode"
-								readonly="readonly"> <input type="button"
-								class="btn btn-primary col-md-3" onclick="execDaumPostcode()"
-								value="우편번호 찾기">
+								readonly="readonly">
 						</div>
+						<div class="col-md-6 form-group">
+							<input type="button" class="btn btn-primary col-md-12"
+								onclick="execDaumPostcode()" value="우편번호 찾기">
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="address" class="sr-only">Address</label> <input
 							type="text" class="form-control" id="address" placeholder="주소"
 							autocomplete="off" name="addr" readonly="readonly"> <input
@@ -134,15 +143,15 @@
 						</p>
 					</div>
 					<div class="form-group">
-						<input type="submit" value="회원가입" class="btn btn-primary">
+						<input type="submit" value="회원가입"
+							class="btn btn-primary btn-lg col-md-offset-5">
 					</div>
 				</form>
 				<!-- END Sign In Form -->
-
 			</div>
 		</div>
 	</div>
-
+	</div>
 	<!-- jQuery -->
 	<script src="/resources/user/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
@@ -205,22 +214,21 @@
 							document.getElementById('postcode').value = data.zonecode;
 							document.getElementById("address").value = addr;
 							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("detailAddress")
-									.focus();
+							document.getElementById("detailAddress").focus();
 						}
 					}).open();
 		}
-		
+
 		$(document).ready(function() {
 			$('#checkIdBtn').click(function() {
 				console.log($('#uid').val());
 				$.ajax({
-					url: '/user/checkId',
-					type: 'post',
-					data: {
+					url : '/user/checkId',
+					type : 'post',
+					data : {
 						'uid' : $('#uid').val()
 					},
-					success: function(result) {
+					success : function(result) {
 						alert(result);
 					}
 				});
