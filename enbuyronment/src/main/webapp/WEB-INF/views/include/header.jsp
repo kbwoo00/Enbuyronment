@@ -56,6 +56,7 @@
                                 </div>
                             </div> 
                             <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
+                            
 								<ul
 									class="header-right f-right d-none d-lg-block d-flex justify-content-between">
 <!-- 									<li class="d-none d-xl-block"> -->
@@ -70,9 +71,8 @@
 <!-- 										<div class="shopping-card"> -->
 <!-- 											<a href="cart.html"><i class="fas fa-shopping-cart"></i></a> -->
 <!-- 										</div> -->
-										
+										<li><div class="dvlpmode" href="#"><img src="/resources/main/img/icon/dvlpicon.png/" width="40px" height="40px" /></div></li>
 <!-- 									</li> -->
-
 									<li class="d-none d-block"><a href="#"
 										class="btn header-btn">로그인</a></li>
 									<li class="d-none d-block"><a href="#"

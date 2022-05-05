@@ -695,7 +695,7 @@ input:focus::-moz-placeholder {
 /* scrollUp */
 /* line 417, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 #scrollUp {
-  background: #2577fd;
+  background: #86A688;
   height: 50px;
   width: 50px;
   right: 31px;
@@ -706,6 +706,22 @@ input:focus::-moz-placeholder {
   border-radius: 50%;
   line-height: 48px;
   border: 2px solid transparent;
+}
+
+.dvlpmode {
+  background: #86A688;
+  height: 50px;
+  width: 50px;
+  right: 31px;
+  bottom: 18px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 48px;
+  border: 2px solid transparent;
+  cursor:pointer;
+	transform : translate( -1230px, 840px);
 }
 
 @media (max-width: 767px) {
