@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.itwill.enbuyronment.mapper.ProdMapper">
+
+	<!-- 상품등록 동작 -->
+	<insert id="insertProd">
+		insert into
+		product(prod_name, price, stock, cate_no, brand_no, file_path, thumb, prod_img2, prod_img3, prod_img4, script)
+		values(#{prodName}, #{price}, #{stock}, #{cateNo}, #{brandNo}, #{filePath}, #{thumb}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{script})
+	</insert>
+
+</mapper>
