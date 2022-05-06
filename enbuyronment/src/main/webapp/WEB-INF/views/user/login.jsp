@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <head>
@@ -36,12 +35,11 @@
 <!-- Modernizr JS -->
 <script src="/resources/user/js/modernizr-2.6.2.min.js"></script>
 
-
 </head>
 <body>
-	<br>
-	<br>
-	<br>
+	<br><br><br><br><br>
+	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
+	</a>
 	<br>
 	<br>
 	<br>
@@ -94,7 +92,6 @@
 	<script src="/resources/user/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
-
 
 </body>
 </html>

@@ -36,7 +36,11 @@
 
 	</head>
 	<body>
-	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	
+	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
+	</a>
+	<br><br>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -107,6 +111,8 @@
 		});
 	});
 	</script>
+
+<br><br><br><br><br><br>
 
 	</body>
 </html>
