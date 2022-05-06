@@ -36,10 +36,10 @@
                                     <nav>                                                
                                         <ul id="navigation">
                                                     <img class="logo" src="/resources/main/img/enbuyronment.png" width="350px" height="50px" />                                                                                                                   
-                                            <li><a href="main.jsp">메인</a></li>
-                                            <li><a href="Catagori.html">게시판</a>
+                                            <li><a href="main.jsp">| 메인 |</a></li>
+                                            <li><a href="Catagori.html">| 게시판 |</a>
                                             </li>
-                                            <li><a href="#">스토어</a>
+                                            <li><a href="#">| 스토어 |</a>
 <!--                                                 <ul class="submenu"> -->
 <!--                                                     <li><a href="login.html">Login</a></li> -->
 <!--                                                     <li><a href="cart.html">Card</a></li> -->
