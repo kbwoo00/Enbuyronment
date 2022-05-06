@@ -46,7 +46,7 @@ public class UserController {
 			return "중복된 아이디입니다.";
 		}
 		
-		return "사용가능한 아이디입니다.";
+		return "사용가능한 아이디입니다. 사용하시겠습니까?";
 	}
 	
 	@ResponseBody
