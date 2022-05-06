@@ -95,6 +95,11 @@
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
 
-
+	<script type="text/javascript">
+		var msg = '${msg }'
+		if(msg == 'fail'){
+			alert('아이디 또는 비밀번호가 틀렸습니다.');
+		}
+	</script>
 </body>
 </html>
