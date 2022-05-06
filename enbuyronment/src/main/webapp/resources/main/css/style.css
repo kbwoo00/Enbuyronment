@@ -205,7 +205,7 @@
 /* 1. Theme default css */
 /* line 8, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
   font-style: normal;
 }
@@ -217,7 +217,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #0b1c39;
   margin-top: 0px;
   font-style: normal;
@@ -227,7 +227,7 @@ h6 {
 
 /* line 27, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 p {
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   color: #506172;
   font-size: 16px;
   line-height: 30px;
@@ -301,7 +301,7 @@ a:focus,
 ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: -40px;
 }
 
 /* line 80, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -407,7 +407,7 @@ input:focus::-moz-placeholder {
 }
 
 .logo {
-	transform : translate(-330px, 0px);
+	transform : translate(-220px, 0px);
 }
 
 /* line 159, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -3207,7 +3207,7 @@ input:focus {
   color: #556172;
   text-transform: capitalize;
   line-height: 30px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 @media (max-width: 576px) {
@@ -3546,9 +3546,9 @@ input:focus {
   color: #000000;
   display: inline-block;
   text-transform: capitalize;
-  padding: 39px 18px;
+  padding: 20px 18px;
   display: block;
-  font-size: 14px;
+  font-size: 17px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -3573,11 +3573,6 @@ input:focus {
 /* line 102, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul li:hover > a {
   color: #86A688;
-}
-
-/* line 106, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
-.header-bottom .main-menu ul li.hot {
-  position: relative;
 }
 
 /* line 108, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -3613,8 +3608,8 @@ input:focus {
   visibility: hidden;
   opacity: 0;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.05);
-  padding: 17px 0;
-  border-top: 5px solid #ff003c;
+  padding: 20px 0;
+  border-top: 5px solid #86A688;
   -webkit-transition: all 0.2s ease-out 0s;
   -moz-transition: all 0.2s ease-out 0s;
   -ms-transition: all 0.2s ease-out 0s;
@@ -3624,20 +3619,23 @@ input:focus {
 
 /* line 141, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul ul.submenu > li {
-  margin-left: 3px;
+  margin-left: 7px;
   display: block;
 }
 //네비게이션 바
 /* line 144, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul ul.submenu > li > a {
-  padding: 10px 10px !important;
+  padding: 6px 10px !important;
   font-family: 'SCoreDream';
-  font-size: 50px;
+  font-size: 14px;
   color: #86A688;
+  padding : 23px 18px;
+  text-transform: capitalize;
 }
 
 /* line 149, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul ul.submenu > li > a:hover {
+  padding : 23px 18px;
   color: #86A688;
   background: none;
 }
@@ -4024,7 +4022,7 @@ input:focus {
 
 /* line 68, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-area .hero__caption span {
-  font-family: "Yellowtail", cursive;
+  font-family: 'SCoreDream';
   color: #2577fd;
   font-size: 40px;
   display: inline-block;
@@ -4033,7 +4031,7 @@ input:focus {
 /* line 74, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-area .hero__caption h1 {
   color: #1f2022;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   text-transform: uppercase;
   font-size: 100px;
   font-weight: 700;
@@ -4069,7 +4067,7 @@ input:focus {
 
 /* line 99, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-area .hero__caption p {
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-style: italic;
   font-size: 20px;
   line-height: 1.2;
@@ -4320,7 +4318,7 @@ input:focus {
   font-size: 30px;
   line-height: 1.1;
   text-transform: capitalize;
-  font-family: "Yellowtail", cursive;
+  font-family: 'SCoreDream';
   font-weight: 600;
   text-shadow: 0px -3px 0px #fff;
   margin-top: -8px;
@@ -4699,7 +4697,7 @@ input:focus {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   font-size: 117px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   font-weight: 700;
   text-transform: uppercase;
   -webkit-text-stroke: 1px #e6dfc6;
@@ -4804,7 +4802,7 @@ input:focus {
 /* line 159, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_best-product.scss */
 .best-collection-area .best-right-cap .best-single .single-cap.active h4 {
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 /* line 165, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_best-product.scss */
@@ -4812,7 +4810,7 @@ input:focus {
   color: #000000;
   font-size: 18px;
   line-height: 1.6;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 /* line 172, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_best-product.scss */
@@ -5003,7 +5001,7 @@ input:focus {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 12px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 /* line 303, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_best-product.scss */
@@ -5063,7 +5061,7 @@ input:focus {
   margin-bottom: 29px;
   font-weight: 500;
   text-transform: capitalize;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 /* line 26, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_footer.scss */
@@ -6850,7 +6848,7 @@ input:focus {
   color: #fff;
   font-weight: 900;
   margin-bottom: 0;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   text-transform: capitalize;
 }
 
@@ -6918,7 +6916,7 @@ input:focus {
   cursor: pointer;
   display: block;
   float: left;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
   width: 100% !important;
   /* height: 42px; */
@@ -6956,7 +6954,7 @@ input:focus {
   top: 3px;
   transition: all 0.15s ease-in-out;
   width: 5px;
-  font-family: fontawesome;
+  font-family: 'SCoreDream';
   color: #919191;
   font-size: 15px;
 }
@@ -8455,7 +8453,7 @@ del {
   text-align: center;
   background-color: #fff;
   font-size: 15px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   font-weight: 500;
   color: #1e1e1e;
   -o-transition: all .4s ease-in-out;
@@ -8627,7 +8625,7 @@ del {
 .blog-area .single-blog .blog-caption .blog-cap-top ul li {
   color: #c7c7c7;
   font-size: 14px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'SCoreDream';
 }
 
 /* line 40, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_blog.scss */
@@ -8640,7 +8638,7 @@ del {
 .blog-area .single-blog .blog-caption .blog-cap-mid p a {
   color: #444444;
   font-size: 18px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'SCoreDream';
   line-height: 28px;
   margin-bottom: 30px;
 }
@@ -9115,7 +9113,7 @@ input:focus {
   margin-top: 22px;
   line-height: 1.5;
   margin-bottom: 25px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
 }
 
 @media (max-width: 991px) {
@@ -9233,7 +9231,7 @@ input:focus {
   right: -8px;
   bottom: -10px;
   content: '\f100';
-  font-family: 'Flaticon';
+  font-family: 'SCoreDream';
   height: 50px;
   width: 50px;
   background-color: #E4D3DF;
@@ -9783,7 +9781,7 @@ input:focus {
 
 /* line 65, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .single-product .product-btm span {
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   font-size: 20px;
   font-weight: 500;
   line-height: 16px;
@@ -9958,7 +9956,7 @@ input:focus {
 .l_w_title h3 {
   margin-bottom: 20px;
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #415094;
   font-weight: 500;
   line-height: 40px;
@@ -10090,7 +10088,7 @@ input:focus {
 /* line 349, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .product_top_bar .left_dorp .sorting span {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #555555;
 }
 
@@ -10103,7 +10101,7 @@ input:focus {
 /* line 359, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .product_top_bar .left_dorp .sorting .list li {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #555555;
 }
 
@@ -10134,7 +10132,7 @@ input:focus {
 /* line 388, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .product_top_bar .left_dorp .show span {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #555555;
 }
 
@@ -10147,7 +10145,7 @@ input:focus {
 /* line 398, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .product_top_bar .left_dorp .show .list li {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #555555;
 }
 
@@ -10450,7 +10448,7 @@ input:focus {
 /* line 701, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .s_product_text .list li a {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
   color: #555555;
 }
@@ -10684,7 +10682,7 @@ input:focus {
 .product_description_area .tab-content .total_rate .rating_list h3 {
   font-size: 18px;
   color: #415094;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -10721,7 +10719,7 @@ input:focus {
 /* line 950, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .product_description_area .tab-content .table tbody tr td h5 {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
   color: #828bb2;
   margin-bottom: 0px;
@@ -10769,7 +10767,7 @@ input:focus {
   margin-bottom: 0px;
   font-size: 14px;
   color: #415094;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   margin-bottom: 8px;
 }
 
@@ -10793,7 +10791,7 @@ input:focus {
   line-height: 32px;
   border-radius: 16px;
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #415094;
   position: absolute;
   right: 0px;
@@ -10887,7 +10885,7 @@ input:focus {
   border-top: 0px;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   border-bottom: 0px !important;
 }
@@ -10927,7 +10925,7 @@ input:focus {
 .cart_inner .table tbody tr td h5 {
   font-size: 14px;
   color: #415094;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   margin-bottom: 0px;
 }
 
@@ -11009,7 +11007,7 @@ input:focus {
   height: 40px;
   font-size: 14px;
   color: #cccccc;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
   margin-right: -3px;
   outline: none;
@@ -11020,7 +11018,7 @@ input:focus {
 .cart_inner .table tbody tr.bottom_button td .cupon_text input.placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11028,7 +11026,7 @@ input:focus {
 .cart_inner .table tbody tr.bottom_button td .cupon_text input:-moz-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11036,7 +11034,7 @@ input:focus {
 .cart_inner .table tbody tr.bottom_button td .cupon_text input::-moz-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11044,7 +11042,7 @@ input:focus {
 .cart_inner .table tbody tr.bottom_button td .cupon_text input::-webkit-input-placeholder {
   font-size: 14px;
   color: #cccccc;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11136,7 +11134,7 @@ input:focus {
   font-size: 14px;
   font-weight: normal;
   color: #415094;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -11245,7 +11243,7 @@ input:focus {
 .check_title h2 {
   font-size: 14px;
   font-weight: normal;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   background: #f7f7f7;
   line-height: 40px;
   padding-left: 30px;
@@ -11304,7 +11302,7 @@ input:focus {
   height: 40px;
   border-radius: 3px;
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11312,7 +11310,7 @@ input:focus {
 /* line 29, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_mixins.scss */
 .returning_customer .contact_form .form-group input.placeholder {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11320,7 +11318,7 @@ input:focus {
 /* line 32, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_mixins.scss */
 .returning_customer .contact_form .form-group input:-moz-placeholder {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11328,7 +11326,7 @@ input:focus {
 /* line 35, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_mixins.scss */
 .returning_customer .contact_form .form-group input::-moz-placeholder {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11336,7 +11334,7 @@ input:focus {
 /* line 38, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_mixins.scss */
 .returning_customer .contact_form .form-group input::-webkit-input-placeholder {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11363,7 +11361,7 @@ input:focus {
   display: block;
   margin-top: 20px;
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   color: #828bb2;
   font-weight: normal;
 }
@@ -11453,7 +11451,7 @@ input:focus {
   padding: 0px 40px;
   color: #415094;
   text-transform: capitalize;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: 500;
   border-radius: 50px;
 }
@@ -11530,7 +11528,7 @@ input:focus {
 /* line 1633, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .billing_details .contact_form .form-group .country_select .list li {
   font-size: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11739,7 +11737,7 @@ input:focus {
   border-radius: 0px;
   font-size: 14px;
   color: #828bb2;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11747,7 +11745,7 @@ input:focus {
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input.placeholder {
   font-size: 14px;
   color: #828bb2;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11755,7 +11753,7 @@ input:focus {
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input:-moz-placeholder {
   font-size: 14px;
   color: #828bb2;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11763,7 +11761,7 @@ input:focus {
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input::-moz-placeholder {
   font-size: 14px;
   color: #828bb2;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11771,7 +11769,7 @@ input:focus {
 .tracking_box_area .tracking_box_inner .tracking_form .form-group input::-webkit-input-placeholder {
   font-size: 14px;
   color: #828bb2;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: normal;
 }
 
@@ -11818,7 +11816,7 @@ input:focus {
   z-index: 9;
   cursor: pointer;
   -webkit-transition: all 0.25s linear;
-  font-family: "Playfair Display", serif;
+  font-family: 'SCoreDream';
   font-weight: 500;
   color: #415094;
   font-size: 13px;
@@ -12192,7 +12190,7 @@ input:focus {
   font-size: 16px;
   color: #000;
   text-transform: capitalize;
-  font-family: "Poppins", sans-serif;
+  font-family: 'SCoreDream';
   margin-left: 35px;
   display: inline-block;
   cursor: pointer;
