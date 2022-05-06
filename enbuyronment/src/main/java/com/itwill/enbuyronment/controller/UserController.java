@@ -36,19 +36,19 @@ public class UserController {
 		userService.join(vo);
 		return "redirect:/user/login";
 	}
-	
+
 	@ResponseBody
 	@PostMapping(value = "/checkId", produces = "application/text; charset=UTF-8")
 	public String checkDuplId(UserVO user) {
 		log.info(user.getUid());
 		log.info("유저 = {}", userService.checkId(user.getUid()));
-		if(userService.checkId(user.getUid()) != null) {
+		if (userService.checkId(user.getUid()) != null) {
 			return "중복된 아이디입니다.";
 		}
-		
+
 		return "사용가능한 아이디입니다. 사용하시겠습니까?";
 	}
-	
+
 	@ResponseBody
 	@PostMapping(value = "/checkEmail", produces = "application/text; charset=UTF-8")
 	public String checkEmail(@RequestBody String email) {
@@ -65,16 +65,25 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr) {
 		UserVO user = userService.login(vo);
-		
+
 		if (user == null) {
 			rttr.addFlashAttribute("msg", "fail");
 			return "redirect:/user/login";
 		}
-		
+
 		session.setAttribute("userId", user.getUid());
+		
 		rttr.addFlashAttribute("msg", "success");
+		log.info("로그인 한 사람 ID = {}", session.getAttribute("userId"));
 
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/logout", produces = "application/text; charset=UTF-8")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "로그아웃 되었습니다.";
 	}
 
 	// 아이디 찾기
