@@ -885,5 +885,12 @@
 
     </main>
 <%@include file ="include/footer.jsp" %>
+
+	<script type="text/javascript">
+		var msg = '${msg }'
+		if(msg == 'success'){
+			alert('로그인 되었습니다.');
+		}
+	</script>
     </body>
 </html>

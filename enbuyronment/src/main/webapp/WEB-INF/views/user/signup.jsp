@@ -75,7 +75,8 @@
 			<div class="col-md-6 col-md-offset-4">
 				<!-- Start Sign In Form -->
 				<form action="/user/join" method="post"
-					class="fh5co-form animate-box" data-animate-effect="fadeIn">
+					class="fh5co-form animate-box" data-animate-effect="fadeIn"
+					onsubmit="return check()">
 					<h2>회원가입</h2>
 					<!-- 						<div class="form-group"> -->
 					<!-- 							<div class="alert alert-success" role="alert">Your info has been saved.</div> -->
@@ -122,6 +123,7 @@
 						<label for="password" class="sr-only">Password</label> <input
 							type="password" class="form-control" id="pass" placeholder="비밀번호"
 							autocomplete="off" name="pass" required="required">
+							<p>8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합</p>
 					</div>
 					<div class="form-group">
 						<label for="re-password" class="sr-only">Re-type Password</label>
@@ -152,7 +154,7 @@
 					</div>
 					<div class="form-group">
 						<label for="phone" class="sr-only">Phone</label> <input type="tel"
-							class="form-control" id="phone" placeholder="휴대폰"
+							class="form-control" id="phone" placeholder="휴대폰 ex)010-1234-5678"
 							autocomplete="off" name="phone" required="required">
 					</div>
 					<div class="form-group">
@@ -162,7 +164,7 @@
 					</div>
 					<div class="form-group">
 						<p>
-							이미 아이디가 있나요? <a href="index.html">로그인</a>
+							이미 아이디가 있나요? <a href="/user/login">로그인</a>
 						</p>
 					</div>
 					<div class="form-group">
@@ -189,6 +191,64 @@
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		var emailCheck = false;
+		var idCheck = false;
+		var certiNum;
+		var pass = $('#pass');
+		var rePass = $('#rePass');
+		var passCfErMsg = $('#passCfErMsg');
+		var uid = $('#uid');
+		var email = $('#email');
+		var phone = $('#phone');
+		var jumin = $('#jumin');
+
+		var idRegExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+		var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		var passRegExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+		var phoneRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+		var juminRegExp = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-4]\d{6}/;
+
+		// 유효성 검증
+		function check() {
+			if (!idCheck) {
+				alert('아이디 중복체크를 확인해주세요');
+				uid.focus();
+				return false;
+			}
+
+			if (!emailCheck) {
+				alert('이메일을 인증해주세요.');
+				email.focus();
+				return false;
+			}
+			
+			if(!passRegExp.test(pass.val())){
+				alert('비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합해야 합니다.');
+				pass.focus();
+				return false;
+			}
+
+			if (rePass.val() != pass.val()) {
+				alert('비밀번호가 일치하지 않습니다.');
+				pass.focus();
+				return false;
+			}
+			
+			if (!phoneRegExp.test(phone.val())){
+				alert('휴대폰 번호의 형식이 올바르지 않습니다.');
+				phone.focus();
+				return false;
+			}
+			
+			if (!juminRegExp.test(jumin.val())){
+				alert('주민번호의 형식이 올바르지 않습니다.');
+				jumin.focus();
+				return false;
+			}
+			
+			alert('회원가입이 정상적으로 되었습니다.');
+		}
+
 		function execDaumPostcode() {
 			new daum.Postcode(
 					{
@@ -243,51 +303,48 @@
 		}
 
 		$(document).ready(function() {
-			var emailCheck = false;
-			var idCheck = false;
-			var certiNum;
-			var pass = $('#pass');
-			var rePass = $('#rePass');
-			var passCfErMsg = $('#passCfErMsg');
-
 			// 아이디 중복 체크
 			$('#checkIdBtn').click(function() {
-				$.ajax({
-					url : '/user/checkId',
-					type : 'post',
-					data : {
-						'uid' : $('#uid').val()
-					},
-					success : function(result) {
-						if(confirm(result)){
-							idCheck = true;
-							$('#uid').attr("readonly", true);
-						} 
-					}
-				});
+				if (idRegExp.test(uid.val())) {
+					$.ajax({
+						url : '/user/checkId',
+						type : 'post',
+						data : {
+							'uid' : $('#uid').val()
+						},
+						success : function(msg) {
+							if (confirm(msg)) {
+								idCheck = true;
+								uid.attr("readonly", true);
+							}
+						}
+					});
+				} else {
+					alert('아이디는 영문자로 시작해야 하며, 영어 숫자 조합으로 6 ~ 20자 사이만 가능합니다.');
+				}
+
 			});
 
 			// 이메일에 인증번호 보내기
 			$('#emailCheckBtn').click(function() {
-				var email = $('#email').val();
-				if (email == '') {
-					alert('이메일을 입력해주세요');
-				} else {
+				if (emailRegExp.test(email.val())) {
 					$.ajax({
 						url : '/user/checkEmail',
 						type : 'post',
 						contentType : "application/text; charset=utf-8",
-						data : email,
-						success : function(result) {
-							if (result == '인증실패') {
+						data : email.val(),
+						success : function(msg) {
+							if (msg == '인증실패') {
 								alert('인증에 실패했습니다. 이메일을 다시 입력해주세요');
 							} else {
-								certiNum = result;
+								certiNum = msg;
 								$('#email').attr("readonly", true);
 								alert('인증번호를 발급하였습니다. 이메일을 확인해주세요');
 							}
 						}
 					});
+				} else {
+					alert('이메일 형식이 올바르지 않습니다.');
 				}
 			});
 
@@ -317,8 +374,6 @@
 					passCfErMsg.text('비밀번호가 일치합니다');
 				}
 			});
-
-			// 유효성 검증
 
 		});
 	</script>

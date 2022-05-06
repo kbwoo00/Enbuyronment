@@ -93,5 +93,14 @@
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
 
+<<<<<<< HEAD
+=======
+	<script type="text/javascript">
+		var msg = '${msg }'
+		if(msg == 'fail'){
+			alert('아이디 또는 비밀번호가 틀렸습니다.');
+		}
+	</script>
+>>>>>>> branch 'mod/user' of https://github.com/kbwoo00/Enbuyronment.git
 </body>
 </html>

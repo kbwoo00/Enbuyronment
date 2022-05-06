@@ -63,14 +63,16 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@ModelAttribute UserVO vo, HttpSession session) {
+	public String login(@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr) {
 		UserVO user = userService.login(vo);
 		
 		if (user == null) {
-			return "/user/login";
+			rttr.addFlashAttribute("msg", "fail");
+			return "redirect:/user/login";
 		}
 		
 		session.setAttribute("userId", user.getUid());
+		rttr.addFlashAttribute("msg", "success");
 
 		return "redirect:/";
 	}
