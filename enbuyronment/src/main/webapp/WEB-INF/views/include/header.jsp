@@ -35,22 +35,23 @@
                                 <div class="main-menu f-right d-none d-block">
                                     <nav>                                                
                                         <ul id="navigation">
-                                                    <img class="logo" src="/resources/main/img/enbuyronment.png" width="350px" height="50px" />                                                                                                                   
-                                            <li><a href="main.jsp">메인</a></li>
-                                            <li><a href="Catagori.html">게시판</a>
+                                                    <img class="logo" href="/" src="/resources/main/img/enbuyronment.png" width="350px" height="50px" />                                                                                                                   
+                                            <li><a href="/">메인</a></li>
+                                            <li><a>게시판</a>
+	                                            <ul class="submenu">
+	                                                <li><a href="/board/list">공지사항</a></li>
+	                                                <li><a href="/board/faq">FAQ</a></li>
+	                                            </ul>
                                             </li>
-                                            <li><a href="#">스토어</a>
-<!--                                                 <ul class="submenu"> -->
-<!--                                                     <li><a href="login.html">Login</a></li> -->
-<!--                                                     <li><a href="cart.html">Card</a></li> -->
-<!--                                                     <li><a href="elements.html">Element</a></li> -->
-<!--                                                     <li><a href="about.html">About</a></li> -->
-<!--                                                     <li><a href="confirmation.html">Confirmation</a></li> -->
-<!--                                                     <li><a href="cart.html">Shopping Cart</a></li> -->
-<!--                                                     <li><a href="checkout.html">Product Checkout</a></li> -->
-<!--                                                 </ul> -->
+                                            <li><a href="/product/list">스토어</a></li>
+                                            <li><a>관리자</a>
+	                                            <ul class="submenu">
+	                                                <li><a href="/board/write">글쓰기</a></li>
+	                                                <li><a href="/userManagement">회원관리</a></li>
+	                                                <li><a href="/product/regist">상품등록</a></li>
+	                                                <li><a href="/orderManagement">주문내역</a></li>
+	                                            </ul>
                                             </li>
-<!--                                             <li><a href="contact.html"></a></li> -->
                                         </ul>
                                     </nav>
                                 </div>
@@ -73,9 +74,9 @@
 <!-- 										</div> -->
 										<li><div class="dvlpmode" href="#"><img src="/resources/main/img/icon/dvlpicon.png/" width="40px" height="40px" /></div></li>
 <!-- 									</li> -->
-									<li class="d-none d-block"><a href="#"
+									<li class="d-none d-block"><a href="/user/login"
 										class="btn header-btn">로그인</a></li>
-									<li class="d-none d-block"><a href="#"
+									<li class="d-none d-block"><a href="/user/join"
 										class="btn header-btn">회원가입</a></li>
 								</ul>
 							</div>
