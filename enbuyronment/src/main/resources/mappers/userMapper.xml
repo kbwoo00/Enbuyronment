@@ -12,8 +12,8 @@
 		values (#{uid}, #{pass}, #{email}, #{name}, #{phone}, #{jumin})
 	</insert>
 	<insert id="initAddr">
-		insert into address(postcode, addr, dt_addr, ex_addr, uid)
-		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid})
+		insert into address(postcode, addr, dt_addr, ex_addr, uid, reciver)
+		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid}, #{reciver})
 	</insert>
 	
 	<!-- 로그인 유저 조회 -->

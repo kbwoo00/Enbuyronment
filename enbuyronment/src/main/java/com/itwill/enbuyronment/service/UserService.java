@@ -18,6 +18,9 @@ public interface UserService {
 
 	// 비밀번호 찾기
 	public Integer findPw(UserVO vo);
+
+	// 이메일 인증
+	public String checkEmail(String email);
 	
 
 }
