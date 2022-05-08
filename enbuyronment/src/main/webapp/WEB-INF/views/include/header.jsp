@@ -36,9 +36,13 @@
 								<div class="main-menu f-right d-none d-block">
 									<nav>
 										<ul id="navigation">
-											<img class="logo" href="/"
+										<li><a href="/">
+										<img class="logo"
 												src="/resources/main/img/enbuyronment.png" width="350px"
 												height="50px" />
+										</a></li>
+										
+											
 											<li><a href="/">메인</a></li>
 											<li><a>게시판</a>
 												<ul class="submenu">
@@ -46,13 +50,16 @@
 													<li><a href="/board/faq">FAQ</a></li>
 												</ul></li>
 											<li><a href="/product/list">스토어</a></li>
-											<li><a>관리자</a>
-												<ul class="submenu">
-													<li><a href="/board/write">글쓰기</a></li>
-													<li><a href="/userManagement">회원관리</a></li>
-													<li><a href="/product/regist">상품등록</a></li>
-													<li><a href="/orderManagement">주문내역</a></li>
-												</ul></li>
+											<c:if test="${sessionScope.mode eq 'adminMode' }">
+												<li><a>관리자</a>
+													<ul class="submenu">
+														<li><a href="/board/write">글쓰기</a></li>
+														<li><a href="/userManagement">회원관리</a></li>
+														<li><a href="/product/regist">상품등록</a></li>
+														<li><a href="/orderManagement">주문내역</a></li>
+													</ul></li>
+											</c:if>
+
 										</ul>
 									</nav>
 								</div>
@@ -76,23 +83,28 @@
 											</li>
 											<li class=" ">
 												<div class="favorit-items">
+												<a href="/heart"></a>
 													<i class="far fa-heart"></i>
 												</div>
 											</li>
 											<li>
 												<div class="shopping-card">
-													<a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+													<a href="/cart"><i class="fas fa-shopping-cart"></i></a>
 												</div>
 											</li>
-											<li class="d-none d-block"><input id="logoutBtn" type="button" class="btn header-btn" value="로그아웃"></li>
+											<li class="d-none d-block"><input id="logoutBtn"
+												type="button" class="btn header-btn" value="로그아웃"></li>
 										</c:otherwise>
 									</c:choose>
 
-									<c:if test="${sessionScope.userId eq 'admin' }">
-										<li><div class="dvlpmode" href="">
-												<img src="/resources/main/img/icon/dvlpicon.png/"
-													width="40px" height="40px" />
-											</div></li>
+									<c:if test="${sessionScope.userId eq 'admin'}">
+										<li>
+											<button id="changeModeBtn" class="dvlpmode">
+												 <img
+													src="/resources/main/img/icon/dvlpicon.png/" width="40px"
+													height="40px" />
+											</button>
+										</li>
 									</c:if>
 
 								</ul>
@@ -106,14 +118,23 @@
 	</header>
 
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$('#logoutBtn').click(function() {
-			$.post('/user/logout', function(msg) {
-				alert(msg);
-				location.replace('/');
+		$(document).ready(function() {
+			$('#logoutBtn').click(function() {
+				$.post('/user/logout', function(msg) {
+					alert(msg);
+					location.replace('/');
+				});
 			});
-		})
-	});
+
+			$('#changeModeBtn').click(function() {
+				$.post('/user/changeMode', function(msg) {
+					alert(msg);
+					location.replace('/');
+				});
+
+			})
+
+		});
 	</script>
 </body>
 </html>

@@ -72,13 +72,18 @@ public class UserController {
 		}
 
 		session.setAttribute("userId", user.getUid());
-		
+
+		if (user.getUid().equals("admin")) {
+			session.setAttribute("mode", "userMode");
+		}
+
 		rttr.addFlashAttribute("msg", "success");
 		log.info("로그인 한 사람 ID = {}", session.getAttribute("userId"));
+		log.info("mode = {}", session.getAttribute("mode"));
 
 		return "redirect:/";
 	}
-	
+
 	@ResponseBody
 	@PostMapping(value = "/logout", produces = "application/text; charset=UTF-8")
 	public String logout(HttpSession session) {
@@ -120,6 +125,25 @@ public class UserController {
 		String result = userService.findPw(vo) + "";
 
 		return result;
+	}
+
+	// 관리자 모드로 변경
+	@ResponseBody
+	@PostMapping(value = "/changeMode", produces = "application/text; charset=UTF-8")
+	public String changeMode(HttpSession session) {
+		String msg;
+
+		String mode = (String) session.getAttribute("mode");
+
+		if (mode.equals("userMode")) {
+			session.setAttribute("mode", "adminMode");
+			msg = "관리자 모드로 변경되었습니다.";
+		} else {
+			session.setAttribute("mode", "userMode");
+			msg = "유저모드로 변경되었습니다.";
+		}
+
+		return msg;
 	}
 
 }

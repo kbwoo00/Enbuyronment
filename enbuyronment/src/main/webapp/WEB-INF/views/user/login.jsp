@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,14 +38,19 @@
 
 </head>
 <body>
-	<br><br><br><br><br>
-	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
-	</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<br>
 	<br>
 	<br>
 	<div class="container">
 		<div class="row">
+			<a class="col-md-5 col-md-offset-4" href="/"><img class="logo"
+				src="/resources/user/images/enbuyronment.png"
+				style="cursor: pointer;"> </a>
 			<div class="col-md-12 text-center"></div>
 		</div>
 		<div class="row">
@@ -72,8 +78,7 @@
 					</div>
 					<div class="col col-md-offset-4 justify-content-center">
 						<div class="form-group">
-							<input type="submit" value="로그인"
-								class="btn btn-primary">
+							<input type="submit" value="로그인" class="btn btn-primary">
 						</div>
 					</div>
 				</form>
@@ -93,14 +98,11 @@
 	<!-- Main JS -->
 	<script src="/resources/user/js/main.js"></script>
 
-<<<<<<< HEAD
-=======
 	<script type="text/javascript">
 		var msg = '${msg }'
-		if(msg == 'fail'){
+		if (msg == 'fail') {
 			alert('아이디 또는 비밀번호가 틀렸습니다.');
 		}
 	</script>
->>>>>>> branch 'mod/user' of https://github.com/kbwoo00/Enbuyronment.git
 </body>
 </html>

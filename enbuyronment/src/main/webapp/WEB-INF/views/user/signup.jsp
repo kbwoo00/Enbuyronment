@@ -63,16 +63,19 @@
 <body>
 	<br>
 	<br>
-	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
-	</a>
 	<br>
 	<br>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center"></div>
+		<div class="row align-items-center">
+		<div class="col-md-6 col-md-offset-3">
+				<a href="/"><img class="logo"
+					src="/resources/user/images/enbuyronment.png"
+					style="cursor: pointer;"> </a>
 		</div>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-4">
+		</div>
+		<div class="row ">
+			
+			<div class="col-md-6 col-md-offset-3">
 				<!-- Start Sign In Form -->
 				<form action="/user/join" method="post"
 					class="fh5co-form animate-box" data-animate-effect="fadeIn"
