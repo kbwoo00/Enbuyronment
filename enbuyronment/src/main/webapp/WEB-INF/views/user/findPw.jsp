@@ -36,7 +36,11 @@
 
 	</head>
 	<body>
-	<br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	
+	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
+	</a>
+	<br><br>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -44,8 +48,6 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					
-					
 					<!-- Start Sign In Form -->
 					<form class="fh5co-form animate-box" data-animate-effect="fadeIn">
 						<h2>비밀번호 찾기</h2>
@@ -58,15 +60,13 @@
 							<input type="email" name="email" class="form-control" id="email" placeholder="이메일" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<p><a href="/user/login">로그인</a> | <a href="/user/userJoin">회원가입</a></p>
+							<p><a href="/user/login">로그인</a> | <a href="/user/join">회원가입</a></p>
 						</div>
 						<div class="form-group">
 							<input type="button" value="임시 비밀번호 발급" class="btn btn-primary" id="findPwBtn">
 						</div>
 					</form>
 					<!-- END Sign In Form -->
-
-
 				</div>
 			</div>
 		</div>
@@ -111,6 +111,8 @@
 		});
 	});
 	</script>
+
+<br><br><br><br><br><br>
 
 	</body>
 </html>

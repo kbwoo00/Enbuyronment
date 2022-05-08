@@ -37,7 +37,12 @@
 
 	</head>
 	<body>
-	<br><br><br><br><br><br><br><br><br><br>
+	
+	<br><br><br><br><br>
+	
+	<a href="/"><img class = "logo" src="/resources/user/images/enbuyronment.png" style="cursor:pointer; transform: translate(680px, 20px);">
+	</a>
+	<br><br><br>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -62,7 +67,7 @@
 							<div class="alert alert-success" id="foundId" role="alert"></div>
 						</div>
 						<div class="form-group">
-							<p><a href="/user/login">로그인</a> | <a href="/user/userJoin">회원가입</a></p>
+							<p><a href="/user/login">로그인</a> | <a href="/user/join">회원가입</a></p>
 						</div>
 						<div class="form-group">
 							<input type="button" value="아이디 찾기" class="btn btn-primary" id="findIdBtn">
@@ -102,7 +107,6 @@
 			});
 		});
 	});
-	</script>
 
 	</body>
 </html>
