@@ -3,12 +3,6 @@
 <html lang="en">
 
 <head>
-
-
-    <%@include file ="../include/head.jsp" %>
-	<%@include file ="../include/header.jsp" %>
-	
-	
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -137,6 +131,5 @@
     <script src="/resources/product/js/global.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-<%@include file ="../include/footer.jsp" %>
 </html>
 <!-- end document-->
