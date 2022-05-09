@@ -33,6 +33,7 @@ public class AdminController {
 		pm.setTotalCount(adminService.getUserTotalCnt());
 		
 		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
 		log.info("startPage = {}",pm.getStartPage());
 		log.info("perPageNum = {}", cri.getPerDataCnt());
 		log.info("endPage = {}", pm.getEndPage());
