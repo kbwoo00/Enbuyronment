@@ -35,9 +35,18 @@ public class ProdTest {
 		vo.setProdImg3("asdf3");
 		vo.setProdImg4("asdf4");
 		vo.setScript("asdf5");
-		vo.setCateNo(4);
-		vo.setBrandNo(2);
+		vo.setCateName("동구밭");
+		vo.setBrandName("LIVING");
 		
 		prodDao.regProduct(vo);
+	}
+	
+	//@Test
+	public void 상세페이지테스트() {
+		
+		int prodNo = 1;
+		ProductVO vo = prodDao.getProd(prodNo);
+		
+		log.info(vo+"");
 	}
 }

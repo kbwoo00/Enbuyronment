@@ -20,6 +20,6 @@ public class ProductVO {
 	private String prodImg4;
 	private String script;
 	
-	private Integer cateNo;
-	private Integer brandNo;
+	private String cateName;
+	private String brandName;
 }

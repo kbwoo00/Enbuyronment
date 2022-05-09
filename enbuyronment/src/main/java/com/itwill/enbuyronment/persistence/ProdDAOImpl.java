@@ -24,5 +24,13 @@ public class ProdDAOImpl implements ProdDAO {
 		
 		sqlSession.insert(NAMESPACE+".insertProd", vo);
 	}
+
+	//상품정보 가져오기 동작
+	@Override
+	public ProductVO getProd(Integer prodNo) {
+		log.info("DAO : getProd(prodNo) 호출");
+		
+		return sqlSession.selectOne(NAMESPACE+".getProd", prodNo);
+	}
 	
 }

@@ -8,9 +8,21 @@
 
 	<!-- 상품등록 동작 -->
 	<insert id="insertProd">
-		insert into
-		product(prod_name, price, stock, cate_no, brand_no, file_path, thumb, prod_img2, prod_img3, prod_img4, script)
-		values(#{prodName}, #{price}, #{stock}, #{cateNo}, #{brandNo}, #{filePath}, #{thumb}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{script})
+		insert into product(prod_name, price, stock, cate_no, brand_no, file_path, thumb, prod_img2, prod_img3, prod_img4, script)
+			select #{prodName}, #{price}, #{stock}, c.cate_no, b.brand_no, #{filePath}, #{thumb}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{script} 
+			from category c join brand b
+			where c.cate_name = #{cateName}
+			and b.brand_name = #{brandName}
 	</insert>
+	
+	<!-- 상품정보 가져오기 동작 -->
+	<select id="getProd" resultType="ProductVO">
+		select p.*, c.cate_name, b.brand_name 
+		from product p join category c 
+		on p.cate_no = c.cate_no 
+		join brand b 
+		on p.brand_no = b.brand_no 
+		where p.prod_no = #{prodNo}
+	</select>
 
 </mapper>

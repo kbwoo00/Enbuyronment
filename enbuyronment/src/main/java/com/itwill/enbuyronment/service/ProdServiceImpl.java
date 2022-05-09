@@ -52,10 +52,17 @@ public class ProdServiceImpl implements ProdService {
 		vo.setProdImg3(prodImg.get(2).getOriginalFilename());
 		vo.setProdImg4(prodImg.get(3).getOriginalFilename());
 		vo.setScript(prodImg.get(4).getOriginalFilename());
-		vo.setCateNo(Integer.parseInt(request.getParameter("cateNo")));
-		vo.setBrandNo(Integer.parseInt(request.getParameter("brandNo")));
+		vo.setCateName(request.getParameter("cateName"));
+		vo.setBrandName(request.getParameter("brandName"));
 		
 		prodDao.regProduct(vo);
+	}
+
+	@Override
+	public ProductVO prodDetail(Integer prodNo) throws Exception {
+		log.info("prodDetail(prodNo) 호출");
+		
+		return prodDao.getProd(prodNo);
 	}
 	
 }
