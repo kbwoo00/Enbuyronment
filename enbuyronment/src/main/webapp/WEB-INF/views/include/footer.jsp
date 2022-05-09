@@ -1,12 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-</head>
-<body>
    <footer>
-
        <!-- Footer Start-->
        <div class="footer-area footer-padding">
            <div class="container">
@@ -88,7 +81,4 @@
            </div>
        </div>
        <!-- Footer End-->
-
    </footer>
-</body>
-</html>
