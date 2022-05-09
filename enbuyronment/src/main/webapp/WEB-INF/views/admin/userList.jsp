@@ -17,6 +17,7 @@
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
+						<th scope="col">선택 / 선택해제</th>
 						<th scope="col">아이디</th>
 						<th scope="col">이름</th>
 						<th scope="col">이메일</th>
@@ -26,6 +27,7 @@
 				<tbody>
 					<c:forEach var="user" items="${userList }">
 						<tr>
+							<td class="col-md-2">체크박스 넣기</td>
 							<td>${user.uid }</td>
 							<td>${user.name }</td>
 							<td>${user.email }</td>
@@ -48,7 +50,7 @@
 						end="${pageInfo.endPage }" var="i">
 						<c:choose>
 							<c:when test="${i == presentPage }">
-								<li class="page-item active"><a class="page-link " 
+								<li class="page-item active"><a class="page-link "
 									href="/userManagement?page=${i }">${i }</a></li>
 							</c:when>
 							<c:otherwise>
