@@ -2,6 +2,7 @@ package com.itwill.enbuyronment.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,6 +21,14 @@ public class ProdServiceImpl implements ProdService {
 
 	@Inject
 	private ProdDAO prodDao;
+	
+	//브랜드&용도명 가져오기
+	@Override
+	public Map<String, List<String>> BrandCate() throws Exception {
+		log.info("BrandCate() 호출");
+		
+		return prodDao.getBraCat();
+	}
 
 	//상품 등록
 	@Override

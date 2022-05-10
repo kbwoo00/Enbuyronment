@@ -6,6 +6,16 @@
 
 <mapper namespace="com.itwill.enbuyronment.mapper.ProdMapper">
 
+	<!-- 브랜드명 가져오기 동작 -->
+	<select id="getBrand" resultType="String">
+		select brand_name from brand
+	</select>
+	
+	<!-- 용도명 가져오기 동작 -->
+	<select id="getCate" resultType="String">
+		select cate_name from category
+	</select>
+	
 	<!-- 상품등록 동작 -->
 	<insert id="insertProd">
 		insert into product(prod_name, price, stock, cate_no, brand_no, file_path, thumb, prod_img2, prod_img3, prod_img4, script)

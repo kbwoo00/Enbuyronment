@@ -13,20 +13,19 @@
 <script src="/resources/user/js/jquery.min.js"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
+			var uri = location.pathname;
+			var prodNo = uri.substring(uri.lastIndexOf('/')+1);
 			
-			$('#plus').click(function() {
-				if(Number($('#account').val()) < 10) {
-					$('#account').val(Number($('#account').val()) + 1)
-					$('#total-price').html(${vo.price} * $('#account').val());
+			$('#modProd').click(function() {
+				location.href = uri+'/update';
+			});
+			
+			$('#delProd').click(function() {
+				if(confirm('상품을 삭제하시겠습니까?')) {
+					location.href = uri+'/delete';
 				}
 			});
 			
-			$('#minus').click(function() {
-				if(Number($('#account').val()) > 0) {
-					$('#account').val(Number($('#account').val()) - 1)
-					$('#total-price').html(${vo.price} * $('#account').val());
-				}
-			});
 		});
 	</script>
 <link rel="stylesheet" href="/resources/product/css/main.css">
@@ -60,15 +59,16 @@
 
 <hr><br>
 
-수량 : <span class="product_count_item inumber-decrement" id="plus"><input type="button" value="+"></span>
-	  <input class="product_count_item input-number" type="text" value="1" id="account">
-	  <span class="product_count_item number-increment" id="minus"><input type="button" value="-"></span>
-금액 : <span id="total-price"></span>
+수량 : <input class="product_count_item input-number" type="text" value="1" id="amount">
 
 <br><br>
 
-<input type="button" value="장바구니 담기">
-<input type="button" value="바로구매">
+<input type="button" value="장바구니 담기" id="toCart">
+
+<br><br><hr><br>
+
+<input type="button" value="상품 수정" id="modProd">
+<input type="button" value="상품 삭제" id="delProd">
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 <%@include file="/WEB-INF/views/include/script.jsp"%>

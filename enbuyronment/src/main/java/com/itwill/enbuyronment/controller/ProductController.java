@@ -24,8 +24,16 @@ public class ProductController {
 	
 	//상품 등록
 	@GetMapping("/regist")
-	public String registGET() {
+	public String registGET(Model model) {
 		log.info("registGET() 호출");
+		
+		try {
+			model.addAttribute("brand", prodService.BrandCate().get("brand"));
+			model.addAttribute("cate", prodService.BrandCate().get("cate"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "/product/regist";
 	}
@@ -42,7 +50,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 
-		return "/product/list";
+		return "redirect:/product/list";
 	}
 	
 	//상품 상세

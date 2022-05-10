@@ -1,5 +1,9 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +20,21 @@ public class ProdDAOImpl implements ProdDAO {
 	@Inject
 	SqlSession sqlSession;
 	private static final String NAMESPACE = "com.itwill.enbuyronment.mapper.ProdMapper";
+	
+	//브랜드&용도명 가져오기 동작
+	@Override
+	public Map<String, List<String>> getBraCat() {
+		log.info("DAO : getBraCat() 호출");
+		
+		Map<String, List<String>> braCat = new HashMap();
+		braCat.put("brand", sqlSession.selectList(NAMESPACE+".getBrand"));
+		braCat.put("cate", sqlSession.selectList(NAMESPACE+".getCate"));
+		
+		log.info(braCat.get("brand")+"");
+		log.info(braCat.get("cate")+"");
+		
+		return braCat;
+	}
 	
 	//상품등록 동작
 	@Override

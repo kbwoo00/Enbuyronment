@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
@@ -83,24 +84,20 @@
                        <br>
                         <div class="input-group" style="flex-direction: column; padding: 2rem;"><br>
                             <label class="label">브랜드</label>
-                                <select class="select-group col-12" name="brandNo">
+                                <select class="select-group col-10" name="brandName">
                                     <option disabled="disabled" selected="selected">브랜드를 선택하세요</option>
-                                    <option value="동구밭">동구밭</option>
-                                    <option value="톤28">톤28</option>
-                                    <option value="슈가랩몰">슈가랩몰</option>
-                                    <option value="자연상점">자연상점</option>
+                                    <c:forEach var="i" items="${brand }">
+	                                    <option value="${i}">${i}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="input-group" style="flex-direction: column; padding: 0rem 2rem;"><br>
                             <label class="label">용도</label>
-                                <select class="select-group col-12" name="cateNo">
+                                <select class="select-group col-10" name="cateName">
                                     <option disabled="disabled" selected="selected">용도를 선택하세요</option>
-                                    <option value="LIVING">LIVING</option>
-                                    <option value="KITCHEN">KITCHEN</option>
-                                    <option value="BATHROOM">BATHROOM</option>
-                                    <option value="OFFICE">OFFICE</option>
-                                    <option value="TRAVEL">TRAVEL</option>
-                                    <option value="MARKET">MARKET</option>
+                                    <c:forEach var="i" items="${cate }">
+	                                    <option value="${i}">${i}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <br><br>
