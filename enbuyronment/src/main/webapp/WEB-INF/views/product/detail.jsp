@@ -2,10 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="zxx">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>enbuyronment</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="site.webmanifest">
+<link rel="shortcut icon" type="/resources/main/image/x-icon" href="/resources/main/img/favicon.ico">
 <script src="/resources/user/js/jquery.min.js"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
@@ -25,7 +29,10 @@
 			});
 		});
 	</script>
+<link rel="stylesheet" href="/resources/product/css/main.css">
+<%@include file="/WEB-INF/views/include/css.jsp"%>
 </head>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
 
 상품명 : ${vo.prodName }<br>
@@ -63,5 +70,8 @@
 <input type="button" value="장바구니 담기">
 <input type="button" value="바로구매">
 
+<%@include file="/WEB-INF/views/include/footer.jsp"%>
+<%@include file="/WEB-INF/views/include/script.jsp"%>
+<%@include file="/WEB-INF/views/include/header_script.jsp"%>
 </body>
 </html>
