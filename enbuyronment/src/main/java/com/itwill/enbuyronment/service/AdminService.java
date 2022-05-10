@@ -10,4 +10,6 @@ public interface AdminService {
 	public int getUserTotalCnt();
 	
 	public List<UserVO> getUserList(Criteria cri);
+	
+	public void deleteUsers(List<String> userIdList);
 }

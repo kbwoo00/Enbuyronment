@@ -15,5 +15,10 @@
 	  order by regdate desc
 	  limit #{pageStart},#{perDataCnt}	
 	</select>
+	
+	<delete id="deleteUsers">
+		delete from user
+		where uid = #{uid}
+	</delete>
 
 </mapper> 

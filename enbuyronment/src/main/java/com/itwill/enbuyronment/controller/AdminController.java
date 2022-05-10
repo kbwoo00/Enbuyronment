@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.PageMaker;
@@ -42,8 +45,15 @@ public class AdminController {
 		List<UserVO> userList = adminService.getUserList(cri);
 		model.addAttribute("userList", userList);
 		
-		
 		return "/admin/userList";
+	}
+	
+	@ResponseBody
+	@PostMapping("/userManagement/delete")
+	public void deleteUsers(@RequestBody List<String> userIdList) {
+		log.info("삭제할 유저 id 목록 = {}", userIdList);
+		adminService.deleteUsers(userIdList);
+		log.info("유저 삭제 성공");
 	}
 
 }

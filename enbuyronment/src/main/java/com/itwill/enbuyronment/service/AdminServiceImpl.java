@@ -29,4 +29,10 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.userList(cri);
 	}
 
+	@Override
+	public void deleteUsers(List<String> userIdList) {
+		for (String userId : userIdList) {
+			adminDao.deleteUsers(userId);
+		}
+	}
 }

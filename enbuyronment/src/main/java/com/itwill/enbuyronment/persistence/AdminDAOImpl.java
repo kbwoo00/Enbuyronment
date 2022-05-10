@@ -30,6 +30,11 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		return sqlSession.selectList(NAMESPACE + ".userList", cri);
 	}
+
+	@Override
+	public void deleteUsers(String userId) {
+		sqlSession.delete(NAMESPACE + ".deleteUsers", userId); 
+	}
 	
 	
 

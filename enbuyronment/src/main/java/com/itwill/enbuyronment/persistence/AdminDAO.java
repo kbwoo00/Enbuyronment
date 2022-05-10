@@ -10,4 +10,6 @@ public interface AdminDAO {
 	public int getUserTotalCnt();
 	
 	public List<UserVO> userList(Criteria cri);
+	
+	public void deleteUsers(String userId);
 }
