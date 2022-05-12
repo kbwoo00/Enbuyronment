@@ -57,4 +57,23 @@ public class ProdTest {
 		ProductVO vo = prodDao.getProd(prodNo);
 		log.info(vo+"");
 	}
+	
+	//@Test
+	public void 상품수정테스트() {
+		
+		//이미지파일 업로드 제외
+		
+		ProductVO vo = new ProductVO();
+		vo.setProdNo(6);
+		vo.setProdName("수정이름");
+		vo.setPrice(50000);
+		vo.setStock(300);
+		vo.setThumb("asdf1");
+		vo.setProdImg2("asdf2");
+		vo.setScript("asdf5");
+		vo.setCateName("LIVING");    //1
+		vo.setBrandName("동구밭");    //1
+		
+		prodDao.modProduct(vo);
+	}
 }

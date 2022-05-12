@@ -25,4 +25,7 @@ public interface ProdService {
 	
 	//리뷰목록 가져오기
 	public List<ReviewVO> reviewList(Integer prodNo, Criteria cri) throws Exception;
+	
+	//상품 수정
+	public void prodModify(Integer prodNo, MultipartHttpServletRequest request) throws Exception;
 }

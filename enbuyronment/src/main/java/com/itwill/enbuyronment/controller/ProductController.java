@@ -52,7 +52,7 @@ public class ProductController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return "redirect:/product/list";
 	}
 	
@@ -74,11 +74,42 @@ public class ProductController {
 		log.info("totalCount = {}", pm.getTotalCount());
 		
 		model.addAttribute("reviewList", prodService.reviewList(prodNo, cri));
-		model.addAttribute("prodNo", prodNo);
 		model.addAttribute("vo", prodService.prodDetail(prodNo));
 		log.info("상품&리뷰정보 가져오기 완료");
 		
 		return "/product/detail";
+	}
+	
+	//상품 수정
+	@GetMapping("/{prodNo}/update")
+	public String updateGET(@PathVariable Integer prodNo, Model model) {
+		log.info("updateGET() 호출");
+		
+		try {
+			model.addAttribute("brand", prodService.brandCate().get("brand"));
+			model.addAttribute("cate", prodService.brandCate().get("cate"));
+			model.addAttribute("vo", prodService.prodDetail(prodNo));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "/product/update";
+	}
+	
+	@PostMapping("/{prodNo}/update")
+	public String updatePOST(@PathVariable Integer prodNo, MultipartHttpServletRequest request, Model model) {
+		log.info("updatePOST() 호출");
+		
+		try {
+			prodService.prodModify(prodNo, request);
+			model.addAttribute("msg", "updateOK");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/product/list";
 	}
 	
 }

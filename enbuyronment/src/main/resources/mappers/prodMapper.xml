@@ -44,5 +44,36 @@
 	<select id="getReview" resultType="ReviewVO">
 		select * from review where prod_no = #{prodNo} order by review_no desc limit #{pageStart}, #{perDataCnt}
 	</select>
+	
+	<!-- 상품수정 동작 -->
+	<update id="updateProdFull">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		thumb = #{thumb}, prod_img2 = #{prodImg2}, prod_img3 = #{prodImg3}, prod_img4 = #{prodImg4}, script = #{script}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdNoImg">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdScript">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, script = #{script}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdThumb">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		thumb = #{thumb}, prod_img2 = #{prodImg2}, prod_img3 = #{prodImg3}, prod_img4 = #{prodImg4}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
 
 </mapper>
