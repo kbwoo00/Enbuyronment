@@ -1,2 +1,0 @@
-resources 넣는 폴더.
-css, js, scss, images 등등

@@ -2,6 +2,8 @@ package com.itwill.enbuyronment.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.persistence.ProdDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +24,14 @@ public class ProdServiceImpl implements ProdService {
 
 	@Inject
 	private ProdDAO prodDao;
+	
+	//브랜드&용도명 가져오기
+	@Override
+	public Map<String, List<String>> brandCate() throws Exception {
+		log.info("BrandCate() 호출");
+		
+		return prodDao.getBraCat();
+	}
 
 	//상품 등록
 	@Override
@@ -35,7 +47,10 @@ public class ProdServiceImpl implements ProdService {
 		for(int i = 0; i < prodImg.size(); i++) {
 			if(!prodImg.get(i).isEmpty() ) {
 				
-				File uploadFile = new File(path + "\\" + prodImg.get(i).getOriginalFilename());
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid.toString() + "_" + prodImg.get(i).getOriginalFilename();
+				
+				File uploadFile = new File(path + "\\" + fileName);
 				log.info("업로드 파일 : " + uploadFile);
 				
 				prodImg.get(i).transferTo(uploadFile);
@@ -58,11 +73,28 @@ public class ProdServiceImpl implements ProdService {
 		prodDao.regProduct(vo);
 	}
 
+	//상품정보 가져오기
 	@Override
 	public ProductVO prodDetail(Integer prodNo) throws Exception {
 		log.info("prodDetail(prodNo) 호출");
 		
 		return prodDao.getProd(prodNo);
+	}
+
+	//리뷰 개수 가져오기
+	@Override
+	public Integer reviewCnt(Integer prodNo) throws Exception {
+		log.info("reviewCnt(prodNo) 호출");
+		
+		return prodDao.getReviewCnt(prodNo);
+	}
+	
+	//리뷰목록 가져오기
+	@Override
+	public List<ReviewVO> reviewList(Integer prodNo, Criteria cri) {
+		log.info("reviewList(prodNo) 호출");
+		
+		return prodDao.getReviewList(prodNo, cri);
 	}
 	
 }

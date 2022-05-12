@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -7,7 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.persistence.ProdDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,9 +48,13 @@ public class ProdTest {
 	//@Test
 	public void 상세페이지테스트() {
 		
-		int prodNo = 1;
-		ProductVO vo = prodDao.getProd(prodNo);
+		int prodNo = 8;
+		Criteria cri = new Criteria();
 		
+		List<ReviewVO> reviewList = prodDao.getReviewList(prodNo, cri);
+		log.info(reviewList+"");
+		
+		ProductVO vo = prodDao.getProd(prodNo);
 		log.info(vo+"");
 	}
 }
