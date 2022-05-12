@@ -9,7 +9,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,6 +52,27 @@ public class ProdDAOImpl implements ProdDAO {
 		log.info("DAO : getProd(prodNo) 호출");
 		
 		return sqlSession.selectOne(NAMESPACE+".getProd", prodNo);
+	}
+	
+	//리뷰 개수 가져오기 동작
+	@Override
+	public Integer getReviewCnt(Integer prodNo) {
+		log.info("DAO : getReviewCnt(prodNo) 호출");
+		
+		return sqlSession.selectOne(NAMESPACE+".getReviewCnt", prodNo);
+	}
+
+	//리뷰목록 가져오기 동작
+	@Override
+	public List<ReviewVO> getReviewList(Integer prodNo, Criteria cri) {
+		log.info("DAO : getReview(prodNo) 호출");
+		
+		Map<String, Integer> data = new HashMap();
+		data.put("prodNo", prodNo);
+		data.put("pageStart", cri.getPageStart());
+		data.put("perDataCnt", cri.getPerDataCnt());
+		
+		return sqlSession.selectList(NAMESPACE+".getReview", data);
 	}
 	
 }

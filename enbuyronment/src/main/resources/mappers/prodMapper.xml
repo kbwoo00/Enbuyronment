@@ -34,5 +34,15 @@
 		on p.brand_no = b.brand_no 
 		where p.prod_no = #{prodNo}
 	</select>
+	
+	<!-- 리뷰 개수 가져오기 동작 -->
+	<select id="getReviewCnt" resultType="Integer">
+		select count(*) from review where prod_no = #{prodNo}
+	</select>
+	
+	<!-- 리뷰 가져오기 동작 -->
+	<select id="getReview" resultType="ReviewVO">
+		select * from review where prod_no = #{prodNo} order by review_no desc limit #{pageStart}, #{perDataCnt}
+	</select>
 
 </mapper>

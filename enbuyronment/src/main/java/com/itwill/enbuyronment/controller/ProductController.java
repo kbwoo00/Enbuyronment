@@ -5,11 +5,14 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itwill.enbuyronment.domain.Criteria;
+import com.itwill.enbuyronment.domain.PageMaker;
 import com.itwill.enbuyronment.service.ProdService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +31,8 @@ public class ProductController {
 		log.info("registGET() 호출");
 		
 		try {
-			model.addAttribute("brand", prodService.BrandCate().get("brand"));
-			model.addAttribute("cate", prodService.BrandCate().get("cate"));
+			model.addAttribute("brand", prodService.brandCate().get("brand"));
+			model.addAttribute("cate", prodService.brandCate().get("cate"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,17 +58,27 @@ public class ProductController {
 	
 	//상품 상세
 	@GetMapping("/{prodNo}")
-	public String detailGET(@PathVariable Integer prodNo, Model model) {
+	public String detailGET(@PathVariable Integer prodNo, @ModelAttribute Criteria cri, Model model) throws Exception {
 		log.info("detailGET() 호출");
+		log.info(cri+"");
 		
-		try {
-			model.addAttribute("vo", prodService.prodDetail(prodNo));
-			log.info("상품정보 가져오기 완료");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(prodService.reviewCnt(prodNo));
+		
+		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
+		log.info("startPage = {}",pm.getStartPage());
+		log.info("perPageNum = {}", cri.getPerDataCnt());
+		log.info("endPage = {}", pm.getEndPage());
+		log.info("totalCount = {}", pm.getTotalCount());
+		
+		model.addAttribute("reviewList", prodService.reviewList(prodNo, cri));
+		model.addAttribute("prodNo", prodNo);
+		model.addAttribute("vo", prodService.prodDetail(prodNo));
+		log.info("상품&리뷰정보 가져오기 완료");
 		
 		return "/product/detail";
 	}
+	
 }
