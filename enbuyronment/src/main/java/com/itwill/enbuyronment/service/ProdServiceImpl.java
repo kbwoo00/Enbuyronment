@@ -91,10 +91,50 @@ public class ProdServiceImpl implements ProdService {
 	
 	//리뷰목록 가져오기
 	@Override
-	public List<ReviewVO> reviewList(Integer prodNo, Criteria cri) {
+	public List<ReviewVO> reviewList(Integer prodNo, Criteria cri) throws Exception {
 		log.info("reviewList(prodNo) 호출");
 		
 		return prodDao.getReviewList(prodNo, cri);
+	}
+
+	//상품 수정
+	@Override
+	public void prodModify(Integer prodNo, MultipartHttpServletRequest request) throws Exception {
+		log.info("prodModify(request) 호출");
+		
+		String path = request.getRealPath("/upload");
+		log.info("path : " + path);
+		
+		List<MultipartFile> prodImg = request.getFiles("prodImg");
+		ProductVO vo = new ProductVO();
+		
+		for(int i = 0; i < prodImg.size(); i++) {
+			if(!prodImg.get(i).isEmpty() ) {
+				
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid.toString() + "_" + prodImg.get(i).getOriginalFilename();
+				
+				File uploadFile = new File(path + "\\" + fileName);
+				log.info("업로드 파일 : " + uploadFile);
+				
+				prodImg.get(i).transferTo(uploadFile);
+			}
+		}
+		log.info("파일 업로드 완료");
+		vo.setProdNo(prodNo);
+		vo.setProdName(request.getParameter("prodName"));
+		vo.setPrice(Integer.parseInt(request.getParameter("price")));
+		vo.setStock(Integer.parseInt(request.getParameter("stock")));
+		vo.setFilePath(path);
+		vo.setThumb(prodImg.get(0).getOriginalFilename());
+		vo.setProdImg2(prodImg.get(1).getOriginalFilename());
+		vo.setProdImg3(prodImg.get(2).getOriginalFilename());
+		vo.setProdImg4(prodImg.get(3).getOriginalFilename());
+		vo.setScript(prodImg.get(4).getOriginalFilename());
+		vo.setCateName(request.getParameter("cateName"));
+		vo.setBrandName(request.getParameter("brandName"));
+		
+		prodDao.modProduct(vo);
 	}
 	
 }

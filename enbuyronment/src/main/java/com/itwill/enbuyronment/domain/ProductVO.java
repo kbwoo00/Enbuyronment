@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class ProductVO {
 
+	private Integer prodNo;
 	private String prodName;
 	private Integer price;
 	private Integer stock;

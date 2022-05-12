@@ -67,7 +67,7 @@
 		<ul class="pagination">
 			<c:if test="${pageInfo.prev }">
 				<li class="page-item">
-					<a class="page-link" href="/product/${prodNo }?page=${pageInfo.startPage - 1}" aria-label="Previous">
+					<a class="page-link" href="/product/${vo.prodNo }?page=${pageInfo.startPage - 1}" aria-label="Previous">
 						<i class="ti-angle-left"></i>
 					</a>
 				</li>
@@ -76,19 +76,19 @@
 				<c:choose>
 					<c:when test="${i == presentPage }">
 						<li class="page-item active">
-							<a class="page-link" href="/product/${prodNo }?page=${i }">${i }</a>
+							<a class="page-link" href="/product/${vo.prodNo }?page=${i }">${i }</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a class="page-link active" href="/product/${prodNo }?page=${i }">${i }</a>
+							<a class="page-link active" href="/product/${vo.prodNo }?page=${i }">${i }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pageInfo.next && pageInfo.endPage > 0  }">
 				<li class="page-item">
-					<a class="page-link" href="/product/${prodNo }?page=${pageInfo.endPage + 1}" aria-label="Next">
+					<a class="page-link" href="/product/${vo.prodNo }?page=${pageInfo.endPage + 1}" aria-label="Next">
 						<i class="ti-angle-right"></i>
 					</a>
 				</li>
@@ -104,12 +104,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#modProd').click(function() {
-			location.href = '/product/${prodNo}/update';
+			location.href = '/product/${vo.prodNo}/update';
 		});
 		
 		$('#delProd').click(function() {
 			if(confirm('상품을 삭제하시겠습니까?')) {
-				location.href = '/product/${prodNo}/delete';
+				location.href = '/product/${vo.prodNo}/delete';
 			}
 		});
 		

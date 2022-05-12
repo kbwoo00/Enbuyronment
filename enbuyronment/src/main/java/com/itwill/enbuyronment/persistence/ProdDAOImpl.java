@@ -74,5 +74,28 @@ public class ProdDAOImpl implements ProdDAO {
 		
 		return sqlSession.selectList(NAMESPACE+".getReview", data);
 	}
+
+	//상품수정 동작
+	@Override
+	public void modProduct(ProductVO vo) {
+		log.info("DAO : modProduct(vo) 호출");
+		
+		if(vo.getThumb().equals("") && vo.getScript().equals("")) {
+			//noImg
+			sqlSession.update(NAMESPACE+".updateProdNoImg", vo);
+			
+		} else if(vo.getScript().equals("")) {
+			//thumb & prodImg2,3,4
+			sqlSession.update(NAMESPACE+".updateProdThumb", vo);
+			
+		} else if(vo.getThumb().equals("")) {
+			//script
+			sqlSession.update(NAMESPACE+".updateProdScript", vo);
+			
+		} else {
+			//full
+			sqlSession.update(NAMESPACE+".updateProdFull", vo);
+		}
+	}
 	
 }

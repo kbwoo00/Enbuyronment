@@ -23,4 +23,7 @@ public interface ProdDAO {
 	
 	//리뷰목록 가져오기 동작
 	public List<ReviewVO> getReviewList(Integer prodNo, Criteria cri);
+	
+	//상품수정 동작
+	public void modProduct(ProductVO vo);
 }
