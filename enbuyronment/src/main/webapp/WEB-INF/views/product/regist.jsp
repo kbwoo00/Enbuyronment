@@ -28,7 +28,7 @@
                             <div class="col-12" style="padding:2rem">
                                 <div class="input-group">
                                     <label class="label">상품명</label><br>
-                                    <input class="reg_input" type="text" name="prodName">
+                                    <input class="reg_input" type="text" name="prodName" id="product-name">
                                 </div>
                                 <br>
                             </div>
@@ -36,11 +36,11 @@
                         <div class="row row-space" style="padding:2rem">
                                 <div class="input-group col-7">
                                     <label class="label">가격</label><br>
-                                    <input class="reg_input" type="text" name="price">
+                                    <input class="reg_input" type="text" name="price" id="product-price">
                                 </div>
                                 <div class="input-group col-5">
                                     <label class="label">수량</label><br>
-                                    <input class="reg_input" type="text" name="stock">
+                                    <input class="reg_input" type="text" name="stock" id="product-stock">
                                 </div>
                             </div>
                             <br>
@@ -49,7 +49,7 @@
                         <div class="col-5">
                                 <div class="input-group" style="padding: 2rem;">
                                     <label class="label">상품이미지(대표)</label>
-                                    <input class="input" type="file" name="prodImg" accept="image/*">
+                                    <input class="input" type="file" name="prodImg" id="thumbImg" accept="image/*">
                                 </div>
                             </div>
                         <div class="col-5">
@@ -77,15 +77,15 @@
                         <div class="col-5">
                                 <div class="input-group" style="padding: 2rem;">
                                     <label class="label">상품설명</label><br>
-                                    <input class="input" type="file" name="prodImg" accept="image/*">
+                                    <input class="input" type="file" name="prodImg" id="scriptImg" accept="image/*">
                                 </div>
                             </div>
                        </div>
                        <br>
                         <div class="input-group" style="flex-direction: column; padding: 2rem;"><br>
                             <label class="label">브랜드</label>
-                                <select class="select-group col-10" name="brandName">
-                                    <option disabled="disabled" selected="selected">브랜드를 선택하세요</option>
+                                <select class="select-group col-10" name="brandName" id="brandSel">
+                                    <option selected="selected" value="noBrand">브랜드를 선택하세요</option>
                                     <c:forEach var="i" items="${brand }">
 	                                    <option value="${i}">${i}</option>
                                     </c:forEach>
@@ -93,8 +93,8 @@
                             </div>
                             <div class="input-group" style="flex-direction: column; padding: 0rem 2rem;"><br>
                             <label class="label">용도</label>
-                                <select class="select-group col-10" name="cateName">
-                                    <option disabled="disabled" selected="selected">용도를 선택하세요</option>
+                                <select class="select-group col-10" name="cateName" id="cateSel">
+                                    <option selected="selected" value="noCate">용도를 선택하세요</option>
                                     <c:forEach var="i" items="${cate }">
 	                                    <option value="${i}">${i}</option>
                                     </c:forEach>
@@ -102,7 +102,7 @@
                             </div>
                             <br><br>
                         <div class="btn_submit">
-                            <button class="btn header-btn" type="submit" style="transform : translate(430px, 0px);">등록</button>
+                            <button class="btn header-btn" id="regProdBtn" type="submit" style="transform : translate(430px, 0px);">등록</button>
                        </div>
                     </form>
                 </div>
@@ -113,6 +113,42 @@
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 <%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@include file="/WEB-INF/views/include/header_script.jsp"%>
+
+<script type="text/javascript">
+	$('#regProdBtn').click(function() {
+		if($('#product-name').val() == "") {
+			alert('상품명을 입력하세요');
+			$('#product-name').focus();
+			return false;
+			
+		} else if($('#product-price').val() == "") {
+			alert('가격을 입력하세요');
+			$('#product-price').focus();
+			return false;
+			
+		} else if($('#product-stock').val() == "") {
+			alert('재고를 입력하세요');
+			$('#product-stock').focus();
+			return false;
+			
+		} else if($('#thumbImg').val() == "") {
+			alert('대표 이미지를 첨부하세요');
+			return false;
+			
+		} else if($('#scriptImg').val() == "") {
+			alert('상품설명 이미지를 첨부하세요');
+			return false;
+			
+		} else if($('#brandSel').val() == 'noBrand') {
+			alert("브랜드를 선택하세요");
+			return false;
+			
+		} else if($('#cateSel').val() == 'noCate') {
+			alert("용도를 선택하세요");
+			return false;
+		}
+	});
+</script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

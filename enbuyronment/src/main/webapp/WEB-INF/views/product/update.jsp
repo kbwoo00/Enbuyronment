@@ -28,7 +28,7 @@
                             <div class="col-12" style="padding:2rem">
                                 <div class="input-group">
                                     <label class="label">상품명</label><br>
-                                    <input class="reg_input" type="text" name="prodName" value="${vo.prodName }">
+                                    <input class="reg_input" type="text" name="prodName" id="product-name" value="${vo.prodName }">
                                 </div>
                                 <br>
                             </div>
@@ -36,11 +36,11 @@
                         <div class="row row-space" style="padding:2rem">
                                 <div class="input-group col-7">
                                     <label class="label">가격</label><br>
-                                    <input class="reg_input" type="text" name="price" value="${vo.price }">
+                                    <input class="reg_input" type="text" name="price" id="product-price" value="${vo.price }">
                                 </div>
                                 <div class="input-group col-5">
                                     <label class="label">수량</label><br>
-                                    <input class="reg_input" type="text" name="stock" value="${vo.stock }">
+                                    <input class="reg_input" type="text" name="stock" id="product-stock" value="${vo.stock }">
                                 </div>
                             </div>
                             <br>
@@ -77,15 +77,15 @@
                         <div class="col-5">
                                 <div class="input-group" style="padding: 2rem;">
                                     <label class="label">상품설명</label><br>
-                                    <input class="input" type="file" name="prodImg" accept="image/*">
+                                    <input class="input" type="file" name="prodImg" id="scriptImg" accept="image/*">
                                 </div>
                             </div>
                        </div>
                        <br>
                         <div class="input-group" style="flex-direction: column; padding: 2rem;"><br>
                             <label class="label">브랜드</label>
-                                <select class="select-group col-10" name="brandName">
-                                    <option disabled="disabled">브랜드를 선택하세요</option>
+                                <select class="select-group col-10" name="brandName" id="brandSel">
+                                    <option value="noBrand">브랜드를 선택하세요</option>
                                     <c:forEach var="i" items="${brand }">
 	                                    <c:choose>
                                     		<c:when test="${i eq vo.brandName }">
@@ -100,8 +100,8 @@
                             </div>
                             <div class="input-group" style="flex-direction: column; padding: 0rem 2rem;"><br>
                             <label class="label">용도</label>
-                                <select class="select-group col-10" name="cateName">
-                                    <option disabled="disabled">용도를 선택하세요</option>
+                                <select class="select-group col-10" name="cateName" id="cateSel">
+                                    <option value="noCate">용도를 선택하세요</option>
                                     <c:forEach var="i" items="${cate }">
                                     	<c:choose>
                                     		<c:when test="${i eq vo.cateName }">
@@ -136,6 +136,29 @@
 					alert('대표 이미지를 첨부해주세요');
 					return false;
 				}
+			}
+			if($('#product-name').val() == "") {
+				alert('상품명을 입력하세요');
+				$('#product-name').focus();
+				return false;
+				
+			} else if($('#product-price').val() == "") {
+				alert('가격을 입력하세요');
+				$('#product-price').focus();
+				return false;
+				
+			} else if($('#product-stock').val() == "") {
+				alert('재고를 입력하세요');
+				$('#product-stock').focus();
+				return false;
+				
+			} else if($('#brandSel').val() == 'noBrand') {
+				alert("브랜드를 선택하세요");
+				return false;
+				
+			} else if($('#cateSel').val() == 'noCate') {
+				alert("용도를 선택하세요");
+				return false;
 			}
 		});
 		

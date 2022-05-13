@@ -136,7 +136,7 @@ public class ProductController {
 		return "redirect:/product/list";
 	}
 	
-	//상품삭제
+	//상품 삭제
 	@GetMapping("/{prodNo}/delete")
 	public String deleteGET(@PathVariable Integer prodNo, RedirectAttributes rttr) {
 		log.info("deleteGET() 호출");
@@ -151,4 +151,5 @@ public class ProductController {
 		
 		return "redirect:/product/list";
 	}
+	
 }
