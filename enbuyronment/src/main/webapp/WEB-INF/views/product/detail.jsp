@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
@@ -8,112 +8,191 @@
 <title>enbuyronment</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="/resources/main/image/x-icon" href="/resources/main/img/favicon.ico">
+<link rel="shortcut icon" type="/resources/main/image/x-icon"
+	href="/resources/main/img/favicon.ico">
 <link rel="stylesheet" href="/resources/product/css/main.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
 
-상품명 : ${vo.prodName }<br>
-가격 : ${vo.price }<br>
-브랜드 : ${vo.brandName }<br>
-#${vo.cateName }<br>
-수량 : <input class="product_count_item input-number" type="text" value="1" id="amount">
-<input type="button" value="장바구니 담기" id="toCart">
+	상품명 : ${vo.prodName }
+	<br> 가격 : ${vo.price }
+	<br> 브랜드 : ${vo.brandName }
+	<br> #${vo.cateName }
+	<br> 수량 :
+	<input class="product_count_item input-number" type="text" value="1"
+		id="amount">
+	<input type="button" value="장바구니 담기" id="toCart">
 
-<hr>
+	<hr>
 
-<input type="button" value="상품 수정" id="modProd">
-<input type="button" value="상품 삭제" id="delProd">
+	<input type="button" value="상품 수정" id="modProd">
+	<input type="button" value="상품 삭제" id="delProd">
 
-<hr>
+	<hr>
 
-<img src="../upload/${vo.thumb }">
+	<img src="../upload/${vo.thumb }">
 
-<c:if test="${vo.prodImg2 ne '' }">
-	<img src="../upload/${vo.prodImg2 }">
-</c:if>
-<c:if test="${vo.prodImg3 ne '' }">
-	<img src="../upload/${vo.prodImg3 }">
-</c:if>
-<c:if test="${vo.prodImg4 ne '' }">
-	<img src="../upload/${vo.prodImg4 }">
-</c:if>
+	<c:if test="${vo.prodImg2 ne '' }">
+		<img src="../upload/${vo.prodImg2 }">
+	</c:if>
+	<c:if test="${vo.prodImg3 ne '' }">
+		<img src="../upload/${vo.prodImg3 }">
+	</c:if>
+	<c:if test="${vo.prodImg4 ne '' }">
+		<img src="../upload/${vo.prodImg4 }">
+	</c:if>
 
-<hr>
+	<hr>
 
-<div>배송 정보<br>
-	배송기간 : 평균 3~5일 이내<br>
-	배송비 : 2,000원 (20,000원 이상 무료배송)</div>
+	<div>
+		배송 정보<br> 배송기간 : 평균 3~5일 이내<br> 배송비 : 2,000원 (20,000원 이상
+		무료배송)
+	</div>
 
-<hr>
+	<hr>
+	<header
+		class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+		<div class="btn-group" role="group"
+			aria-label="Basic outlined example">
+			<button id="prodScriptBtn" type="button" class="btn">상품상세</button>
+			<button id="reviewBtn" type="button" class="btn">리뷰</button>
+		</div>
+	</header>
 
-<img src="../upload/${vo.script }">
+	<div id="content">
+		<img src="../upload/${vo.script }">
+	</div>
 
-<hr>
+	<hr>
 
-<div>리뷰</div>
-<table border="1">
-	<c:forEach var="rv" items="${reviewList }">
-		<tr><td>${rv.uid }</td><td>${rv.star }</td><td>${rv.comment }</td><td>${rv.regdate }</td></tr>
-	</c:forEach>
-</table>
+	<%@include file="/WEB-INF/views/include/footer.jsp"%>
+	<%@include file="/WEB-INF/views/include/script.jsp"%>
+	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
 
-<div class="row justify-content-center">
-	<nav class="blog-pagination d-flex"
-		aria-label="Page navigation example">
-		<ul class="pagination">
-			<c:if test="${pageInfo.prev }">
-				<li class="page-item">
-					<a class="page-link" href="/product/${vo.prodNo }?page=${pageInfo.startPage - 1}" aria-label="Previous">
-						<i class="ti-angle-left"></i>
-					</a>
-				</li>
-			</c:if>
-			<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="i">
-				<c:choose>
-					<c:when test="${i == presentPage }">
-						<li class="page-item active">
-							<a class="page-link" href="/product/${vo.prodNo }?page=${i }">${i }</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item">
-							<a class="page-link active" href="/product/${vo.prodNo }?page=${i }">${i }</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${pageInfo.next && pageInfo.endPage > 0  }">
-				<li class="page-item">
-					<a class="page-link" href="/product/${vo.prodNo }?page=${pageInfo.endPage + 1}" aria-label="Next">
-						<i class="ti-angle-right"></i>
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</nav>
-</div>
-
-<%@include file="/WEB-INF/views/include/footer.jsp"%>
-<%@include file="/WEB-INF/views/include/script.jsp"%>
-<%@include file="/WEB-INF/views/include/header_script.jsp"%>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#modProd').click(function() {
-			location.href = '/product/${vo.prodNo}/update';
-		});
-		
-		$('#delProd').click(function() {
-			if(confirm('상품을 삭제하시겠습니까?')) {
-				location.href = '/product/${vo.prodNo}/delete';
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var prodScriptBtn = $('#prodScriptBtn');
+			var reviewBtn = $('#reviewBtn');
+			var content = $('#content');
+			var prodNo = "${vo.prodNo}";
+			
+			const rvDataCnt = 10;
+			
+			function getReview(page) {
+				$.ajax({
+					url : "/product/${vo.prodNo}/review",
+					type : "post",
+					data : JSON.stringify({
+						"page" : page,
+						"perDataCnt" : rvDataCnt
+					}),
+					dataType: "json",
+					contentType: "application/json; charset=utf-8",
+					success : function(result) {
+						content.html("<h2 id='reviewTitle'>리뷰</h2><table border='1' id='reviewList'></table>" + 
+								"<div class='row justify-content-center'>"+  
+								"<nav class='blog-pagination d-flex'>" + "<ul class='pagination'>");
+						
+						for(let i = 0; i < result.reviewList.length; i++){
+							$('#reviewList').append(
+									"<tr><td>" + result.reviewList[i].uid + "</td><td>" + result.reviewList[i].star + "</td><td>" +
+									result.reviewList[i].comment + "</td><td>" + result.reviewList[i].regdate + "</td></tr>"
+									);
+						};
+						
+						// prev 버튼
+						if(result.pageInfo.prev){
+							$('.pagination').append("<li class='page-item'><button type='button' id='prevBtn' class='page-link' value='"+ (result.pageInfo.startPage - 1) +"'>" + 
+							"<i class='ti-angle-left'></i></button></li>"
+							);
+						}
+						
+						// 숫자 버튼들
+						for(let i = result.pageInfo.startPage; i <= result.pageInfo.endPage; i++){
+							if(i == result.pageInfo.cri.page){
+								$('.pagination').append(
+										"<li class='page-item active'><button type='button' class='page-link'"+ 
+										"value='"+ i + "'>" + i + "</button></li>"
+								);
+							} else{
+								$('.pagination').append(
+										"<li class='page-item'><button type='button' class='page-item-btn page-link'"+ 
+										"value='"+ i + "'>" + i + "</button></li>"
+								);
+							}
+						}
+						
+						// next 버튼 pageInfo.next && pageInfo.endPage > 0
+						if(result.pageInfo.next && result.pageInfo.endPage > 0){
+							$('.pagination').append("<li class='page-item'><button type='button' id='nextBtn' class='page-link' value = '"+ (result.pageInfo.endPage + 1) + "'>" + 
+									"<i class='ti-angle-right'></i></button></li>"
+									);
+						}
+						
+						var reviewTitle = $('#reviewTitle');
+						
+						// 이전버튼 클릭시 ajax
+						$('#prevBtn').click(function() {
+							var prevPage = $('#prevBtn').val();
+							getReview(prevPage);
+							reviewTitle[0].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+						});
+						
+						// 숫자버튼 클릭시 ajax
+						$('.page-item-btn').each(function(i, element) {
+							$(this).click(function() {
+								getReview($(this).val());
+							});
+							reviewTitle[0].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+						})
+						
+						// 다음버튼 클릭시 ajax
+						$('#nextBtn').click(function() {
+							console.log($('#nextBtn').val());
+							var nextPage = $('#nextBtn').val();
+							getReview(nextPage);
+							reviewTitle[0].scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+						});
+					}
+				});
 			}
+		
+			$('#modProd').click(function() {
+				location.href = '/product/${vo.prodNo}/update';
+			});
+
+			$('#delProd').click(function() {
+				if (confirm('상품을 삭제하시겠습니까?')) {
+					location.href = '/product/${vo.prodNo}/delete';
+				}
+			});
+			
+			// 상품상세 
+			prodScriptBtn.click(function() {
+				$.ajax({
+					url : "/product/${vo.prodNo}/script",
+					type : "post",
+					contentType: "text/html; charset=utf-8",
+					success : function(script) {
+						content.html("<img src='../upload/" + script + "'>");
+					}
+				});
+			});
+			
+			// 리뷰
+			reviewBtn.click(function() {
+				getReview();
+			});
+			
+
+			
+			
 		});
 		
-	});
-</script>
+		
+		
+	</script>
 </body>
 </html>

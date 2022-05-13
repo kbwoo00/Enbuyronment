@@ -1,5 +1,10 @@
 package com.itwill.enbuyronment.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,12 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.PageMaker;
+import com.itwill.enbuyronment.domain.ProductVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.service.ProdService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -59,26 +68,40 @@ public class ProductController {
 	
 	//상품 상세
 	@GetMapping("/{prodNo}")
-	public String detailGET(@PathVariable Integer prodNo, @ModelAttribute Criteria cri, Model model) throws Exception {
+	public String detailGET(@PathVariable Integer prodNo, Model model) throws Exception {
 		log.info("detailGET() 호출");
-		log.info(cri+"");
 		
+		model.addAttribute("vo", prodService.prodDetail(prodNo));
+		log.info("상품정보 가져오기 완료");
+		
+		return "/product/detail";
+	}
+	
+	//상품 리뷰
+	@ResponseBody
+	@PostMapping(value = "/{prodNo}/review", produces = "application/json; charset=UTF-8")
+	public Map<String, Object> getReview(@PathVariable Integer prodNo , @RequestBody Criteria cri) throws Exception{
+		log.info("cri = {}", cri);
+		Map<String, Object> reviewAndPageInfo = new HashMap<>();
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
 		pm.setTotalCount(prodService.reviewCnt(prodNo));
 		
-		model.addAttribute("pageInfo", pm);
-		model.addAttribute("presentPage", cri.getPage());
-		log.info("startPage = {}",pm.getStartPage());
-		log.info("perPageNum = {}", cri.getPerDataCnt());
-		log.info("endPage = {}", pm.getEndPage());
-		log.info("totalCount = {}", pm.getTotalCount());
+		reviewAndPageInfo.put("reviewList", prodService.reviewList(prodNo, cri));
+		reviewAndPageInfo.put("pageInfo", pm);
 		
-		model.addAttribute("reviewList", prodService.reviewList(prodNo, cri));
-		model.addAttribute("vo", prodService.prodDetail(prodNo));
-		log.info("상품&리뷰정보 가져오기 완료");
+		return reviewAndPageInfo;
+	}
+	
+	
+	// 상품 스크립트
+	@ResponseBody
+	@PostMapping(value =  "/{prodNo}/script", produces = "application/text; charset=UTF-8")
+	public String script(@PathVariable Integer prodNo) throws Exception {
+		log.info("상품번호 = {}", prodNo);
 		
-		return "/product/detail";
+		ProductVO prod = prodService.prodDetail(prodNo);
+		return prod.getScript();
 	}
 	
 	//상품 수정
