@@ -16,6 +16,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.itwill.enbuyronment.domain.UserVO;
@@ -25,10 +27,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@PropertySource("classpath:config.properties")
 public class UserServiceImpl implements UserService {
 
 	@Inject
 	private UserDAO userDao;
+	
+	@Value("${mail.sender}")
+	private String sender;
+	
+	@Value("${mail.apppw}")
+	private String appPw;
 	
 	@Override
 	public void join(UserVO vo) {
@@ -103,9 +112,6 @@ public class UserServiceImpl implements UserService {
 					log.info("DB 비밀번호 업데이트 성공");
 
 					// 메일보내기
-					String sender = "bss05007@gmail.com";
-					String appPw = "luvruaxpspnqkjnz";
-
 					Properties props = new Properties();
 					props.put("mail.smtp.host", "smtp.gmail.com");
 					props.put("mail.smtp.port", "587"); // 구글 포트번호
@@ -159,9 +165,6 @@ public class UserServiceImpl implements UserService {
 	public String checkEmail(String email) {
 		
 		String certiNum = String.valueOf(UUID.randomUUID()).substring(1,8); 
-		
-		String sender = "bss05007@gmail.com";
-		String appPw = "luvruaxpspnqkjnz";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");

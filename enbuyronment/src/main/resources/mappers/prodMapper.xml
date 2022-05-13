@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.itwill.enbuyronment.mapper.ProdMapper">
+
+	<!-- 브랜드명 가져오기 동작 -->
+	<select id="getBrand" resultType="String">
+		select brand_name from brand
+	</select>
+	
+	<!-- 용도명 가져오기 동작 -->
+	<select id="getCate" resultType="String">
+		select cate_name from category
+	</select>
+	
+	<!-- 상품등록 동작 -->
+	<insert id="insertProd">
+		insert into product(prod_name, price, stock, cate_no, brand_no, file_path, thumb, prod_img2, prod_img3, prod_img4, script)
+			select #{prodName}, #{price}, #{stock}, c.cate_no, b.brand_no, #{filePath}, #{thumb}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{script} 
+			from category c join brand b
+			where c.cate_name = #{cateName}
+			and b.brand_name = #{brandName}
+	</insert>
+	
+	<!-- 상품정보 가져오기 동작 -->
+	<select id="getProd" resultType="ProductVO">
+		select p.*, c.cate_name, b.brand_name 
+		from product p join category c 
+		on p.cate_no = c.cate_no 
+		join brand b 
+		on p.brand_no = b.brand_no 
+		where p.prod_no = #{prodNo}
+	</select>
+	
+	<!-- 리뷰 개수 가져오기 동작 -->
+	<select id="getReviewCnt" resultType="Integer">
+		select count(*) from review where prod_no = #{prodNo}
+	</select>
+	
+	<!-- 리뷰 가져오기 동작 -->
+	<select id="getReview" resultType="ReviewVO">
+		select * from review where prod_no = #{prodNo} order by review_no desc limit #{pageStart}, #{perDataCnt}
+	</select>
+	
+	<!-- 상품수정 동작 -->
+	<update id="updateProdFull">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		thumb = #{thumb}, prod_img2 = #{prodImg2}, prod_img3 = #{prodImg3}, prod_img4 = #{prodImg4}, script = #{script}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdNoImg">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdScript">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, script = #{script}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateProdThumb">
+		update product set prod_name = #{prodName}, price = #{price}, stock = #{stock}, 
+		thumb = #{thumb}, prod_img2 = #{prodImg2}, prod_img3 = #{prodImg3}, prod_img4 = #{prodImg4}, 
+		cate_no = (select cate_no from category where cate_name = #{cateName}), 
+		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
+		where prod_no = #{prodNo}
+	</update>
+	
+	<!-- 상품삭제 동작 -->
+	<delete id="deleteProd">
+		delete from product where prod_no = #{prodNo}
+	</delete>
+
+</mapper>

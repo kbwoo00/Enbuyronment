@@ -17,6 +17,8 @@ import javax.mail.internet.MimeMessage;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,10 +30,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml" })
+@PropertySource("classpath:config.properties")
 public class UserTest {
 
 	@Inject
 	private UserDAO userDao;
+	
+	@Value("${mail.sender}")
+	private String sender;
+	
+	@Value("${mail.apppw}")
+	private String appPw;
 	
 //	@Test
 	public void 회원가입() {
@@ -114,9 +123,6 @@ public class UserTest {
 					log.info("DB 비밀번호 업데이트 성공");
 
 					// 메일보내기
-					String sender = "bss05007@gmail.com";
-					String appPw = "luvruaxpspnqkjnz";
-
 					Properties props = new Properties();
 					props.put("mail.smtp.host", "smtp.gmail.com");
 					props.put("mail.smtp.port", "587"); // 구글 포트번호
