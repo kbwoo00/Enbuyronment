@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,5 +33,12 @@ public class CartDAOImpl implements CartDAO{
 	public CartVO getCartProd(CartVO cart) {
 		return sqlSession.selectOne(NAMESPACE + ".getCartProd", cart);
 	}
+
+	@Override
+	public List<CartVO> getCartList(String uid) {
+		return sqlSession.selectList(NAMESPACE + ".getCartList", uid);
+	}
+	
+	
 	
 }

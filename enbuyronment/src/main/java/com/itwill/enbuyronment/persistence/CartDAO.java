@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.List;
+
 import com.itwill.enbuyronment.domain.CartVO;
 
 public interface CartDAO {
@@ -8,4 +10,6 @@ public interface CartDAO {
 	public void addAmount(CartVO cart);
 
 	public CartVO getCartProd(CartVO cart);
+
+	public List<CartVO> getCartList(String uid);
 }

@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -26,5 +28,12 @@ public class CartServiceImpl implements CartService{
 			cartDao.addAmount(cart);
 		}
 	}
+
+	@Override
+	public List<CartVO> getCartList(String uid) {
+		return cartDao.getCartList(uid);
+	}
+	
+	
 
 }

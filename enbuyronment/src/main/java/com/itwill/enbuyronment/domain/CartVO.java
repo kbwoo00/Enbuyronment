@@ -9,6 +9,9 @@ import lombok.ToString;
 @ToString
 public class CartVO {
 	private Integer cartNo;
+	private String prodName;
+	private String thumb;
+	private String price;
 	private String uid;
 	private Integer prodNo;
 	private Integer amount;
