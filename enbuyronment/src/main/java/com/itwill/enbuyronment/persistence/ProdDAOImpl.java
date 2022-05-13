@@ -97,5 +97,13 @@ public class ProdDAOImpl implements ProdDAO {
 			sqlSession.update(NAMESPACE+".updateProdFull", vo);
 		}
 	}
+
+	//상품삭제 동작
+	@Override
+	public void delProduct(Integer prodNo) {
+		log.info("DAO : delProduct(prodNo) 호출");
+		
+		sqlSession.delete(NAMESPACE+".deleteProd", prodNo);
+	}
 	
 }

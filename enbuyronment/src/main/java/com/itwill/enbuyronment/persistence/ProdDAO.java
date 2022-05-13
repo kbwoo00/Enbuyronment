@@ -26,4 +26,7 @@ public interface ProdDAO {
 	
 	//상품수정 동작
 	public void modProduct(ProductVO vo);
+	
+	//상품삭제 동작
+	public void delProduct(Integer prodNo);
 }

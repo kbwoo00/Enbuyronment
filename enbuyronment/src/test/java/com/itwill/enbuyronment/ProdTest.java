@@ -76,4 +76,12 @@ public class ProdTest {
 		
 		prodDao.modProduct(vo);
 	}
+	
+	//@Test
+	public void 상품삭제테스트() {
+		
+		Integer prodNo = 6;
+		
+		prodDao.delProduct(prodNo);
+	}
 }

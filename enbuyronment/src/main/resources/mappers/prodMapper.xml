@@ -75,5 +75,10 @@
 		brand_no = (select brand_no from brand where brand_name = #{brandName}) 
 		where prod_no = #{prodNo}
 	</update>
+	
+	<!-- 상품삭제 동작 -->
+	<delete id="deleteProd">
+		delete from product where prod_no = #{prodNo}
+	</delete>
 
 </mapper>

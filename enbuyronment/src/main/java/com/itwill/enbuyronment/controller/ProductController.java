@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.PageMaker;
@@ -42,12 +43,12 @@ public class ProductController {
 	}
 	
 	@PostMapping("/regist")
-	public String registPOST(MultipartHttpServletRequest request) {
+	public String registPOST(MultipartHttpServletRequest request, RedirectAttributes rttr) {
 		log.info("registPOST() 호출");
 		
 		try {
 			prodService.prodUpload(request);
-			log.info("상품등록 완료");
+			rttr.addFlashAttribute("msg", "registOK");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,12 +99,12 @@ public class ProductController {
 	}
 	
 	@PostMapping("/{prodNo}/update")
-	public String updatePOST(@PathVariable Integer prodNo, MultipartHttpServletRequest request, Model model) {
+	public String updatePOST(@PathVariable Integer prodNo, MultipartHttpServletRequest request, RedirectAttributes rttr) {
 		log.info("updatePOST() 호출");
 		
 		try {
 			prodService.prodModify(prodNo, request);
-			model.addAttribute("msg", "updateOK");
+			rttr.addFlashAttribute("msg", "updateOK");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,4 +113,19 @@ public class ProductController {
 		return "redirect:/product/list";
 	}
 	
+	//상품삭제
+	@GetMapping("/{prodNo}/delete")
+	public String deleteGET(@PathVariable Integer prodNo, RedirectAttributes rttr) {
+		log.info("deleteGET() 호출");
+		
+		try {
+			prodService.prodDelete(prodNo);
+			rttr.addFlashAttribute("msg", "deleteOK");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/product/list";
+	}
 }

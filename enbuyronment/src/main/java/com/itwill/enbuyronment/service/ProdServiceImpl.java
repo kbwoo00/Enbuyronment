@@ -136,5 +136,13 @@ public class ProdServiceImpl implements ProdService {
 		
 		prodDao.modProduct(vo);
 	}
+
+	//상품 삭제
+	@Override
+	public void prodDelete(Integer prodNo) throws Exception {
+		log.info("prodDelete(prodNo) 호출");
+		
+		prodDao.delProduct(prodNo);
+	}
 	
 }

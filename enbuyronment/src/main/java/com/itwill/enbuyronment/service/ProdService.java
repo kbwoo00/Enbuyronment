@@ -28,4 +28,7 @@ public interface ProdService {
 	
 	//상품 수정
 	public void prodModify(Integer prodNo, MultipartHttpServletRequest request) throws Exception;
+	
+	//상품 삭제
+	public void prodDelete(Integer prodNo) throws Exception;
 }
