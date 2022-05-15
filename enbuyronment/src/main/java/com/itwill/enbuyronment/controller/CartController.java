@@ -25,14 +25,14 @@ import lombok.extern.slf4j.Slf4j;
 public class CartController {
 	
 	@Inject
-	private CartService cartServcie;
+	private CartService cartService;
 	
 	@ResponseBody
 	@PostMapping("/addProduct")
 	public void addProductToCart(@RequestBody CartVO cart) {
 		log.info("카트 = {}", cart);
 		
-		cartServcie.addProdToCart(cart);
+		cartService.addProdToCart(cart);
 	}
 	
 	@GetMapping("/view")
@@ -45,11 +45,23 @@ public class CartController {
 		
 		String uid = (String) session.getAttribute("userId");
 		
-		List<CartVO> cartList = cartServcie.getCartList(uid);
+		List<CartVO> cartList = cartService.getCartList(uid);
 		model.addAttribute("cartList", cartList);
 		
 		
 		return "/product/cart";
 	}
 
+	@ResponseBody
+	@PostMapping("/updateAmount")
+	public void updateAmount(@RequestBody CartVO cart, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		log.info("prodNo = {}", cart.getProdNo());
+		log.info("amount = {}", cart.getAmount());
+		
+		String uid = (String) session.getAttribute("userId");
+		cart.setUid(uid);
+		
+		cartService.updateAmount(cart);
+	}
 }

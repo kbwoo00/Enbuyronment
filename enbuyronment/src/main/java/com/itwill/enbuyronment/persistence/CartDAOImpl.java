@@ -38,6 +38,11 @@ public class CartDAOImpl implements CartDAO{
 	public List<CartVO> getCartList(String uid) {
 		return sqlSession.selectList(NAMESPACE + ".getCartList", uid);
 	}
+
+	@Override
+	public void updateAmount(CartVO cart) {
+		sqlSession.update(NAMESPACE + ".updateAmount", cart);
+	}
 	
 	
 	

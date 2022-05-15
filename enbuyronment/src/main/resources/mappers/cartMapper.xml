@@ -23,11 +23,16 @@
 	</update>
 	
 	<select id="getCartList" resultType="CartVO">
-		select p.prod_name, p.thumb, c.amount, p.price
+		select p.prod_name, p.thumb, c.amount, p.price, c.prod_no
 		from product p join cart c
 		on p.prod_no = c.prod_no
 		where c.uid = #{uid}
 	</select>
+	
+	<update id="updateAmount">
+		update cart set amount = #{amount}
+		where prod_no = #{prodNo} and uid = #{uid}
+	</update>
 	
 	<!-- prodName, thumb, amount, price -->
 

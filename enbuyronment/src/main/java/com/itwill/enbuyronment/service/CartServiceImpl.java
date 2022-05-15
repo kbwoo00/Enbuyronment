@@ -33,6 +33,11 @@ public class CartServiceImpl implements CartService{
 	public List<CartVO> getCartList(String uid) {
 		return cartDao.getCartList(uid);
 	}
+
+	@Override
+	public void updateAmount(CartVO cart) {
+		cartDao.updateAmount(cart);
+	}
 	
 	
 

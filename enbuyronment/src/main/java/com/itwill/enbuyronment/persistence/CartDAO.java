@@ -12,4 +12,6 @@ public interface CartDAO {
 	public CartVO getCartProd(CartVO cart);
 
 	public List<CartVO> getCartList(String uid);
+
+	public void updateAmount(CartVO cart);
 }
