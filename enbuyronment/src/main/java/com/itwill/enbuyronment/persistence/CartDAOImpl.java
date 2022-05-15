@@ -43,6 +43,11 @@ public class CartDAOImpl implements CartDAO{
 	public void updateAmount(CartVO cart) {
 		sqlSession.update(NAMESPACE + ".updateAmount", cart);
 	}
+
+	@Override
+	public void delProd(CartVO cart) {
+		sqlSession.delete(NAMESPACE + ".delProd", cart);
+	}
 	
 	
 	

@@ -34,6 +34,9 @@
 		where prod_no = #{prodNo} and uid = #{uid}
 	</update>
 	
-	<!-- prodName, thumb, amount, price -->
+	<delete id="delProd">
+		delete from cart
+		where uid = #{uid} and prod_no = #{prodNo}
+	</delete>
 
 </mapper> 

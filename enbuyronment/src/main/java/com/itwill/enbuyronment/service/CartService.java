@@ -10,4 +10,6 @@ public interface CartService {
 	public List<CartVO> getCartList(String uid);
 
 	public void updateAmount(CartVO cart);
+
+	public void delProd(CartVO cart);
 }

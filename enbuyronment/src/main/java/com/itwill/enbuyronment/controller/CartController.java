@@ -64,4 +64,16 @@ public class CartController {
 		
 		cartService.updateAmount(cart);
 	}
+	
+	@ResponseBody
+	@PostMapping("/delProduct")
+	public void delProdFromCart(@RequestBody CartVO cart, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		
+		String uid = (String) session.getAttribute("userId");
+		cart.setUid(uid);
+		
+		cartService.delProd(cart);
+	}
+
 }

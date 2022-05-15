@@ -38,6 +38,11 @@ public class CartServiceImpl implements CartService{
 	public void updateAmount(CartVO cart) {
 		cartDao.updateAmount(cart);
 	}
+
+	@Override
+	public void delProd(CartVO cart) {
+		cartDao.delProd(cart);
+	}
 	
 	
 
