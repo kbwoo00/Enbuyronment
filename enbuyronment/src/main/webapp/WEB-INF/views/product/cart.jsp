@@ -21,73 +21,81 @@
 	<br>
 	<br>
 	<div class="container" style="display: flex; justify-content: center;">
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="width: 80vw;">
 			<div class="wrapper">
-				<div class="card card-5">
-					<div class="card-header">
-						<div class="title">
-							<span>장바구니</span>
-						</div>
-						<input type="checkbox"><span>전체
-								선택/해제</span>
-					</div>
-					<div class="card-body">
-
+				<div>
+					<h3>장바구니</h3>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"><input type="checkbox"></th>
+							<th scope="col">상품 이미지</th>
+							<th scope="col">상품 정보</th>
+							<th scope="col"><div class="row justify-content-center">수량</div></th>
+							<th scope="col">금액</th>
+							<th scope="col">상품 총 금액</th>
+						</tr>
+					</thead>
+					<tbody>
 
 						<c:forEach var="cart" items="${cartList }" varStatus="status">
-							<!-- Product #1 -->
-							<div class="item">
-								<div>
-									<input type="checkbox" value="${cart.prodNo }">
-								</div>
-								<img
-									style="display: block; margin: 0 auto; width: 150px; height: 130px;"
-									width="150px;" height="130px" src="../upload/${cart.thumb }">
-								<div class="description">
-									<span class="productName">${cart.prodName }</span> <span
-										class="categoryName">비누</span> <span class="brandName">동구밭</span>
-								</div>
-								<div class="quantity">
-									<button id="minusBtn${status.index }" class="minus-btn"
-										type="button" name="button">
-										<img src="/resources/product/img/minus.svg" alt="" />
-									</button>
-									<input type="text" name="name" id="amount${status.index }"
-										value="${cart.amount }"> <input type="hidden"
-										id="prodNo${status.index }" value="${cart.prodNo }">
-									<button id="plusBtn${status.index }" class="plus-btn"
-										type="button" name="button">
-										<img src="/resources/product/img/plus.svg" alt="" />
-									</button>
-									<button id="updateAmountBtn${status.index }" type="button"
-										name="button">수량 변경</button>
-								</div>
-								<div id="prodPrice${status.index }">${cart.price }</div>
-								<div id="prodTotalPrice${status.index }" class="total-price">상품금액:
-									$9999</div>
-								<div>
-									<button id="delBtn${status.index }"
-										class="delete-btn row align-items-center"></button>
-								</div>
+							<tr>
+								<td class="align-middle"><input type="checkbox"
+									value="${cart.prodNo }"></td>
+								<td><img
+									style="margin: 0 auto; width: 150px; height: 130px;"
+									src="../upload/${cart.thumb }"></td>
+								<td class="align-middle"><span class="productName">${cart.prodName }</span><br>
+									<span class="categoryName">비누</span><br> <span
+									class="brandName">동구밭</span></td>
+								<td class="align-middle">
+									<div class="row justify-content-center">
+										<button id="minusBtn${status.index }" class="minus-btn"
+											type="button" name="button">
+											<img src="/resources/product/img/minus.svg" alt="" />
+										</button>
+										<input style="width:20px" type="text" name="name"
+											id="amount${status.index }" value="${cart.amount }" min="1" max="10">
+										<input type="hidden" id="prodNo${status.index }"
+											value="${cart.prodNo }">
+										<button id="plusBtn${status.index }" class="plus-btn"
+											type="button" name="button">
+											<img src="/resources/product/img/plus.svg" alt="" />
+										</button>
+									</div>
+									<br>
+									<div class="row justify-content-center">
+										<button id="updateAmountBtn${status.index }" type="button"
+											name="button">수량 변경</button>
+									</div>
 
-							</div>
+								</td>
+								<td class="align-middle">
+									<div id="prodPrice${status.index }">${cart.price }</div>
+								</td>
+								<td class="align-middle"><div class="col-md-auto"
+										id="prodTotalPrice${status.index }" class="total-price"></div></td>
+							</tr>
 						</c:forEach>
-					</div>
-					<div class="row">
-						<button class="btn col-md-auto">선택상품 삭제</button>
-						<button class="btn col-md-auto">전체 삭제</button>
-					</div>
+					</tbody>
+				</table>
 
 
-					<div id="cartPrice" class="total-price"></div>
-					<div class="total-price">배송비 : $9999</div>
-					<div class="total-price">총 결제금액 : $9999</div>
-					<br> <br> <br>
-					<button id="paymentBtn" onclick="location.href='/order'"
-						class="cart_btn col-10" style="float: none; margin: 0 auto;">결제하기</button>
-
-					<br> <br> <br>
+				<div class="row">
+					<button class="btn col-md-auto">선택상품 삭제</button>
+					<button class="btn col-md-auto">전체 삭제</button>
 				</div>
+
+
+				<div id="cartPrice" class="total-price"></div>
+				<div class="total-price">배송비 : $9999</div>
+				<div class="total-price">총 결제금액 : $9999</div>
+				<br> <br> <br>
+				<button id="paymentBtn" onclick="location.href='/order'"
+					class="cart_btn col-10" style="float: none; margin: 0 auto;">결제하기</button>
+
+				<br> <br> <br>
 			</div>
 		</div>
 	</div>

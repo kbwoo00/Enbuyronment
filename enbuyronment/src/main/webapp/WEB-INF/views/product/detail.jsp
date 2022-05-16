@@ -203,6 +203,7 @@
 					}),
 					success : function() {
 						alert('장바구니에 상품이 담겼습니다.');
+						amount.val(1);
 					}
 				});
 			});
