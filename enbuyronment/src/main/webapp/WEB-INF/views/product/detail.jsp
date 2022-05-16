@@ -23,7 +23,7 @@
 	<br> 수량 :
 	<input class="product_count_item input-number" type="text" value="1"
 		id="amount">
-	<input type="button" value="장바구니 담기" id="toCart">
+	<input type="button" value="장바구니 담기" id="toCartBtn">
 
 	<hr>
 
@@ -186,9 +186,27 @@
 				getReview();
 			});
 			
-
+			var toCartBtn = $('#toCartBtn');
+			var amount = $('#amount');
+			var uid = "${sessionScope.userId}";
 			
-			
+			// 장바구니에 상품 담기
+			toCartBtn.click(function() {
+				$.ajax({
+					url : '/cart/addProduct',
+					type : 'post',
+					contentType : "application/json; charset=utf-8",
+					data : JSON.stringify({
+						"uid" : uid,
+						"prodNo" : prodNo,
+						"amount" : amount.val()
+					}),
+					success : function() {
+						alert('장바구니에 상품이 담겼습니다.');
+						amount.val(1);
+					}
+				});
+			});
 		});
 		
 		
