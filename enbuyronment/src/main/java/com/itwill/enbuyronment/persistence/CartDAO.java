@@ -16,4 +16,5 @@ public interface CartDAO {
 	public void updateAmount(CartVO cart);
 
 	public void delProd(CartVO cart);
+
 }

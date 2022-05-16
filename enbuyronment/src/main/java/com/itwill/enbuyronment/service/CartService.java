@@ -11,5 +11,6 @@ public interface CartService {
 
 	public void updateAmount(CartVO cart);
 
-	public void delProd(CartVO cart);
+	public void delProd(List<Integer> prodNoList, String uid);
+
 }

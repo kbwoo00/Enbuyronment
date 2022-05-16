@@ -29,9 +29,9 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col"><input type="checkbox"></th>
+							<th scope="col"><input id="ckAll" type="checkbox"></th>
 							<th scope="col">상품 이미지</th>
-							<th scope="col">상품 정보</th>
+							<th class="col-md-4" scope="col">상품 정보</th>
 							<th scope="col"><div class="row justify-content-center">수량</div></th>
 							<th scope="col">금액</th>
 							<th scope="col">상품 총 금액</th>
@@ -41,7 +41,7 @@
 
 						<c:forEach var="cart" items="${cartList }" varStatus="status">
 							<tr>
-								<td class="align-middle"><input type="checkbox"
+								<td class="align-middle"><input class="check-input" type="checkbox"
 									value="${cart.prodNo }"></td>
 								<td><img
 									style="margin: 0 auto; width: 150px; height: 130px;"
@@ -81,9 +81,8 @@
 					</tbody>
 				</table>
 
-
 				<div class="row">
-					<button class="btn col-md-auto">선택상품 삭제</button>
+					<button id="delBtn" class="btn col-md-auto">선택상품 삭제</button>
 					<button class="btn col-md-auto">전체 삭제</button>
 				</div>
 
@@ -106,6 +105,37 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			// 체크박스
+			var ckedArr = [];
+			delBtn = $('#delBtn');
+			$('#ckAll').click(function() {
+				if($('#ckAll').is(':checked')){
+					$("input[type=checkbox]").prop("checked", true);
+				} else {
+					$("input[type=checkbox]").prop("checked", false);
+				}
+			});
+			
+			delBtn.click(function() {
+				if (confirm('선택하신 상품을 장바구니에서 삭제하시겠습니까?')) {
+					$(".check-input:checked").each(function() {
+						ckedArr.push($(this).val());
+					});
+					
+					$.ajax({
+						url : '/cart/delProduct',
+						type : 'post',
+						dataType : "text",
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify(ckedArr),
+						success : function(result) {
+							location.replace("/cart/view");
+						}
+					});
+				}
+			})
+			
+			// 장바구니 수량변경
 			var cartLength = "${fn:length(cartList) }";
 			var cartPrice = 0;
 			var prodPrice = [];
@@ -125,7 +155,6 @@
 				updateAmountBtn[i] = $('#updateAmountBtn' + i);
 				plusBtn[i] = $('#plusBtn' + i);
 				minusBtn[i] = $('#minusBtn' + i);
-				delBtn[i] = $('#delBtn' + i);
 
 				prodTotalPrice[i].text(prodPrice[i].text() * amount[i].val());
 
@@ -154,28 +183,13 @@
 				minusBtn[i].click(function() {
 					amount[i].val(Number(amount[i].val()) - 1);
 				});
-
-				delBtn[i].click(function() {
-					if (confirm('선택하신 상품을 장바구니에서 삭제하시겠습니까?')) {
-						$.ajax({
-							url : '/cart/delProduct',
-							type : 'post',
-							dataType : "text",
-							contentType : "application/json; charset=utf-8",
-							data : JSON.stringify({
-								'uid' : "${sessionScope.userId}",
-								'prodNo' : Number(prodNo[i].val()),
-							}),
-							success : function(result) {
-								location.replace("/cart/view");
-							}
-						});
-					}
-				});
+		
 			}
 
 			$('#cartPrice').text('상품금액 : ' + cartPrice + '원');
 
+			
+			
 		});
 	</script>
 

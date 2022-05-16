@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.itwill.enbuyronment.domain.CartVO;
 import com.itwill.enbuyronment.service.CartService;
@@ -54,12 +55,10 @@ public class CartController {
 
 	@ResponseBody
 	@PostMapping("/updateAmount")
-	public void updateAmount(@RequestBody CartVO cart, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
+	public void updateAmount(@RequestBody CartVO cart, @SessionAttribute(value = "userId", required = false) String uid) {
 		log.info("prodNo = {}", cart.getProdNo());
 		log.info("amount = {}", cart.getAmount());
 		
-		String uid = (String) session.getAttribute("userId");
 		cart.setUid(uid);
 		
 		cartService.updateAmount(cart);
@@ -67,13 +66,12 @@ public class CartController {
 	
 	@ResponseBody
 	@PostMapping("/delProduct")
-	public void delProdFromCart(@RequestBody CartVO cart, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
+	public void delProdFromCart(@RequestBody List<Integer> prodNoList,
+			@SessionAttribute(value = "userId", required = false) String uid) {
+		log.info("uid = {}", uid);
+		log.info("cartList = {}", prodNoList);
 		
-		String uid = (String) session.getAttribute("userId");
-		cart.setUid(uid);
-		
-		cartService.delProd(cart);
+		cartService.delProd(prodNoList, uid);
 	}
 
 }

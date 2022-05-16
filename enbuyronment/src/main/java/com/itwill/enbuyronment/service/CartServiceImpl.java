@@ -40,9 +40,15 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void delProd(CartVO cart) {
-		cartDao.delProd(cart);
+	public void delProd(List<Integer> prodNoList, String uid) {
+		for(Integer prodNo : prodNoList) {
+			CartVO cart = new CartVO();
+			cart.setUid(uid);
+			cart.setProdNo(prodNo);
+			cartDao.delProd(cart);
+		}
 	}
+
 	
 	
 
