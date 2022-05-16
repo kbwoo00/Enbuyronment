@@ -46,8 +46,8 @@
 									style="margin: 0 auto; width: 150px; height: 130px;"
 									src="../upload/${cart.thumb }"></td>
 								<td class="align-middle"><span class="productName">${cart.prodName }</span><br>
-									<span class="categoryName">비누</span><br> <span
-									class="brandName">동구밭</span></td>
+									<span class="categoryName">${cart.cateName }</span><br> <span
+									class="brandName">${cart.brandName }</span></td>
 								<td class="align-middle">
 									<div class="row justify-content-center">
 										<button id="minusBtn${status.index }" class="minus-btn"

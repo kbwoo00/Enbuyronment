@@ -15,4 +15,7 @@ public class CartVO {
 	private String uid;
 	private Integer prodNo;
 	private Integer amount;
+	
+	private String cateName;
+	private String brandName;
 }
