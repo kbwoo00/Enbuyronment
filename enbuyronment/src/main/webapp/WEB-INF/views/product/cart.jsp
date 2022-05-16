@@ -37,8 +37,7 @@
 							<th scope="col">상품 총 금액</th>
 						</tr>
 					</thead>
-					<tbody>
-
+					<tbody id="tbody">
 						<c:forEach var="cart" items="${cartList }" varStatus="status">
 							<tr>
 								<td class="align-middle"><input class="check-input" type="checkbox"
@@ -83,7 +82,7 @@
 
 				<div class="row">
 					<button id="delBtn" class="btn col-md-auto">선택상품 삭제</button>
-					<button class="btn col-md-auto">전체 삭제</button>
+					<button id="delAllBtn" class="btn col-md-auto">전체 삭제</button>
 				</div>
 
 
@@ -108,11 +107,32 @@
 			// 체크박스
 			var ckedArr = [];
 			delBtn = $('#delBtn');
+			delAllBtn = $('#delAllBtn');
 			$('#ckAll').click(function() {
 				if($('#ckAll').is(':checked')){
 					$("input[type=checkbox]").prop("checked", true);
 				} else {
 					$("input[type=checkbox]").prop("checked", false);
+				}
+			});
+			
+			delAllBtn.click(function() {
+				if(confirm('모든 상품을 장바구니에서 삭제하시겠습니까?')){
+					$(".check-input").each(function() {
+						ckedArr.push($(this).val());
+					});
+					
+					$.ajax({
+						url : '/cart/delProduct',
+						type : 'post',
+						dataType : "text",
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify(ckedArr),
+						success : function(result) {
+							ckedArr.length = 0;
+							location.replace("/cart/view");
+						}
+					});
 				}
 			});
 			
@@ -129,11 +149,12 @@
 						contentType : "application/json; charset=utf-8",
 						data : JSON.stringify(ckedArr),
 						success : function(result) {
+							ckedArr.length = 0;
 							location.replace("/cart/view");
 						}
 					});
 				}
-			})
+			});
 			
 			// 장바구니 수량변경
 			var cartLength = "${fn:length(cartList) }";
@@ -188,7 +209,9 @@
 
 			$('#cartPrice').text('상품금액 : ' + cartPrice + '원');
 
-			
+			if(cartLength == 0){
+				$('#tbody').html("<tr><td colspan='6'><h4 class='text-center'>장바구니가 비어 있습니다. </h4></td></tr>");
+			}
 			
 		});
 	</script>
