@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   #FONT
+   ========================================================================== */
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 400; 
+    font-style: normal; 
+    src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff2) format('woff2'),
+         url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff) format('woff');
+    font-display: swap;
+}
+
+/* ==========================================================================
+   #BOX-SIZING
+   ==========================================================================
+*/
+
+* {
+	box-sizing: unset !important;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ 
+body {
+  font-family: 'SCoreDream';
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+  font-family: 'SCoreDream';
+  color: #0b1c39;
+  margin : 0;
+  padding : 0;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: normal;
+}
+
+.shopping-cart {
+  width: 750px;
+  height: 423px;
+  margin: 80px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+ 
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  height: 60px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 25px;
+  font-weight: 400;
+}
+ 
+.item {
+  padding: 20px 30px;
+  height: 120px;
+  display: flex;
+  border-bottom:  1px solid #E1E8EE;
+}
+
+/* .item:nth-child(3) { */
+/*   border-top:  1px solid #E1E8EE; */
+/*   border-bottom:  1px solid #E1E8EE; */
+/* } */
+
+.buttons {
+  position: relative;
+  padding-top: 40px;
+  margin-right: 60px;
+}
+.delete-btn {
+  display: inline-block;
+  Cursor: pointer;
+  width: 18px;
+  height: 17px;
+  background: url('/resources/product/img/delete-icn.svg') no-repeat center;
+}
+
+.is-active {
+  animation-name: animate;
+  animation-duration: .8s;
+  animation-iteration-count: 1;
+  animation-timing-function: steps(28);
+  animation-fill-mode: forwards;
+}
+ 
+@keyframes animate {
+  0%   { background-position: left;  }
+  50%  { background-position: right; }
+  100% { background-position: right; }
+}
+
+.image {
+	margin-top: 20px;
+  margin-right: 50px;
+}
+ 
+/* Let’s add some basic style to  product name and description. */
+.description {
+  padding-top: 10px;
+  margin-right: 60px;
+  width: 115px;
+}
+ 
+.description span {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+}
+ 
+.productName {
+  margin-bottom: 20px;
+}
+.brandName, .categoryName {
+  font-weight: 300;
+  margin-top: 8px;
+  color: #86939E;
+}
+
+.quantity {
+  padding-top: 45px;
+  margin-right: 60px;
+}
+.quantity input {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 32px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+.minus-btn img {
+  margin-bottom: 3px;
+}
+.plus-btn img {
+  margin-top: 2px;
+}
+
+button {
+	border-style: none;
+}
+ 
+button:focus,
+input:focus {
+  outline:0;
+}
+
+.price{
+  width: 83px;
+  padding-top: 45px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+.total-price {
+  width: 685px;
+  padding-top: 27px;
+  text-align: right;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+.cart_btn {
+  background: #86A688;
+  color: #fff !important;
+  display: flex;
+  padding: 16px 20px;
+  font-family: 'SCoreDream';
+  font-size: 18px;
+  font-weight: 400;
+  border: 0;
+  border: 1px solid #86A688;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+.cart_btn:hover {
+  background: #86A688;
+  border: 1px solid #86A688;
+}
+
+.cart_btn:focus {
+  outline: none;
+}
+
+@media (max-width: 800px) {
+  .shopping-cart {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  .item {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .image img {
+    width: 50%;
+  }
+  .image,
+  .quantity,
+  .description {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+}
