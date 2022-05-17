@@ -23,4 +23,5 @@ public class ProductVO {
 	
 	private String cateName;
 	private String brandName;
+	private Double star;
 }

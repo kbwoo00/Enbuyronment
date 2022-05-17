@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.itwill.enbuyronment.domain.Criteria;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 
@@ -95,6 +95,74 @@ public class ProdDAOImpl implements ProdDAO {
 		} else {
 			//full
 			sqlSession.update(NAMESPACE+".updateProdFull", vo);
+		}
+	}
+
+	//상품삭제 동작
+	@Override
+	public void delProduct(Integer prodNo) {
+		log.info("DAO : delProduct(prodNo) 호출");
+		
+		sqlSession.delete(NAMESPACE+".deleteProd", prodNo);
+	}
+
+	//상품 개수 가져오기 동작
+	@Override
+	public Integer getProductCnt(String brand, String cate, String keyword) {
+		log.info("DAO : getProductCnt() 호출");
+		
+		Map<String, Object> data = new HashMap();
+		data.put("keyword", keyword);
+		
+		if(brand.equals("전체") && cate.equals("All")) {
+			return sqlSession.selectOne(NAMESPACE+".getProductCntAll", data);
+			
+		} else if(!brand.equals("전체") && cate.equals("All")) {
+			data.put("brand", brand);
+			return sqlSession.selectOne(NAMESPACE+".getProductCntBr", data);
+			
+		} else if(brand.equals("전체") && !cate.equals("All")) {
+			data.put("cate", cate);
+			return sqlSession.selectOne(NAMESPACE+".getProductCntCa", data);
+			
+		} else {
+			data.put("brand", brand); data.put("cate", cate);
+			return sqlSession.selectOne(NAMESPACE+".getProductCntBrCa", data);
+		}
+		
+	}
+
+	//상품목록 가져오기 동작
+	@Override
+	public List<ProductVO> getProductList(Criteria cri, String brand, String cate, Integer sort, String keyword) {
+		log.info("DAO : getProductList(cri) 호출");
+		
+		String sortby = "";
+		switch(sort) {
+			case 2: sortby = "avg(star) desc"; break;
+			case 3: sortby = "price desc"; break;
+			case 4: sortby = "price"; break;
+			default: sortby = "prod_no desc";
+		}
+		
+		Map<String, Object> data = new HashMap();
+		data.put("sortby", sortby); data.put("keyword", keyword);
+		data.put("pageStart", cri.getPageStart()); data.put("perDataCnt", cri.getPerDataCnt());
+		
+		if(brand.equals("전체") && cate.equals("All")) {
+			return sqlSession.selectList(NAMESPACE+".getProductAll", data);
+			
+		} else if(!brand.equals("전체") && cate.equals("All")) {
+			data.put("brand", brand);
+			return sqlSession.selectList(NAMESPACE+".getProductBr", data);
+			
+		} else if(brand.equals("전체") && !cate.equals("All")) {
+			data.put("cate", cate);
+			return sqlSession.selectList(NAMESPACE+".getProductCa", data);
+			
+		} else {
+			data.put("brand", brand); data.put("cate", cate);
+			return sqlSession.selectList(NAMESPACE+".getProductBrCa", data);
 		}
 	}
 	

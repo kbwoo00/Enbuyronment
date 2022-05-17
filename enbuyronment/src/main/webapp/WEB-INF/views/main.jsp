@@ -3,34 +3,43 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+<meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>enbuyronment</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="/resources/main/image/x-icon"
-	href="/resources/main/img/favicon.ico">
-<%@include file="/WEB-INF/views/include/css.jsp"%>
-
+<link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
+<%@include file="/WEB-INF/views/include/css.jsp" %>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-
 	<!-- Preloader Start -->
-	<div id="preloader-active">
-		<div
-			class="preloader d-flex align-items-center justify-content-center">
-			<div class="preloader-inner position-relative">
-				<div class="preloader-circle"></div>
-				<div class="preloader-img pere-text">
-					<img src="/resources/main/img/enbuyronment.png">
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/resources/img/loading.png" alt="loding_logo"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
 
 	<main>
+	
+		<!-- slider Area Start -->
+        <div class="slider-area ">
+            <div class="mainImg-area">
+                <div class="mainimg-Box">
+                    <a href="#">
+                        <img src="/resources/img/enb-mainimg.jpg" alt="mainImg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+	
 		<!-- Category Area Start-->
 		<section class="category-area section-padding30">
 			<div class="container-fluid">
@@ -46,7 +55,7 @@
 					<div class="col-xl-4 col-lg-6">
 						<div class="single-category mb-30">
 							<div class="category-img">
-								<img src="/resources/main/img/categori/cat1.jpg">
+								<img src="/resources/assets/img/categori/cat1.jpg">
 								<div class="category-caption">
 									<h2>Owmen`s</h2>
 									<span class="best"><a href="#">Best New Deals</a></span> <span
@@ -58,7 +67,7 @@
 					<div class="col-xl-4 col-lg-6">
 						<div class="single-category mb-30">
 							<div class="category-img text-center">
-								<img src="/resources/main/img/categori/cat2.jpg">
+								<img src="/resources/assets/img/categori/cat2.jpg">
 								<div class="category-caption">
 									<span class="collection">Discount!</span>
 									<h2>Winter Cloth</h2>
@@ -70,7 +79,7 @@
 					<div class="col-xl-4 col-lg-6">
 						<div class="single-category mb-30">
 							<div class="category-img">
-								<img src="/resources/main/img/categori/cat3.jpg">
+								<img src="/resources/assets/img/categori/cat3.jpg">
 								<div class="category-caption">
 									<h2>Man`s Cloth</h2>
 									<span class="best"><a href="#">Best New Deals</a></span> <span
@@ -83,6 +92,9 @@
 			</div>
 		</section>
 		<!-- Category Area End-->
+		
+		
+		
 		<!-- Latest Products Start -->
 		<section class="latest-product-area padding-bottom">
 			<div class="container">
@@ -126,7 +138,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product1.png">
+										<img src="/resources/assets/img/categori/product1.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -152,7 +164,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product2.png">
+										<img src="/resources/assets/img/categori/product2.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -175,7 +187,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product3.png">
+										<img src="/resources/assets/img/categori/product3.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -201,7 +213,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product4.png">
+										<img src="/resources/assets/img/categori/product4.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -224,7 +236,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product5.png">
+										<img src="/resources/assets/img/categori/product5.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -247,7 +259,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product6.png">
+										<img src="/resources/assets/img/categori/product6.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -279,7 +291,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product4.png">
+										<img src="/resources/assets/img/categori/product4.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -302,7 +314,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product5.png">
+										<img src="/resources/assets/img/categori/product5.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -325,7 +337,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product6.png">
+										<img src="/resources/assets/img/categori/product6.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -351,7 +363,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="img/categori/product2.png">
+										<img src="/resources/assets/img/categori/product2.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -374,7 +386,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="img/categori/product3.png">
+										<img src="/resources/assets/img/categori/product3.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -400,7 +412,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="img/categori/product1.png">
+										<img src="/resources/assets/img/categori/product1.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -432,7 +444,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="img/categori/product2.png">
+										<img src="/resources/assets/img/categori/product2.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -455,7 +467,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product3.png">
+										<img src="/resources/assets/img/categori/product3.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -481,7 +493,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product1.png">
+										<img src="/resources/assets/img/categori/product1.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -507,7 +519,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product4.png">
+										<img src="/resources/assets/img/categori/product4.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -530,7 +542,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product6.png">
+										<img src="/resources/assets/img/categori/product6.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -556,7 +568,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product5.png">
+										<img src="/resources/assets/img/categori/product5.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -585,7 +597,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product1.png">
+										<img src="/resources/assets/img/categori/product1.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -611,7 +623,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product2.png">
+										<img src="/resources/assets/img/categori/product2.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -634,7 +646,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product3.png">
+										<img src="/resources/assets/img/categori/product3.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -660,7 +672,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product4.png">
+										<img src="/resources/assets/img/categori/product4.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -683,7 +695,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product5.png">
+										<img src="/resources/assets/img/categori/product5.png">
 									</div>
 									<div class="product-caption">
 										<div class="product-ratting">
@@ -706,7 +718,7 @@
 							<div class="col-xl-4 col-lg-4 col-md-6">
 								<div class="single-product mb-60">
 									<div class="product-img">
-										<img src="/resources/main/img/categori/product6.png">
+										<img src="/resources/assets/img/categori/product6.png">
 										<div class="new-product">
 											<span>New</span>
 										</div>
@@ -739,11 +751,11 @@
 		<!-- Best Product Start -->
 		<div class="best-product-area lf-padding">
 			<div class="product-wrapper bg-height"
-				style="background-image: url(img/ categori/ card.png ')">
+				style="background-image: url( img/ categori/ card.png ')">
 				<div class="container position-relative">
 					<div class="row justify-content-between align-items-end">
 						<div class="product-man position-absolute  d-none d-lg-block">
-							<img src="/resources/main/img/categori/card-man.png">
+							<img src="/resources/assets/img/categori/card-man.png">
 						</div>
 						<div class="col-xl-2 col-lg-2 col-md-2 d-none d-block">
 							<div class="vertical-text">
@@ -764,7 +776,7 @@
 			</div>
 			<!-- Shape -->
 			<div class="shape bounce-animate d-none d-md-block">
-				<img src="/resources/main/img/categori/card-shape.png">
+				<img src="/resources/assets/img/categori/card-shape.png">
 			</div>
 		</div>
 		<!-- Best Product End-->
@@ -780,13 +792,13 @@
 							<a href="#" class="btn shop1-btn">Shop Now</a>
 						</div>
 						<div class="best-left-img mb-30 d-none d-sm-block">
-							<img src="/resources/main/img/collection/collection1.png">
+							<img src="/resources/assets/img/collection/collection1.png">
 						</div>
 					</div>
 					<!-- Mid Img -->
 					<div class="col-xl-2 col-lg-2 d-none d-lg-block">
 						<div class="best-mid-img mb-30 ">
-							<img src="/resources/main/img/collection/collection2.png">
+							<img src="/resources/assets/img/collection/collection2.png">
 						</div>
 					</div>
 					<!-- Riht Caption -->
@@ -799,7 +811,7 @@
 									</h4>
 								</div>
 								<div class="single-img">
-									<img src="/resources/main/img/collection/collection3.png">
+									<img src="/resources/assets/img/collection/collection3.png">
 								</div>
 							</div>
 						</div>
@@ -811,7 +823,7 @@
 									</h4>
 								</div>
 								<div class="single-img">
-									<img src="/resources/main/img/collection/collection4.png">
+									<img src="/resources/assets/img/collection/collection4.png">
 								</div>
 							</div>
 						</div>
@@ -823,7 +835,7 @@
 									</h4>
 								</div>
 								<div class="single-img">
-									<img src="/resources/main/img/collection/collection5.png">
+									<img src="/resources/assets/img/collection/collection5.png">
 								</div>
 							</div>
 						</div>
@@ -835,7 +847,7 @@
 		<!-- Latest Offers Start -->
 		<div class="latest-wrapper lf-padding">
 			<div class="latest-area latest-height d-flex align-items-center"
-				data-background="img/collection/latest-offer.png">
+				data-background="/resources/assets/img/collection/latest-offer.png">
 				<div class="container">
 					<div class="row d-flex align-items-center">
 						<div class="col-xl-5 col-lg-5 col-md-6 offset-xl-1 offset-lg-1">
@@ -858,7 +870,7 @@
 				</div>
 				<!-- man Shape -->
 				<div class="man-shape">
-					<img src="/resources/main/img/collection/latest-man.png">
+					<img src="/resources/assets/img/collection/latest-man.png">
 				</div>
 			</div>
 		</div>
@@ -898,19 +910,19 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="gallery-items">
-							<img src="/resources/main/img/gallery/gallery1.jpg">
+							<img src="/resources/assets/img/gallery/gallery1.jpg">
 						</div>
 						<div class="gallery-items">
-							<img src="/resources/main/img/gallery/gallery2.jpg">
+							<img src="/resources/assets/img/gallery/gallery2.jpg">
 						</div>
 						<div class="gallery-items">
-							<img src="/resources/main/img/gallery/gallery3.jpg">
+							<img src="/resources/assets/img/gallery/gallery3.jpg">
 						</div>
 						<div class="gallery-items">
-							<img src="/resources/main/img/gallery/gallery4.jpg">
+							<img src="/resources/assets/img/gallery/gallery4.jpg">
 						</div>
 						<div class="gallery-items">
-							<img src="/resources/main/img/gallery/gallery5.jpg">
+							<img src="/resources/assets/img/gallery/gallery5.jpg">
 						</div>
 					</div>
 				</div>

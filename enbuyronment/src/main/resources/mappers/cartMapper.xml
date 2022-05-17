@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.enbuyronment.mapper.CartMapper">
+	
+	<!-- 장바구니에 상품 담기 동작 -->
+	<insert id="insertCart">
+		insert into cart(uid, prod_no, amount)
+		values (#{uid}, #{prodNo}, #{amount})
+	</insert>
+	
+	<select id="getCartProd" resultType="CartVO">
+		select * 
+		from cart
+		where prod_no = #{prodNo} and uid = #{uid}
+	</select>
+	
+	<update id="addAmount">
+		update cart set amount = amount + #{amount}
+		where prod_no = #{prodNo} and uid = #{uid}
+	</update>
+	
+	<select id="getCartList" resultType="CartVO">
+		select p.prod_name, p.thumb, ct.cate_name, b.brand_name, c.amount, p.price, c.prod_no
+		from product p join cart c on p.prod_no = c.prod_no
+		join category ct on p.cate_no = ct.cate_no 
+		join brand b on p.brand_no = b.brand_no 
+		where c.uid = #{uid}
+	</select>
+	
+	<update id="updateAmount">
+		update cart set amount = #{amount}
+		where prod_no = #{prodNo} and uid = #{uid}
+	</update>
+	
+	<delete id="delProd">
+		delete from cart
+		where uid = #{uid} and prod_no = #{prodNo}
+	</delete>
+
+</mapper> 

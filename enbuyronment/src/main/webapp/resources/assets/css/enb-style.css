@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'SCoreDream';
+    font-weight: 400; 
+    font-style: normal; 
+    src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff2) format('woff2'),
+         url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff) format('woff');
+    font-display: swap;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,600,700,800|Poppins:400,500,600,700|Yellowtail&display=swap");
+
+/* main.html CSS */
+
+/* 로딩창 막대 색상조절 */
+.preloader-circle{
+    border-top-color: #86a688 !important;
+}
+
+/* 메인헤더 */
+.main-logobox{
+    width: 24%;
+    height: 100% !important;
+    padding: 0px !important;
+}
+.logo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center
+}
+.logo>a>img{
+    width: 100%;
+    /* height: 100%; */
+}
+.main-menubox{
+    width: 43%;
+    height: 100% !important;
+    padding: 0px !important;
+}
+
+.enb-mainNav{
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center;
+    line-height: 4rem;    
+}
+.enb-mainNav>li{
+    width: 23%;
+}
+.enb-mainNav>li>a{
+    padding: 0 !important;
+    font-size: 0.9em !important;
+    text-align: center;
+}
+
+.enb-mainNav>li>a:hover{
+    color: #ef9d3e !important;
+}
+
+.enb-submenu{
+    width: 100% !important;
+    padding: 0.4rem !important;
+    border-top : 5px solid #86a688 !important;
+}
+
+.enb-submenu>li{
+    margin-left: 0px !important;
+}
+
+.enb-submenu>li:hover{
+    color: #ef9d3e !important;
+}
+
+.enb-submenu>li>a:hover{
+    color: #ef9d3e !important;
+}
+
+.main-userbox{
+    width: 33%;
+    height: 100% !important;
+    line-height: 4rem; 
+}
+
+.main-userbox-liControl>li{
+    padding-left: 0.5rem !important;
+}
+
+.favorit-items::before , .shopping-card::before {
+    background: #f1b570 !important;
+}
+
+.enb-loginBtn{
+    font-size: 0.9em !important;
+    border-radius: 0.6rem !important;
+    background:#86a688 !important;
+}
+
+.enb-loginBtn::before{
+    background:#39533b !important;
+}
+
+/* 메인이미지 */
+
+.mainImg-area{
+    width: 100%;
+    height: 500px;
+    background-color: #86a688;
+    display: flex;
+    justify-content: center;
+}
+
+.mainimg-Box{
+    width: 1800px;
+    height: 500px;
+    background-color: #f1b570;
+}
+
+.mainimg-Box>a>img{
+    width: 100%;
+    height: 100%;
+}

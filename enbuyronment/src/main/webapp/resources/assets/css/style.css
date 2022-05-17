@@ -1,13 +1,3 @@
-@font-face {
-    font-family: 'SCoreDream';
-    font-weight: 400; 
-    font-style: normal; 
-    src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff2) format('woff2'),
-         url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff) format('woff');
-    font-display: swap;
-}
-
-
 /* Theme Description
 -------------------------------------------------
 
@@ -110,7 +100,7 @@
   font-size: 14px;
   font-weight: 400;
   border: 0;
-  border: 1px solid #86A688;
+  border: 1px solid #ff003c;
   letter-spacing: 3px;
   text-align: center;
   text-transform: uppercase;
@@ -119,9 +109,9 @@
 
 /* line 78, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_variables.scss */
 .boxed-btn:hover {
-  background: #86A688;
+  background: #ff003c;
   color: #000 !important;
-  border: 1px solid #86A688;
+  border: 1px solid #ff003c;
 }
 
 /* line 83, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_variables.scss */
@@ -301,7 +291,7 @@ a:focus,
 ul {
   list-style: none;
   margin: 0;
-  padding: -40px;
+  padding: 0;
 }
 
 /* line 80, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -406,10 +396,6 @@ input:focus::-moz-placeholder {
   opacity: 0.5;
 }
 
-.logo {
-	transform : translate(-220px, 0px);
-}
-
 /* line 159, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 .section-padding {
   padding-top: 120px;
@@ -493,7 +479,7 @@ input:focus::-moz-placeholder {
 
 /* line 230, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 .btn {
-  background: #86A688;
+  background: #2577fd;
   -moz-user-select: none;
   text-transform: capitalize;
   color: #fff;
@@ -504,8 +490,8 @@ input:focus::-moz-placeholder {
   letter-spacing: 1px;
   line-height: 0;
   margin-bottom: 0;
-  padding: 20px 20px;
-  border-radius: 5px;
+  padding: 27px 44px;
+  border-radius: 25px;
   margin: 10px;
   cursor: pointer;
   transition: color 0.4s linear;
@@ -514,7 +500,6 @@ input:focus::-moz-placeholder {
   border: 0;
   overflow: hidden;
   margin: 0;
-  transform: translate(280px, 0px);
 }
 
 /* line 253, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -525,7 +510,7 @@ input:focus::-moz-placeholder {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #76917A;
+  background: #00b1ff;
   z-index: 1;
   border-radius: 5px;
   transition: transform 0.5s;
@@ -600,7 +585,7 @@ input:focus::-moz-placeholder {
   padding: 18px 38px;
   margin: 10px;
   text-transform: capitalize;
-  color: #86A688;
+  color: #ff003c;
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -624,7 +609,7 @@ input:focus::-moz-placeholder {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #86A688;
+  background: #ff003c;
   z-index: -1;
   transition: transform 0.5s;
   transition-timing-function: ease;
@@ -695,7 +680,7 @@ input:focus::-moz-placeholder {
 /* scrollUp */
 /* line 417, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
 #scrollUp {
-  background: #86A688;
+  background: #2577fd;
   height: 50px;
   width: 50px;
   right: 31px;
@@ -706,22 +691,6 @@ input:focus::-moz-placeholder {
   border-radius: 50%;
   line-height: 48px;
   border: 2px solid transparent;
-}
-
-.dvlpmode {
-  background: #86A688;
-  height: 50px;
-  width: 50px;
-  right: 31px;
-  bottom: 18px;
-  color: #fff;
-  font-size: 20px;
-  text-align: center;
-  border-radius: 50%;
-  line-height: 48px;
-  border: 2px solid transparent;
-  cursor:pointer;
-	transform : translate( -1230px, 840px);
 }
 
 @media (max-width: 767px) {
@@ -3313,6 +3282,12 @@ input:focus {
   position: relative;
 }
 
+@media only screen and (min-width: 1200px) and (max-width: 3640px) {
+  /* line 1138, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
+  .container {
+    max-width: 1170px;
+  }
+}
 
 @media (max-width: 1200px) {
   /* line 1144, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_common.scss */
@@ -3524,10 +3499,10 @@ input:focus {
 .header-area .header-top .header-info-right ul li {
   display: inline-block;
 }
-//마이페이지버튼
+
 /* line 61, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-area .header-top .header-info-right ul li a {
-  padding-left: 0px;
+  padding-left: 36px;
   font-size: 14px;
   text-transform: capitalize;
   color: #fff;
@@ -3546,9 +3521,9 @@ input:focus {
   color: #000000;
   display: inline-block;
   text-transform: capitalize;
-  padding: 20px 18px;
+  padding: 39px 18px;
   display: block;
-  font-size: 17px;
+  font-size: 14px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -3572,14 +3547,19 @@ input:focus {
 
 /* line 102, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul li:hover > a {
-  color: #86A688;
+  color: #ff003c;
+}
+
+/* line 106, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
+.header-bottom .main-menu ul li.hot {
+  position: relative;
 }
 
 /* line 108, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul li.hot::before {
   position: absolute;
   content: "HOT";
-  background: #86A688;
+  background: #ff003c;
   color: #fff;
   text-align: center;
   border-radius: 8px;
@@ -3608,8 +3588,8 @@ input:focus {
   visibility: hidden;
   opacity: 0;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.05);
-  padding: 20px 0;
-  border-top: 5px solid #86A688;
+  padding: 17px 0;
+  border-top: 5px solid #ff003c;
   -webkit-transition: all 0.2s ease-out 0s;
   -moz-transition: all 0.2s ease-out 0s;
   -ms-transition: all 0.2s ease-out 0s;
@@ -3622,21 +3602,18 @@ input:focus {
   margin-left: 7px;
   display: block;
 }
-//네비게이션 바
+
 /* line 144, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul ul.submenu > li > a {
   padding: 6px 10px !important;
-  font-family: 'SCoreDream';
   font-size: 14px;
-  color: #86A688;
-  padding : 23px 18px;
+  color: #0b1c39;
   text-transform: capitalize;
 }
 
 /* line 149, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .main-menu ul ul.submenu > li > a:hover {
-  padding : 23px 18px;
-  color: #86A688;
+  color: #ff003c;
   background: none;
 }
 
@@ -3825,7 +3802,7 @@ input:focus {
 
 /* line 317, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-sticky.sticky-bar.sticky .header-btn .get-btn {
-/*   padding: 20px 20px; */
+  padding: 20px 20px;
 }
 
 /* line 321, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -6360,7 +6337,7 @@ input:focus {
 
 /* line 1255, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_blog_page.scss */
 .single-post-area .navigation-area .nav-left .lnr {
-  margin-left: 10px;
+  margin-left: 20px;
   opacity: 0;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
@@ -8630,8 +8607,8 @@ del {
 
 /* line 40, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_blog.scss */
 .blog-area .single-blog .blog-caption .blog-cap-top ul li a {
-  color: #86A688;
-  font-size: 24px;
+  color: #ff003c;
+  font-size: 14px;
 }
 
 /* line 50, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_blog.scss */

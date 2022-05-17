@@ -3,9 +3,9 @@ package com.itwill.enbuyronment.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 public interface ProdDAO {
 	
@@ -26,4 +26,13 @@ public interface ProdDAO {
 	
 	//상품수정 동작
 	public void modProduct(ProductVO vo);
+	
+	//상품삭제 동작
+	public void delProduct(Integer prodNo);
+	
+	//상품 개수 가져오기 동작
+	public Integer getProductCnt(String brand, String cate, String keyword);
+	
+	//상품목록 가져오기 동작
+	public List<ProductVO> getProductList(Criteria cri, String brand, String cate, Integer sort, String keyword);
 }
