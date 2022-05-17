@@ -9,11 +9,15 @@
 <title>enbuyronment</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="/resources/main/image/x-icon"
 	href="/resources/main/img/favicon.ico">
 <link rel="stylesheet" href="/resources/product/css/cart_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+<style type="text/css">
+	.plus-btn:hover, .minus-btn:hover{
+		transform: translateY(-0.25em);
+	}
+</style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
@@ -65,7 +69,7 @@
 									</div>
 									<br>
 									<div class="row justify-content-center">
-										<button id="updateAmountBtn${status.index }" type="button"
+										<button class="enb-loginBtn" id="updateAmountBtn${status.index }" type="button"
 											name="button">수량 변경</button>
 									</div>
 
@@ -81,8 +85,8 @@
 				</table>
 
 				<div class="row">
-					<button id="delBtn" class="btn col-md-auto">선택상품 삭제</button>
-					<button id="delAllBtn" class="btn col-md-auto">전체 삭제</button>
+					<button id="delBtn" class="btn col-md-auto enb-loginBtn">선택상품 삭제</button>
+					<button id="delAllBtn" class="btn col-md-auto enb-loginBtn">전체 삭제</button>
 				</div>
 
 
@@ -91,7 +95,7 @@
 				<div class="total-price">총 결제금액 : $9999</div>
 				<br> <br> <br>
 				<button id="paymentBtn" onclick="location.href='/order'"
-					class="cart_btn col-10" style="float: none; margin: 0 auto;">결제하기</button>
+					class="cart_btn col-10 enb-loginBtn" style="float: none; margin: 0 auto;">결제하기</button>
 
 				<br> <br> <br>
 			</div>
