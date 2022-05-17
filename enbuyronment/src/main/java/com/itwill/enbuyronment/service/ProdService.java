@@ -33,8 +33,8 @@ public interface ProdService {
 	public void prodDelete(Integer prodNo) throws Exception;
 	
 	//상품 개수 가져오기
-	public Integer prodCnt(String brand, String cate) throws Exception;
+	public Integer prodCnt(String brand, String cate, String keyword) throws Exception;
 	
 	//상품목록 가져오기
-	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort) throws Exception;
+	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception;
 }

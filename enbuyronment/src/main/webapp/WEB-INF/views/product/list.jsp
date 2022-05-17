@@ -20,10 +20,8 @@
 	<div class="col-md-4">
         <div class="product_sidebar">
             <div class="single_sedebar">
-                <form action="#">
-                    <input type="text" name="#" placeholder="Search keyword">
-                    <i class="ti-search"></i>
-                </form>
+                <input type="text" id="searchKeyword" placeholder="Search keyword">
+                <i class="ti-search"></i>
             </div>
             <div class="single_sedebar">
                 <div class="select_option">
@@ -32,6 +30,7 @@
                     	<p><a class="brandSort" id="on">전체</a></p>
                     	<c:forEach var="brandName" items="${brand }">
                         	<p><a class="brandSort">${brandName }</a></p>
+                        	<i class="right fa-caret-down fas"></i>
                         </c:forEach>
                     </div>
                 </div>
@@ -93,7 +92,7 @@ if("${msg}" == "deleteOK") {
 }
 
 $(document).ready(function() {
-	function getProdList(pageNum, brandVal, cateVal, sort) {
+	function getProdList(pageNum, brandVal, cateVal, sort, keyword) {
 		$.ajax({
 			url: '/product/list',
 			type: 'post',
@@ -101,7 +100,8 @@ $(document).ready(function() {
 				'page' : pageNum,
 				'brand' : brandVal,
 				'cate' : cateVal,
-				'sort' : sort
+				'sort' : sort,
+				'keyword' : keyword
 			},
 			dataType: 'json',
 			success: function(data) {
@@ -130,7 +130,7 @@ $(document).ready(function() {
 	}
 	
 	//페이지 첫 로딩 시
-	getProdList(1, '전체', 'All', 1);
+	getProdList(1, '전체', 'All', 1, '');
 	
 	//스크롤 시
 	var page = 1;
@@ -138,7 +138,7 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 	    if($(window).scrollTop() == $(document).height() - $(window).height()) {
 	      ++page;
-	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val());
+	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
 	    }
 	});
 	
@@ -149,21 +149,28 @@ $(document).ready(function() {
 		$('.select_option_list').html($(this).text());
 		
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val());
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
 		page = 1;
 	});
 	
 	//용도 선택 시
 	$('.nav-link').click(function() {
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $(this).text(), $('#select1').val());
+		getProdList(1, $('#on').text(), $(this).text(), $('#select1').val(), $('#searchKeyword').val());
 		page = 1;
 	});
 	
 	//정렬 선택 시
 	$('#select1').change(function() {
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val());
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
+		page = 1;
+	});
+	
+	//검색 시
+	$('.ti-search').click(function() {
+		$('#prodBox').empty();
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
 		page = 1;
 	});
 	

@@ -91,7 +91,7 @@ public class ProdTest {
 		Criteria cri = new Criteria();
 		cri.setPerDataCnt(6);
 		
-		List<ProductVO> prodList = prodDao.getProductList(cri, "전체", "All", 1);
+		List<ProductVO> prodList = prodDao.getProductList(cri, "전체", "All", 1, "");
 		log.info(prodList+"");
 	}
 }

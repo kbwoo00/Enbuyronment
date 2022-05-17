@@ -156,18 +156,18 @@ public class ProdServiceImpl implements ProdService {
 
 	//상품 개수 가져오기
 	@Override
-	public Integer prodCnt(String brand, String cate) throws Exception {
+	public Integer prodCnt(String brand, String cate, String keyword) throws Exception {
 		log.info("prodCnt() 호출");
 		
-		return prodDao.getProductCnt(brand, cate);
+		return prodDao.getProductCnt(brand, cate, keyword);
 	}
 
 	//상품목록 가져오기
 	@Override
-	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort) throws Exception {
+	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception {
 		log.info("prodList(cri) 호출");
 		
-		return prodDao.getProductList(cri, brand, cate, sort);
+		return prodDao.getProductList(cri, brand, cate, sort, keyword);
 	}
 	
 }

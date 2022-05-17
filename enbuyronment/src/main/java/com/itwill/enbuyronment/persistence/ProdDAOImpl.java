@@ -108,22 +108,24 @@ public class ProdDAOImpl implements ProdDAO {
 
 	//상품 개수 가져오기 동작
 	@Override
-	public Integer getProductCnt(String brand, String cate) {
+	public Integer getProductCnt(String brand, String cate, String keyword) {
 		log.info("DAO : getProductCnt() 호출");
 		
-		Map<String, Object> data = null;
+		Map<String, Object> data = new HashMap();
+		data.put("keyword", keyword);
 		
 		if(brand.equals("전체") && cate.equals("All")) {
-			return sqlSession.selectOne(NAMESPACE+".getProductCntAll");
+			return sqlSession.selectOne(NAMESPACE+".getProductCntAll", data);
 			
 		} else if(!brand.equals("전체") && cate.equals("All")) {
-			return sqlSession.selectOne(NAMESPACE+".getProductCntBr", brand);
+			data.put("brand", brand);
+			return sqlSession.selectOne(NAMESPACE+".getProductCntBr", data);
 			
 		} else if(brand.equals("전체") && !cate.equals("All")) {
-			return sqlSession.selectOne(NAMESPACE+".getProductCntCa", cate);
+			data.put("cate", cate);
+			return sqlSession.selectOne(NAMESPACE+".getProductCntCa", data);
 			
 		} else {
-			data = new HashMap();
 			data.put("brand", brand); data.put("cate", cate);
 			return sqlSession.selectOne(NAMESPACE+".getProductCntBrCa", data);
 		}
@@ -132,7 +134,7 @@ public class ProdDAOImpl implements ProdDAO {
 
 	//상품목록 가져오기 동작
 	@Override
-	public List<ProductVO> getProductList(Criteria cri, String brand, String cate, Integer sort) {
+	public List<ProductVO> getProductList(Criteria cri, String brand, String cate, Integer sort, String keyword) {
 		log.info("DAO : getProductList(cri) 호출");
 		
 		String sortby = "";
@@ -144,7 +146,8 @@ public class ProdDAOImpl implements ProdDAO {
 		}
 		
 		Map<String, Object> data = new HashMap();
-		data.put("sortby", sortby); data.put("pageStart", cri.getPageStart()); data.put("perDataCnt", cri.getPerDataCnt());
+		data.put("sortby", sortby); data.put("keyword", keyword);
+		data.put("pageStart", cri.getPageStart()); data.put("perDataCnt", cri.getPerDataCnt());
 		
 		if(brand.equals("전체") && cate.equals("All")) {
 			return sqlSession.selectList(NAMESPACE+".getProductAll", data);

@@ -166,9 +166,8 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping(value = "/list", produces = "application/json; charset=UTF-8")
-	public Map<String, Object> listPOST(Criteria cri, String brand, String cate, Integer sort) throws Exception {
+	public Map<String, Object> listPOST(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception {
 		log.info("listPOST() 호출");
-		log.info(brand+" "+cate+" "+sort);
 		
 		Map<String, Object> prodListReturn = new HashMap();
 		
@@ -177,9 +176,9 @@ public class ProductController {
 			
 			PageMaker pm = new PageMaker();
 			pm.setCri(cri);
-			pm.setTotalCount(prodService.prodCnt(brand, cate));
+			pm.setTotalCount(prodService.prodCnt(brand, cate, keyword));
 			
-			prodListReturn.put("prodList", prodService.prodList(cri, brand, cate, sort));
+			prodListReturn.put("prodList", prodService.prodList(cri, brand, cate, sort, keyword));
 			prodListReturn.put("endPage", pm.getEndPage());
 			
 		} catch (Exception e) {

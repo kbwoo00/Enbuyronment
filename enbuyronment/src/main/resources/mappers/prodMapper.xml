@@ -83,21 +83,23 @@
 	
 	<!-- 상품 개수 가져오기 동작 -->
 	<select id="getProductCntAll" resultType="Integer">
-		select count(*) from product
+		select count(*) from product where prod_name like '%${keyword}%'
 	</select>
 	
 	<select id="getProductCntBr" resultType="Integer">
-		select count(*) from product where brand_no = (select brand_no from brand where brand_name = #{brand})
+		select count(*) from product
+		where brand_no = (select brand_no from brand where brand_name = #{brand}) and prod_name like '%${keyword}%'
 	</select>
 	
 	<select id="getProductCntCa" resultType="Integer">
-		select count(*) from product where cate_no = (select cate_no from category where cate_name = #{cate})
+		select count(*) from product
+		where cate_no = (select cate_no from category where cate_name = #{cate}) and prod_name like '%${keyword}%'
 	</select>
 	
 	<select id="getProductCntBrCa" resultType="Integer">
 		select count(*) from product
 		where brand_no = (select brand_no from brand where brand_name = #{brand})
-		and cate_no = (select cate_no from category where cate_name = #{cate})
+		and cate_no = (select cate_no from category where cate_name = #{cate}) and prod_name like '%${keyword}%'
 	</select>
 	
 	<!-- 상품목록 가져오기 동작 -->
@@ -107,19 +109,21 @@
 	
 	<select id="getProductAll" resultType="ProductVO" resultMap="productMap">
 		select p.*, b.brand_name, avg(star) from product p join brand b on p.brand_no = b.brand_no
-		join review r on p.prod_no = r.prod_no
+		join review r on p.prod_no = r.prod_no where prod_name like '%${keyword}%'
 		group by p.prod_no order by ${sortby} limit #{pageStart}, #{perDataCnt}
 	</select>
 	
 	<select id="getProductBr" resultType="ProductVO" resultMap="productMap">
 		select p.*, b.brand_name, avg(star) from product p join brand b on p.brand_no = b.brand_no
-		join review r on p.prod_no = r.prod_no where p.brand_no = (select brand_no from brand where brand_name = #{brand})
+		join review r on p.prod_no = r.prod_no
+		where p.brand_no = (select brand_no from brand where brand_name = #{brand}) and prod_name like '%${keyword}%'
 		group by p.prod_no order by ${sortby} limit #{pageStart}, #{perDataCnt}
 	</select>
 	
 	<select id="getProductCa" resultType="ProductVO" resultMap="productMap">
 		select p.*, b.brand_name, avg(star) from product p join brand b on p.brand_no = b.brand_no
-		join review r on p.prod_no = r.prod_no where p.cate_no = (select cate_no from category where cate_name = #{cate})
+		join review r on p.prod_no = r.prod_no
+		where p.cate_no = (select cate_no from category where cate_name = #{cate}) and prod_name like '%${keyword}%'
 		group by p.prod_no order by ${sortby} limit #{pageStart}, #{perDataCnt}
 	</select>
 	
@@ -127,7 +131,7 @@
 		select p.*, b.brand_name, avg(star) as star from product p join brand b on p.brand_no = b.brand_no
 		join review r on p.prod_no = r.prod_no
 		where p.brand_no = (select brand_no from brand where brand_name = #{brand})
-		and p.cate_no = (select cate_no from category where cate_name = #{cate})
+		and p.cate_no = (select cate_no from category where cate_name = #{cate}) and prod_name like '%${keyword}%'
 		group by p.prod_no order by ${sortby} limit #{pageStart}, #{perDataCnt}
 	</select>
 
