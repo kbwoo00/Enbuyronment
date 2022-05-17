@@ -3,19 +3,19 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+<meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>enbuyronment</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="/resources/main/image/x-icon"
-	href="/resources/main/img/favicon.ico">
-<%@include file="/WEB-INF/views/include/css.jsp"%>
-
+<link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/resources/assets/css/enb-style.css">
+<%@include file="/WEB-INF/views/include/css.jsp" %>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-
 	<!-- Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -23,7 +23,7 @@
 			<div class="preloader-inner position-relative">
 				<div class="preloader-circle"></div>
 				<div class="preloader-img pere-text">
-					<img src="/resources/main/img/enbuyronment.png">
+					<img src="/resources/assets/img/enbuyronment.png">
 				</div>
 			</div>
 		</div>
@@ -31,6 +31,19 @@
 	<!-- Preloader Start -->
 
 	<main>
+	
+		<!-- slider Area Start -->
+        <div class="slider-area ">
+            <div class="mainImg-area">
+                <div class="mainimg-Box">
+                    <a href="#">
+                        <img src="/resources/img/enb-mainimg.jpg" alt="mainImg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+	
 		<!-- Category Area Start-->
 		<section class="category-area section-padding30">
 			<div class="container-fluid">
@@ -83,6 +96,9 @@
 			</div>
 		</section>
 		<!-- Category Area End-->
+		
+		
+		
 		<!-- Latest Products Start -->
 		<section class="latest-product-area padding-bottom">
 			<div class="container">
