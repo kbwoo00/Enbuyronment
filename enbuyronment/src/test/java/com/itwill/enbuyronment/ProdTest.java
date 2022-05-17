@@ -90,8 +90,13 @@ public class ProdTest {
 		
 		Criteria cri = new Criteria();
 		cri.setPerDataCnt(6);
+		List<ProductVO> prodList = prodDao.getProductList(cri, "전체", "All", 2, "");
 		
-		List<ProductVO> prodList = prodDao.getProductList(cri, "전체", "All", 1, "");
+		log.info(prodList+"");
+		
+		cri.setPage(2);
+		prodList = prodDao.getProductList(cri, "전체", "All", 2, "");
+		
 		log.info(prodList+"");
 	}
 }

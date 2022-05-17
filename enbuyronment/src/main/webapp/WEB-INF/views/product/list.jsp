@@ -108,6 +108,11 @@ $(document).ready(function() {
 				if(data.endPage >= pageNum) {
 					
 					for(var i=0; i<data.prodList.length; i++) {
+						
+						if(data.prodList[i].star == null) {
+							data.prodList[i].star = 0;
+						}
+						
 						$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
 					              "<div class='single-product mb-60'>"+
 					              "<div class='product-img'>"+
