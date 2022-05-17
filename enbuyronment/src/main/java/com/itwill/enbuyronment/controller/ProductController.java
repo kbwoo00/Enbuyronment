@@ -1,8 +1,6 @@
 package com.itwill.enbuyronment.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,7 +8,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.itwill.enbuyronment.domain.Criteria;
-import com.itwill.enbuyronment.domain.PageMaker;
 import com.itwill.enbuyronment.domain.ProductVO;
-import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
+import com.itwill.enbuyronment.domain.paging.PageMaker;
 import com.itwill.enbuyronment.service.ProdService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -150,6 +146,47 @@ public class ProductController {
 		}
 		
 		return "redirect:/product/list";
+	}
+	
+	//상품 목록
+	@GetMapping("/list")
+	public String listGET(Model model) {
+		log.info("listGET() 호출");
+		
+		try {
+			model.addAttribute("brand", prodService.brandCate().get("brand"));
+			model.addAttribute("cate", prodService.brandCate().get("cate"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "/product/list";
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/list", produces = "application/json; charset=UTF-8")
+	public Map<String, Object> listPOST(Criteria cri, String brand, String cate, Integer sort) throws Exception {
+		log.info("listPOST() 호출");
+		log.info(brand+" "+cate+" "+sort);
+		
+		Map<String, Object> prodListReturn = new HashMap();
+		
+		try {
+			cri.setPerDataCnt(6);
+			
+			PageMaker pm = new PageMaker();
+			pm.setCri(cri);
+			pm.setTotalCount(prodService.prodCnt(brand, cate));
+			
+			prodListReturn.put("prodList", prodService.prodList(cri, brand, cate, sort));
+			prodListReturn.put("endPage", pm.getEndPage());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return prodListReturn;
 	}
 	
 }

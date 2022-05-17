@@ -9,9 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.persistence.ProdDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -83,5 +83,15 @@ public class ProdTest {
 		Integer prodNo = 6;
 		
 		prodDao.delProduct(prodNo);
+	}
+	
+	//@Test
+	public void 상품목록테스트() {
+		
+		Criteria cri = new Criteria();
+		cri.setPerDataCnt(6);
+		
+		List<ProductVO> prodList = prodDao.getProductList(cri, "전체", "All", 1);
+		log.info(prodList+"");
 	}
 }

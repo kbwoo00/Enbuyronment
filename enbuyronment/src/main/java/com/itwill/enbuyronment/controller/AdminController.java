@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.itwill.enbuyronment.domain.Criteria;
-import com.itwill.enbuyronment.domain.PageMaker;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
+import com.itwill.enbuyronment.domain.paging.PageMaker;
 import com.itwill.enbuyronment.service.AdminService;
 
 import lombok.extern.slf4j.Slf4j;

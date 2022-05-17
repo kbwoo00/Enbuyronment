@@ -2,8 +2,8 @@ package com.itwill.enbuyronment.service;
 
 import java.util.List;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 public interface AdminService {
 

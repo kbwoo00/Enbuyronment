@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 public interface ProdService {
 	
@@ -31,4 +31,10 @@ public interface ProdService {
 	
 	//상품 삭제
 	public void prodDelete(Integer prodNo) throws Exception;
+	
+	//상품 개수 가져오기
+	public Integer prodCnt(String brand, String cate) throws Exception;
+	
+	//상품목록 가져오기
+	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort) throws Exception;
 }

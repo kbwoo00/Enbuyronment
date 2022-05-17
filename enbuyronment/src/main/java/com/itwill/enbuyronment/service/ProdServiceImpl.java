@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.persistence.ProdDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -152,6 +152,22 @@ public class ProdServiceImpl implements ProdService {
 		log.info("prodDelete(prodNo) 호출");
 		
 		prodDao.delProduct(prodNo);
+	}
+
+	//상품 개수 가져오기
+	@Override
+	public Integer prodCnt(String brand, String cate) throws Exception {
+		log.info("prodCnt() 호출");
+		
+		return prodDao.getProductCnt(brand, cate);
+	}
+
+	//상품목록 가져오기
+	@Override
+	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort) throws Exception {
+		log.info("prodList(cri) 호출");
+		
+		return prodDao.getProductList(cri, brand, cate, sort);
 	}
 	
 }
