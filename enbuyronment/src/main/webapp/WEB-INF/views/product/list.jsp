@@ -8,33 +8,29 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="/resources/main/image/x-icon"
-	href="/resources/main/img/favicon.ico">
+<link rel="shortcut icon" type="/resources/main/image/x-icon" href="/resources/main/img/favicon.ico">
 <link rel="stylesheet" href="/resources/product/css/main.css">
+<link rel="stylesheet" href="/resources/product/css/list_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
 
-<section class="latest-product-area latest-padding">
-	<div class="col-md-4">
-        <div class="product_sidebar">
-            <div class="single_sedebar">
-                <input type="text" id="searchKeyword" placeholder="Search keyword">
-                <i class="ti-search"></i>
-            </div>
-            <div class="single_sedebar">
-                <div class="select_option">
-                    <div class="select_option_list">브랜드<i class="right fa-caret-down fas"></i> </div>
-                    <div class="select_option_dropdown">
-                    	<p><a class="brandSort" id="on">전체</a></p>
-                    	<c:forEach var="brandName" items="${brand }">
-                        	<p><a class="brandSort">${brandName }</a></p>
-                        	<i class="right fa-caret-down fas"></i>
-                        </c:forEach>
-                    </div>
+<section class="latest-product-area mt-5">
+    <div class="product_sidebar">
+        <div class="single_sedebar">
+            <div class="select_option">
+                <div class="select_option_dropdown">
+                	<p><a class="brandSort" id="on">전체</a></p>
+                	<c:forEach var="brandName" items="${brand }">
+                    	<p><a class="brandSort">${brandName }</a></p>
+                    </c:forEach>
                 </div>
             </div>
+        </div>
+        <div class="single_sedebar">
+            <input type="text" id="searchKeyword" placeholder="Search">
+            <i class="ti-search"></i>
         </div>
     </div>
     <div class="container">
@@ -68,8 +64,7 @@
         <!-- Nav Card -->
 	    <div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-			    <div class="row" id="prodBox">
-			    </div>
+			    <div class="row" id="prodBox"></div>
 			</div>
 		</div>
         <!-- End Nav Card -->
@@ -80,6 +75,7 @@
 <%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@include file="/WEB-INF/views/include/header_script.jsp"%>
 
+<script src="https://kit.fontawesome.com/58cff89876.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
 if("${msg}" == "registOK") {
 	alert('상품 등록 완료');
@@ -114,19 +110,15 @@ $(document).ready(function() {
 						}
 						
 						$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
-					              "<div class='single-product mb-60'>"+
-					              "<div class='product-img'>"+
-					              "<a href='/product/"+data.prodList[i].prodNo+"'>"+
-					                  "<img src='../upload/"+data.prodList[i].thumb+"'></div>"+
-					              "<div class='product-caption'>"+
-					                  "<div class='product-ratting'>"+
-					                      "<i class='far fa-star'>"+data.prodList[i].star+"</i></div>"+
-					                  "<h4>"+data.prodList[i].brandName+"</h4>"+
-					                  "<h4>"+data.prodList[i].prodName+"</h4>"+
-					                  "<h4>밑에 가격있음(흰글씨)</h4>"+
-					                  "<div class='price'><ul>"+
-					                          "<li>$"+data.prodList[i].price+"</li>"+
-					                      "</ul></div></div></div></div>"
+				             "<div class='single-product mb-6'>"+
+					             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
+						             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'></div>"+
+						             "<div class='product-caption'>"+
+						                 "<div class='product-ratting'>"+
+							                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
+						                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
+						                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
+							         "</div></div></div>"
 					     );
 					}
 				}
@@ -141,7 +133,7 @@ $(document).ready(function() {
 	var page = 1;
 	
 	$(window).scroll(function() {
-	    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+	    if($(window).scrollTop() > $(document).height() - $(window).height() - 150) {
 	      ++page;
 	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
 	    }
