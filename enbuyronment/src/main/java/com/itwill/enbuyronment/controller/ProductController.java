@@ -70,7 +70,7 @@ public class ProductController {
 	//상품 상세
 	@GetMapping("/{prodNo}")
 	public String detailGET(@PathVariable Integer prodNo, Model model,
-			@SessionAttribute("userId") String uid
+			@SessionAttribute(value =  "userId", required = false) String uid
 			) throws Exception {
 		log.info("detailGET() 호출");
 		

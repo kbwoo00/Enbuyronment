@@ -17,4 +17,9 @@ public class HeartDAOImpl implements HeartDAO{
 	public boolean isHeart(HeartVO vo) {
 		return sqlSession.selectOne(NAMESPACE + ".isHeartProd", vo);
 	}
+
+	@Override
+	public void addProdToHeart(HeartVO heart) {
+		sqlSession.insert(NAMESPACE + ".insertHeart", heart);
+	}
 }

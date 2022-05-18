@@ -20,4 +20,9 @@ public class HeartServiceImpl implements HeartService{
 		vo.setUid(uid);
 		return heartDao.isHeart(vo);
 	}
+
+	@Override
+	public void addProdToHeart(HeartVO heart) {
+		heartDao.addProdToHeart(heart);
+	}
 }

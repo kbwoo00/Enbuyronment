@@ -9,4 +9,9 @@
 		from heart
 		where uid = #{uid} and prod_no = #{prodNo}
 	</select>
+	
+	<insert id="insertHeart">
+		insert into heart(uid, prod_no)
+		values(#{uid}, #{prodNo})
+	</insert>
 </mapper> 

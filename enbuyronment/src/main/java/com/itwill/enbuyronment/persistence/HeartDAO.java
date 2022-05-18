@@ -4,4 +4,6 @@ import com.itwill.enbuyronment.domain.HeartVO;
 
 public interface HeartDAO {
 	boolean isHeart(HeartVO vo);
+
+	public void addProdToHeart(HeartVO heart);
 }

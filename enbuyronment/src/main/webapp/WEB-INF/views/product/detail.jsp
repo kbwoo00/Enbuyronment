@@ -17,13 +17,20 @@
 		color: black;
 		width: 50%;
 	}
+	.enb-active{ 
+		background : #86a688;
+		color: white;	
+	}
 	.fa-star{
 		color: #ffd400;
 	}
 	.btn{
 		height: 20px;
 	}
-	
+	.owl-prev:hover, .owl-next:hover{
+		background-color : #86a688 !important;
+		backgroud: #86a688 !important;
+	}
 </style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -82,23 +89,26 @@
 								</div>
 							</div>
 
-							<div class="mt-5">
-									<button id="toCartBtn" class="btn enb-loginBtn">
-										장바구니 담기
-									</button>
-									<c:choose>
+							<div class="mt-5 row justify-content-between">
+									<div class="col">
+										<button id="toCartBtn" class="btn enb-loginBtn">
+											장바구니 담기
+										</button>
+									</div>
+									<div id="heartArea" class="col">
+										<c:choose>
 										<c:when test="${isHeart }">
-											<button id="toHeartBtn" class="btn enb-loginBtn">
+											<button id="heartDelBtn" class="btn enb-loginBtn">
 												관심상품 제거
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button id="toHeartBtn" class="btn enb-loginBtn">
+											<button id="heartAddBtn" class="btn enb-loginBtn">
 												관심상품 추가
 											</button>
 										</c:otherwise>
-									
 									</c:choose>
+									</div>
 							</div>
 							<c:if test="${sessionScope.mode eq 'adminMode' }">
 								<div class="row justify-content-center mt-5">
@@ -119,7 +129,7 @@
 	<div class="product_script_area">
 		<div class="container">
 			<nav class="nav nav-pills nav-fill justify-content-center">
-				<a class="nav-link text-center border active" href="javascript:void(0);" aria-current="page" id="prodScriptBtn">
+				<a class="nav-link text-center border enb-active" href="javascript:void(0);" aria-current="page" id="prodScriptBtn">
 					상품상세 </a> <a class="nav-link text-center border" href="javascript:void(0);" aria-current="page"
 					id="reviewBtn"> 리뷰 </a>
 			</nav>
@@ -158,45 +168,57 @@
 			      dataType: "json",
 			      contentType: "application/json; charset=utf-8",
 			      success: function (result) {
-			        content.html(
-			          "<h2 class='text-center mb-4' id='reviewTitle'>리뷰</h2><ul id='reviewList' class='list-group list-group-flush'></ul>" +
-			            "<div class='row justify-content-center'>" +
-			            "<nav class='blog-pagination d-flex'>" +
-			            "<ul class='pagination'>"
-			        );
-			        reviewBtn.addClass('active');
-			        prodScriptBtn.removeClass('active');
-	
-			        for (let i = 0; i < result.reviewList.length; i++) {
-			        	var starEmpty = "<i class='fa-regular fa-star'></i>";
-			        	var starFill = "<i class='fa-solid fa-star'></i>";
-			        	if (Number(result.reviewList[i].star) == 0){
-			        		var starImg = starEmpty + starEmpty + starEmpty + starEmpty + starEmpty;
-			        	} else if(Number(result.reviewList[i].star) == 1){
-			        		var starImg = starFill + starEmpty + starEmpty + starEmpty + starEmpty;
-			        	} else if(Number(result.reviewList[i].star) == 2){
-			        		var starImg = starFill + starFill + starEmpty + starEmpty + starEmpty;
-			        	} else if(Number(result.reviewList[i].star) == 3){
-			        		var starImg = starFill + starFill + starFill + starEmpty + starEmpty;
-			        	} else if(Number(result.reviewList[i].star) == 4){
-			        		var starImg = starFill + starFill + starFill + starFill + starEmpty;
-			        	} else {
-			        		var starImg = starFill + starFill + starFill + starFill + starFill;
-			        	}
-			        	
-			        	var regdate = new Date(result.reviewList[i].regdate);
-			        	regdate = regdate.getFullYear() + "." + regdate.getMonth() + "." + regdate.getDate();
-			        	
-			          $("#reviewList").append(
-			            "<li class='list-group-item'>" +
-			            "<div class='d-flex w-60 justify-content-between'>" + "<div>" + 
-			            "<div>" + starImg + "</div><p class='fw-bold'>" +
-			              result.reviewList[i].comment + "</p></div><div><div><small>" +
-			              regdate + "</small></div><div><small>" + result.reviewList[i].uid
-			               + "</small></div></div></div>" +
-			              "</li>"
-			          );
-			        }
+		    	  	reviewBtn.addClass('enb-active');
+			        prodScriptBtn.removeClass('enb-active');
+			    	if(result.reviewList.length != 0) {
+			    		content.html(
+						          "<h2 class='text-center mb-4' id='reviewTitle'>리뷰</h2><ul id='reviewList' class='list-group list-group-flush'></ul>" +
+						            "<div class='row justify-content-center'>" +
+						            "<nav class='blog-pagination d-flex'>" +
+						            "<ul class='pagination'>"
+						        );
+						       
+						        for (let i = 0; i < result.reviewList.length; i++) {
+						        	var starEmpty = "<i class='fa-regular fa-star'></i>";
+						        	var starFill = "<i class='fa-solid fa-star'></i>";
+						        	if (Number(result.reviewList[i].star) == 0){
+						        		var starImg = starEmpty + starEmpty + starEmpty + starEmpty + starEmpty;
+						        	} else if(Number(result.reviewList[i].star) == 1){
+						        		var starImg = starFill + starEmpty + starEmpty + starEmpty + starEmpty;
+						        	} else if(Number(result.reviewList[i].star) == 2){
+						        		var starImg = starFill + starFill + starEmpty + starEmpty + starEmpty;
+						        	} else if(Number(result.reviewList[i].star) == 3){
+						        		var starImg = starFill + starFill + starFill + starEmpty + starEmpty;
+						        	} else if(Number(result.reviewList[i].star) == 4){
+						        		var starImg = starFill + starFill + starFill + starFill + starEmpty;
+						        	} else {
+						        		var starImg = starFill + starFill + starFill + starFill + starFill;
+						        	}
+						        	
+						        	var regdate = new Date(result.reviewList[i].regdate);
+						        	regdate = regdate.getFullYear() + "." + regdate.getMonth() + "." + regdate.getDate();
+						        	
+						          $("#reviewList").append(
+						            "<li class='list-group-item'>" +
+						            "<div class='d-flex w-60 justify-content-between'>" + "<div>" + 
+						            "<div>" + starImg + "</div><p class='fw-bold'>" +
+						              result.reviewList[i].comment + "</p></div><div><div><small>" +
+						              regdate + "</small></div><div><small>" + result.reviewList[i].uid
+						               + "</small></div></div></div>" +
+						              "</li>"
+						          );
+						        }
+			    	} else{
+			    		content.html(
+						          "<h2 class='text-center mb-4' id='reviewTitle'>리뷰</h2><p class='text-center mt-4'>등록된 리뷰가 없습니다.</p>" +
+						            "<div class='row justify-content-center'>" +
+						            "<nav class='blog-pagination d-flex'>" +
+						            "<ul class='pagination'>"
+						        );
+						        
+			    	}
+			    	
+			        
 			        // prev 버튼
 			        if (result.pageInfo.prev) {
 			          $(".pagination").append(
@@ -272,6 +294,7 @@
 			          });
 			        });
 			      },
+			      
 			    });
 			  }
 	
@@ -292,8 +315,8 @@
 			      type: "post",
 			      contentType: "text/html; charset=utf-8",
 			      success: function (script) {
-			        prodScriptBtn.addClass('active');
-			        reviewBtn.removeClass('active');
+			        prodScriptBtn.addClass('enb-active');
+			        reviewBtn.removeClass('enb-active');
 			        content.html("<div class='row justify-content-center'><img src='../upload/" + script + "'></div>");
 			      },
 			    });
@@ -310,22 +333,27 @@
 	
 			  // 장바구니에 상품 담기
 			  toCartBtn.click(function () {
-			    $.ajax({
-			      url: "/cart/addProduct",
-			      type: "post",
-			      contentType: "application/json; charset=utf-8",
-			      data: JSON.stringify({
-			        uid: uid,
-			        prodNo: prodNo,
-			        amount: amount.val(),
-			      }),
-			      success: function () {
-			        alert("장바구니에 상품이 담겼습니다.");
-			        amount.val(1);
-			      },
-			    });
+				if(!isNaN(amount.val())){
+					$.ajax({
+					      url: "/cart/addProduct",
+					      type: "post",
+					      contentType: "application/json; charset=utf-8",
+					      data: JSON.stringify({
+					        uid: uid,
+					        prodNo: prodNo,
+					        amount: amount.val(),
+					      }),
+					      success: function () {
+					        alert("장바구니에 상품이 담겼습니다.");
+					        amount.val(1);
+					      },
+					    });
+				} else {
+					alert('수량은 숫자로 입력해주세요');
+				}
 			  });
 			  
+			  // 총 가격 계산
 			  var originPrice = "${vo.price }";
 			  var totalPrice = $("#totalPrice");
 			  var amountBtn = $('.amount-btn');
@@ -333,6 +361,31 @@
 			  amountBtn.click(function() {
 				  totalPrice.text('총 가격 : ' + (originPrice * amount.val()));
 			  });
+			  
+			  // 관심 목록에 추가
+			  var heartAddBtn = $('#heartAddBtn');
+			  var heartArea = $('#heartArea');
+			  
+			  heartAddBtn.click(function() {
+				  $.ajax({
+						url : '/heart/addProd',
+						type : 'post',
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify({
+							"uid" : uid,
+							"prodNo" : prodNo
+						}),
+						success : function() {
+							heartArea.text("<button id='heartAddBtn' class='btn enb-loginBtn'>" + 
+							"<span>관심상품에서 제거</span></button>");
+						}
+					});
+			  });
+			  
+			  // 관심 목록에서 삭제
+			  var heartDelBtn = $('#heartDelBtn');
+			  
+			  
 			  
 			});
 	</script>
