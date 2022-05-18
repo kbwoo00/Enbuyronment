@@ -25,4 +25,9 @@ public class HeartServiceImpl implements HeartService{
 	public void addProdToHeart(HeartVO heart) {
 		heartDao.addProdToHeart(heart);
 	}
+
+	@Override
+	public void delProdFromHeart(HeartVO heart) {
+		heartDao.delProdFromHeart(heart);
+	}
 }

@@ -22,4 +22,9 @@ public class HeartDAOImpl implements HeartDAO{
 	public void addProdToHeart(HeartVO heart) {
 		sqlSession.insert(NAMESPACE + ".insertHeart", heart);
 	}
+
+	@Override
+	public void delProdFromHeart(HeartVO heart) {
+		sqlSession.delete(NAMESPACE + ".deleteHeart", heart);
+	}
 }

@@ -6,4 +6,6 @@ public interface HeartDAO {
 	boolean isHeart(HeartVO vo);
 
 	public void addProdToHeart(HeartVO heart);
+
+	public void delProdFromHeart(HeartVO heart);
 }

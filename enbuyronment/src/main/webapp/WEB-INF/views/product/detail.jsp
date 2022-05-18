@@ -363,8 +363,8 @@
 			  });
 			  
 			  // 관심 목록에 추가
-			  var heartAddBtn = $('#heartAddBtn');
 			  var heartArea = $('#heartArea');
+			  var heartAddBtn = $('#heartAddBtn');
 			  
 			  heartAddBtn.click(function() {
 				  $.ajax({
@@ -376,8 +376,8 @@
 							"prodNo" : prodNo
 						}),
 						success : function() {
-							heartArea.text("<button id='heartAddBtn' class='btn enb-loginBtn'>" + 
-							"<span>관심상품에서 제거</span></button>");
+							heartArea.html("<button id='heartDelBtn' class='btn enb-loginBtn'>" + 
+							"<span>관심상품 제거</span></button>");
 						}
 					});
 			  });
@@ -385,7 +385,21 @@
 			  // 관심 목록에서 삭제
 			  var heartDelBtn = $('#heartDelBtn');
 			  
-			  
+			  heartDelBtn.click(function() {
+				  $.ajax({
+						url : '/heart/delProd',
+						type : 'post',
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify({
+							"uid" : uid,
+							"prodNo" : prodNo
+						}),
+						success : function() {
+							heartArea.html("<button id='heartAddBtn' class='btn enb-loginBtn'>" + 
+							"<span>관심상품 추가</span></button>");
+						}
+					});
+			  });
 			  
 			});
 	</script>

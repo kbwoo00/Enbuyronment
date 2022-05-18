@@ -8,4 +8,6 @@ public interface HeartService {
 
 	public void addProdToHeart(HeartVO heart);
 
+	public void delProdFromHeart(HeartVO heart);
+
 }

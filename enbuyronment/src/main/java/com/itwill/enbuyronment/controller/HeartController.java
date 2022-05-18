@@ -26,4 +26,10 @@ public class HeartController {
 	public void addProdToHeart(@RequestBody HeartVO heart) {
 		heartService.addProdToHeart(heart);
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/delProd")
+	public void delProdFromHeart(@RequestBody HeartVO heart) {
+		heartService.delProdFromHeart(heart);
+	}
 }

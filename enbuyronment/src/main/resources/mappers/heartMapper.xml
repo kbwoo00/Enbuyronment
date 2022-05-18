@@ -14,4 +14,9 @@
 		insert into heart(uid, prod_no)
 		values(#{uid}, #{prodNo})
 	</insert>
+	
+	<delete id="deleteHeart">
+		delete from heart
+		where uid = #{uid} and prod_no = #{prodNo}
+	</delete>
 </mapper> 
