@@ -20,6 +20,9 @@
 	.fa-star{
 		color: #ffd400;
 	}
+	.btn{
+		height: 20px;
+	}
 	
 </style>
 </head>
@@ -80,15 +83,31 @@
 							</div>
 
 							<div class="mt-5">
-								<input type="button" value="장바구니 담기" id="toCartBtn"
-									class="btn enb-loginBtn">
+									<button id="toCartBtn" class="btn enb-loginBtn">
+										장바구니 담기
+									</button>
+									<c:choose>
+										<c:when test="${isHeart }">
+											<button id="toHeartBtn" class="btn enb-loginBtn">
+												관심상품 제거
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button id="toHeartBtn" class="btn enb-loginBtn">
+												관심상품 추가
+											</button>
+										</c:otherwise>
+									
+									</c:choose>
 							</div>
-
-							<div class="row justify-content-center mt-5">
+							<c:if test="${sessionScope.mode eq 'adminMode' }">
+								<div class="row justify-content-center mt-5">
 								<input type="button" value="상품 수정" id="modProd"
 									class="btn enb-loginBtn"> <input type="button"
 									value="상품 삭제" id="delProd" class="btn enb-loginBtn">
-							</div>
+								</div>
+							</c:if>
+							
 						</div>
 					</div>
 					

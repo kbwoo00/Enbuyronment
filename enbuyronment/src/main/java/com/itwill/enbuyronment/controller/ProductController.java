@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.enbuyronment.domain.HeartVO;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.paging.PageMaker;
+import com.itwill.enbuyronment.service.HeartService;
 import com.itwill.enbuyronment.service.ProdService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +33,8 @@ public class ProductController {
 
 	@Inject
 	private ProdService prodService;
+	@Inject
+	private HeartService heartService;
 	
 	//상품 등록
 	@GetMapping("/regist")
@@ -64,10 +69,15 @@ public class ProductController {
 	
 	//상품 상세
 	@GetMapping("/{prodNo}")
-	public String detailGET(@PathVariable Integer prodNo, Model model) throws Exception {
+	public String detailGET(@PathVariable Integer prodNo, Model model,
+			@SessionAttribute("userId") String uid
+			) throws Exception {
 		log.info("detailGET() 호출");
 		
 		model.addAttribute("vo", prodService.prodDetail(prodNo));
+		
+		boolean isHeart =  heartService.isHeart(prodNo, uid);
+		model.addAttribute("isHeart", isHeart);
 		log.info("상품정보 가져오기 완료");
 		
 		return "/product/detail";
@@ -169,7 +179,7 @@ public class ProductController {
 	public Map<String, Object> listPOST(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception {
 		log.info("listPOST() 호출");
 		
-		Map<String, Object> prodListReturn = new HashMap();
+		Map<String, Object> prodListReturn = new HashMap<>();
 		
 		try {
 			cri.setPerDataCnt(6);
@@ -187,5 +197,7 @@ public class ProductController {
 		
 		return prodListReturn;
 	}
+	
+	
 	
 }
