@@ -96,18 +96,7 @@
 										</button>
 									</div>
 									<div id="heartArea" class="col">
-										<c:choose>
-										<c:when test="${isHeart }">
-											<button id="heartDelBtn" class="btn enb-loginBtn">
-												관심상품 제거
-											</button>
-										</c:when>
-										<c:otherwise>
-											<button id="heartAddBtn" class="btn enb-loginBtn">
-												관심상품 추가
-											</button>
-										</c:otherwise>
-									</c:choose>
+									
 									</div>
 							</div>
 							<c:if test="${sessionScope.mode eq 'adminMode' }">
@@ -347,6 +336,9 @@
 					        alert("장바구니에 상품이 담겼습니다.");
 					        amount.val(1);
 					      },
+					      error: function (){
+					    	  location.href = '/user/login';
+					      }
 					    });
 				} else {
 					alert('수량은 숫자로 입력해주세요');
@@ -364,41 +356,57 @@
 			  
 			  // 관심 목록에 추가
 			  var heartArea = $('#heartArea');
-			  var heartAddBtn = $('#heartAddBtn');
+			  var isHeart = "${isHeart}";
 			  
-			  heartAddBtn.click(function() {
-				  $.ajax({
-						url : '/heart/addProd',
-						type : 'post',
-						contentType : "application/json; charset=utf-8",
-						data : JSON.stringify({
-							"uid" : uid,
-							"prodNo" : prodNo
-						}),
-						success : function() {
-							heartArea.html("<button id='heartDelBtn' class='btn enb-loginBtn'>" + 
-							"<span>관심상품 제거</span></button>");
-						}
-					});
-			  });
+			  if(uid == ''){
+				  heartArea.html("<button class='btn enb-loginBtn heart-btn'>" + 
+					"관심상품 추가</button>");
+			  } else{
+				  if(isHeart){
+					  heartArea.html("<button class='btn enb-loginBtn heart-btn active'>" + 
+						"관심상품 제거</button>");
+				  } else{
+					  heartArea.html("<button class='btn enb-loginBtn heart-btn'>" + 
+						"관심상품 추가</button>");
+				  }
+			  }
 			  
-			  // 관심 목록에서 삭제
-			  var heartDelBtn = $('#heartDelBtn');
+			  var heartBtn = $('.heart-btn');
 			  
-			  heartDelBtn.click(function() {
-				  $.ajax({
-						url : '/heart/delProd',
-						type : 'post',
-						contentType : "application/json; charset=utf-8",
-						data : JSON.stringify({
-							"uid" : uid,
-							"prodNo" : prodNo
-						}),
-						success : function() {
-							heartArea.html("<button id='heartAddBtn' class='btn enb-loginBtn'>" + 
-							"<span>관심상품 추가</span></button>");
-						}
-					});
+			  heartBtn.click(function() {
+				  if(uid == ''){
+					  alert('로그인을 해주세요');
+				  } else{
+					  if(heartBtn.hasClass("active")){
+						  $.ajax({
+								url : '/heart/delProd',
+								type : 'post',
+								contentType : "application/json; charset=utf-8",
+								data : JSON.stringify({
+									"uid" : uid,
+									"prodNo" : prodNo
+								}),
+								success : function() {
+									heartBtn.removeClass('active');
+									heartBtn.text('관심상품 추가');
+								}
+							});
+					  } else{
+						  $.ajax({
+								url : '/heart/addProd',
+								type : 'post',
+								contentType : "application/json; charset=utf-8",
+								data : JSON.stringify({
+									"uid" : uid,
+									"prodNo" : prodNo
+								}),
+								success : function() {
+									heartBtn.addClass('active');
+									heartBtn.text('관심상품 제거');
+								}
+							});
+					  }
+				  }
 			  });
 			  
 			});
