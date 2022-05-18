@@ -137,7 +137,7 @@ fieldset, legend {
 }
 
 .quantity {
-  padding-top: 45px;
+  padding-top: 20px;
   margin-right: 60px;
 }
 .quantity input {
@@ -148,13 +148,6 @@ fieldset, legend {
   font-size: 16px;
   color: #43484D;
   font-weight: 300;
-}
-
-.minus-btn img {
-  margin-bottom: 3px;
-}
-.plus-btn img {
-  margin-top: 2px;
 }
 
 button {
@@ -176,7 +169,6 @@ input:focus {
 }
 
 .total-price {
-  width: 685px;
   padding-top: 27px;
   text-align: right;
   font-size: 16px;

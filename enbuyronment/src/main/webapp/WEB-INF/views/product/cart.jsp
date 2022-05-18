@@ -13,11 +13,6 @@
 	href="/resources/main/img/favicon.ico">
 <link rel="stylesheet" href="/resources/product/css/cart_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-<style type="text/css">
-	.plus-btn:hover, .minus-btn:hover{
-		transform: translateY(-0.25em);
-	}
-</style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
@@ -27,8 +22,11 @@
 	<div class="container" style="display: flex; justify-content: center;">
 		<div class="page-wrapper" style="width: 80vw;">
 			<div class="wrapper">
-				<div>
-					<h3>장바구니</h3>
+				<div class="row justify-content-between">
+				<h3 class="col-md-9">장바구니</h3>
+				<a id="delBtn" class="btn header-btn enb-loginBtn mb-2" style=" color:white; padding: 1.3rem 1.3rem !important;">선택상품 삭제</a>
+				<a id="delAllBtn" class="btn header-btn enb-loginBtn mb-2" style=" color:white; padding: 1.3rem 1.3rem !important;">전체 삭제</a>
+				</div>
 				</div>
 				<table class="table">
 					<thead>
@@ -36,7 +34,7 @@
 							<th scope="col"><input id="ckAll" type="checkbox"></th>
 							<th scope="col">상품 이미지</th>
 							<th class="col-md-4" scope="col">상품 정보</th>
-							<th scope="col"><div class="row justify-content-center">수량</div></th>
+							<th class="col-md-2"><div class="row justify-content-center">수량</div></th>
 							<th scope="col">금액</th>
 							<th scope="col">상품 총 금액</th>
 						</tr>
@@ -53,7 +51,7 @@
 									<span class="categoryName">${cart.cateName }</span><br> <span
 									class="brandName">${cart.brandName }</span></td>
 								<td class="align-middle">
-									<div class="row justify-content-center">
+									<div class="quantity row justify-content-center" style="margin-right:-16px !important;">
 										<button id="minusBtn${status.index }" class="minus-btn"
 											type="button" name="button">
 											<img src="/resources/product/img/minus.svg" alt="" />
@@ -67,35 +65,28 @@
 											<img src="/resources/product/img/plus.svg" alt="" />
 										</button>
 									</div>
-									<br>
 									<div class="row justify-content-center">
 										<button class="enb-loginBtn" id="updateAmountBtn${status.index }" type="button"
-											name="button">수량 변경</button>
+											name="button" style="border-radius : 5px !important;">수량 변경</button>
 									</div>
 
 								</td>
-								<td class="align-middle">
+								<td class="align-middle text-center">
 									<div id="prodPrice${status.index }">${cart.price }</div>
 								</td>
-								<td class="align-middle"><div class="col-md-auto"
+								<td class="align-middle text-center"><div class="col-md-auto"
 										id="prodTotalPrice${status.index }" class="total-price"></div></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 
-				<div class="row">
-					<button id="delBtn" class="btn col-md-auto enb-loginBtn">선택상품 삭제</button>
-					<button id="delAllBtn" class="btn col-md-auto enb-loginBtn">전체 삭제</button>
-				</div>
-
-
 				<div id="cartPrice" class="total-price"></div>
 				<div class="total-price">배송비 : $9999</div>
 				<div class="total-price">총 결제금액 : $9999</div>
 				<br> <br> <br>
 				<button id="paymentBtn" onclick="location.href='/order'"
-					class="cart_btn col-10 enb-loginBtn" style="float: none; margin: 0 auto;">결제하기</button>
+					class="cart_btn col-6 enb-loginBtn" style="float: none; margin: 0 auto;">결제하기</button>
 
 				<br> <br> <br>
 			</div>

@@ -121,3 +121,20 @@
     width: 100%;
     height: 100%;
 }
+
+/* 장바구니 */
+
+.plus-btn, .minus-btn {
+  height: 100%;
+  width: 30%;
+  background: white;
+  border: none;
+  font-size: 40px;
+}
+
+.mount {
+  height: 100%;
+  width: 30%;
+  border: none;
+  font-size: 20px;
+}
