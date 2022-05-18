@@ -17,11 +17,15 @@
 		color: black;
 		width: 50%;
 	}
+	.fa-star{
+		color: #ffd400;
+	}
+	
 </style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-	<div class="product_image_area">
+	<div class="product_image_area mb-5">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6">
@@ -47,12 +51,13 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="single_product_text text-center">
-						<h3>[${vo.brandName }] ${vo.prodName }</h3>
-						<h4>#${vo.cateName }</h4>
+					<div class="text-center">
+						<h2>[${vo.brandName }] ${vo.prodName }</h2>
+						<h3>#${vo.cateName }</h3>
 						<hr>
+						
 						<p>
-							배송 정보 배송기간 : 평균 3~5일 이내 <br> 배송비 : 2,000원 <br> (20,000원
+							배송기간 : 평균 3~5일 이내 <br> 배송비 : 2,000원 <br> (20,000원
 							이상 무료배송)
 						</p>
 						<div class="card_area">
@@ -61,15 +66,16 @@
 									<span>수량</span>
 									<div class="product_count_area mt-2 mb-4">
 										<div class="product_count d-inline-block">
-											<span class="product_count_item inumber-decrement"> <i
-												class="ti-minus"></i></span> <input
+											<span class="product_count_item inumber-decrement amount-btn"> <i
+												class="ti-minus amount-btn"></i></span> <input
 												class="product_count_item input-number" type="text"
 												value="1" min="0" max="10" id="amount"> <span
-												class="product_count_item number-increment"> <i
-												class="ti-plus"></i></span>
+												class="product_count_item number-increment amount-btn"> <i
+												class="ti-plus amount-btn"></i></span>
 										</div>
 									</div>
-									<span>가격 : ${vo.price }</span>
+									<span>가격 : ${vo.price }</span><br>
+									<span id="totalPrice">총 가격 : ${vo.price }</span>
 								</div>
 							</div>
 
@@ -85,6 +91,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -97,8 +104,10 @@
 					상품상세 </a> <a class="nav-link text-center border" href="javascript:void(0);" aria-current="page"
 					id="reviewBtn"> 리뷰 </a>
 			</nav>
-			<div id="content">
-				<img src="../upload/${vo.script }">
+			<div class="mt-5" id="content">
+				<div class="row justify-content-center">
+					<img src="../upload/${vo.script }">
+				</div>
 			</div>
 		</div>
 
@@ -131,7 +140,7 @@
 			      contentType: "application/json; charset=utf-8",
 			      success: function (result) {
 			        content.html(
-			          "<h2 class='text-center mb-4 mt-4' id='reviewTitle'>리뷰</h2><ul id='reviewList' class='list-group list-group-flush'></ul>" +
+			          "<h2 class='text-center mb-4' id='reviewTitle'>리뷰</h2><ul id='reviewList' class='list-group list-group-flush'></ul>" +
 			            "<div class='row justify-content-center'>" +
 			            "<nav class='blog-pagination d-flex'>" +
 			            "<ul class='pagination'>"
@@ -140,13 +149,32 @@
 			        prodScriptBtn.removeClass('active');
 	
 			        for (let i = 0; i < result.reviewList.length; i++) {
+			        	var starEmpty = "<i class='fa-regular fa-star'></i>";
+			        	var starFill = "<i class='fa-solid fa-star'></i>";
+			        	if (Number(result.reviewList[i].star) == 0){
+			        		var starImg = starEmpty + starEmpty + starEmpty + starEmpty + starEmpty;
+			        	} else if(Number(result.reviewList[i].star) == 1){
+			        		var starImg = starFill + starEmpty + starEmpty + starEmpty + starEmpty;
+			        	} else if(Number(result.reviewList[i].star) == 2){
+			        		var starImg = starFill + starFill + starEmpty + starEmpty + starEmpty;
+			        	} else if(Number(result.reviewList[i].star) == 3){
+			        		var starImg = starFill + starFill + starFill + starEmpty + starEmpty;
+			        	} else if(Number(result.reviewList[i].star) == 4){
+			        		var starImg = starFill + starFill + starFill + starFill + starEmpty;
+			        	} else {
+			        		var starImg = starFill + starFill + starFill + starFill + starFill;
+			        	}
+			        	
+			        	var regdate = new Date(result.reviewList[i].regdate);
+			        	regdate = regdate.getFullYear() + "." + regdate.getMonth() + "." + regdate.getDate();
+			        	
 			          $("#reviewList").append(
 			            "<li class='list-group-item'>" +
-			            "<div class='d-flex w-100 justify-content-between'>" + 
-			              result.reviewList[i].comment + "<small>" +
-			              result.reviewList[i].uid + "</small><small>" + 
-			              result.reviewList[i].star + "</small><small>" + 
-			              result.reviewList[i].regdate + "</small></div>" +
+			            "<div class='d-flex w-60 justify-content-between'>" + "<div>" + 
+			            "<div>" + starImg + "</div><p class='fw-bold'>" +
+			              result.reviewList[i].comment + "</p></div><div><div><small>" +
+			              regdate + "</small></div><div><small>" + result.reviewList[i].uid
+			               + "</small></div></div></div>" +
 			              "</li>"
 			          );
 			        }
@@ -154,8 +182,7 @@
 			        if (result.pageInfo.prev) {
 			          $(".pagination").append(
 			            "<li class='page-item'><button type='button' id='prevBtn' class='page-link' value='" +
-			              (result.pageInfo.startPage - 1) +
-			              "'>" +
+			              (result.pageInfo.startPage - 1) + "'>" +
 			              "<i class='ti-angle-left'></i></button></li>"
 			          );
 			        }
@@ -168,21 +195,13 @@
 			        ) {
 			          if (i == result.pageInfo.cri.page) {
 			            $(".pagination").append(
-			              "<li class='page-item active'><button type='button' class='page-link'" +
-			                "value='" +
-			                i +
-			                "'>" +
-			                i +
-			                "</button></li>"
+			              "<li class='page-item active'><button type='button' class='page-link'" + "value='"
+			              + i + "'>" + i + "</button></li>"
 			            );
 			          } else {
 			            $(".pagination").append(
-			              "<li class='page-item'><button type='button' class='page-item-btn page-link'" +
-			                "value='" +
-			                i +
-			                "'>" +
-			                i +
-			                "</button></li>"
+			              "<li class='page-item'><button type='button' class='page-item-btn page-link'" + "value='"
+			              + i +"'>" + i + "</button></li>"
 			            );
 			          }
 			        }
@@ -256,7 +275,7 @@
 			      success: function (script) {
 			        prodScriptBtn.addClass('active');
 			        reviewBtn.removeClass('active');
-			        content.html("<img src='../upload/" + script + "'>");
+			        content.html("<div class='row justify-content-center'><img src='../upload/" + script + "'></div>");
 			      },
 			    });
 			  });
@@ -287,7 +306,17 @@
 			      },
 			    });
 			  });
+			  
+			  var originPrice = "${vo.price }";
+			  var totalPrice = $("#totalPrice");
+			  var amountBtn = $('.amount-btn');
+			  
+			  amountBtn.click(function() {
+				  totalPrice.text('총 가격 : ' + (originPrice * amount.val()));
+			  });
+			  
 			});
 	</script>
+	<script src="https://kit.fontawesome.com/58cff89876.js" crossorigin="anonymous"></script>
 </body>
 </html>
