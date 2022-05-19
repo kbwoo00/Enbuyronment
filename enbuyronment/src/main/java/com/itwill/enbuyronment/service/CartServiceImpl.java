@@ -18,6 +18,7 @@ public class CartServiceImpl implements CartService{
 	@Inject
 	private CartDAO cartDao;
 	
+	//상품추가
 	@Override
 	public void addProdToCart(CartVO cart) {
 		CartVO cartProd = cartDao.getCartProd(cart);
@@ -29,16 +30,13 @@ public class CartServiceImpl implements CartService{
 		}
 	}
 
+	//목록 불러오기
 	@Override
 	public List<CartVO> getCartList(String uid) {
 		return cartDao.getCartList(uid);
 	}
 
-	@Override
-	public void updateAmount(CartVO cart) {
-		cartDao.updateAmount(cart);
-	}
-
+	//상품삭제
 	@Override
 	public void delProd(List<Integer> prodNoList, String uid) {
 		for(Integer prodNo : prodNoList) {
@@ -49,7 +47,12 @@ public class CartServiceImpl implements CartService{
 		}
 	}
 
-	
-	
+	//수량변경
+	@Override
+	public Integer updateAmount(CartVO vo) {
+		log.info("updateAmount(vo) 호출");
+		
+		return cartDao.updateAmount(vo);
+	}
 
 }

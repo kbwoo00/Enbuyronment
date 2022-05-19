@@ -11,3 +11,5 @@
 <link rel="stylesheet" href="/resources/assets/css/slick.css">
 <link rel="stylesheet" href="/resources/assets/css/nice-select.css">
 <link rel="stylesheet" href="/resources/assets/css/style.css">
+<link rel="stylesheet" href="/resources/assets/css/enb-style.css">
+

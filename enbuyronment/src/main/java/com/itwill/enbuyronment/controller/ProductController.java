@@ -1,8 +1,6 @@
 package com.itwill.enbuyronment.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,19 +8,20 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.itwill.enbuyronment.domain.Criteria;
-import com.itwill.enbuyronment.domain.PageMaker;
+import com.itwill.enbuyronment.domain.HeartVO;
 import com.itwill.enbuyronment.domain.ProductVO;
-import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
+import com.itwill.enbuyronment.domain.paging.PageMaker;
+import com.itwill.enbuyronment.service.HeartService;
 import com.itwill.enbuyronment.service.ProdService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +33,8 @@ public class ProductController {
 
 	@Inject
 	private ProdService prodService;
+	@Inject
+	private HeartService heartService;
 	
 	//상품 등록
 	@GetMapping("/regist")
@@ -68,10 +69,15 @@ public class ProductController {
 	
 	//상품 상세
 	@GetMapping("/{prodNo}")
-	public String detailGET(@PathVariable Integer prodNo, Model model) throws Exception {
+	public String detailGET(@PathVariable Integer prodNo, Model model,
+			@SessionAttribute(value =  "userId", required = false) String uid
+			) throws Exception {
 		log.info("detailGET() 호출");
 		
 		model.addAttribute("vo", prodService.prodDetail(prodNo));
+		
+		boolean isHeart =  heartService.isHeart(prodNo, uid);
+		model.addAttribute("isHeart", isHeart);
 		log.info("상품정보 가져오기 완료");
 		
 		return "/product/detail";
@@ -136,7 +142,7 @@ public class ProductController {
 		return "redirect:/product/list";
 	}
 	
-	//상품삭제
+	//상품 삭제
 	@GetMapping("/{prodNo}/delete")
 	public String deleteGET(@PathVariable Integer prodNo, RedirectAttributes rttr) {
 		log.info("deleteGET() 호출");
@@ -151,4 +157,47 @@ public class ProductController {
 		
 		return "redirect:/product/list";
 	}
+	
+	//상품 목록
+	@GetMapping("/list")
+	public String listGET(Model model) {
+		log.info("listGET() 호출");
+		
+		try {
+			model.addAttribute("brand", prodService.brandCate().get("brand"));
+			model.addAttribute("cate", prodService.brandCate().get("cate"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "/product/list";
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/list", produces = "application/json; charset=UTF-8")
+	public Map<String, Object> listPOST(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception {
+		log.info("listPOST() 호출");
+		
+		Map<String, Object> prodListReturn = new HashMap<>();
+		
+		try {
+			cri.setPerDataCnt(6);
+			
+			PageMaker pm = new PageMaker();
+			pm.setCri(cri);
+			pm.setTotalCount(prodService.prodCnt(brand, cate, keyword));
+			
+			prodListReturn.put("prodList", prodService.prodList(cri, brand, cate, sort, keyword));
+			prodListReturn.put("endPage", pm.getEndPage());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return prodListReturn;
+	}
+	
+	
+	
 }

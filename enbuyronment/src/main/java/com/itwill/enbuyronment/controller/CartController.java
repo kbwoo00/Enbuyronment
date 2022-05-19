@@ -28,6 +28,7 @@ public class CartController {
 	@Inject
 	private CartService cartService;
 	
+	//장바구니 상품추가
 	@ResponseBody
 	@PostMapping("/addProduct")
 	public void addProductToCart(@RequestBody CartVO cart) {
@@ -36,6 +37,7 @@ public class CartController {
 		cartService.addProdToCart(cart);
 	}
 	
+	//장바구니 불러오기
 	@GetMapping("/view")
 	public String cartView(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -53,17 +55,7 @@ public class CartController {
 		return "/product/cart";
 	}
 
-	@ResponseBody
-	@PostMapping("/updateAmount")
-	public void updateAmount(@RequestBody CartVO cart, @SessionAttribute(value = "userId", required = false) String uid) {
-		log.info("prodNo = {}", cart.getProdNo());
-		log.info("amount = {}", cart.getAmount());
-		
-		cart.setUid(uid);
-		
-		cartService.updateAmount(cart);
-	}
-	
+	//장바구니 상품삭제
 	@ResponseBody
 	@PostMapping("/delProduct")
 	public void delProdFromCart(@RequestBody List<Integer> prodNoList,
@@ -72,6 +64,16 @@ public class CartController {
 		log.info("cartList = {}", prodNoList);
 		
 		cartService.delProd(prodNoList, uid);
+	}
+	
+	//장바구니 상품 수량변경
+	@ResponseBody
+	@PostMapping("/modAmount")
+	public void modCartProdAmt(@RequestBody CartVO vo, @SessionAttribute(value = "userId", required = false) String uid) {
+		log.info("modCartProdAmt() 호출");
+		
+		vo.setUid(uid);
+		cartService.updateAmount(vo);
 	}
 
 }

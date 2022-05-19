@@ -1,6 +1,7 @@
 package com.itwill.enbuyronment.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.itwill.enbuyronment.domain.Criteria;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.persistence.ProdDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,17 +44,21 @@ public class ProdServiceImpl implements ProdService {
 		
 		List<MultipartFile> prodImg = request.getFiles("prodImg");
 		ProductVO vo = new ProductVO();
+		List<String> files = new ArrayList();
 		
-		for(int i = 0; i < prodImg.size(); i++) {
+		for(int i = 0; i < 5; i++) {
 			if(!prodImg.get(i).isEmpty() ) {
 				
 				UUID uuid = UUID.randomUUID();
 				String fileName = uuid.toString() + "_" + prodImg.get(i).getOriginalFilename();
 				
 				File uploadFile = new File(path + "\\" + fileName);
-				log.info("업로드 파일 : " + uploadFile);
+				files.add(fileName);
+				log.info("업로드 파일 : " + files);
 				
 				prodImg.get(i).transferTo(uploadFile);
+			} else {
+				files.add("");
 			}
 		}
 		log.info("파일 업로드 완료");
@@ -62,11 +67,11 @@ public class ProdServiceImpl implements ProdService {
 		vo.setPrice(Integer.parseInt(request.getParameter("price")));
 		vo.setStock(Integer.parseInt(request.getParameter("stock")));
 		vo.setFilePath(path);
-		vo.setThumb(prodImg.get(0).getOriginalFilename());
-		vo.setProdImg2(prodImg.get(1).getOriginalFilename());
-		vo.setProdImg3(prodImg.get(2).getOriginalFilename());
-		vo.setProdImg4(prodImg.get(3).getOriginalFilename());
-		vo.setScript(prodImg.get(4).getOriginalFilename());
+		vo.setThumb(files.get(0));
+		vo.setProdImg2(files.get(1));
+		vo.setProdImg3(files.get(2));
+		vo.setProdImg4(files.get(3));
+		vo.setScript(files.get(4));
 		vo.setCateName(request.getParameter("cateName"));
 		vo.setBrandName(request.getParameter("brandName"));
 		
@@ -107,17 +112,21 @@ public class ProdServiceImpl implements ProdService {
 		
 		List<MultipartFile> prodImg = request.getFiles("prodImg");
 		ProductVO vo = new ProductVO();
+		List<String> files = new ArrayList();
 		
-		for(int i = 0; i < prodImg.size(); i++) {
+		for(int i = 0; i < 5; i++) {
 			if(!prodImg.get(i).isEmpty() ) {
 				
 				UUID uuid = UUID.randomUUID();
 				String fileName = uuid.toString() + "_" + prodImg.get(i).getOriginalFilename();
 				
 				File uploadFile = new File(path + "\\" + fileName);
-				log.info("업로드 파일 : " + uploadFile);
+				files.add(fileName);
+				log.info("업로드 파일 : " + files);
 				
 				prodImg.get(i).transferTo(uploadFile);
+			} else {
+				files.add("");
 			}
 		}
 		log.info("파일 업로드 완료");
@@ -126,11 +135,11 @@ public class ProdServiceImpl implements ProdService {
 		vo.setPrice(Integer.parseInt(request.getParameter("price")));
 		vo.setStock(Integer.parseInt(request.getParameter("stock")));
 		vo.setFilePath(path);
-		vo.setThumb(prodImg.get(0).getOriginalFilename());
-		vo.setProdImg2(prodImg.get(1).getOriginalFilename());
-		vo.setProdImg3(prodImg.get(2).getOriginalFilename());
-		vo.setProdImg4(prodImg.get(3).getOriginalFilename());
-		vo.setScript(prodImg.get(4).getOriginalFilename());
+		vo.setThumb(files.get(0));
+		vo.setProdImg2(files.get(1));
+		vo.setProdImg3(files.get(2));
+		vo.setProdImg4(files.get(3));
+		vo.setScript(files.get(4));
 		vo.setCateName(request.getParameter("cateName"));
 		vo.setBrandName(request.getParameter("brandName"));
 		
@@ -143,6 +152,22 @@ public class ProdServiceImpl implements ProdService {
 		log.info("prodDelete(prodNo) 호출");
 		
 		prodDao.delProduct(prodNo);
+	}
+
+	//상품 개수 가져오기
+	@Override
+	public Integer prodCnt(String brand, String cate, String keyword) throws Exception {
+		log.info("prodCnt() 호출");
+		
+		return prodDao.getProductCnt(brand, cate, keyword);
+	}
+
+	//상품목록 가져오기
+	@Override
+	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception {
+		log.info("prodList(cri) 호출");
+		
+		return prodDao.getProductList(cri, brand, cate, sort, keyword);
 	}
 	
 }

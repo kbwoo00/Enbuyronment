@@ -1,4 +1,4 @@
-package com.itwill.enbuyronment.domain;
+package com.itwill.enbuyronment.domain.paging;
 
 import lombok.Getter;
 import lombok.ToString;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwill.enbuyronment.mapper.HeartMapper">
+	<select id="isHeartProd" resultType="boolean">
+		select if(count(*) = 1, 1, 0)
+		from heart
+		where uid = #{uid} and prod_no = #{prodNo}
+	</select>
+	
+	<insert id="insertHeart">
+		insert into heart(uid, prod_no)
+		values(#{uid}, #{prodNo})
+	</insert>
+	
+	<delete id="deleteHeart">
+		delete from heart
+		where uid = #{uid} and prod_no = #{prodNo}
+	</delete>
+	
+	<select id="getHeartList" resultType="HeartVO">
+		select h.uid, h.prod_no, p.thumb, p.prod_name, p.price, b.brand_name
+		from heart h join product p
+		on h.prod_no = p.prod_no
+		join brand b 
+		on p.brand_no = b.brand_no
+		where h.uid = #{uid}
+	</select>
+</mapper> 

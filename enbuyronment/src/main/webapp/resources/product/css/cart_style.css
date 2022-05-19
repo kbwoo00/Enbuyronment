@@ -137,24 +137,18 @@ fieldset, legend {
 }
 
 .quantity {
-  padding-top: 45px;
   margin-right: 60px;
+  height: 30px;
 }
 .quantity input {
   -webkit-appearance: none;
   border: none;
   text-align: center;
-  width: 32px;
+  width: 30px;
   font-size: 16px;
   color: #43484D;
   font-weight: 300;
-}
-
-.minus-btn img {
-  margin-bottom: 3px;
-}
-.plus-btn img {
-  margin-top: 2px;
+  border-color: #dee2e6;
 }
 
 button {
@@ -176,7 +170,6 @@ input:focus {
 }
 
 .total-price {
-  width: 685px;
   padding-top: 27px;
   text-align: right;
   font-size: 16px;
@@ -232,4 +225,26 @@ input:focus {
     text-align: center;
     margin: 6px 0;
   }
+}
+
+.table td {
+	border-bottom: 1px solid #dee2e6;
+}
+
+#ckAll {
+	margin-bottom: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.plus-btn, .minus-btn {
+  height: 100%;
+  width: 15%;
+  background: white;
+  border: none;
+  font-size: 40px;
 }
