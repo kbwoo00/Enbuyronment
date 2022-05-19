@@ -20,9 +20,14 @@
 		<div class="page-wrapper" style="width: 80vw;">
 			<div class="wrapper">
 				<div class="row justify-content-between">
-					<h3 class="col-md-9">장바구니</h3>
-					<a id="delBtn" class="btn header-btn enb-loginBtn mb-2" style=" color:white; padding: 1.3rem 1.3rem !important;">선택상품 삭제</a>
-					<a id="delAllBtn" class="btn header-btn enb-loginBtn mb-2" style=" color:white; padding: 1.3rem 1.3rem !important;">전체 삭제</a>
+					<h3 class="col-md-auto">장바구니</h3>
+					<div class="col-md-auto">
+						<a id="delBtn" class="btn header-btn enb-loginBtn mb-2"
+						style="color: white; padding: 1.3rem 1.3rem !important;">선택상품
+						삭제</a>	
+						<a id="delAllBtn" class="btn header-btn enb-loginBtn mb-2"
+						style="color: white; padding: 1.3rem 1.3rem !important;">전체 삭제</a>
+					</div>
 				</div>
 			</div>
 			
