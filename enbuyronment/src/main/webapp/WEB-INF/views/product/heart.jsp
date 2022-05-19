@@ -79,6 +79,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
 			// 체크박스
 			var ckedArr = [];
 			delBtn = $('#delBtn');
@@ -130,6 +131,40 @@
 					});
 				}
 			});
+			
+			// 장바구니에 담기
+			var heartLength = "${fn:length(heartList) }";
+			var uid = "${sessionScope.userId}";
+			
+			if(heartLength == 0){
+				$('#tbody').html("<tr><td colspan='6'><h4 class='text-center'>관심상품이 없습니다.</h4></td></tr>");
+			} else{
+				for(let i = 0; i < heartLength; i++){
+					$('#toCartBtn' + i).click(function() {
+						$.ajax({
+						      url: "/cart/addProduct",
+						      type: "post",
+						      contentType: "application/json; charset=utf-8",
+						      data: JSON.stringify({
+						        uid: uid,
+						        prodNo: $('#prodNo' + i).val(),
+						        amount: 1,
+						      }),
+						      success: function () {
+						        if(confirm('장바구니에 상품이 담겼습니다. 장바구니로 이동하시겠습니까?')){
+						        	location.href = '/cart/view';
+						        } 
+						      },
+						      error: function (){
+						    	  location.href = '/user/login';
+						      }
+						    });
+					});
+					
+				}
+			}
+			
+			
 		});
 	</script>
 </body>
