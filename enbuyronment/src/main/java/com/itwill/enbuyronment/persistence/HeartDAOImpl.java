@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,5 +28,10 @@ public class HeartDAOImpl implements HeartDAO{
 	@Override
 	public void delProdFromHeart(HeartVO heart) {
 		sqlSession.delete(NAMESPACE + ".deleteHeart", heart);
+	}
+	
+	@Override
+	public List<HeartVO> getHeartList(String uid) {
+		return sqlSession.selectList(NAMESPACE + ".getHeartList", uid);
 	}
 }

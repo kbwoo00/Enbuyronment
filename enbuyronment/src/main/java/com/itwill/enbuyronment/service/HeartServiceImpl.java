@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -29,5 +31,20 @@ public class HeartServiceImpl implements HeartService{
 	@Override
 	public void delProdFromHeart(HeartVO heart) {
 		heartDao.delProdFromHeart(heart);
+	}
+	
+	@Override
+	public void delProdFromHeart(List<Integer> prodNoList, String uid) {
+		for (Integer prodNo : prodNoList) {
+			HeartVO heart = new HeartVO();
+			heart.setProdNo(prodNo);
+			heart.setUid(uid);
+			heartDao.delProdFromHeart(heart);
+		}
+	}
+
+	@Override
+	public List<HeartVO> getHeartList(String uid) {
+		return heartDao.getHeartList(uid);
 	}
 }

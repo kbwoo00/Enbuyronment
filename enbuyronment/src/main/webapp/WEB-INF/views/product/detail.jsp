@@ -362,7 +362,7 @@
 				  heartArea.html("<button class='btn enb-loginBtn heart-btn'>" + 
 					"관심상품 추가</button>");
 			  } else{
-				  if(isHeart){
+				  if(isHeart == 'true'){
 					  heartArea.html("<button class='btn enb-loginBtn heart-btn active'>" + 
 						"관심상품 제거</button>");
 				  } else{
