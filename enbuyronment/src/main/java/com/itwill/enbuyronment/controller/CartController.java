@@ -42,7 +42,7 @@ public class CartController {
 	public String cartView(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
-		if(session == null) {
+		if(session.getAttribute("userId") == null) {
 			return "redirect:/";
 		}
 		

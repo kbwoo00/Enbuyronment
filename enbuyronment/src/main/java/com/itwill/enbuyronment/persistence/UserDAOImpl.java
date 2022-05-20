@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 		addr.setDtAddr(user.getDtAddr());
 		addr.setExAddr(user.getExAddr());
 		addr.setUid(user.getUid());
-		addr.setReciver(user.getName());
+		addr.setReceiver(user.getName());
 		
 		sqlSession.insert(NAMESPACE + ".initAddr", addr);
 	}
@@ -82,6 +84,12 @@ public class UserDAOImpl implements UserDAO {
 		return vo;
 	}
 
-	
+	//회원 주소 조회 동작
+	@Override
+	public List<AddressVO> getUserAddr(String uid) {
+		log.info("DAO : getUserAddr(uid) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+".getUserAddr", uid);
+	}
 
 }
