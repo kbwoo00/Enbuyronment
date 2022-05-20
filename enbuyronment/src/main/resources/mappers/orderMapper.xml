@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.itwill.enbuyronment.mapper.OrderMapper">
+
+	<!-- 주문정보 추가 동작 -->
+	<insert id="insertOrder">
+		insert into order(order_no, uid, point_down, postcode, addr, dt_addr, ex_addr, request)
+		values(${orderNo}, #{uid}, ${pointDown}, ${postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{request})
+	</insert>
+	
+	<!-- 주문상품 정보 추가 동작 -->
+	<insert id="insertOrderProd">
+		insert into order_product(order_no, prod_name, price, amount) 
+		values(${orderNo}, #{prodName}, ${price}, ${amount})
+	</insert>
+
+</mapper>

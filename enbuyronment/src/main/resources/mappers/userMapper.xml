@@ -37,5 +37,9 @@
 		select * from user where uid = #{uid}
 	</select>
 	
+	<!-- 회원 주소 조회 동작 -->
+	<select id="getUserAddr" resultType="AddressVO">
+		select * from address where uid = #{uid}
+	</select>
 
 </mapper> 
