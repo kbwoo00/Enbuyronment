@@ -16,5 +16,5 @@ public class AddressVO {
 	private String dtAddr;
 	private String exAddr;
 	private String uid;
-	private String reciver;
+	private String receiver;
 }

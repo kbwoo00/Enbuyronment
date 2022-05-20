@@ -94,7 +94,7 @@
 			<div id="cartPrice" class="total-price"></div>
 			<div class="total-price" id="shipCost"></div>
 			<div class="total-price" id="totalCost"></div>
-			<button id="paymentBtn" onclick="location.href='/order'" class="cart_btn col-6 enb-loginBtn mt-5" style="margin: 0 auto;">결제하기</button>
+			<button id="paymentBtn" class="cart_btn col-6 enb-loginBtn mt-5" style="margin: 0 auto;">결제하기</button>
 		</div>
 	</div>
 </body>
@@ -248,6 +248,16 @@
 				});
 			});
 		}
+		
+		$('#paymentBtn').click(function() {
+			if(cartLength == 0) {
+				alert('결제할 상품이 존재하지 않습니다!');
+				return false;
+				
+			} else {
+				location.href='/order/view';
+			}
+		});
 		
 	});
 </script>

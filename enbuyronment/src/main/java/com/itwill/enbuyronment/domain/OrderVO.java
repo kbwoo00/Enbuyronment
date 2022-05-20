@@ -1,7 +1,6 @@
 package com.itwill.enbuyronment.domain;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,19 +11,19 @@ import lombok.ToString;
 @ToString
 public class OrderVO {
 
-	private Integer orderNo;
+	private String orderNo;
 	private Timestamp orderDate;
-	private List<CartVO> orderProd;
 	
 	private String uid;
 	private String userName;
-	private String email;
-	private String phone;
 	private Integer pointDown;
 	
+	private String addrName;
 	private String postcode;
 	private String addr;
 	private String dtAddr;
 	private String exAddr;
+	private String receiver;
+	private String phone;
 	private String request;
 }

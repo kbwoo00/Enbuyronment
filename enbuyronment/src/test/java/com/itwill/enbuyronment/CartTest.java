@@ -50,15 +50,12 @@ public class CartTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void 카트에서주문옮기기() {
 		
-		//아이디 일치하는 cart정보 가져오기
 		String uid = "user12";
 		
-		UserVO uvo = userDao.getUser(uid);
-		log.info(uvo+"");
-		
+		//정보 가져오기
 		List<AddressVO> avoList = userDao.getUserAddr(uid);
 		AddressVO avo = null;
 		
@@ -69,18 +66,19 @@ public class CartTest {
 		}
 		
 		OrderVO ovo = new OrderVO();
-		ovo.setOrderNo(new Date().getDate() + 12345);
-		ovo.setOrderProd(cartDao.getCartList(uid));
+		ovo.setOrderNo("1");
+		ovo.setUid(uid);
+		ovo.setPointDown(0);
+		ovo.setAddrName(avo.getAddrName());
+		ovo.setPostcode(avo.getPostcode());
 		ovo.setAddr(avo.getAddr());
 		ovo.setDtAddr(avo.getDtAddr());
 		ovo.setExAddr(avo.getExAddr());
-		ovo.setPostcode(avo.getPostcode());
+		ovo.setReceiver("수령인");
+		ovo.setPhone(userDao.getUser(uid).getPhone());
 		ovo.setRequest("문 앞에 놔주세요");
-		ovo.setUid(uid);
-		ovo.setPointDown(0);
-		log.info("한글ㄴ한글한글"+ovo);
 		
-		//order에 정보넣기
-		orderDao.createOrder(ovo);
+		//order에 정보넣고 cart에서 삭제
+		orderDao.createOrder(ovo, cartDao.getCartList(uid));
 	}
 }
