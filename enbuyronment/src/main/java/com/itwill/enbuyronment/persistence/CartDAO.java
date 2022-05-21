@@ -23,4 +23,10 @@ public interface CartDAO {
 
 	//수량변경 동작
 	public Integer updateAmount(CartVO vo);
+	
+	//선택상품 상태 변경 동작
+	public void upStat(List<Integer> prodNoList, String uid);
+
+	//주문목록 불러오기 동작
+	public List<CartVO> getOrderList(String uid);
 }

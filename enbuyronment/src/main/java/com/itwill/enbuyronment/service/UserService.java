@@ -1,5 +1,8 @@
 package com.itwill.enbuyronment.service;
 
+import java.util.List;
+
+import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.UserVO;
 
 public interface UserService {
@@ -22,5 +25,9 @@ public interface UserService {
 	// 이메일 인증
 	public String checkEmail(String email);
 	
-
+	// 회원정보 조회
+	public UserVO getUserInfo(String uid);
+	
+	// 회원 배송지정보 조회
+	public List<AddressVO> getUserAddr(String uid);
 }

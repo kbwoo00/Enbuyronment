@@ -76,4 +76,14 @@ public class CartController {
 		cartService.updateAmount(vo);
 	}
 
+	//선택상품 상태 변경
+	@ResponseBody
+	@PostMapping("/updateStat")
+	public void updateStatPOST(@RequestBody List<Integer> prodNoList,
+			@SessionAttribute(value = "userId", required = false) String uid) {
+		log.info("uid = {}", uid);
+		log.info("cartList = {}", prodNoList);
+		
+		cartService.upStat(prodNoList, uid);
+	}
 }

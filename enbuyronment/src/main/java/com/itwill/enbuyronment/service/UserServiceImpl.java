@@ -1,6 +1,7 @@
 package com.itwill.enbuyronment.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.persistence.UserDAO;
 
@@ -199,8 +201,20 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	
+	// 회원정보 조회
+	@Override
+	public UserVO getUserInfo(String uid) {
+		log.info("getUserInfo(uid) 호출");
+		
+		return userDao.getUser(uid);
+	}
 
-	
+	// 회원 배송지정보 조회
+	@Override
+	public List<AddressVO> getUserAddr(String uid) {
+		log.info("getUserAddr(uid) 호출");
+		
+		return userDao.getUserAddr(uid);
+	}
 
 }
