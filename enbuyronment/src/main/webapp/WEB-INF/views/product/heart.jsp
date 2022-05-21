@@ -38,9 +38,11 @@
 				<thead>
 					<tr>
 						<th scope="col"><input id="ckAll" type="checkbox"></th>
-						<th scope="col">상품 이미지</th>
-						<th class="col-md-4" scope="col">상품 정보</th>
-						<th scope="col">금액</th>
+						<th scope="col" class="col-md-2"><div class="row justify-content-center">상품 이미지</div></th>
+						<th class="col-md-4" scope="col">
+						<div class="row justify-content-center">상품 정보</div>
+						</th>
+						<th scope="col"><div class="row justify-content-center">금액</div></th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -57,8 +59,8 @@
 							<td class="align-middle"><a style="color:black;" href="/product/${heart.prodNo }"><span class="productName">${heart.prodName }</span><br>
 								 <span class="brandName">[${heart.brandName }]</span></a></td>
 							 <td class="align-middle text-center">
-								<div class="row mb-3" id="prodPrice${status.index }">${heart.price } 원</div>
-								<div class="row">
+								<div class="row mb-3 justify-content-center" id="prodPrice${status.index }">${heart.price } 원</div>
+								<div class="row justify-content-center">
 									<input type="hidden" id="prodNo${status.index }"
 											value="${heart.prodNo }">
 									<button class="enb-loginBtn"

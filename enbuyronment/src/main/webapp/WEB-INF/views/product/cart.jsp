@@ -61,12 +61,16 @@
 								<input class="check-input" type="checkbox" id="prodNo${status.index }" value="${cart.prodNo }">
 							</td>
 							<td class="align-middle" style="text-align: center;">
-								<img style="width: 150px; height: 130px;" src="../upload/${cart.thumb }">
+								<a href="/product/${cart.prodNo }">
+									<img style="width: 150px; height: 130px;" src="../upload/${cart.thumb }">
+								</a>
 							</td>
 							<td class="align-middle">
-								<span class="productName">${cart.prodName }</span><br>
-								<span class="categoryName">${cart.cateName }</span><br>
-								<span class="brandName">${cart.brandName }</span>
+								<a href="/product/${cart.prodNo }">
+									<span class="productName">${cart.prodName }</span><br>
+									<span class="categoryName">${cart.cateName }</span><br>
+									<span class="brandName">${cart.brandName }</span>
+								</a>
 							</td>
 							<td class="align-middle">
 								<div class="quantity row justify-content-center" style="margin-right:-16px !important;">
