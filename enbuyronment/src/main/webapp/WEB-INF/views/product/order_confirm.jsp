@@ -16,7 +16,7 @@
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
   <!--================ confirmation part start =================-->
-  <section class="confirmation_part section_padding">
+  <section class="confirmation_part section_padding" style="padding: 100px 0px !important;">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -42,23 +42,15 @@
               <li>
                 <p>결제 수단</p><span>: Check payments</span>
               </li>
+              <li>
+                <p>구매자 이름</p><span>: 김땅땅</span>
+               </li>
             </ul>
+            <br><br>
           </div>
         </div>
-        <div class="col-lg-6 col-lx-4">
-          <div class="single_confirmation_details">
-            <h4>수령인 정보</h4>
-            <ul>
-              <li>
-                <p>받는 사람</p><span>: 김땡땡</span>
-              </li>
-              <li>
-                <p>휴대폰 번호</p><span>: 01012341234</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6 col-lx-4">
+        
+      <div class="col-lg-6 col-lx-4">
           <div class="single_confirmation_details">
             <h4>배송 정보</h4>
             <ul>
@@ -77,10 +69,17 @@
               <li>
                 <p>요청 사항</p><span>: 부재시 문앞에 놔주세요.</span>
               </li>
+              <li>
+                <p>수령인</p><span>: 김땡땡</span>
+              </li>
+              <li>
+                <p>수령인 휴대폰 번호</p><span>: 01012341234</span>
+              </li>
             </ul>
           </div>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-lg-12">
           <div class="order_details_iner">
@@ -88,33 +87,35 @@
             <table class="table table-borderless align-middle">
               <thead>
                 <tr>
-                  <th class="col-7" colspan="2">상품 이름</th>
-                  <th class="col-3">개수</th>
-                  <th scope="col">가격</th>
+                  <th class="col-5">상품 이름</th>
+                  <th class="col-2 text-center">적립금</th>
+                  <th class="col-2 text-center">개수</th>
+                  <th class="col-2 text-right">가격</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th class="col-7" colspan="2"><span>에코백</span></th>
-                  <th class="col-3">x01</th>
-                  <th> <span>₩ 2160.00</span></th>
+                  <th class="col-5"><span>에코백</span></th>
+                  <th class="col-2 text-center">₩ 100</th>
+                  <th class="col-2 text-center">x01</th>
+                  <th class="col text-right"> <span>₩ 2160.00</span></th>
                 </tr>
                 <tr>
                 <th scope="col" colspan="4"></th>
                 </tr>
                 <tr>
                   <th class="col-7" colspan="3">총 상품가격</th>
-                  <th class="col-3"> <span>₩ 2160.00</span></th>
+                  <th class="col-3 text-right"> <span>₩ 2160.00</span></th>
                 </tr>
                 <tr>
                   <th class="col-7" colspan="3">배송비</th>
-                  <th class="col-3"><span>₩ 50.00</span></th>
+                  <th class="col-3 text-right"><span>₩ 50.00</span></th>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
                   <th class="col-7" colspan="3">총 결제금액</th>
-                  <th class="col-3"> <span>₩ 9999.00</span></th>
+                  <th class="col-3 text-right"> <span>₩ 9999.00</span></th>
                 </tr>
               </tfoot>
             </table>
