@@ -20,7 +20,7 @@
 	
 	<!-- 장바구니 삭제 동작 -->
 	<delete id="delCartAfterOrder">
-		delete from cart where uid = #{uid}
+		delete from cart where uid = #{uid} and status = 1
 	</delete>
 
 </mapper>

@@ -58,15 +58,19 @@
 					<c:forEach var="cart" items="${cartList }" varStatus="status">
 						<tr>
 							<td class="align-middle" style="text-align: center;">
-								<input class="check-input" type="checkbox" id="prodNo${status.index }" value="${cart.prodNo }">
+								<input class="check-input" type="checkbox" id="prodNo${status.index }" value="${cart.prodNo }" checked>
 							</td>
 							<td class="align-middle" style="text-align: center;">
-								<img style="width: 150px; height: 130px;" src="../upload/${cart.thumb }">
+								<a href="/product/${cart.prodNo }">
+									<img style="width: 150px; height: 130px;" src="../upload/${cart.thumb }">
+								</a>
 							</td>
 							<td class="align-middle">
-								<span class="productName">${cart.prodName }</span><br>
-								<span class="categoryName">${cart.cateName }</span><br>
-								<span class="brandName">${cart.brandName }</span>
+								<a href="/product/${cart.prodNo }">
+									<span class="productName">${cart.prodName }</span><br>
+									<span class="categoryName">${cart.cateName }</span><br>
+									<span class="brandName">${cart.brandName }</span>
+								</a>
 							</td>
 							<td class="align-middle">
 								<div class="quantity row justify-content-center" style="margin-right:-16px !important;">
@@ -249,13 +253,34 @@
 			});
 		}
 		
+		//주문하기
 		$('#paymentBtn').click(function() {
 			if(cartLength == 0) {
-				alert('결제할 상품이 존재하지 않습니다!');
+				alert('상품이 존재하지 않습니다!');
 				return false;
 				
 			} else {
-				location.href='/order/view';
+				$(".check-input:checked").each(function() {
+					ckedArr.push($(this).val());
+				});
+				
+				if(ckedArr.length == 0) {
+					alert('주문상품을 선택해주세요');
+					return false;
+					
+				} else {
+					$.ajax({
+						url : '/cart/updateStat',
+						type : 'post',
+						dataType : "text",
+						contentType : "application/json; charset=utf-8",
+						data : JSON.stringify(ckedArr),
+						success : function(result) {
+							ckedArr.length = 0;
+							location.href="/order/view";
+						}
+					});
+				}
 			}
 		});
 		

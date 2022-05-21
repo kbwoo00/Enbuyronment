@@ -55,4 +55,18 @@ public class CartServiceImpl implements CartService{
 		return cartDao.updateAmount(vo);
 	}
 
+	//선택상품 상태 변경
+	@Override
+	public void upStat(List<Integer> prodNoList, String uid) {
+		log.info("upStat(prodNoList,uid) 호출");
+		
+		cartDao.upStat(prodNoList, uid);
+	}
+	
+	//주문목록 불러오기
+	@Override
+	public List<CartVO> getOrderList(String uid) {
+		return cartDao.getOrderList(uid);
+	}
+
 }
