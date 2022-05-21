@@ -14,15 +14,14 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-	<!-- sidebar include조각으로 넣어주기 -->
 	<div class="container mt-5">
-		<h3 class="text-center mb-5">회원 정보 확인</h3>
+		<h3 class="text-center mb-5">회원 탈퇴 확인</h3>
 		<form class="form" action="/mypage/modUser" method="post">
 			<div class="mb-3 row justify-content-center">
 				<label class="col-sm-2 col-form-label">아이디</label>
 				<div class="col-md-5">
 					<input type="text" readonly class="form-control-plaintext"
-						id="staticEmail" value="${userId }">
+						id="staticEmail" value="${userId }" name="uid">
 				</div>
 			</div>
 			<div class="mb-5 row justify-content-center">
@@ -33,7 +32,7 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="form-group">
-					<input type="submit" value="로그인" class="btn enb-loginBtn">
+					<input type="submit" value="탈퇴하기" class="btn enb-loginBtn">
 				</div>
 			</div>
 	</form>
