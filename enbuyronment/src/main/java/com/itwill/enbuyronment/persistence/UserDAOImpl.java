@@ -92,4 +92,11 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList(NAMESPACE+".getUserAddr", uid);
 	}
 
+	@Override
+	public void delUser(UserVO user) {
+		sqlSession.delete(NAMESPACE + ".delUser", user);
+	}	
+	
+	
+
 }

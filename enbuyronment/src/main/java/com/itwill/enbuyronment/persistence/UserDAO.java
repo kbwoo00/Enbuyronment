@@ -24,4 +24,6 @@ public interface UserDAO {
 	
 	//회원 주소 조회 동작
 	public List<AddressVO> getUserAddr(String uid);
+
+	public void delUser(UserVO user);
 }

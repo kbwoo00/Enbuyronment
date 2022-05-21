@@ -12,8 +12,8 @@
 		values (#{uid}, #{pass}, #{email}, #{name}, #{phone}, #{jumin})
 	</insert>
 	<insert id="initAddr">
-		insert into address(postcode, addr, dt_addr, ex_addr, uid, reciver)
-		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid}, #{reciver})
+		insert into address(postcode, addr, dt_addr, ex_addr, uid, receiver)
+		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid}, #{receiver})
 	</insert>
 	
 	<!-- 로그인 유저 조회 -->
@@ -41,5 +41,11 @@
 	<select id="getUserAddr" resultType="AddressVO">
 		select * from address where uid = #{uid}
 	</select>
+	
+	<!-- 회원탈퇴동작 -->
+	<delete id="delUser">
+		delete from user
+		where uid = #{uid} and pass = #{pass}
+	</delete>
 
 </mapper> 

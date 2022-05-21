@@ -217,4 +217,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserAddr(uid);
 	}
 
+	@Override
+	public void withdrawal(UserVO user) {
+		userDao.delUser(user);
+	}
+
 }

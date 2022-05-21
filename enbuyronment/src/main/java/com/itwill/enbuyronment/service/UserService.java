@@ -24,6 +24,8 @@ public interface UserService {
 
 	// 이메일 인증
 	public String checkEmail(String email);
+
+	public void withdrawal(UserVO user);
 	
 	// 회원정보 조회
 	public UserVO getUserInfo(String uid);
