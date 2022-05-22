@@ -35,5 +35,18 @@
 	    <beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 	
+	<!-- 인터셉터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage/**"/>
+			<mvc:mapping path="/cart/**"/>
+			<mvc:mapping path="/heart/**"/>
+			<mvc:mapping path="/order/**"/>
+			<mvc:exclude-mapping path=""/>
+			<beans:bean id="" class="com.itwill.enbuyronment.config.LoginInterceptor"></beans:bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	
 	
 </beans:beans>

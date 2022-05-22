@@ -56,7 +56,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<!-- Start Sign In Form -->
-				<form action="/user/login" method="post"
+				<form action="" method="post"
 					class="fh5co-form animate-box" data-animate-effect="fadeIn">
 					<h2>로그인</h2>
 					<div class="form-group">
