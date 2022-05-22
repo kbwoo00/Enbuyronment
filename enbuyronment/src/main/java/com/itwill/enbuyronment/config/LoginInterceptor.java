@@ -15,11 +15,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("userId") == null || session.getAttribute("mode") == null){
-            response.sendRedirect("/user/login?redirectUrl=" + requestURI);
+        if (session == null || (session.getAttribute("userId") == null && session.getAttribute("mode") == null)){
+        	response.sendRedirect("/user/login?redirectUrl=" + requestURI);
             return false;
         }
+        
         return true;
+        
 	}
 
 

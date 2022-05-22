@@ -32,4 +32,6 @@ public interface UserService {
 	
 	// 회원 배송지정보 조회
 	public List<AddressVO> getUserAddr(String uid);
+
+	public void modUser(UserVO user);
 }

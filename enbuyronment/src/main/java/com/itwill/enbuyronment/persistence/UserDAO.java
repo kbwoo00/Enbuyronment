@@ -26,4 +26,6 @@ public interface UserDAO {
 	public List<AddressVO> getUserAddr(String uid);
 
 	public void delUser(UserVO user);
+
+	public void modUser(UserVO user);
 }

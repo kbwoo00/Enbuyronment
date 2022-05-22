@@ -42,7 +42,7 @@ public class UserTest {
 	@Value("${mail.apppw}")
 	private String appPw;
 	
-	@Test
+//	@Test
 	public void 회원가입() {
 		log.info("회원가입 테스트");
 		UserVO user = new UserVO();
@@ -177,5 +177,17 @@ public class UserTest {
 		user.setPass("password");
 		
 		userDao.delUser(user);
+	}
+	
+//	@Test
+	public void 회원정보수정() {
+		UserVO user = new UserVO();
+		user.setUid("test");
+		user.setPass("updatePass");
+		user.setEmail("update@email.com");
+		user.setName("변경이름");
+		user.setPhone("010-1234-0000");
+		
+		userDao.modUser(user);
 	}
 }

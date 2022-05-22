@@ -42,10 +42,19 @@
 		select * from address where uid = #{uid}
 	</select>
 	
-	<!-- 회원탈퇴동작 -->
+	<!-- 회원 탈퇴 동작 -->
 	<delete id="delUser">
 		delete from user
 		where uid = #{uid} and pass = #{pass}
 	</delete>
+	
+	<!-- 회원 정보 수정 동작 -->
+	<update id="modUser">
+		update user set 
+		<if test="pass != null"> 
+			pass = #{pass},
+		</if>  email = #{email}, phone = #{phone}, name = #{name}
+		where uid = #{uid}
+	</update>
 
 </mapper> 

@@ -222,4 +222,9 @@ public class UserServiceImpl implements UserService {
 		userDao.delUser(user);
 	}
 
+	@Override
+	public void modUser(UserVO user) {
+		userDao.modUser(user);
+	}
+
 }
