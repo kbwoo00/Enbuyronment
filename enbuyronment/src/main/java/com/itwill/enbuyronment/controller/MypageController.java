@@ -1,6 +1,8 @@
 package com.itwill.enbuyronment.controller;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.service.ProdService;
 import com.itwill.enbuyronment.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +30,8 @@ public class MypageController {
 	
 	@Inject
 	private UserService userService;
+	@Inject
+	private ProdService prodService;
 	
 	@GetMapping("/userinfo")
 	public String userInfo(@SessionAttribute(value = "userId", required = false) String uid,
@@ -48,7 +54,6 @@ public class MypageController {
 	public String modifyUser(@ModelAttribute UserVO inputUser, RedirectAttributes rttr) {
 		// 비밀번호가 일치한지 체크
 		UserVO user = userService.login(inputUser);
-		log.info("user = {}", inputUser);
 
 		if (user == null) {
 			rttr.addFlashAttribute("msg", "fail");
@@ -93,6 +98,13 @@ public class MypageController {
 		return "redirect:/";
 	}
 	
-	
+	@GetMapping("/review")
+	public String myReview(@SessionAttribute(value = "userId", required = false) String uid) {
+		
+		List<ReviewVO> reviewList = userService.getReviewList(uid);
+		log.info("리뷰 목록 = {}", reviewList);
+		
+		return "/user/my_review";
+	}
 
 }

@@ -57,4 +57,9 @@
 		where uid = #{uid}
 	</update>
 
+	<!-- 회원 쓴 리뷰 목록 가져오기 동작 -->
+	<select id="getUserReviews" resultType="ReviewVO">
+		select * from review
+		where uid = #{uid}
+	</select>
 </mapper> 

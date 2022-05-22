@@ -22,6 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.persistence.UserDAO;
 
@@ -225,6 +226,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void modUser(UserVO user) {
 		userDao.modUser(user);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(String uid) {
+		return userDao.getReviewList(uid);
 	}
 
 }

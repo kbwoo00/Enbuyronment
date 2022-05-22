@@ -3,6 +3,7 @@ package com.itwill.enbuyronment.persistence;
 import java.util.List;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 
 public interface UserDAO {
@@ -25,7 +26,12 @@ public interface UserDAO {
 	//회원 주소 조회 동작
 	public List<AddressVO> getUserAddr(String uid);
 
+	// 회원 삭제 동작
 	public void delUser(UserVO user);
 
+	// 회원 수정 동작
 	public void modUser(UserVO user);
+
+	// 회원 리뷰 목록 가져오기 동작
+	public List<ReviewVO> getReviewList(String uid);
 }

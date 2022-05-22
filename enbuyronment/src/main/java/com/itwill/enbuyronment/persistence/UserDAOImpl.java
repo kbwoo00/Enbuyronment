@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -102,6 +103,12 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void modUser(UserVO user) {
 		sqlSession.update(NAMESPACE + ".modUser", user);
+	}
+
+	// 회원 리뷰 목록 가져오기 동작
+	@Override
+	public List<ReviewVO> getReviewList(String uid) {
+		return sqlSession.selectList(NAMESPACE + ".getUserReviews", uid);
 	}	
 	
 	

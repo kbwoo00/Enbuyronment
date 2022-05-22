@@ -3,6 +3,7 @@ package com.itwill.enbuyronment.service;
 import java.util.List;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 
 public interface UserService {
@@ -33,5 +34,10 @@ public interface UserService {
 	// 회원 배송지정보 조회
 	public List<AddressVO> getUserAddr(String uid);
 
+	// 회원정보 수정
 	public void modUser(UserVO user);
+
+	// 회원 리뷰 목록 가져오기
+	public List<ReviewVO> getReviewList(String uid);
+	
 }
