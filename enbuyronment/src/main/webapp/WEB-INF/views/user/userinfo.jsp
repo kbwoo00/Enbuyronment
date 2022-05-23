@@ -30,10 +30,14 @@
 
 	<!-- sidebar include조각으로 넣어주기 -->
 	<div class="container mt-5">
-		<div class="row justify-content-between">
-			<div class="col-md-2"></div>
+	<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
+		
+		<div class="row justify-content-between mt-3">
+			<div class="col-md-2">
+				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
+			</div>
 			<div class="col-md-8">
-				<h3>회원 정보 조회 / 수정</h3>
+			<h3>회원 정보 조회 / 수정</h3>
 				<form class="form mt-3" action="/mypage/modUser" method="post"
 					onsubmit="return check()">
 					<div class="row g-3">
@@ -135,8 +139,20 @@
 		         			</c:if>
 						</c:forEach>
 						
-						<!-- 모달창 -->
-					    <div class="row-cols-lg-auto">
+						<div class="col-md-8 mt-5 mb-3">
+							<div class="input-group">
+								<input type="submit" class="form-control btn enb-loginBtn"
+									value="변경사항 적용하기">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+			
+			<!-- 모달창 -->
+		    <div class="row-cols-lg-auto">
 					    	<div class="modal fade" id="addrModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 							    <div class="modal-content">
@@ -202,20 +218,7 @@
 							  </div>
 							</div>
 					  	</div>
-					  	<!-- 모달창 -->
-
-						<div class="col-md-8 mt-5 mb-3">
-							<div class="input-group">
-								<input type="submit" class="form-control btn enb-loginBtn"
-									value="변경사항 적용하기">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-
-	</div>
+		  	<!-- 모달창 -->
 
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
