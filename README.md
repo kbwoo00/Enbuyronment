@@ -16,17 +16,18 @@
 ### Front-end
 ### Back-end
 ### Tools
+- 협업툴 : slack, Google Docs, [Trello](https://trello.com/b/QGbyUTgI/%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
 ### Version Control
 
 ## 제작 기간
 2022.05.02 ~ 2022.06.02
 
 ## 설계 (DB, API)
+### [구글 docs로 작성한 HTTP API 설계](https://docs.google.com/document/d/13xFg6rb-ijE4OgyMSpTWLmfi9NQ_jvxKPYn1LjvEivw/edit?usp=sharing) 
 
 ## 브랜치 커밋 규칙
 
 ## 프로젝트 화면
-
 
 
 
