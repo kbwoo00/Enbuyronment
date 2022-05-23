@@ -1,6 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
-<div class="row justify-content-between mb-3">
+<hr>
+<div class="row justify-content-between mb-3" style="width: 80%;">
+			
 			<!-- nav 바 -->
 			<div class="sub-title" style="width: 20%">
 				<h3>마이페이지</h3>

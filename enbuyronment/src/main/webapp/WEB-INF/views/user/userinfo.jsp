@@ -29,11 +29,11 @@
 	<!-- Preloader Start -->
 
 	<!-- sidebar include조각으로 넣어주기 -->
-	<div class="container mt-5">
+	<div class="container justify-content-center mt-5">
 	<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
 		
-		<div class="row justify-content-between mt-3">
-			<div class="col-md-2">
+		<div class="row justify-content-between mt-5">
+			<div class="col-md-2 mt-5">
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
 			<div class="col-md-8">
