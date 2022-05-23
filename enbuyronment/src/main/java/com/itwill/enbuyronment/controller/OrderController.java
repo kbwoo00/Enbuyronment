@@ -77,8 +77,14 @@ public class OrderController {
 	
 	//주문확인 페이지
 	@GetMapping("/{orderNo}")
-	public String orderConfirmGET(@PathVariable String orderNo) {
+	public String orderConfirmGET(@PathVariable String orderNo, HttpServletRequest request, Model model) {
 		log.info("orderConfirmGET() 호출");
+		
+		String uid = (String) request.getSession(false).getAttribute("userId");
+		
+		model.addAttribute("orderInfo", orderService.getOrder(orderNo));
+		model.addAttribute("orderProdList", orderService.getOrderProd(orderNo));
+		model.addAttribute("userInfo", userService.getUserInfo(uid));
 		
 		return "/product/order_confirm";
 	}

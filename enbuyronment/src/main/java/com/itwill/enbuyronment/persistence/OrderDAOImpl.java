@@ -36,5 +36,21 @@ public class OrderDAOImpl implements OrderDAO {
 		sqlSession.delete(NAMESPACE+".delCartAfterOrder", ovo.getUid());
 		sqlSession.update(NAMESPACE+".updatePoint", ovo);
 	}
+
+	//주문정보 가져오기 동작
+	@Override
+	public OrderVO orderInfo(String orderNo) {
+		log.info("orderInfo(orderNo) 호출");
+		
+		return sqlSession.selectOne(NAMESPACE+".selectOrder", orderNo);
+	}
+
+	//주문상품정보 가져오기 동작
+	@Override
+	public List<CartVO> orderProdList(String orderNo) {
+		log.info("orderProdList(orderNo) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+".selectOrderProdList", orderNo);
+	}
 	
 }

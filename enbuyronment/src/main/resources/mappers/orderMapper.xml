@@ -32,5 +32,15 @@
 	<update id="updatePoint">
 		update user set point = (point + ${pointUp} - ${pointDown}) where uid = #{uid}
 	</update>
+	
+	<!-- 주문정보 가져오기 동작 -->
+	<select id="selectOrder" resultType="OrderVO">
+		select * from order_detail where order_no = #{orderNo}
+	</select>
+	
+	<!-- 주문상품정보 가져오기 동작 -->
+	<select id="selectOrderProdList" resultType="CartVO">
+		select * from order_product where order_no = #{orderNo}
+	</select>
 
 </mapper>
