@@ -107,27 +107,102 @@
 									value="${userInfo.phone }">
 							</div>
 						</div>
-						<div class="col-md-8 mb-3">
-							<label class="form-label fs-5 fw-bold">주소(기본 배송지)</label>
-							<div class="input-group">
-								<input type="text" class="form-control" id="postcode"
-									placeholder="우편번호" readonly required> <input
-									type="button" id="updateAddress" class="form-control"
-									onclick="execDaumPostcode()" value="기본 배송지 변경" />
+						<c:forEach var="addr" items="${userAddrList }">
+		         			<c:if test="${addr.status eq 0 }">
+	         					<div class="col-md-8 mb-3">
+									<label class="form-label fs-5 fw-bold">주소(기본 배송지)</label>
+									<input type="text" class="form-control mb-3"
+											value="${addr.addrName }" readonly required> 
+									<div class="input-group">
+										<input type="text" class="form-control" id="postcode"
+											placeholder="우편번호" value="${addr.postcode }" readonly required> 
+										<input type="button" id="updateAddrBtn" class="form-control"
+											value="기본 배송지 변경" />
+									</div>
+								</div>
+								<div class="col-md-8 mb-3">
+									<input type="text" class="form-control" id="address"
+										placeholder="주소" required readonly value="${addr.addr }">
+								</div>
+								<div class="col-md-5 mb-3">
+									<input type="text" class="form-control" id="detailAddress"
+										value="${addr.dtAddr }" placeholder="상세주소"  required readonly>
+								</div>
+								<div class="col-md-3">
+									<input type="text" id="extraAddress" class="form-control"
+										placeholder="기타항목" readonly value="${addr.exAddr }">
+								</div>
+		         			</c:if>
+						</c:forEach>
+						
+						<!-- 모달창 -->
+					    <div class="row-cols-lg-auto">
+					    	<div class="modal fade" id="addrModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="staticBackdropLabel">배송지 목록</h5>
+							      </div>
+							        
+							      <div class="modal-body">
+							      	<div class="add-adr">
+								      	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+							         		<div class="col-2">
+							         			<select id="addrList" style="width:80%">
+							         				<c:forEach var="addr" items="${userAddrList }">
+								         				<option value="${addr.addrName }">${addr.addrName }</option>
+							         				</c:forEach>
+							         				<option value="new-addr">신규 배송지(배송지 추가)</option>
+							         			</select>
+							         		</div>
+							         		<c:forEach var="addr" items="${userAddrList }">
+							         			<c:if test="${addr.status eq 0 }">
+									            	<div class="row col-md-12 col-form-label" style="margin-top: 1rem;">
+														<label for="name" class="col-sm-2"><i class="#"></i></label>
+														<input type="text" class="addrName2" value="${addr.addrName }" readonly>
+										            	<div class="row-cols-lg-auto col align-self-end" id="modalAddrBtn">
+															<input type="button" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+														</div>
+									            	</div>
+									            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+									            		<label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="sample6_postcode" class="adr2" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
+										            	</div>
+										            </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
+										            	</div>
+									                </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+										            	</div>
+									                </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
+										            	</div>
+									                </div>
+								                </c:if>
+							                </c:forEach>
+										</div>
+							      	</div>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">배송지 선택</button>
+							        <button type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
+							      </div>
+							      
+							    </div>
+							  </div>
 							</div>
-						</div>
-						<div class="col-md-8 mb-3">
-							<input type="text" class="form-control" id="address" value=""
-								placeholder="주소" required readonly>
-						</div>
-						<div class="col-md-5 mb-3">
-							<input type="text" class="form-control" id="detailAddress"
-								value="" placeholder="상세주소" required readonly>
-						</div>
-						<div class="col-md-3">
-							<input type="text" id="extraAddress" class="form-control"
-								placeholder="기타항목" readonly>
-						</div>
+					  	</div>
+					  	<!-- 모달창 -->
 
 						<div class="col-md-8 mt-5 mb-3">
 							<div class="input-group">
@@ -135,7 +210,6 @@
 									value="변경사항 적용하기">
 							</div>
 						</div>
-
 					</div>
 				</form>
 			</div>
@@ -261,7 +335,7 @@
 		let resMsg = "${msg }";
 		if( resMsg == "fail"){
 			alert('비밀번호가 틀렸습니다.');
-		} else if( resMsg == "success"){
+		} else if( resMsg == "modSuccess"){
 			alert('회원 정보가 수정되었습니다.');
 		}
 		
@@ -325,7 +399,61 @@
 			  }
 		  });
 
-		  
+		//모달창
+		$('#updateAddrBtn').click(function(){
+			$('#addrModal').modal('show');
+		});
+		
+		$('#closebtn').click(function(){
+			$('#addrModal').modal('hide');
+		});
+		
+		//배송지 선택
+	    $('#selAddrBtn').click(function() {
+	    	$('.addrName').text($('.addrName2').val());
+			$('#adr').val($('.adr2').val());
+			$('.addr').val($('.addr2').val());
+			$('.dtaddr').val($('.dtaddr2').val());
+			$('.exaddr').val($('.exaddr2').val());
+			
+			$('#addrModal').modal('hide');
+	    });
+		
+	  	//배송지 목록 변경
+	    $('#addrList').change(function() {
+	    	if($('#addrList').val() == 'new-addr') {
+	    		$('#modalAddrBtn').css('display','block');
+	    		$('.exaddr2').removeAttr('readonly');
+	    		$('.addrName2').removeAttr('readonly');
+	    		
+	    		$('.addrName2').val('');
+				$('.adr2').val('');
+				$('.addr2').val('');
+				$('.dtaddr2').val('');
+				$('.exaddr2').val('');
+				
+	    	} else {
+	    		$('#modalAddrBtn').css('display','none');
+	    		$('.exaddr2').attr('readonly','readonly');
+	    		$('.addrName2').attr('readonly','readonly');
+	    		
+		    	$.ajax({
+		    		url: '/order/getAddr',
+		    		type: 'post',
+		    		data: JSON.stringify({
+		    			'addrName' : $('#addrList').val()
+		    		}),
+		    		contentType: 'application/json; charset=utf-8',
+		    		success: function(result) {
+		    			$('.addrName2').val(result.addrName);
+		    			$('.adr2').val(result.postcode);
+		    			$('.addr2').val(result.addr);
+		    			$('.dtaddr2').val(result.dtAddr);
+		    			$('.exaddr2').val(result.exAddr);
+		    		}
+		    	});
+	    	}
+	    });
 	});
 	</script>
 

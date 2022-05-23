@@ -44,8 +44,7 @@ public class MypageController {
 		 * TODO : 기본 배송지인 address 가져오는 서비스 추가, address 목록 가져오기 서비스 메서드 이름 변경
 		 * TODO : userInfo.jsp에 기본배송지, 기본배송지 변경(배송지 추가, 선택) 작업
 		 */
-		// model.addAttribute("userAddrList", userService.getUserAddrList(uid));
-		// model.addAttribute("userDefaultAddr", userService.getUserDefaultAddr(uid));
+		 model.addAttribute("userAddrList", userService.getUserAddr(uid));
 		
 		return "/user/userinfo";
 	}
@@ -65,7 +64,7 @@ public class MypageController {
 			inputUser.setPass(inputUser.getNewPass());
 		}
 		userService.modUser(inputUser);
-		rttr.addFlashAttribute("msg", "success");
+		rttr.addFlashAttribute("msg", "modSuccess");
 		
 		return "redirect:/mypage/userinfo";
 	}
