@@ -5,7 +5,7 @@
 1. [서비스 소개](#서비스-소개)
 2. [기술 스택](#기술-스택)
 3. [제작 기간](#제작-기간)
-4. [설계 (DB, API)](#설계-(DB-API))
+4. [설계 (DB, API)](#설계)
 5. [깃 커밋 규칙](#깃-커밋-규칙)
 6. [프로젝트 화면](#프로젝트-화면)
 7. [구현 목록](#구현-목록)
@@ -30,7 +30,7 @@
 ## 제작 기간
 2022.05.02 ~ 2022.06.02
 
-## 설계 (DB API)
+## 설계
 - ### [구글 docs로 작성한 HTTP API 설계](https://docs.google.com/document/d/13xFg6rb-ijE4OgyMSpTWLmfi9NQ_jvxKPYn1LjvEivw/edit?usp=sharing) 
 
 ## 깃 커밋 규칙
