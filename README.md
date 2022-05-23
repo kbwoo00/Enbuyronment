@@ -34,7 +34,7 @@
 - ### [구글 docs로 작성한 HTTP API 설계](https://docs.google.com/document/d/13xFg6rb-ijE4OgyMSpTWLmfi9NQ_jvxKPYn1LjvEivw/edit?usp=sharing) 
 
 ## 깃 커밋 규칙
-<img src="[https://i.pinimg.com/originals/20/78/a9/2078a921387fb535735b19820175bacf.jpg](https://user-images.githubusercontent.com/59406944/169727919-7b4117d7-8138-44d3-a179-5a305bdc0bf2.png)" width="30%" height="30%">
+<img src="[https://i.pinimg.com/originals/20/78/a9/2078a921387fb535735b19820175bacf.jpg](https://user-images.githubusercontent.com/59406944/169727919-7b4117d7-8138-44d3-a179-5a305bdc0bf2.png)" width="50%" height="50%">
 
 
 ## 프로젝트 화면
