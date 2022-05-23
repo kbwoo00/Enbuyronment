@@ -23,8 +23,11 @@ public interface UserDAO {
 	//회원정보 조회 동작 (비밀번호 찾기시)
 	public UserVO getUser(String uid);
 	
-	//회원 주소 조회 동작
+	//회원 주소목록 조회 동작
 	public List<AddressVO> getUserAddr(String uid);
+	
+	//회원 배송지(1개) 조회 동작
+	public AddressVO getOneAddr(String uid, String addrName);
 
 	// 회원 삭제 동작
 	public void delUser(UserVO user);

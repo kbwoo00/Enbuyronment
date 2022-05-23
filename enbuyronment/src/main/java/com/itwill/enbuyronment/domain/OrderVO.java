@@ -17,6 +17,7 @@ public class OrderVO {
 	private String uid;
 	private String userName;
 	private Integer pointDown;
+	private Integer pointUp;
 	
 	private String addrName;
 	private String postcode;

@@ -210,12 +210,20 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(uid);
 	}
 
-	// 회원 배송지정보 조회
+	// 회원 배송지정보(목록) 조회
 	@Override
 	public List<AddressVO> getUserAddr(String uid) {
 		log.info("getUserAddr(uid) 호출");
 		
 		return userDao.getUserAddr(uid);
+	}
+	
+	// 회원 배송지정보(1개) 가져오기
+	@Override
+	public AddressVO getOneAddr(String uid, String addrName) {
+		log.info("getOndAddr(uid,addrName) 호출");
+		
+		return userDao.getOneAddr(uid, addrName);
 	}
 
 	@Override

@@ -31,6 +31,9 @@
 		background-color : #86a688 !important;
 		backgroud: #86a688 !important;
 	}
+	#toCartBtn {
+		margin-right: 20px;
+	}
 </style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
@@ -90,14 +93,19 @@
 							</div>
 
 							<div class="mt-5 row justify-content-between">
-									<div class="col">
-										<button id="toCartBtn" class="btn enb-loginBtn">
-											장바구니 담기
-										</button>
-									</div>
-									<div id="heartArea" class="col">
-									
-									</div>
+								<div class="col" style="display: flex; justify-content: center;">
+									<c:choose>
+										<c:when test="${vo.stock eq 0 }">
+											<button class="btn enb-loginBtn" disabled>일시품절</button>
+										</c:when>
+										<c:otherwise>
+											<button id="toCartBtn" class="btn enb-loginBtn">장바구니 담기</button>
+											<div id="heartArea">
+											
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
 							<c:if test="${sessionScope.mode eq 'adminMode' }">
 								<div class="row justify-content-center mt-5">

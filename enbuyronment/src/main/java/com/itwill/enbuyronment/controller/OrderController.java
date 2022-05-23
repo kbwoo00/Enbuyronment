@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.service.CartService;
 import com.itwill.enbuyronment.service.OrderService;
@@ -53,6 +54,15 @@ public class OrderController {
 		model.addAttribute("userAddr", userService.getUserAddr(uid));
 		
 		return "/product/order";
+	}
+	
+	//배송지정보(1개) 가져오기
+	@ResponseBody
+	@PostMapping("/getAddr")
+	public AddressVO getAddrPOST(@RequestBody AddressVO vo, @SessionAttribute(value = "userId", required = false) String uid) {
+		log.info("getAddrPOST() 호출");
+		
+		return userService.getOneAddr(uid, vo.getAddrName());
 	}
 	
 	//주문완료

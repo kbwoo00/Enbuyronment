@@ -17,4 +17,5 @@ public class AddressVO {
 	private String exAddr;
 	private String uid;
 	private String receiver;
+	private Integer status;
 }

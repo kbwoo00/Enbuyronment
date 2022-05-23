@@ -30,9 +30,11 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		for(int i=0; i<cvo.size(); i++) {
 			sqlSession.insert(NAMESPACE+".insertOrderProd", cvo.get(i));
+			sqlSession.update(NAMESPACE+".minusStock", cvo.get(i));
 		}
 		
 		sqlSession.delete(NAMESPACE+".delCartAfterOrder", ovo.getUid());
+		sqlSession.update(NAMESPACE+".updatePoint", ovo);
 	}
 	
 }

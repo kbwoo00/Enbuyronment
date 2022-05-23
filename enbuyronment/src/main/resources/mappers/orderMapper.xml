@@ -8,8 +8,8 @@
 
 	<!-- 주문정보 추가 동작 -->
 	<insert id="insertOrder">
-		insert into order_detail(order_no, uid, point_down, addr_name, postcode, addr, dt_addr, ex_addr, receiver, phone, request)
-		values(#{orderNo}, #{uid}, ${pointDown}, #{addrName}, ${postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{receiver}, #{phone}, #{request})
+		insert into order_detail(order_no, uid, point_down, point_up, addr_name, postcode, addr, dt_addr, ex_addr, receiver, phone, request)
+		values(#{orderNo}, #{uid}, ${pointDown}, ${pointUp}, #{addrName}, ${postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{receiver}, #{phone}, #{request})
 	</insert>
 	
 	<!-- 주문상품 정보 추가 동작 -->
@@ -22,5 +22,15 @@
 	<delete id="delCartAfterOrder">
 		delete from cart where uid = #{uid} and status = 1
 	</delete>
+	
+	<!-- 재고 감소 동작 -->
+	<update id="minusStock">
+		update product set stock = (stock - ${amount}) where prod_no = #{prodNo}
+	</update>
+	
+	<!-- 포인트 사용&적립 동작 -->
+	<update id="updatePoint">
+		update user set point = (point + ${pointUp} - ${pointDown}) where uid = #{uid}
+	</update>
 
 </mapper>

@@ -37,9 +37,14 @@
 		select * from user where uid = #{uid}
 	</select>
 	
-	<!-- 회원 주소 조회 동작 -->
+	<!-- 회원 주소목록 조회 동작 -->
 	<select id="getUserAddr" resultType="AddressVO">
 		select * from address where uid = #{uid}
+	</select>
+	
+	<!-- 회원 배송지(1개) 조회 동작 -->
+	<select id="getOneAddr" resultType="AddressVO">
+		select * from address where uid = #{uid} and addr_name = #{addrName}
 	</select>
 	
 	<!-- 회원 탈퇴 동작 -->

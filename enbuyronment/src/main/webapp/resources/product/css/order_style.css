@@ -92,3 +92,7 @@ span.price {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
+
+#modalAddrBtn {
+	display: none;
+}

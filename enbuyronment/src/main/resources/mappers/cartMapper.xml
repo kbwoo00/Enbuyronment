@@ -31,6 +31,7 @@
 		join category ct on p.cate_no = ct.cate_no 
 		join brand b on p.brand_no = b.brand_no 
 		where c.uid = #{uid}
+		and p.stock > 0
 	</select>
 	
 	<!-- 장바구니 상품 삭제하기 동작 -->
@@ -56,7 +57,7 @@
 		from product p join cart c on p.prod_no = c.prod_no
 		join category ct on p.cate_no = ct.cate_no 
 		join brand b on p.brand_no = b.brand_no 
-		where c.uid = #{uid} and c.status = 1
+		where c.uid = #{uid} and p.stock > 0 and c.status = 1
 	</select>
 	
 </mapper> 

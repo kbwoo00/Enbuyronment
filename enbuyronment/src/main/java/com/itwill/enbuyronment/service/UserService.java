@@ -31,8 +31,11 @@ public interface UserService {
 	// 회원정보 조회
 	public UserVO getUserInfo(String uid);
 	
-	// 회원 배송지정보 조회
+	// 회원 배송지정보(목록) 조회
 	public List<AddressVO> getUserAddr(String uid);
+	
+	// 회원 배송지정보(1개) 가져오기
+	public AddressVO getOneAddr(String uid, String addrName);
 
 	// 회원정보 수정
 	public void modUser(UserVO user);
