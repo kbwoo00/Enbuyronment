@@ -24,6 +24,7 @@
 										<li><a href="/board/list">공지사항</a></li>
 										<li><a href="/product/list">스토어</a></li>
 										<li><a href="/board/faq">FAQ</a></li>
+										<li><a href="/mypage/userinfo">마이 페이지</a></li>
 										<!-- js 컨트롤 -->
 										<c:if test="${sessionScope.mode eq 'adminMode' }">
 											<li><a>관리자</a>

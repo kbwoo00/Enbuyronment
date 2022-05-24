@@ -22,6 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.persistence.UserDAO;
 
@@ -189,5 +190,39 @@ public class UserTest {
 		user.setPhone("010-1234-0000");
 		
 		userDao.modUser(user);
+	}
+	
+//	@Test
+	public void 배송지추가등록() {
+		AddressVO addr = new AddressVO();
+		addr.setUid("admin");
+		addr.setAddrName("학교");
+		addr.setPostcode("30539");
+		addr.setAddr("서울 송파구 바람드리길 2");
+		addr.setDtAddr("상세주소입력테스트");
+		addr.setExAddr(" (풍납동)");
+		addr.setReceiver("홍길동");
+		addr.setStatus(1);
+		userDao.addAddr(addr);
+	}
+	
+//	@Test
+	public void 배송지삭제() {
+		AddressVO addr = new AddressVO();
+		addr.setUid("admin");
+		addr.setAddrName("직장");
+		userDao.delAddr(addr);
+	}
+	
+//	@Test
+	public void 기본배송지변경() {
+		UserVO user = new UserVO();
+		user.setUid("admin");
+		user.setAddrName("직장");
+		userDao.toNormalAddr(user);
+		UserVO newUser = new UserVO();
+		newUser.setUid("admin");
+		newUser.setAddrName("학교");
+		userDao.toDefaultAddr(newUser);
 	}
 }

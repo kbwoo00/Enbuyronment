@@ -124,5 +124,25 @@ public class UserDAOImpl implements UserDAO {
 	public List<ReviewVO> getReviewList(String uid) {
 		return sqlSession.selectList(NAMESPACE + ".getUserReviews", uid);
 	}
+
+	@Override
+	public void addAddr(AddressVO addr) {
+		sqlSession.insert(NAMESPACE + ".insertAddr", addr);
+	}
+
+	@Override
+	public void delAddr(AddressVO addr) {
+		sqlSession.delete(NAMESPACE + ".delAddr", addr);
+	}
+
+	@Override
+	public void toDefaultAddr(UserVO user) {
+		sqlSession.update(NAMESPACE + ".toDefaultAddr", user);
+	}
+
+	@Override
+	public void toNormalAddr(UserVO user) {
+		sqlSession.update(NAMESPACE + ".toNormalAddr", user);
+	}
 	
 }

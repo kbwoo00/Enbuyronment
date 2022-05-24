@@ -14,35 +14,50 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-	<div class="container mt-5">
-		<h3 class="text-center">정말 탈퇴하시겠습니까?</h3>
-		<h4 class="text-center mb-5">탈퇴하시려면 비밀번호를 입력해주세요</h4>
-		<form class="form" action="/mypage/withdrawal" method="post">
-			<div class="mb-3 row justify-content-center">
-				<label class="col-sm-2 col-form-label">아이디</label>
-				<div class="col-md-4">
-					<input type="text" readonly class="form-control-plaintext"
-						id="staticEmail" value="${userId }" name="uid">
-				</div>
+	<div class="container justify-content-center mt-5">
+	<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
+		<div class="row justify-content-between mt-5">
+			<div class="col-md-2 mt-5">
+				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
-			<div class="mb-5 row justify-content-center">
-				<label class="col-sm-2 col-form-label">비밀번호</label>
-				<div class="col-md-4">
-					<input type="password" class="form-control" name="pass">
-				</div>
+		
+			<div class="col-md-8">
+				<div class="row"><h3>정말 탈퇴하시겠습니까?</h3></div>
+				<div class="row"><h4 class="mb-5">탈퇴하시려면 비밀번호를 입력해주세요</h4></div>
+				
+				<form class="form" action="/mypage/withdrawal" method="post" style="width: 80%;">
+					<div class="mb-3 ms-5 row justify-content-center">
+						<label class="col-sm-2 col-form-label">아이디</label>
+						<div class="col-md-6">
+							<input type="text" readonly class="form-control-plaintext"
+								id="staticEmail" value="${userId }" name="uid">
+						</div>
+					</div>
+					<div class="mb-5 row justify-content-center">
+						<label class="col-sm-2 col-form-label" style="width: 30%;">비밀번호</label>
+						<div class="col-md-6">
+							<input type="password" class="form-control" name="pass" style="width: 80%;">
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="form-group">
+							<input type="submit" value="탈퇴하기" class="btn enb-loginBtn">
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="row justify-content-center">
-				<div class="form-group">
-					<input type="submit" value="탈퇴하기" class="btn enb-loginBtn">
-				</div>
-			</div>
-	</form>
+
+
+		</div>
+
 	</div>
+
+
 
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
-	
+
 	<script type="text/javascript">
 		var msg = '${msg }'
 		if (msg == 'fail') {
