@@ -134,5 +134,15 @@ public class UserDAOImpl implements UserDAO {
 	public void delAddr(AddressVO addr) {
 		sqlSession.delete(NAMESPACE + ".delAddr", addr);
 	}
+
+	@Override
+	public void toDefaultAddr(UserVO user) {
+		sqlSession.update(NAMESPACE + ".toDefaultAddr", user);
+	}
+
+	@Override
+	public void toNormalAddr(UserVO user) {
+		sqlSession.update(NAMESPACE + ".toNormalAddr", user);
+	}
 	
 }

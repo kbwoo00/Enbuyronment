@@ -252,4 +252,10 @@ public class UserServiceImpl implements UserService {
 		userDao.delAddr(addr);
 	}
 
+	@Override
+	public void modAddr(UserVO user) {
+		userDao.toNormalAddr(user);
+		userDao.toDefaultAddr(user);
+	}
+
 }

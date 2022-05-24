@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -72,6 +73,8 @@ public class MypageController {
 			inputUser.setPass(inputUser.getNewPass());
 		}
 		userService.modUser(inputUser);
+		userService.modAddr(inputUser);
+		
 		rttr.addFlashAttribute("msg", "modSuccess");
 		
 		return "redirect:/mypage/userinfo";

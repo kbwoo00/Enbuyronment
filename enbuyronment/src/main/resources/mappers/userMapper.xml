@@ -80,4 +80,17 @@
 		where uid = #{uid} and addr_name = #{addrName}
 	</delete>
 	
+	<!-- 기본 배송지에서 일반 배송지로 변경 -->
+	<update id="toNormalAddr">
+		update address set status = 1
+		where uid = #{uid} and status = 0
+	</update>
+	
+	<!-- 일반 배송지에서 기본 배송지로 변경 -->
+	<update id="toDefaultAddr">
+		update address set status = 0
+		where uid = #{uid} and addr_name = #{addrName}
+	</update>
+	
+	
 </mapper> 

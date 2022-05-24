@@ -46,5 +46,7 @@ public interface UserService {
 	public void addAddr(AddressVO addr, String uid);
 
 	public void delAddr(AddressVO addr);
+
+	public void modAddr(UserVO user);
 	
 }

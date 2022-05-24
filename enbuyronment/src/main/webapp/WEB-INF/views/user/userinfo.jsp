@@ -115,7 +115,8 @@
 		         			<c:if test="${addr.status eq 0 }">
 	         					<div class="col-md-8 mb-3">
 									<label class="form-label fs-5 fw-bold">주소(기본 배송지)</label>
-									<input type="text" class="form-control mb-3" id="addrName"
+									<input type="hidden" name="addrNo" value="${addr.addrNo }">
+									<input type="text" class="form-control mb-3" id="addrName" name="addrName"
 											value="${addr.addrName }" readonly required> 
 									<div class="input-group">
 										<input type="text" class="form-control" id="postcode"
@@ -125,7 +126,7 @@
 									</div>
 								</div>
 								<div class="col-md-8 mb-3">
-									<input type="text" class="form-control" id="addr"
+									<input type="text" class="form-control" id="addr" 
 										placeholder="주소" required readonly value="${addr.addr }">
 								</div>
 								<div class="col-md-8 mb-3">
@@ -181,6 +182,7 @@
 									            	<div class="col-md-12 col-form-label mb-2 mt-4">
 														<div class="input-group">
 															<label for="name" class="col-sm-2">배송지명</label>
+															<input type="hidden" name="addrNo2" value="${addr.addrNo }">
 															<input type="text" class="form-control" id="addrName2" value="${addr.addrName }" readonly>
 														</div>
 									            	</div>
@@ -430,6 +432,7 @@
 				$('#addr').val($('#addr2').val());
 				$('#dtAddr').val($('#dtAddr2').val());
 				$('#exAddr').val($('#exAddr2').val());
+				$('#addrNo').val($("#addrNo2").val());
 				
 				$('#addrModal').modal('hide');
 			}
@@ -472,6 +475,7 @@
 		    		}),
 		    		contentType: 'application/json; charset=utf-8',
 		    		success: function(result) {
+		    			$('#addrNo2').val(result.addrNo);
 		    			$('#addrName2').val(result.addrName);
 		    			$('#postcode2').val(result.postcode);
 		    			$('#addr2').val(result.addr);

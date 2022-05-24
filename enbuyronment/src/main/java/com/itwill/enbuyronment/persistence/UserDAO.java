@@ -41,4 +41,8 @@ public interface UserDAO {
 	public void addAddr(AddressVO addr);
 
 	public void delAddr(AddressVO addr);
+
+	public void toDefaultAddr(UserVO user);
+
+	public void toNormalAddr(UserVO user);
 }
