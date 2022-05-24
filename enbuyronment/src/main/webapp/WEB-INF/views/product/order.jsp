@@ -35,6 +35,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+button {
+	transform : translate(0px, -13px);
+}
 </style>
 
 </head>
@@ -106,58 +110,50 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 								            	</div>
 							              </div>
 							              
-							              <div class="row col-md-12 col-form-label order-input" style="margin-top: 3rem;">
+							              <div class="row col-md-12 col-form-label order-input">
 							                	<label for="name" class="col-md-auto"><i class="fas fa-map-marker"></i>수령인 정보</label>
-							                	
-												<div class="col-sm-10">
+												<div class="col-sm-10" style="transform : translate(10px, 0px);">
 													<input type="text" id="email" class="receiver" name="email" value="${userInfo.name }">
 												</div>
-												
-												<div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
 													<label for="name" class="col-sm-2"><i class=""></i></label>
-													<div class="col-sm-10">
-														<input type="text" id="email" class="receiver-phone" name="email" value="${userInfo.phone }">
-													</div>
+													<div class="col-sm-10" style="margin-top: 1rem;">
+													<input type="text" id="email" class="receiver-phone" name="email" value="${userInfo.phone }">
 												</div>
 							              </div>
 												
 										 <c:forEach var="addr" items="${userAddr }">
 											<c:if test="${addr.status eq 0 }">
-							                	<div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
-													<label for="name" class="col-sm-2"><i class="#"></i></label>
-													<p class="addrName">${addr.addrName }</p>
-									            	<div class="col-sm-4">
-											    		<button type="button" id="addrbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;">배송지 변경</button>
-									            	</div>
-								            	</div>
-								            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-								            		<label for="name" class="col-sm-2"><i class="#"></i></label>
-													<div class="col-sm-10">
+							                	<div class="row col-md-12 col-form-label order-input">
+								            		<label for="addrname name" class="col-sm-2"><i class="fa fa-address-book"></i>${addr.addrName }</label>
+													<div class="col-sm-7">
 														<input type="text" id="adr" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
 									            	</div>
-									            </div>
-								                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-									                <label for="name" class="col-sm-2"><i class="#"></i></label>
-													<div class="col-sm-10">
-														<input type="text" id="email" class="addr" name="email" placeholder="주소" value="${addr.addr }" readonly>
+									            	<div class="col-sm-3">
+											    		<button type="button" id="addrbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;">배송지 변경</button>
 									            	</div>
-								                </div>
-								                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-									                <label for="name" class="col-sm-2"><i class="#"></i></label>
-													<div class="col-sm-10">
-														<input type="text" id="email" class="dtaddr" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
-									            	</div>
-								                </div>
-								                <div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
-									                <label for="name" class="col-sm-2"><i class="#"></i></label>
-													<div class="col-sm-10">
-														<input type="text" class="exaddr" placeholder="참고항목" value="${addr.exAddr }" readonly>
-									            	</div>
-								                </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="email" class="addr" name="email" placeholder="주소" value="${addr.addr }" readonly>
+										            	</div>
+									                </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="email" class="dtaddr" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+										            	</div>
+									                </div>
+									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" class="exaddr" placeholder="참고항목" value="${addr.exAddr }" readonly>
+										            	</div>
+									                </div>
+								            	</div>
 							            	</c:if>
 							             </c:forEach>
 							              
-										<div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
+										<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 								            <label for="name" class="col-sm-2"><i class="#"></i></label>
 							            	<div class="col-sm-3">
 												<select id="request" class="select-group col-md-auto" name="request">
@@ -170,17 +166,17 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 													<option value="0">직접입력</option>
 												</select>
 							            	</div>
-											<div class="col-sm-7">
+											<div class="col-sm-6">
 												<input type="text" id="requestFree" name="requestFree" placeholder="직접입력">
 							            	</div>
 							              </div>
 							              <div class="row col-md-12 col-form-label order-input">
 								                <label for="name" class="col-sm-2"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>포인트</label>
-												<div class="col-md-8">
+												<div class="col-md-5">
 													<input type="number" id="email" name="email" class="point" value="0">
 													<p>잔여 포인트 : ${userInfo.point }p</p>
 								            	</div>
-								            	<div class="row-cols-lg-auto">
+								            	<div class="col-md-2">
 											    	<button type="submit" id="pntbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;">사용</button>
 											    </div>
 							                </div>
@@ -200,79 +196,69 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 								</div>
 							</div>
 						</div>
-						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	
 	<!-- 모달창 -->
-    <div class="row-cols-lg-auto">
-    	<div class="modal fade" id="testModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="staticBackdropLabel">배송지 목록</h5>
-		      </div>
-		        
-		      <div class="modal-body">
-		      	<div class="add-adr">
-			      	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-		         		<div class="col-2">
-		         			<select class="addrList" style="width:80%">
-		         				<c:forEach var="addr" items="${userAddr }">
-			         				<option value="${addr.addrName }">${addr.addrName }</option>
-		         				</c:forEach>
-		         				<option value="new-addr">신규 배송지</option>
-		         			</select>
-		         		</div>
-		         		
-		         		<c:forEach var="addr" items="${userAddr }">
-		         			<c:if test="${addr.status eq 0 }">
-				            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
-									<label for="name" class="col-sm-2"><i class="#"></i></label>
-									<input type="text" class="addrName2" value="${addr.addrName }" readonly>
-					            	<div class="row-cols-lg-auto col align-self-end" id="modalAddrBtn">
-										<input type="button" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+<div class="row-cols-lg-auto">
+	<div class="modal fade" id="testModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+		        	<h5 class="modal-title" id="staticBackdropLabel">배송지 목록</h5>
+				</div>
+				<div class="modal-body" style="width:800px; display:flex; flex-wrap:wrap;">
+					<div class="row col-form-label order-input" style="margin-top: 0rem;">
+						<div class="col">
+							<select class="addrList" style="width:150px">
+								<c:forEach var="addr" items="${userAddr }">
+									<option value="${addr.addrName }">${addr.addrName }</option>
+			         			</c:forEach>
+			         			<option value="new-addr">신규 배송지</option>
+			         		</select>
+			         	</div>
+			      	</div>
+					<div class="row" style="width:650px; margin-right: 10px !important;">
+						<c:forEach var="addr" items="${userAddr }">
+							<c:if test="${addr.status eq 0 }">
+								<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+									<div class="col-md-auto col-form-label" style="transform : translate(15px, 0px); width:95% !important;">
+										<input type="text" id="sample6_postcode" class="addrName2" value="${addr.addrName }" readonly>
+										<div class="col-md-4" id="modalAddrBtn" style="transform:translate(388px, -43px);">
+											<input type="button" class="PostBtn btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+										</div>
 									</div>
-				            	</div>
-				            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-				            		<label for="name" class="col-sm-2"><i class="#"></i></label>
-									<div class="col-sm-10">
-										<input type="text" id="sample6_postcode" class="adr2" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
-					            	</div>
-					            </div>
-				                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-					                <label for="name" class="col-sm-2"><i class="#"></i></label>
-									<div class="col-sm-10">
-										<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
-					            	</div>
-				                </div>
-				                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-					                <label for="name" class="col-sm-2"><i class="#"></i></label>
-									<div class="col-sm-10">
-										<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
-					            	</div>
-				                </div>
-				                <div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
-					                <label for="name" class="col-sm-2"><i class="#"></i></label>
-									<div class="col-sm-10">
-										<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
-					            	</div>
-				                </div>
-			                </c:if>
-		                </c:forEach>
+								</div>
+								<div class="col">
+									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										<div class="col">
+											<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
+										</div>
+							        </div>
+									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										<div class="col">
+											<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
+										</div>
+									</div>
+									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										<div class="col">
+											<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+										</div>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
-		      	</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="submit" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">배송지 선택</button>
-		        <button type="submit" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
-		      </div>
-		      
-		    </div>
+				</div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">배송지 선택</button>
+			        <button type="submit" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
+			      </div>
+			      
+			    </div>
 		  </div>
 		</div>
   	</div>
@@ -360,6 +346,17 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 				}
 			});
 	});
+	
+	
+	// 신규배송지
+	jQuery('#addrList').change(function() {
+		var state = jQuery('#addrList option:new-addr').val();
+		if ( state == 'new-addr' ) {
+			jQuery('.PostBtn').hide();
+		} else {
+			jQuery('.PostBtn').show();
+		}
+	})
 	
     
     //금액 및 포인트 정보
