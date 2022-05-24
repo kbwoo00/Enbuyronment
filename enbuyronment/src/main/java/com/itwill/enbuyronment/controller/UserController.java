@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -63,7 +64,9 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr) {
+	public String login(@RequestParam(defaultValue = "/", value = "redirectUrl") String redirectUrl,
+			@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr
+			) {
 		UserVO user = userService.login(vo);
 
 		if (user == null) {
@@ -81,7 +84,8 @@ public class UserController {
 		log.info("로그인 한 사람 ID = {}", session.getAttribute("userId"));
 		log.info("mode = {}", session.getAttribute("mode"));
 
-		return "redirect:/";
+		log.info("redirectUrl = {}", redirectUrl);
+		return "redirect:" + redirectUrl;
 	}
 
 	@ResponseBody

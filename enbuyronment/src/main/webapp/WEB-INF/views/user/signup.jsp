@@ -162,7 +162,7 @@
 					</div>
 					<div class="form-group">
 						<label for="jumin" class="sr-only">Jumin</label> <input
-							type="text" class="form-control" id="jumin" placeholder="주민번호"
+							type="text" class="form-control" id="jumin" placeholder="주민번호 ex)801025-1234567"
 							autocomplete="off" name="jumin" required="required">
 					</div>
 					<div class="form-group">
@@ -192,7 +192,8 @@
 	<script src="/resources/user/js/main.js"></script>
 
 	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+	</script>
 	<script>
 		var emailCheck = false;
 		var idCheck = false;

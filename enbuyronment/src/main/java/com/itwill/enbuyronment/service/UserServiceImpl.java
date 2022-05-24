@@ -1,6 +1,7 @@
 package com.itwill.enbuyronment.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
@@ -20,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.persistence.UserDAO;
 
@@ -199,8 +202,43 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-	
+	// 회원정보 조회
+	@Override
+	public UserVO getUserInfo(String uid) {
+		log.info("getUserInfo(uid) 호출");
+		
+		return userDao.getUser(uid);
+	}
 
+	// 회원 배송지정보(목록) 조회
+	@Override
+	public List<AddressVO> getUserAddr(String uid) {
+		log.info("getUserAddr(uid) 호출");
+		
+		return userDao.getUserAddr(uid);
+	}
 	
+	// 회원 배송지정보(1개) 가져오기
+	@Override
+	public AddressVO getOneAddr(String uid, String addrName) {
+		log.info("getOndAddr(uid,addrName) 호출");
+		
+		return userDao.getOneAddr(uid, addrName);
+	}
+
+	@Override
+	public void withdrawal(UserVO user) {
+		userDao.delUser(user);
+	}
+
+	@Override
+	public void modUser(UserVO user) {
+		userDao.modUser(user);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewList(String uid) {
+		return userDao.getReviewList(uid);
+	}
 
 }

@@ -243,8 +243,8 @@ input::-webkit-inner-spin-button {
 
 .plus-btn, .minus-btn {
   height: 100%;
-  width: 15%;
-  background: white;
+  width: 10%;
+  background: #BBBBBB;
+  border-radius : 100%;
   border: none;
-  font-size: 40px;
 }

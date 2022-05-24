@@ -46,12 +46,12 @@ public class UserTest {
 	public void 회원가입() {
 		log.info("회원가입 테스트");
 		UserVO user = new UserVO();
+		user.setUid("test");
+		user.setPass("password");
 		user.setAddr("주소");
 		user.setAddrName("설정 주소 닉네임");
 		user.setDtAddr("상세주소");
-		user.setUid("test");
 		user.setEmail("test@email.com");
-		user.setPass("password");
 		user.setJumin("123456-1234567");
 		user.setName("이름");
 		user.setPostcode("150305");
@@ -168,5 +168,26 @@ public class UserTest {
 		} else { // id 입력 오류
 			log.info("비회원입니다");
 		}
+	}
+	
+//	@Test
+	public void 회원탈퇴() {
+		UserVO user = new UserVO();
+		user.setUid("test");
+		user.setPass("password");
+		
+		userDao.delUser(user);
+	}
+	
+//	@Test
+	public void 회원정보수정() {
+		UserVO user = new UserVO();
+		user.setUid("test");
+		user.setPass("updatePass");
+		user.setEmail("update@email.com");
+		user.setName("변경이름");
+		user.setPhone("010-1234-0000");
+		
+		userDao.modUser(user);
 	}
 }

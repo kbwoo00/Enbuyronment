@@ -1,6 +1,8 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -56,5 +58,27 @@ public class CartDAOImpl implements CartDAO{
 		
 		return sqlSession.update(NAMESPACE + ".updateAmount", vo);
 	}
+
+	//선택상품 상태 변경 동작
+	@Override
+	public void upStat(List<Integer> prodNoList, String uid) {
+		log.info("DAO : upStat(prodNoList,uid) 호출");
+		
+		String prodNo = "";
+		for(int i=0; i<prodNoList.size(); i++) {
+			prodNo += (i==0 ? prodNoList.get(i) : ","+prodNoList.get(i));
+		}
+		
+		Map<String, String> data = new HashMap();
+		data.put("uid", uid);
+		data.put("prodNo", prodNo);
+		
+		sqlSession.update(NAMESPACE+".modStat", data);
+	}
 	
+	//주문목록 불러오기 동작
+	@Override
+	public List<CartVO> getOrderList(String uid) {
+		return sqlSession.selectList(NAMESPACE + ".getOrderList", uid);
+	}
 }

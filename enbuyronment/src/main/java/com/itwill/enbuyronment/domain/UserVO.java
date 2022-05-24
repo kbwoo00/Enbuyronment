@@ -13,6 +13,7 @@ public class UserVO {
 	
 	private String uid;
 	private String pass;
+	private String newPass;
 	private String email;
 	private String name;
 	private String phone;

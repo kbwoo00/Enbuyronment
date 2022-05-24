@@ -1,6 +1,8 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -84,12 +87,42 @@ public class UserDAOImpl implements UserDAO {
 		return vo;
 	}
 
-	//회원 주소 조회 동작
+	//회원 주소목록 조회 동작
 	@Override
 	public List<AddressVO> getUserAddr(String uid) {
 		log.info("DAO : getUserAddr(uid) 호출");
 		
 		return sqlSession.selectList(NAMESPACE+".getUserAddr", uid);
 	}
+	
+	//회원 배송지(1개) 조회 동작
+	@Override
+	public AddressVO getOneAddr(String uid, String addrName) {
+		log.info("DAO : getOneAddr(uid,addrName) 호출");
+		
+		Map<String, String> data = new HashMap();
+		data.put("uid", uid);
+		data.put("addrName", addrName);
+		
+		return sqlSession.selectOne(NAMESPACE+".getOneAddr", data);
+	}	
 
+	// 회원 탈퇴 동작
+	@Override
+	public void delUser(UserVO user) {
+		sqlSession.delete(NAMESPACE + ".delUser", user);
+	}
+
+	// 회원 수정 동작
+	@Override
+	public void modUser(UserVO user) {
+		sqlSession.update(NAMESPACE + ".modUser", user);
+	}
+
+	// 회원 리뷰 목록 가져오기 동작
+	@Override
+	public List<ReviewVO> getReviewList(String uid) {
+		return sqlSession.selectList(NAMESPACE + ".getUserReviews", uid);
+	}
+	
 }

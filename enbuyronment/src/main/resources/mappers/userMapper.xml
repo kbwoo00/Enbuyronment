@@ -12,8 +12,8 @@
 		values (#{uid}, #{pass}, #{email}, #{name}, #{phone}, #{jumin})
 	</insert>
 	<insert id="initAddr">
-		insert into address(postcode, addr, dt_addr, ex_addr, uid, reciver)
-		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid}, #{reciver})
+		insert into address(postcode, addr, dt_addr, ex_addr, uid, receiver)
+		values (#{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{uid}, #{receiver})
 	</insert>
 	
 	<!-- 로그인 유저 조회 -->
@@ -37,9 +37,34 @@
 		select * from user where uid = #{uid}
 	</select>
 	
-	<!-- 회원 주소 조회 동작 -->
+	<!-- 회원 주소목록 조회 동작 -->
 	<select id="getUserAddr" resultType="AddressVO">
 		select * from address where uid = #{uid}
 	</select>
+	
+	<!-- 회원 배송지(1개) 조회 동작 -->
+	<select id="getOneAddr" resultType="AddressVO">
+		select * from address where uid = #{uid} and addr_name = #{addrName}
+	</select>
+	
+	<!-- 회원 탈퇴 동작 -->
+	<delete id="delUser">
+		delete from user
+		where uid = #{uid} and pass = #{pass}
+	</delete>
+	
+	<!-- 회원 정보 수정 동작 -->
+	<update id="modUser">
+		update user set 
+		<if test="pass != null"> 
+			pass = #{pass},
+		</if>  email = #{email}, phone = #{phone}, name = #{name}
+		where uid = #{uid}
+	</update>
 
+	<!-- 회원 쓴 리뷰 목록 가져오기 동작 -->
+	<select id="getUserReviews" resultType="ReviewVO">
+		select * from review
+		where uid = #{uid}
+	</select>
 </mapper> 

@@ -9,4 +9,10 @@ public interface OrderService {
 
 	//주문완료
 	public void createOrder(OrderVO ovo, List<CartVO> cvo);
+	
+	//주문정보 가져오기
+	public OrderVO getOrder(String orderNo);
+	
+	//주문상품정보 가져오기
+	public List<CartVO> getOrderProd(String orderNo);
 }

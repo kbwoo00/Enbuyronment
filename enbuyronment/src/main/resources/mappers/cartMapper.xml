@@ -31,6 +31,7 @@
 		join category ct on p.cate_no = ct.cate_no 
 		join brand b on p.brand_no = b.brand_no 
 		where c.uid = #{uid}
+		and p.stock > 0
 	</select>
 	
 	<!-- 장바구니 상품 삭제하기 동작 -->
@@ -44,5 +45,19 @@
 		update cart set amount = #{amount}
 		where prod_no = #{prodNo} and uid = #{uid}
 	</update>
+	
+	<!-- 선택상품 상태 변경 동작 -->
+	<update id="modStat">
+		update cart set status = if (prod_no in(${prodNo}), 1, 0) where uid = #{uid}
+	</update>
 
+	<!-- 주문목록 불러오기 동작 -->
+	<select id="getOrderList" resultType="CartVO">
+		select p.prod_name, p.thumb, ct.cate_name, b.brand_name, c.amount, p.price, c.prod_no
+		from product p join cart c on p.prod_no = c.prod_no
+		join category ct on p.cate_no = ct.cate_no 
+		join brand b on p.brand_no = b.brand_no 
+		where c.uid = #{uid} and p.stock > 0 and c.status = 1
+	</select>
+	
 </mapper> 

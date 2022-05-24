@@ -109,17 +109,33 @@ $(document).ready(function() {
 							data.prodList[i].star = 0;
 						}
 						
-						$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
-				             "<div class='single-product mb-6'>"+
-					             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
-						             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'></div>"+
-						             "<div class='product-caption'>"+
-						                 "<div class='product-ratting'>"+
-							                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
-						                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
-						                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
-							         "</div></div></div>"
-					     );
+						if(data.prodList[i].stock < 1) {
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
+					             "<div class='single-product mb-6'>"+
+						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
+							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'>"+
+							             "<img class='soldout-img' src='../resources/assets/img/soldout.png'></div>"+
+							             "<div class='product-caption'>"+
+							                 "<div class='product-ratting'>"+
+								                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
+							                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
+							                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
+								         "</div></div></div>"
+						     );
+							
+						} else {
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
+					             "<div class='single-product mb-6'>"+
+						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
+							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'></div>"+
+							             "<div class='product-caption'>"+
+							                 "<div class='product-ratting'>"+
+								                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
+							                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
+							                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
+								         "</div></div></div>"
+						     );
+						}
 					}
 				}
 			}

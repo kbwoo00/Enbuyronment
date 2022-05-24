@@ -17,4 +17,10 @@ public interface CartService {
 
 	//수량변경
 	public Integer updateAmount(CartVO vo);
+	
+	//선택상품 상태 변경
+	public void upStat(List<Integer> prodNoList, String uid);
+	
+	//주문목록 가져오기
+	public List<CartVO> getOrderList(String uid);
 }

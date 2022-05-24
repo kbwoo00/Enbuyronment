@@ -86,3 +86,13 @@ span.price {
 .order-input {
 	margin-top : 2.3rem;
 }
+
+.add-adr {
+	border-bottom: 0.5px solid #dee2e6;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+#modalAddrBtn {
+	display: none;
+}
