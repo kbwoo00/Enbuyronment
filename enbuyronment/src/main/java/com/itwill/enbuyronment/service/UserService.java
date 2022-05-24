@@ -42,5 +42,7 @@ public interface UserService {
 
 	// 회원 리뷰 목록 가져오기
 	public List<ReviewVO> getReviewList(String uid);
+
+	public void addAddr(AddressVO addr, String uid);
 	
 }

@@ -241,4 +241,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.getReviewList(uid);
 	}
 
+	@Override
+	public void addAddr(AddressVO addr, String uid) {
+		addr.setUid(uid);
+		userDao.addAddr(addr);
+	}
+
 }

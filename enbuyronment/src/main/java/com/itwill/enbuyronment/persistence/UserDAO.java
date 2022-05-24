@@ -37,4 +37,6 @@ public interface UserDAO {
 
 	// 회원 리뷰 목록 가져오기 동작
 	public List<ReviewVO> getReviewList(String uid);
+
+	public void addAddr(AddressVO addr);
 }

@@ -172,7 +172,6 @@
 							         			</select>
 								      		</div>
 								      		<div class="col-md-4">
-								      			<input type="hidden" id="addAddrBtn" value="배송지 추가 등록" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;">
 								      			<input type="button" class="btn enb-loginBtn" id="delAddrBtn" value="배송지 삭제" style="padding: 1.3rem 1.3rem !important;">
 								      		</div>
 							         			
@@ -218,8 +217,12 @@
 							      	</div>
 							      </div>
 							      <div class="modal-footer">
-							        <button type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">기본 배송지로 선택</button>
-							        <button type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
+							      	<input type="hidden" id="addAddrBtn" value="배송지 추가 등록" class="btn enb-loginBtn" 
+							      	style="padding: 1.3rem 1.3rem !important;">
+							        <input type="button" class="btn enb-loginBtn" id="selAddrBtn" value="기본 배송지로 선택"
+							        style="padding: 1.3rem 1.3rem !important;">
+							        <input type="button" id="closebtn" class="btn enb-loginBtn" value="닫기"
+							        style="padding: 1.3rem 1.3rem !important;"> 
 							      </div>
 							      
 							    </div>
@@ -443,6 +446,8 @@
 	    		$('#addAddrBtn').prop('type', 'button');
 	    		$('#findPostcodeBtn').prop('type', 'button');
 	    		$('#delAddrBtn').prop('type', 'hidden');
+	    		$('#selAddrBtn').prop('type', 'hidden');
+	    		
 	    		
 	    		$('#addrName2').val('');
 				$('#postcode2').val('');
@@ -458,6 +463,7 @@
 	    		$('#addAddrBtn').prop('type', 'hidden');
 	    		$('#findPostcodeBtn').prop('type', 'hidden');
 	    		$('#delAddrBtn').prop('type', 'button');
+	    		$('#selAddrBtn').prop('type', 'button');
 	    		
 		    	$.ajax({
 		    		url: '/order/getAddr',
@@ -476,6 +482,39 @@
 		    	});
 	    	}
 	    });
+	  	
+	  	// 배송지 추가 등록
+		$('#addAddrBtn').click(function() {
+			if($('#addrName2').val().trim() == ""){
+				alert('배송지명은 필수로 입력해야 합니다.');
+			} else if($('#postcode2').val().trim() == "" || $('#addr2').val().trim() == "" || $('#dtAddr2').val().trim() == ""){
+				alert('주소를 제대로 입력해주세요');
+			}
+	    	else{
+	    		$.ajax({
+		    		url: '/mypage/addNewAddr',
+		    		type: 'post',
+		    		data: JSON.stringify({
+		    			'addrName' : $('#addrName2').val(),
+		    			'postcode' : $('#postcode2').val(),
+		    			'addr' : $('#addr2').val(),
+		    			'dtAddr' : $('#dtAddr2').val(),
+		    			'exAddr' : $('#exAddr2').val(),
+		    			'status' : 1,
+		    			'receiver' : "${userInfo.name }"
+		    		}),
+		    		contentType: 'application/json; charset=utf-8',
+		    		success: function(result) {
+		    			alert('새로운 배송지가 등록되었습니다.');
+		    			location.reload();
+		    		},
+		    		error: function() {
+						alert('기존의 배송지 이름과 다른 배송지 이름을 입력해주세요');
+					}
+		    	});
+			}
+		})
+	  	
 	});
 	</script>
 

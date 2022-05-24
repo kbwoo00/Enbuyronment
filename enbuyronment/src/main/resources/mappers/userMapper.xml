@@ -67,4 +67,11 @@
 		select * from review
 		where uid = #{uid}
 	</select>
+	
+	<!-- 배송지 추가 -->
+	<insert id="insertAddr">
+		insert into address (addr_name, uid, postcode, addr, dt_addr, ex_addr, status, receiver)
+		values (#{addrName}, #{uid}, #{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{status}, #{receiver})
+	</insert>
+	
 </mapper> 
