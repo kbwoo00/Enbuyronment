@@ -61,13 +61,13 @@
 						</div>
 						<div class='col-md-8 mb-3'>
 							<input type="button" class="form-control mb-3"
-								id="emailCheckBtn" value="인증번호 보내기" readonly="readonly">
+								id="emailCheckBtn" value="인증번호 보내기" disabled="disabled">
 							<div class='input-group'>
 								<input type='text' class='form-control' id='certifyNum'  
 									placeholder='이메일로 보낸 인증번호를 입력해주세요' readonly="readonly" required="required">
 								<div class='justify-content-end'>
 									<input type='button' class='form-control' id='numCheckBtn'
-										value='인증 번호 확인' readonly="readonly">
+										value='인증 번호 확인' disabled="disabled">
 								</div>
 							</div>
 						</div>
@@ -115,7 +115,7 @@
 		         			<c:if test="${addr.status eq 0 }">
 	         					<div class="col-md-8 mb-3">
 									<label class="form-label fs-5 fw-bold">주소(기본 배송지)</label>
-									<input type="text" class="form-control mb-3"
+									<input type="text" class="form-control mb-3" id="addrName"
 											value="${addr.addrName }" readonly required> 
 									<div class="input-group">
 										<input type="text" class="form-control" id="postcode"
@@ -125,15 +125,15 @@
 									</div>
 								</div>
 								<div class="col-md-8 mb-3">
-									<input type="text" class="form-control" id="address"
+									<input type="text" class="form-control" id="addr"
 										placeholder="주소" required readonly value="${addr.addr }">
 								</div>
-								<div class="col-md-5 mb-3">
-									<input type="text" class="form-control" id="detailAddress"
+								<div class="col-md-8 mb-3">
+									<input type="text" class="form-control" id="dtAddr"
 										value="${addr.dtAddr }" placeholder="상세주소"  required readonly>
 								</div>
-								<div class="col-md-3">
-									<input type="text" id="extraAddress" class="form-control"
+								<div class="col-md-8 mb-3">
+									<input type="text" id="exAddr" class="form-control"
 										placeholder="기타항목" readonly value="${addr.exAddr }">
 								</div>
 		         			</c:if>
@@ -161,56 +161,64 @@
 							      </div>
 							        
 							      <div class="modal-body">
-							      	<div class="add-adr">
-								      	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-							         		<div class="col-2">
-							         			<select id="addrList" style="width:80%">
+							      	<div class="add-adr row justify-content-center">
+								      	<div class="row col-md-10 col-form-label order-input" style="margin-top: 0rem;">
+								      		<div class="col-md-8">
+								      			<select id="addrList" style="width:80%">
 							         				<c:forEach var="addr" items="${userAddrList }">
 								         				<option value="${addr.addrName }">${addr.addrName }</option>
 							         				</c:forEach>
 							         				<option value="new-addr">신규 배송지(배송지 추가)</option>
 							         			</select>
-							         		</div>
-							         		<c:forEach var="addr" items="${userAddrList }">
+								      		</div>
+								      		<div class="col-md-4">
+								      			<input type="hidden" id="addAddrBtn" value="배송지 추가 등록" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;">
+								      			<input type="button" class="btn enb-loginBtn" id="delAddrBtn" value="배송지 삭제" style="padding: 1.3rem 1.3rem !important;">
+								      		</div>
+							         			
+					         			<div class="row">
+					         				<c:forEach var="addr" items="${userAddrList }">
 							         			<c:if test="${addr.status eq 0 }">
-									            	<div class="row col-md-12 col-form-label" style="margin-top: 1rem;">
-														<label for="name" class="col-sm-2"><i class="#"></i></label>
-														<input type="text" class="addrName2" value="${addr.addrName }" readonly>
-										            	<div class="row-cols-lg-auto col align-self-end" id="modalAddrBtn">
-															<input type="button" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+									            	<div class="col-md-12 col-form-label mb-2 mt-4">
+														<div class="input-group">
+															<label for="name" class="col-sm-2">배송지명</label>
+															<input type="text" class="form-control" id="addrName2" value="${addr.addrName }" readonly>
 														</div>
 									            	</div>
-									            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-									            		<label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="sample6_postcode" class="adr2" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
-										            	</div>
+									            	<div class="col-md-12 order-input mb-2">
+									            		<div class="input-group">
+										            		<label class="col-sm-2">우편번호</label>
+															<input type="text" id="postcode2" class="form-control" placeholder="우편번호" value="${addr.postcode }" readonly>
+																														<input type="hidden" class="form-control" id="findPostcodeBtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+									            		</div>
 										            </div>
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
-										            	</div>
+									                <div class="col-md-12 order-input mb-2">
+										                <div class="input-group">
+											                <label for="name" class="col-sm-2">주소</label>
+															<input type="text" id="addr2" class="form-control" placeholder="주소" value="${addr.addr }" readonly>
+									            		</div>
 									                </div>
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
-										            	</div>
+									                <div class="col-md-12 order-input mb-2" >
+										                <div class="input-group">
+										                	<label for="name" class="col-sm-2">상세주소</label>
+															<input type="text" id="dtAddr2" class="form-control" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+									            		</div>
 									                </div>
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 1rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
-										            	</div>
+									                <div class="col-md-12 order-input mb-2" >
+										                <div class="input-group">
+											                <label for="name" class="col-sm-2">참고항목</label>
+															<input type="text" id="exAddr2" class="form-control" placeholder="참고항목" value="${addr.exAddr }" readonly>
+									            		</div>
 									                </div>
 								                </c:if>
 							                </c:forEach>
+					         			</div>
+							         		
 										</div>
 							      	</div>
 							      </div>
 							      <div class="modal-footer">
-							        <button type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">배송지 선택</button>
+							        <button type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">기본 배송지로 선택</button>
 							        <button type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
 							      </div>
 							      
@@ -225,62 +233,58 @@
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
 
 	<!-- 다음 우편주소 API -->
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
-		
-	</script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-	function execDaumPostcode() {
-		  new daum.Postcode({
-		    oncomplete: function (data) {
-		      // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-		      // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-		      // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-		      var addr = ""; // 주소 변수
-		      var extraAddr = ""; // 참고항목 변수
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
 
-		      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-		      if (data.userSelectedType === "R") {
-		        // 사용자가 도로명 주소를 선택했을 경우
-		        addr = data.roadAddress;
-		      } else {
-		        // 사용자가 지번 주소를 선택했을 경우(J)
-		        addr = data.jibunAddress;
-		      }
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
 
-		      // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-		      if (data.userSelectedType === "R") {
-		        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-		        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-		        if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-		          extraAddr += data.bname;
-		        }
-		        // 건물명이 있고, 공동주택일 경우 추가한다.
-		        if (data.buildingName !== "" && data.apartment === "Y") {
-		          extraAddr +=
-		            extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
-		        }
-		        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-		        if (extraAddr !== "") {
-		          extraAddr = " (" + extraAddr + ")";
-		        }
-		        // 조합된 참고항목을 해당 필드에 넣는다.
-		        document.getElementById("extraAddress").value = extraAddr;
-		      } else {
-		        document.getElementById("extraAddress").value = "";
-		      }
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("exAddr2").value = extraAddr;
+                
+                } else {
+                    document.getElementById("exAddr2").value = '';
+                }
 
-		      // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		      document.getElementById("postcode").value = data.zonecode;
-		      document.getElementById("address").value = addr;
-		      // 커서를 상세주소 필드로 이동한다.
-		      document.getElementById("detailAddress").focus();
-		    },
-		  }).open();
-		}
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode2').value = data.zonecode;
+                document.getElementById("addr2").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("dtAddr2").focus();
+            }
+        }).open();
+    }
 	</script>
 	<!-- 다음 우편주소 API -->
+	
 	<script type="text/javascript">
 	let newPassCheck = false;
 	let newEmailcheck = true;
@@ -353,15 +357,15 @@
 			  if(email.attr('readonly')){
 				  newEmailcheck = false;
 				  email.prop("readonly", false);
-				  emailCheckBtn.prop("readonly", false);
+				  emailCheckBtn.prop("disabled", false);
 				  certifyNum.prop("readonly", false);
-				  numCheckBtn.prop("readonly", false);
+				  numCheckBtn.prop("disabled", false);
 			  } else {
 				  newEmailcheck = true;
 				  email.prop("readonly", true);
 				  certifyNum.prop("readonly", true);
-				  numCheckBtn.prop("readonly", true);
-				  emailCheckBtn.prop("readonly", true);
+				  numCheckBtn.prop("disabled", true);
+				  emailCheckBtn.prop("disabled", true);
 			  }
 		  });
 		
@@ -394,8 +398,8 @@
 			  if (certiNum == $('#certifyNum').val()) {
 				  newEmailcheck = true;
 				  $('#certifyNum').attr("readonly", true);
-				  emailCheckBtn.prop("readonly", true);
-				  emailUpdateBtn.prop("readonly", true);
+				  emailCheckBtn.prop("disabled", true);
+				  emailUpdateBtn.prop("disabled", true);
 				  alert('정상적으로 인증되었습니다. 나머지 정보를 입력해주세요');
 			  } else {
 				  alert('인증번호가 틀렸습니다. 다시 입력해주세요');
@@ -413,32 +417,47 @@
 		
 		//배송지 선택
 	    $('#selAddrBtn').click(function() {
-	    	$('.addrName').text($('.addrName2').val());
-			$('#adr').val($('.adr2').val());
-			$('.addr').val($('.addr2').val());
-			$('.dtaddr').val($('.dtaddr2').val());
-			$('.exaddr').val($('.exaddr2').val());
-			
-			$('#addrModal').modal('hide');
+	    	if($('#addrName2').val().trim() == ""){
+				alert('배송지명은 필수로 입력해야 합니다.');
+			} else if($('#postcode2').val().trim() == "" || $('#addr2').val().trim() == "" || $('#dtAddr2').val().trim() == ""){
+				alert('주소를 제대로 입력해주세요');
+			}
+	    	else{
+				$('#addrName').val($('#addrName2').val());
+				$('#postcode').val($('#postcode2').val());
+				$('#addr').val($('#addr2').val());
+				$('#dtAddr').val($('#dtAddr2').val());
+				$('#exAddr').val($('#exAddr2').val());
+				
+				$('#addrModal').modal('hide');
+			}
 	    });
 		
 	  	//배송지 목록 변경
 	    $('#addrList').change(function() {
 	    	if($('#addrList').val() == 'new-addr') {
 	    		$('#modalAddrBtn').css('display','block');
-	    		$('.exaddr2').removeAttr('readonly');
-	    		$('.addrName2').removeAttr('readonly');
+	    		$('#exAddr2').removeAttr('readonly');
+	    		$('#addrName2').removeAttr('readonly');
+	    		$('#dtAddr2').removeAttr('readonly');
+	    		$('#addAddrBtn').prop('type', 'button');
+	    		$('#findPostcodeBtn').prop('type', 'button');
+	    		$('#delAddrBtn').prop('type', 'hidden');
 	    		
-	    		$('.addrName2').val('');
-				$('.adr2').val('');
-				$('.addr2').val('');
-				$('.dtaddr2').val('');
-				$('.exaddr2').val('');
+	    		$('#addrName2').val('');
+				$('#postcode2').val('');
+				$('#addr2').val('');
+				$('#dtAddr2').val('');
+				$('#exAddr2').val('');
 				
 	    	} else {
 	    		$('#modalAddrBtn').css('display','none');
-	    		$('.exaddr2').attr('readonly','readonly');
-	    		$('.addrName2').attr('readonly','readonly');
+	    		$('#exAddr2').attr('readonly','readonly');
+	    		$('#addrName2').attr('readonly','readonly');
+	    		$('#dtAddr2').attr('readonly','readonly');
+	    		$('#addAddrBtn').prop('type', 'hidden');
+	    		$('#findPostcodeBtn').prop('type', 'hidden');
+	    		$('#delAddrBtn').prop('type', 'button');
 	    		
 		    	$.ajax({
 		    		url: '/order/getAddr',
@@ -448,11 +467,11 @@
 		    		}),
 		    		contentType: 'application/json; charset=utf-8',
 		    		success: function(result) {
-		    			$('.addrName2').val(result.addrName);
-		    			$('.adr2').val(result.postcode);
-		    			$('.addr2').val(result.addr);
-		    			$('.dtaddr2').val(result.dtAddr);
-		    			$('.exaddr2').val(result.exAddr);
+		    			$('#addrName2').val(result.addrName);
+		    			$('#postcode2').val(result.postcode);
+		    			$('#addr2').val(result.addr);
+		    			$('#dtAddr2').val(result.dtAddr);
+		    			$('#exAddr2').val(result.exAddr);
 		    		}
 		    	});
 	    	}
