@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <hr>
 <div class="row justify-content-between mb-3" style="width: 80%;">
 			
@@ -8,8 +8,8 @@
 				<h3>마이페이지</h3>
 			</div>
 			<div class="user-info" style="width: 80%">
-					<p class="text-center">OOO님, 환영합니다!</p>
-					<p class="text-center">잔여 포인트 0P</p>
+					<p class="text-center">${userInfo.name }님, 환영합니다!</p>
+					<p class="text-center">잔여 포인트 ${userInfo.point }P</p>
 					
 			<!--  미정
 					<ul class="nav nav-fill">
