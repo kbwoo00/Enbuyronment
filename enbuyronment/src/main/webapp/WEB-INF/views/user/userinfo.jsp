@@ -166,8 +166,16 @@
 								      	<div class="row col-md-10 col-form-label order-input" style="margin-top: 0rem;">
 								      		<div class="col-md-8">
 								      			<select id="addrList" style="width:80%">
+								      				
 							         				<c:forEach var="addr" items="${userAddrList }">
-								         				<option value="${addr.addrName }">${addr.addrName }</option>
+							         					<c:choose>
+							         						<c:when test="${addr.status eq 0 }">
+							         							<option value="${addr.addrName }" selected="selected">${addr.addrName }</option>
+							         						</c:when>
+							         						<c:otherwise>
+										         				<option value="${addr.addrName }">${addr.addrName }</option>
+							         						</c:otherwise>
+							         					</c:choose>
 							         				</c:forEach>
 							         				<option value="new-addr">신규 배송지(배송지 추가)</option>
 							         			</select>
