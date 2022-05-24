@@ -39,4 +39,6 @@ public interface UserDAO {
 	public List<ReviewVO> getReviewList(String uid);
 
 	public void addAddr(AddressVO addr);
+
+	public void delAddr(AddressVO addr);
 }

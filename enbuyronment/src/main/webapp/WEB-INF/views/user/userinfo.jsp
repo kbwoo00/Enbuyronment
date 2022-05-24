@@ -224,7 +224,6 @@
 							        <input type="button" id="closebtn" class="btn enb-loginBtn" value="닫기"
 							        style="padding: 1.3rem 1.3rem !important;"> 
 							      </div>
-							      
 							    </div>
 							  </div>
 							</div>
@@ -513,8 +512,28 @@
 					}
 		    	});
 			}
-		})
+		});
+		// 배송지 추가 등록
 	  	
+	  	// 배송지 삭제
+	  	$('#delAddrBtn').click(function() {
+	  		$.ajax({
+	    		url: '/mypage/delAddr',
+	    		type: 'post',
+	    		data: JSON.stringify({
+	    			'addrName' : $('#addrList').val()
+	    		}),
+	    		contentType: 'application/json; charset=utf-8',
+	    		success: function() {
+	    			alert('배송지가 삭제되었습니다.');
+	    			location.reload();
+	    		},
+	    		error: function() {
+					alert('기본 배송지는 삭제할 수 없습니다.');
+				}
+	    	});
+	  	});
+	  	// 배송지 삭제
 	});
 	</script>
 

@@ -247,4 +247,9 @@ public class UserServiceImpl implements UserService {
 		userDao.addAddr(addr);
 	}
 
+	@Override
+	public void delAddr(AddressVO addr) {
+		userDao.delAddr(addr);
+	}
+
 }

@@ -129,5 +129,10 @@ public class UserDAOImpl implements UserDAO {
 	public void addAddr(AddressVO addr) {
 		sqlSession.insert(NAMESPACE + ".insertAddr", addr);
 	}
+
+	@Override
+	public void delAddr(AddressVO addr) {
+		sqlSession.delete(NAMESPACE + ".delAddr", addr);
+	}
 	
 }

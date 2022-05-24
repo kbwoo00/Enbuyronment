@@ -135,5 +135,25 @@ public class MypageController {
 		
 		userService.addAddr(addr, uid);
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/delAddr")
+	public void delAddr(@RequestBody AddressVO addr,
+			@SessionAttribute(value = "userId", required = false) String uid, HttpServletResponse response
+			) {
+		
+		AddressVO delAddr = userService.getOneAddr(uid, addr.getAddrName());
+		log.info("삭제할 주소 = {}", delAddr);
+		
+		if(delAddr.getStatus() == 0) {
+			try {
+				response.sendError(400);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			userService.delAddr(delAddr);
+		}
+	}
 
 }

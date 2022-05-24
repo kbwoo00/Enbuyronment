@@ -74,4 +74,10 @@
 		values (#{addrName}, #{uid}, #{postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{status}, #{receiver})
 	</insert>
 	
+	<!-- 배송지 삭제 -->
+	<delete id="delAddr">
+		delete from address
+		where uid = #{uid} and addr_name = #{addrName}
+	</delete>
+	
 </mapper> 

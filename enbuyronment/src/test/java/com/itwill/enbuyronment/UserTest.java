@@ -205,4 +205,12 @@ public class UserTest {
 		addr.setStatus(1);
 		userDao.addAddr(addr);
 	}
+	
+//	@Test
+	public void 배송지삭제() {
+		AddressVO addr = new AddressVO();
+		addr.setUid("admin");
+		addr.setAddrName("직장");
+		userDao.delAddr(addr);
+	}
 }

@@ -44,5 +44,7 @@ public interface UserService {
 	public List<ReviewVO> getReviewList(String uid);
 
 	public void addAddr(AddressVO addr, String uid);
+
+	public void delAddr(AddressVO addr);
 	
 }
