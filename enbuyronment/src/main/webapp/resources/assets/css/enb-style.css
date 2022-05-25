@@ -160,6 +160,18 @@
   outline: none;
 }
 
+/* 주문확인 */
+
+.confirmation_part .single_confirmation_details ul li {
+    position: relative;
+    text-transform: capitalize;
+    padding-left: 45% !important; 
+    margin-bottom: 3px;
+}
+
+.confirmation_part .order_details_iner {
+    padding: 40px 40px 40px !important;
+}
 /* 마이페이지 */
 
 .mypage {

@@ -54,19 +54,19 @@
           <div class="single_confirmation_details">
             <h4>배송 정보</h4>
             <ul>
-              <li>
+              <li style="padding-left: 30% !important;">
                 <p>우편번호</p><span>: ${orderInfo.postcode }</span>
               </li>
-              <li>
+              <li style="padding-left: 30% !important;">
                 <p>주소</p><span>: ${orderInfo.addr }</span>
               </li>
-              <li>
+              <li style="padding-left: 30% !important;">
                 <p></p><span>: ${orderInfo.exAddr }</span>
               </li>
-              <li>
+              <li style="padding-left: 30% !important;">
                 <p></p><span>: ${orderInfo.dtAddr }</span>
               </li>
-              <li>
+              <li style="padding-left: 30% !important;">
                 <p>요청 사항</p><span>: ${orderInfo.request }</span>
               </li>
             </ul>
@@ -81,9 +81,9 @@
             <table class="table table-borderless align-middle">
               <thead>
                 <tr>
-                  <th class="col-8">상품 이름</th>
+                  <th class="col-8 text-center">상품 이름</th>
                   <th class="col-2 text-center">개수</th>
-                  <th class="col-2 text-right">가격</th>
+                  <th class="col-2 text-center">가격</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,38 +91,38 @@
 	                <tr>
 	                  <th class="col-8"><span>${orderProd.prodName }</span></th>
 	                  <th class="col-2 text-center">${orderProd.amount }</th>
-	                  <th class="col-2 text-right"><span class="price${status.index }">${orderProd.price }</span></th>
+	                  <th class="col-2 text-center"><span class="price${status.index }">${orderProd.price }</span></th>
 	                </tr>
               	</c:forEach>
                 <tr>
                 <th scope="col" colspan="4"></th>
                 </tr>
                 <tr>
-                  <th class="col-7" colspan="3">총 상품가격</th>
-                  <th class="col-3 text-right"><span class="totalPrice"></span></th>
+                  <th class="col-6" colspan="2">총 상품가격</th>
+                  <th class="col-4 text-right"><span class="totalPrice"></span></th>
                 </tr>
                 <tr>
-                  <th class="col-7" colspan="3">배송비</th>
-                  <th class="col-3 text-right"><span class="totalShipcost"></span></th>
+                  <th class="col-6" colspan="2">배송비</th>
+                  <th class="col-4 text-right"><span class="totalShipcost"></span></th>
                 </tr>
                 <tr>
-                  <th class="col-7" colspan="3">사용 포인트</th>
-                  <th class="col-3 text-right"><span>-${orderInfo.pointDown }p</span></th>
+                  <th class="col-6" colspan="2">사용 포인트</th>
+                  <th class="col-4 text-right"><span>-${orderInfo.pointDown }p</span></th>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th class="col-7" colspan="3">총 결제금액</th>
-                  <th class="col-3 text-right"> <span class="orderPrice"></span></th>
+                  <th class="col-6" colspan="2">총 결제금액</th>
+                  <th class="col-4 text-right"> <span class="orderPrice"></span></th>
                 </tr>
                 <tr>
-                  <th class="col-7" colspan="3">총 적립 포인트</th>
-                  <th class="col-3 text-right"> <span>+${orderInfo.pointUp }p</span></th>
+                  <th class="col-6" colspan="2">총 적립 포인트</th>
+                  <th class="col-4 text-right"> <span>+${orderInfo.pointUp }p</span></th>
                 </tr>
               </tfoot>
             </table>
           </div>
-          <button class="order_btn col-6 enb-loginBtn" style="float: none; margin: 0 auto; display: flex; justify-content: center;">주문 상세보기</button>
+          <button class="col-md-6 mt-5 btn enb-loginBtn" style="float: none; margin: 0 auto; display: flex; justify-content: center;">주문 상세보기</button>
         </div>
       </div>
     </div>
