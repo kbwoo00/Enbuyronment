@@ -95,7 +95,7 @@
 										<div class="col-md-3">
 											<div class="row justify-content-around">
 												<input type="hidden" id="reviewNo${status.count }" value="${review.reviewNo }">
-												<input type="button" class="btn enb-loginBtn" value="수정" style="padding: 1.3rem 1.3rem !important;">
+												<input type="button" class="btn enb-loginBtn" id="modBtn${status.count }" value="수정" style="padding: 1.3rem 1.3rem !important;">
 												<input type="button" class="btn enb-loginBtn" id="delBtn${status.count }" value="삭제" style="padding: 1.3rem 1.3rem !important;">
 											</div>
 										</div>
@@ -165,6 +165,11 @@
 					      }
 				    });
 				}
+			});
+		}
+		for(let i = 1; i < reviewLength; i++){
+			$('#modBtn' + i).click(function() {
+				location.href = "/mypage/review/" + $('#reviewNo' + i).val() + "/update";
 			});
 		}
 		
