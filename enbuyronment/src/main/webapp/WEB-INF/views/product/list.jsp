@@ -88,7 +88,7 @@ if("${msg}" == "deleteOK") {
 }
 
 $(document).ready(function() {
-	function getProdList(pageNum, brandVal, cateVal, sort, keyword) {
+	function getProdList(pageNum, brandVal, cateVal, sort, keyword, isScroll) {
 		$.ajax({
 			url: '/product/list',
 			type: 'post',
@@ -101,16 +101,28 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(data) {
-				if(data.endPage >= pageNum) {
+				var isAdmin = "${sessionScope.mode eq 'adminMode' }";
+				var stock = null;
+				
+				if(!isScroll && data.prodList.length == 0) {
+					$('#prodBox').html("<div class='noProdBox' style='width:100%; padding-bottom:20px;'>"+
+									"<h4 class='text-center'>상품이 없습니다.</h4></div>");
+				}
 					
+				if(data.endPage >= pageNum) {
 					for(var i=0; i<data.prodList.length; i++) {
+						if(isAdmin == 'true') {
+							stock = "<span style='color:black;'>재고 ("+data.prodList[i].stock+")</span>";
+						} else {
+							stock = '';
+						}
 						
 						if(data.prodList[i].star == null) {
 							data.prodList[i].star = 0;
 						}
 						
 						if(data.prodList[i].stock < 1) {
-							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
 							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'>"+
@@ -120,11 +132,12 @@ $(document).ready(function() {
 								                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
 							                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
 							                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
+							                 "<h6>"+stock+"</h6>"+
 								         "</div></div></div>"
 						     );
 							
 						} else {
-							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6'>"+
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
 							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'></div>"+
@@ -133,6 +146,7 @@ $(document).ready(function() {
 								                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
 							                 "<h6>["+data.prodList[i].brandName+"] "+data.prodList[i].prodName+"</h6>"+
 							                 "<h6>"+data.prodList[i].price.toLocaleString()+"원</h6>"+
+							                 "<h6>"+stock+"</h6>"+
 								         "</div></div></div>"
 						     );
 						}
@@ -143,7 +157,7 @@ $(document).ready(function() {
 	}
 	
 	//페이지 첫 로딩 시
-	getProdList(1, '전체', 'All', 1, '');
+	getProdList(1, '전체', 'All', 1, '', false);
 	
 	//스크롤 시
 	var page = 1;
@@ -151,7 +165,7 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 	    if($(window).scrollTop() > $(document).height() - $(window).height() - 150) {
 	      ++page;
-	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
+	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val(), true);
 	    }
 	});
 	
@@ -162,28 +176,28 @@ $(document).ready(function() {
 		$('.select_option_list').html($(this).text());
 		
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val(), false);
 		page = 1;
 	});
 	
 	//용도 선택 시
 	$('.nav-link').click(function() {
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $(this).text(), $('#select1').val(), $('#searchKeyword').val());
+		getProdList(1, $('#on').text(), $(this).text(), $('#select1').val(), $('#searchKeyword').val(), false);
 		page = 1;
 	});
 	
 	//정렬 선택 시
 	$('#select1').change(function() {
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val(), false);
 		page = 1;
 	});
 	
 	//검색 시
 	$('.ti-search').click(function() {
 		$('#prodBox').empty();
-		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val());
+		getProdList(1, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val(), false);
 		page = 1;
 	});
 	

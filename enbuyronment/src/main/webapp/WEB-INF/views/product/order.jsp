@@ -92,21 +92,21 @@ button {
 							              <div class="row col-md-12 col-form-label order-input">
 								                <label for="name" class="col-sm-2"><i class="fa fa-user"></i>성함</label>
 												<div class="col-sm-10">
-													<input type="text" id="name" name="name" value="${userInfo.name }" readonly>
+													<input type="text" id="name" name="name" value="${userInfo.name }" disabled>
 								            	</div>
 							              </div>
 							              
 							              <div class="row col-md-12 col-form-label order-input">
 								                <label for="name" class="col-sm-2"><i class="fa fa-phone"></i>핸드폰</label>
 												<div class="col-sm-10">
-													<input type="text" id="phone" name="phone" value="${userInfo.phone }" readonly>
+													<input type="text" id="phone" name="phone" value="${userInfo.phone }" disabled>
 								            	</div>
 							              </div>
 							              
 							              <div class="row col-md-12 col-form-label order-input">
 								                <label for="name" class="col-sm-2"><i class="fa fa-envelope"></i>이메일</label>
 												<div class="col-sm-10">
-													<input type="text" id="email" name="email" value="${userInfo.email }" readonly>
+													<input type="text" id="email" name="email" value="${userInfo.email }" disabled>
 								            	</div>
 							              </div>
 							              
@@ -124,13 +124,21 @@ button {
 										 <c:forEach var="addr" items="${userAddr }">
 											<c:if test="${addr.status eq 0 }">
 							                	<div class="row col-md-12 col-form-label order-input">
-								            		<label for="addrname name" class="col-sm-2"><i class="fa fa-address-book"></i>${addr.addrName }</label>
+								            		<label for="name" class="col-sm-2"><i class="fa fa-address-book"></i>배송지</label>
 													<div class="col-sm-7">
-														<input type="text" id="adr" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
+														<input type="text" class="addrName" name="address" placeholder="배송지명" value="${addr.addrName }" readonly>
 									            	</div>
 									            	<div class="col-sm-3">
-											    		<button type="button" id="addrbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;">배송지 변경</button>
+											    		<input type="button" id="addrbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;" value="배송지 변경">
 									            	</div>
+									            	
+									            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										                <label for="name" class="col-sm-2"><i class="#"></i></label>
+														<div class="col-sm-10">
+															<input type="text" id="adr" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
+										            	</div>
+									                </div>
+									                
 									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 										                <label for="name" class="col-sm-2"><i class="#"></i></label>
 														<div class="col-sm-10">
@@ -157,7 +165,7 @@ button {
 								            <label for="name" class="col-sm-2"><i class="#"></i></label>
 							            	<div class="col-sm-3">
 												<select id="request" class="select-group col-md-auto" name="request">
-													<option value="" disabled="disabled" selected="selected">요청사항을 선택해주세요</option>
+													<option value="없음" selected="selected">요청사항을 선택해주세요</option>
 													<option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
 													<option value="집 앞에 놔주세요">집 앞에 놔주세요</option>
 													<option value="택배함에 넣어주세요">택배함에 넣어주세요</option>
@@ -167,7 +175,7 @@ button {
 												</select>
 							            	</div>
 											<div class="col-sm-6">
-												<input type="text" id="requestFree" name="requestFree" placeholder="직접입력">
+												<input type="text" id="requestFree" name="requestFree" placeholder="직접입력" value="없음">
 							            	</div>
 							              </div>
 							              <div class="row col-md-12 col-form-label order-input">
@@ -177,19 +185,19 @@ button {
 													<p>잔여 포인트 : ${userInfo.point }p</p>
 								            	</div>
 								            	<div class="col-md-2">
-											    	<button type="submit" id="pntbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;">사용</button>
+											    	<input type="button" id="pntbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;" value="사용">
 											    </div>
 							                </div>
 
 											<div id="orderPrice" class="total-price col mb-3">
 												 <div class="total-price" id="total-price"></div>
-												 <div class="total-price" id="ship-price"></div>
-												 <div class="total-price" id="used-point"></div>
+												 <div class="total-price" id="ship-price" style="padding-top:0.5rem !important;"></div>
+												 <div class="total-price" id="used-point" style="padding-top:0.5rem !important;"></div>
 												 <hr>
-												 <div class="total-price" id="order-price"></div>
-												 <div class="total-price" id="total-point"></div>
+												 <div class="total-price" id="order-price" style="padding-top:0.5rem !important;"></div>
+												 <div class="total-price" id="total-point" style="padding-top:0.5rem !important;"></div>
 												 <br>
-										   		 <button id="paymentBtn" class="order_btn col-6 enb-loginBtn" style="float: none; margin: 0 auto; display: flex; justify-content: center;">결제하기</button>
+										   		 <input type="button" id="paymentBtn" class="order_btn col-6 enb-loginBtn" value="결제하기">
 											</div>
 										</div>
 									</div>
@@ -215,7 +223,14 @@ button {
 						<div class="col">
 							<select class="addrList" style="width:150px">
 								<c:forEach var="addr" items="${userAddr }">
-									<option value="${addr.addrName }">${addr.addrName }</option>
+									<c:choose>
+										<c:when test="${addr.status eq 0 }">
+											<option value="${addr.addrName }" selected>${addr.addrName }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${addr.addrName }">${addr.addrName }</option>
+										</c:otherwise>
+									</c:choose>
 			         			</c:forEach>
 			         			<option value="new-addr">신규 배송지</option>
 			         		</select>
@@ -226,7 +241,7 @@ button {
 							<c:if test="${addr.status eq 0 }">
 								<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 									<div class="col-md-auto col-form-label" style="transform : translate(15px, 0px); width:95% !important;">
-										<input type="text" id="sample6_postcode" class="addrName2" value="${addr.addrName }" readonly>
+										<input type="text" class="addrName2" value="${addr.addrName }" readonly>
 										<div class="col-md-4" id="modalAddrBtn" style="transform:translate(388px, -43px);">
 											<input type="button" class="PostBtn btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 										</div>
@@ -235,17 +250,22 @@ button {
 								<div class="col">
 									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 										<div class="col">
+											<input type="text" id="sample6_postcode" class="adr2" name="email" placeholder="우편번호" value="${addr.postcode }" readonly>
+										</div>
+							        </div>
+									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
+										<div class="col">
 											<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
 										</div>
 							        </div>
 									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 										<div class="col">
-											<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
+											<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
 										</div>
 									</div>
 									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
 										<div class="col">
-											<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+											<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
 										</div>
 									</div>
 								</div>
@@ -253,9 +273,10 @@ button {
 						</c:forEach>
 					</div>
 				</div>
+				
 			      <div class="modal-footer">
-			        <button type="submit" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;">배송지 선택</button>
-			        <button type="submit" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;"> 닫기</button>
+			        <input type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;" value="배송지 선택">
+			        <input type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" value="닫기">
 			      </div>
 			      
 			    </div>
@@ -336,15 +357,15 @@ button {
 		$("#requestFree").hide();
 		
 		$("#request").change(function() {
-				if($("#request").val() == 0) {
-					$("#requestFree").val("");
-					$("#requestFree").show();
-					
-				}  else {
-					$("#requestFree").val($("#request").val());
-					$("#requestFree").hide();
-				}
-			});
+			if($("#request").val() == 0) {
+				$("#requestFree").val("");
+				$("#requestFree").show();
+				
+			}  else {
+				$("#requestFree").val($("#request").val());
+				$("#requestFree").hide();
+			}
+		});
 	});
 	
 	
@@ -388,7 +409,7 @@ button {
     $('.addrList').change(function() {
     	if($('.addrList').val() == 'new-addr') {
     		$('#modalAddrBtn').css('display','block');
-    		$('.exaddr2').removeAttr('readonly');
+    		$('.dtaddr2').removeAttr('readonly');
     		$('.addrName2').removeAttr('readonly');
     		
     		$('.addrName2').val('');
@@ -399,7 +420,7 @@ button {
 			
     	} else {
     		$('#modalAddrBtn').css('display','none');
-    		$('.exaddr2').attr('readonly','readonly');
+    		$('.dtaddr2').attr('readonly','readonly');
     		$('.addrName2').attr('readonly','readonly');
     		
 	    	$.ajax({
@@ -422,7 +443,7 @@ button {
     
     //배송지 선택
     $('#selAddrBtn').click(function() {
-    	$('.addrName').text($('.addrName2').val());
+    	$('.addrName').val($('.addrName2').val());
 		$('#adr').val($('.adr2').val());
 		$('.addr').val($('.addr2').val());
 		$('.dtaddr').val($('.dtaddr2').val());
@@ -434,17 +455,23 @@ button {
     
     //포인트 사용
     $('#pntbtn').click(function() {
-    	$('.point').next().text('잔여 포인트 : '+(${userInfo.point} - $('.point').val())+'p');
-    	$('#used-point').text('사용 포인트 : '+$('.point').val()+'p');
-		
-		if(totalPrice < 20000) {
-		    orderPrice = totalPrice + 2000 - $('.point').val();
-	    } else {
-	    	orderPrice = totalPrice - $('.point').val();
-	    }
-    	
-   	    $('#order-price').text('최종결제 금액 : '+orderPrice+'원');
-   	 	$('#total-point').text('적립 포인트 : '+Math.floor((totalPrice - $('.point').val())/100)+'p');
+    	if(${userInfo.point} < $('.point').val()) {
+    		alert('사용 가능한 포인트를 입력해주세요');
+    		$('.point').val(0);
+    		
+    	} else {
+	    	$('.point').next().text('잔여 포인트 : '+(${userInfo.point} - $('.point').val())+'p');
+	    	$('#used-point').text('사용 포인트 : '+$('.point').val()+'p');
+			
+			if(totalPrice < 20000) {
+			    orderPrice = totalPrice + 2000 - $('.point').val();
+		    } else {
+		    	orderPrice = totalPrice - $('.point').val();
+		    }
+	    	
+	   	    $('#order-price').text('최종결제 금액 : '+orderPrice+'원');
+	   	 	$('#total-point').text('적립 포인트 : '+Math.floor((totalPrice - $('.point').val())/100)+'p');
+    	}
     });
     
     

@@ -77,6 +77,7 @@ span.price {
 
 .confirmation_part .confirmation_tittle span {
   color: #86A688 !important;
+  font-size: 1.7em;
 }
 
 .total_price {
@@ -95,4 +96,22 @@ span.price {
 
 #modalAddrBtn {
 	display: none;
+}
+
+.confirmation_part .single_confirmation_details ul li {
+	text-transform: none !important;
+}
+
+#toDetailOrder {
+	float: none;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+#paymentBtn {
+	float: none;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }

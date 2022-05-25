@@ -38,12 +38,9 @@
                 	<fmt:formatDate value="${orderInfo.orderDate }" dateStyle="medium"/></span>
               </li>
               <li>
-                <p>구매자</p><span>: ${userInfo.name }</span>
+                <p>수령인</p><span>: ${orderInfo.receiver }</span>
                </li>
                <li>
-                <p>수령인</p><span>: ${orderInfo.receiver }</span>
-              </li>
-              <li>
                 <p>수령인 연락처</p><span>: ${orderInfo.phone }</span>
               </li>
             </ul>
@@ -61,10 +58,7 @@
                 <p>주소</p><span>: ${orderInfo.addr }</span>
               </li>
               <li style="padding-left: 30% !important;">
-                <p></p><span>: ${orderInfo.exAddr }</span>
-              </li>
-              <li style="padding-left: 30% !important;">
-                <p></p><span>: ${orderInfo.dtAddr }</span>
+                <p></p><span>&nbsp;${orderInfo.exAddr }&nbsp;${orderInfo.dtAddr }</span>
               </li>
               <li style="padding-left: 30% !important;">
                 <p>요청 사항</p><span>: ${orderInfo.request }</span>
@@ -87,42 +81,40 @@
                 </tr>
               </thead>
               <tbody>
-              	<c:forEach var="orderProd" items="${orderProdList }" varStatus="status">
-	                <tr>
-	                  <th class="col-8"><span>${orderProd.prodName }</span></th>
-	                  <th class="col-2 text-center">${orderProd.amount }</th>
-	                  <th class="col-2 text-center"><span class="price${status.index }">${orderProd.price }</span></th>
-	                </tr>
-              	</c:forEach>
+                 <c:forEach var="orderProd" items="${orderProdList }" varStatus="status">
+                   <tr>
+                     <th class="col-8"><span>${orderProd.prodName }</span></th>
+                     <th class="col-2 text-center">${orderProd.amount }</th>
+                     <th class="col-2 text-center"><span class="price${status.index }">${orderProd.price }</span></th>
+                   </tr>
+                 </c:forEach>
                 <tr>
-                <th scope="col" colspan="4"></th>
+                	<th scope="col" colspan="3"></th>
                 </tr>
                 <tr>
-                  <th class="col-6" colspan="2">총 상품가격</th>
-                  <th class="col-4 text-right"><span class="totalPrice"></span></th>
+                	<th scope="col" colspan="3"></th>
                 </tr>
                 <tr>
-                  <th class="col-6" colspan="2">배송비</th>
-                  <th class="col-4 text-right"><span class="totalShipcost"></span></th>
+                   <th class="col text-right" colspan="3" style="padding: 1rem !important;">총 상품가격 : <span class="totalPrice"></span></th>
                 </tr>
                 <tr>
-                  <th class="col-6" colspan="2">사용 포인트</th>
-                  <th class="col-4 text-right"><span>-${orderInfo.pointDown }p</span></th>
+                  <th class="col text-right" colspan="3" style="padding: 1rem !important;">배송비 : <span class="totalShipcost"></span></th>
+                </tr>
+                <tr>
+                  <th class="col text-right" colspan="3" style="padding: 1rem !important;">사용 포인트 : <span>${orderInfo.pointDown }p</span></th>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th class="col-6" colspan="2">총 결제금액</th>
-                  <th class="col-4 text-right"> <span class="orderPrice"></span></th>
+                  <th class="col text-right" colspan="3" style="padding: 1rem !important;">총 결제금액 : <span class="orderPrice"></span></th>
                 </tr>
                 <tr>
-                  <th class="col-6" colspan="2">총 적립 포인트</th>
-                  <th class="col-4 text-right"> <span>+${orderInfo.pointUp }p</span></th>
+                  <th class="col text-right" colspan="3" style="padding: 1rem !important;">총 적립 포인트 : <span>${orderInfo.pointUp }p</span></th>
                 </tr>
               </tfoot>
             </table>
           </div>
-          <button class="col-md-6 mt-5 btn enb-loginBtn" style="float: none; margin: 0 auto; display: flex; justify-content: center;">주문 상세보기</button>
+          <input type="button" class="col-md-6 mt-5 btn enb-loginBtn" id="toDetailOrder" value="주문 상세보기">
         </div>
       </div>
     </div>
@@ -142,15 +134,15 @@
 			totalPrice += Number($('.price'+i).text());
 		}
 		
-		$('.totalPrice').text('₩ '+totalPrice.toLocaleString());
+		$('.totalPrice').text(totalPrice.toLocaleString()+'원');
 		
 		if(totalPrice < 20000) {
-			$('.totalShipcost').text('₩ 2,000');
-			$('.orderPrice').text('₩ '+(totalPrice + 2000 - ${orderInfo.pointDown}).toLocaleString());
+			$('.totalShipcost').text('2,000원');
+			$('.orderPrice').text((totalPrice + 2000 - ${orderInfo.pointDown}).toLocaleString()+'원');
 			
 		} else {
-			$('.totalShipcost').text('₩ '+0);
-			$('.orderPrice').text('₩ '+(totalPrice - ${orderInfo.pointDown}).toLocaleString());
+			$('.totalShipcost').text(0+'원');
+			$('.orderPrice').text((totalPrice - ${orderInfo.pointDown}).toLocaleString()+'원');
 		}
 	});
 </script>
