@@ -157,5 +157,10 @@ public class UserDAOImpl implements UserDAO {
 	public int getReviewTotalCnt(String uid) {
 		return sqlSession.selectOne(NAMESPACE + ".getReviewTotalCnt", uid);
 	}
+
+	@Override
+	public void delReview(Integer reviewNo) {
+		sqlSession.delete(NAMESPACE + ".delReview", reviewNo);
+	}
 	
 }

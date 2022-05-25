@@ -51,7 +51,7 @@
 				  			<h4>작성한 리뷰가 없습니다.</h4>
 				  		</c:when>
 				  		<c:otherwise>
-				  			<c:forEach var="review" items="${reviewList }">
+				  			<c:forEach var="review" items="${reviewList }" varStatus="status">
 				  				<div class="list-group list-group-flush border-bottom scrollarea mt-3">
 							        <div class="d-flex w-100 align-items-center justify-content-between">
 							        	<div class="col-md-8 mb-3">
@@ -94,8 +94,9 @@
 									<div class="d-flex w-100 align-items-center justify-content-end mb-3">
 										<div class="col-md-3">
 											<div class="row justify-content-around">
+												<input type="hidden" id="reviewNo${status.count }" value="${review.reviewNo }">
 												<input type="button" class="btn enb-loginBtn" value="수정" style="padding: 1.3rem 1.3rem !important;">
-												<input type="button" class="btn enb-loginBtn" value="삭제" style="padding: 1.3rem 1.3rem !important;">
+												<input type="button" class="btn enb-loginBtn" id="delBtn${status.count }" value="삭제" style="padding: 1.3rem 1.3rem !important;">
 											</div>
 										</div>
 									</div>
@@ -103,8 +104,6 @@
 				  			</c:forEach>
 				  		</c:otherwise>
 				  	</c:choose>
-				  	
-				    
 			  </div>
 			  <!-- 페이지 버튼 그룹 -->
 			  <div class="row justify-content-center">
@@ -151,6 +150,24 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function () {
+		let reviewLength = ${reviewList.size() };
+		for(let i = 1; i < reviewLength; i++){
+			$('#delBtn' + i).click(function() {
+				if(confirm('정말 리뷰를 삭제하시겠습니까? 재작성은 불가능합니다.')){
+					console.log($('#reviewNo' + i).val());
+					$.ajax({
+					      url: "/mypage/review/delete",
+					      type: "post",
+					      contentType: "text/plain; charset=utf-8",
+					      data: $('#reviewNo' + i).val(),
+					      success: function () {
+					    	  location.reload();
+					      }
+				    });
+				}
+			});
+		}
+		
 		
 	});
 	</script>

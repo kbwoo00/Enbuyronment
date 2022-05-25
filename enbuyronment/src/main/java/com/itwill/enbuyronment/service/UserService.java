@@ -54,5 +54,7 @@ public interface UserService {
 	public void modAddr(UserVO user);
 
 	public int getReviewTotalCnt(String uid);
+
+	public void delReview(Integer reviewNo);
 	
 }

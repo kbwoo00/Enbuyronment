@@ -265,4 +265,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getReviewTotalCnt(uid);
 	}
 
+	@Override
+	public void delReview(Integer reviewNo) {
+		userDao.delReview(reviewNo);
+	}
+
 }

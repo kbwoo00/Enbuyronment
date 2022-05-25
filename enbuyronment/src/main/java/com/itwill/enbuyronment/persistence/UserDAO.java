@@ -49,4 +49,6 @@ public interface UserDAO {
 	public void toNormalAddr(UserVO user);
 
 	public int getReviewTotalCnt(String uid);
+
+	public void delReview(Integer reviewNo);
 }

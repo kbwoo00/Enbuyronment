@@ -64,7 +64,7 @@
 
 	<!-- 회원 쓴 리뷰 목록 가져오기 동작 -->
 	<select id="getUserReviews" resultType="ProdAndReviewVO">
-		select p.prod_no, p.prod_name, p.thumb, r.uid, r.star, r.comment, r.regdate
+		select p.prod_no, p.prod_name, p.thumb, r.uid, r.star, r.comment, r.regdate, r.review_no
 		from product p right join review r
 		on p.prod_no = r.prod_no
 		where r.uid = #{uid}
@@ -95,10 +95,16 @@
 		where uid = #{uid} and addr_name = #{addrName}
 	</update>
 	
+	<!-- 유저가 쓴 리뷰 총 개수 가져오기 -->
 	<select id="getReviewTotalCnt" resultType="Integer">
 		select count(*) from review
 		where uid = #{uid}
 	</select>
 	
+	<!-- 리뷰 삭제 -->
+	<delete id="delReview">
+		delete from review
+		where review_no = #{reviewNo}
+	</delete>
 	
 </mapper> 

@@ -3,7 +3,6 @@ package com.itwill.enbuyronment.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
-import com.itwill.enbuyronment.domain.ProductVO;
-import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.paging.PageMaker;
@@ -172,6 +168,12 @@ public class MypageController {
 		} else {
 			userService.delAddr(delAddr);
 		}
+	}
+	
+	@ResponseBody
+	@PostMapping("/review/delete")
+	public void delReview(@RequestBody String reviewNo) {
+		userService.delReview(Integer.parseInt(reviewNo));
 	}
 	
 }
