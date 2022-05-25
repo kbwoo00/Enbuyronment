@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <hr>
-<div class="row justify-content-between mb-3" style="width: 80%;">
+<div class="row justify-content-between" style="width: 80%;">
 			
 			<!-- nav 바 -->
 			<div class="sub-title" style="width: 20%">

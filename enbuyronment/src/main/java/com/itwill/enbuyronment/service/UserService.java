@@ -1,10 +1,14 @@
 package com.itwill.enbuyronment.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 public interface UserService {
 	
@@ -41,12 +45,14 @@ public interface UserService {
 	public void modUser(UserVO user);
 
 	// 회원 리뷰 목록 가져오기
-	public List<ReviewVO> getReviewList(String uid);
+	public List<ProdAndReviewVO> getReviewList(String uid, Criteria cri);
 
 	public void addAddr(AddressVO addr, String uid);
 
 	public void delAddr(AddressVO addr);
 
 	public void modAddr(UserVO user);
+
+	public int getReviewTotalCnt(String uid);
 	
 }

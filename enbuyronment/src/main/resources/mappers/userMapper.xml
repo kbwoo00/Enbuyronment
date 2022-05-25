@@ -63,9 +63,12 @@
 	</update>
 
 	<!-- 회원 쓴 리뷰 목록 가져오기 동작 -->
-	<select id="getUserReviews" resultType="ReviewVO">
-		select * from review
-		where uid = #{uid}
+	<select id="getUserReviews" resultType="ProdAndReviewVO">
+		select p.prod_no, p.prod_name, p.thumb, r.uid, r.star, r.comment, r.regdate
+		from product p right join review r
+		on p.prod_no = r.prod_no
+		where r.uid = #{uid}
+		order by review_no desc limit #{pageStart}, #{perDataCnt}
 	</select>
 	
 	<!-- 배송지 추가 -->
@@ -91,6 +94,11 @@
 		update address set status = 0
 		where uid = #{uid} and addr_name = #{addrName}
 	</update>
+	
+	<select id="getReviewTotalCnt" resultType="Integer">
+		select count(*) from review
+		where uid = #{uid}
+	</select>
 	
 	
 </mapper> 

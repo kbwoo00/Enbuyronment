@@ -3,6 +3,7 @@ package com.itwill.enbuyronment.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
+import com.itwill.enbuyronment.domain.paging.PageMaker;
 import com.itwill.enbuyronment.service.ProdService;
 import com.itwill.enbuyronment.service.UserService;
 
@@ -109,9 +114,19 @@ public class MypageController {
 	}
 	
 	@GetMapping("/review")
-	public String myReview(@SessionAttribute(value = "userId", required = false) String uid) {
+	public String myReview(@SessionAttribute(value = "userId", required = false) String uid, 
+			@ModelAttribute Criteria cri, Model model
+			) {
 		
-		List<ReviewVO> reviewList = userService.getReviewList(uid);
+		cri.setPerDataCnt(5);
+		List<ProdAndReviewVO> reviewList = userService.getReviewList(uid, cri);
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(userService.getReviewTotalCnt(uid));
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
 		log.info("리뷰 목록 = {}", reviewList);
 		
 		return "/user/my_review";
@@ -158,5 +173,5 @@ public class MypageController {
 			userService.delAddr(delAddr);
 		}
 	}
-
+	
 }
