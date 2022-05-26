@@ -47,14 +47,24 @@ public interface UserService {
 	// 회원 리뷰 목록 가져오기
 	public List<ProdAndReviewVO> getReviewList(String uid, Criteria cri);
 
+	// 회원 새로운 배송지 등록
 	public void addAddr(AddressVO addr, String uid);
 
+	// 회원 배송지 삭제
 	public void delAddr(AddressVO addr);
 
+	// 회원 기본 배송지 변경
 	public void modAddr(UserVO user);
 
+	// 회원 리뷰 목록 총 개수
 	public int getReviewTotalCnt(String uid);
 
+	// 리뷰 삭제
 	public void delReview(Integer reviewNo);
+
+	public ProdAndReviewVO getReview(Integer reviewNo);
+
+	public void modReview(ProdAndReviewVO review);
+
 	
 }

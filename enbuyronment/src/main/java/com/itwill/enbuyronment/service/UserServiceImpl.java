@@ -270,4 +270,14 @@ public class UserServiceImpl implements UserService {
 		userDao.delReview(reviewNo);
 	}
 
+	@Override
+	public ProdAndReviewVO getReview(Integer reviewNo) {
+		return userDao.getReview(reviewNo);
+	}
+
+	@Override
+	public void modReview(ProdAndReviewVO review) {
+		userDao.modReview(review);
+	}
+
 }

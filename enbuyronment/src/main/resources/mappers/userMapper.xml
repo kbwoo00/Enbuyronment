@@ -107,4 +107,18 @@
 		where review_no = #{reviewNo}
 	</delete>
 	
+	<!-- 리뷰 한개 가져오기(수정을 위해) -->
+	<select id="getReview" resultType="ProdAndReviewVO">
+		select p.prod_no, p.prod_name, p.thumb, r.uid, r.star, r.comment, r.regdate, r.review_no
+		from product p right join review r
+		on p.prod_no = r.prod_no
+		where r.review_no = #{reviewNo}
+	</select>
+	
+	<!-- 리뷰 수정하기 -->
+	<update id="modReview">
+		update review set comment = #{comment}, star = #{star}
+		where review_no = #{reviewNo}
+	</update>
+	
 </mapper> 

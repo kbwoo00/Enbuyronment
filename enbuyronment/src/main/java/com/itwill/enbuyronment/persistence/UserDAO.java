@@ -51,4 +51,8 @@ public interface UserDAO {
 	public int getReviewTotalCnt(String uid);
 
 	public void delReview(Integer reviewNo);
+
+	public ProdAndReviewVO getReview(Integer reviewNo);
+
+	public void modReview(ProdAndReviewVO review);
 }

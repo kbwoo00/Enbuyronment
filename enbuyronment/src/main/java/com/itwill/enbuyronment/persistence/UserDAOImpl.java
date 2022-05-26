@@ -162,5 +162,15 @@ public class UserDAOImpl implements UserDAO {
 	public void delReview(Integer reviewNo) {
 		sqlSession.delete(NAMESPACE + ".delReview", reviewNo);
 	}
+
+	@Override
+	public ProdAndReviewVO getReview(Integer reviewNo) {
+		return sqlSession.selectOne(NAMESPACE + ".getReview", reviewNo);
+	}
+
+	@Override
+	public void modReview(ProdAndReviewVO review) {
+		sqlSession.update(NAMESPACE + ".modReview", review);
+	}
 	
 }

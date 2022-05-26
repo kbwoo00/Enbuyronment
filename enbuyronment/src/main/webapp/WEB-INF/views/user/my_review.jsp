@@ -38,7 +38,7 @@
 	<div class="container justify-content-center mt-5">
 	<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
 		
-		<div class="row justify-content-between mt-5">
+		<div class="row justify-content-around mt-5">
 			<div class="col-md-2 mt-5">
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
@@ -56,7 +56,7 @@
 							        <div class="d-flex w-100 align-items-center justify-content-between">
 							        	<div class="col-md-8 mb-3">
 							        		<a href="/product/${review.prodNo }">
-							        			<img alt="#" src="../upload/${review.thumb }" style="width: 70px; height: 70px;">
+							        			<img alt="#" src="/upload/${review.thumb }" style="width: 70px; height: 70px;">
 								          		<div class="mb-1 text-truncate" style="color: black; font-weight: bold; ">${review.prodName }</div>
 							        		</a>
 						        		</div>
@@ -154,7 +154,6 @@
 		for(let i = 1; i < reviewLength; i++){
 			$('#delBtn' + i).click(function() {
 				if(confirm('정말 리뷰를 삭제하시겠습니까? 재작성은 불가능합니다.')){
-					console.log($('#reviewNo' + i).val());
 					$.ajax({
 					      url: "/mypage/review/delete",
 					      type: "post",

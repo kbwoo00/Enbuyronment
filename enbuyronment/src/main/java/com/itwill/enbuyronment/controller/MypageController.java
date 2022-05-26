@@ -179,9 +179,24 @@ public class MypageController {
 	
 	@GetMapping("/review/{reviewNo}/update")
 	public String modReviewForm(@PathVariable("reviewNo") String reviewNo,
-			@SessionAttribute(value = "userId", required = false) String uid
+			@SessionAttribute(value = "userId", required = false) String uid, Model model
 			) {
 		
+		ProdAndReviewVO review = userService.getReview(Integer.parseInt(reviewNo));
+		
+		model.addAttribute("review", review);
+		
 		return "/user/modify_review";
+	}
+	
+	@ResponseBody
+	@PostMapping("/review/{reviewNo}/update")
+	public void modReview(@PathVariable("reviewNo") String reviewNo,
+			@SessionAttribute(value = "userId", required = false) String uid,
+			@RequestBody ProdAndReviewVO review
+			) {
+		log.info("review = {}", review);
+		review.setReviewNo(Integer.parseInt(reviewNo));
+		userService.modReview(review);
 	}
 }
