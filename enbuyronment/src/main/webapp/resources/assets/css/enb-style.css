@@ -218,3 +218,13 @@
 .product_sidebar .single_sedebar input {
 	background-color: #b3c8b4 !important;
 }
+
+/* 게시판 */
+
+th {
+ font-weight:normal !important;
+}
+
+tr {
+	border-bottom:1px solid #BBBBBB;
+}
