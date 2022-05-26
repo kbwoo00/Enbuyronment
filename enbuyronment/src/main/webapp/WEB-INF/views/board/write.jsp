@@ -5,13 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>enbuyronment</title>
 <link rel="stylesheet" href="/resources/board/css/board_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+
+<style>
+
+input {
+  width: 98%;
+  border: 0;
+  border-bottom: 1px solid #86A688;
+  outline: 0;
+  }
+
+</style>
+
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-	<div class="container">
+	<div class="container  mt-5 col-md-12">
 		<form method="post" id="boardForm">
 			<select id="selBoard" name="boardName">
 				<option value="" selected>게시판을 선택하세요</option>
@@ -19,12 +31,19 @@
 				<option value="FAQ">FAQ</option>
 			</select>
 			<div id="fixNoticeBox"><input type="checkbox" id="fixNotice">공지 상단고정</div>
-			<input type="hidden" id="boardStatus" name="status">
+			<input type="hidden" id="boardStatus" name="status"><br><br>
+				<div class="row" style="display:flex; justify-content: center;">
+					<div class="col-md-10 mt-4">
+						<div class="col-md-12 mb-3" style="padding-left:0px;">
+							<input type="text" id="boardTit" name="title" value="${boardDetail.title }" placeholder="제목을 입력하세요" readonly><br>
+						</div>
+						<textarea rows="10" cols="110" id="boardCont" name="content" placeholder="내용을 입력하세요" readonly>${boardDetail.content }</textarea>
+					</div>
+				</div>
 			<hr>
-			제목 : <input type="text" id="boardTit" name="title"><br>
-			내용 : <textarea rows="10" cols="50" id="boardCont" name="content"></textarea>
-			<hr>
-			<input type="button" id="boardBtn" value="작성">
+			<div class="col-md-2" style="display:flex; display-wrap:wrap; float:right;">
+				<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" id="boardBtn" value="작성">
+			</div>
 		</form>
 	</div>
 
