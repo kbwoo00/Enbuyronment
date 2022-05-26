@@ -43,9 +43,12 @@
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
 			<div class="col-md-8">
-		  		<div class="d-flex flex-column align-items-stretch flex-shrink-0">
-				  	<h3>내가 쓴 리뷰 목록</h3>
-				  	<div class="border-bottom"></div>
+			<div class="card mb-4 rounded-3 shadow-sm">
+					<div class="card-header py-3">
+						<h3 class="my-0 fw-normal">내가 쓴 리뷰 목록</h3>
+					</div>
+					<div class="card-body">
+						<div class="d-flex flex-column align-items-stretch flex-shrink-0">
 				  	<c:choose>
 				  		<c:when test="${reviewList.size() == 0}">
 				  			<h4>작성한 리뷰가 없습니다.</h4>
@@ -105,6 +108,8 @@
 				  		</c:otherwise>
 				  	</c:choose>
 			  </div>
+					</div>
+			</div>
 			  <!-- 페이지 버튼 그룹 -->
 			  <div class="row justify-content-center">
 				<nav class="blog-pagination d-flex"
