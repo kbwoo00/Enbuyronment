@@ -38,13 +38,13 @@
 
 	<!-- sidebar include조각으로 넣어주기 -->
 	<div class="container justify-content-center mt-5">
-		<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
 
 		<div class="row justify-content-around mt-5">
 			<div class="col-md-2 mt-5">
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
 			<div class="col-md-8">
+			<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
 				<div class="card mb-4 rounded-3 shadow-sm">
 					<div class="card-header py-3">
 						<h3 class="my-0 fw-normal">상품 리뷰 수정하기</h3>

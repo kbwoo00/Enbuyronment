@@ -1,16 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <hr>
-<div class="row justify-content-between" style="width: 80%;">
-			
-			<!-- nav 바 -->
-			<div class="sub-title" style="width: 20%">
-				<h3>마이페이지</h3>
-			</div>
-			<div class="user-info" style="width: 80%">
+<div class="row justify-content-center">
+			  	<div class="user-info">
 					<p class="text-center">${userInfo.name }님, 환영합니다!</p>
 					<p class="text-center">잔여 포인트 ${userInfo.point }P</p>
-					
+				</div>
 			<!--  미정
 					<ul class="nav nav-fill">
 					  <li class="nav-item">
@@ -81,7 +76,6 @@
 					</div>
 				</div>
 			미정-->
-			</div>
 			<!-- nav 바 -->
 		</div>
 		<hr>
