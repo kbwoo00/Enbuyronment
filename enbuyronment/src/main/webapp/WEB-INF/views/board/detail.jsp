@@ -8,17 +8,36 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/board/css/board_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+
+<style>
+
+input {
+  width: 98%;
+  border: 0;
+  border-bottom: 1px solid #86A688;
+  outline: 0;
+  }
+
+</style>
+
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-	<div class="container">
-		<div id="board-name"></div>
-		
-		제목 : <input type="text" id="boardTit" name="title" value="${boardDetail.title }" readonly><br>
-		내용 : <textarea rows="10" cols="50" id="boardCont" name="content" readonly>${boardDetail.content }</textarea>
+	<div class="container mt-5 col-md-12">
+		<div id="board-name" style="font-size:30px;"></div>
+		<div class="row" style="display:flex; justify-content: center;">
+			<div class="col-md-10 mt-4">
+				<div class="col-md-12 mb-3" style="padding-left:0px;">
+					<input type="text" id="boardTit" name="title" value="${boardDetail.title }" placeholder="제목을 입력하세요" readonly><br>
+				</div>
+				<textarea rows="10" cols="110" id="boardCont" name="content" placeholder="내용을 입력하세요" readonly>${boardDetail.content }</textarea>
+			</div>
+		</div>
 		<hr>
-		<input type="button" value="수정" onclick="location.href='/board/${boardDetail.boardName}/${boardDetail.boardNo }/update';">
-		<input type="button" id="deleteBtn" value="삭제">
+		<div class="col-md-2" style="display:flex; display-wrap:wrap; float:right;">
+			<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" value="수정" onclick="location.href='/board/${boardDetail.boardName}/${boardDetail.boardNo }/update';"> &nbsp;
+			<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" id="deleteBtn" value="삭제">
+		</div>
 		
 	</div>
 
