@@ -162,7 +162,7 @@
 					    	  'comment': $('#comment').val()
 					      }),
 					      success: function () {
-					    	  location.reload();
+					    	  location.replace('/mypage/review');
 					      }
 				    });
 				}
