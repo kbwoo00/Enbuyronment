@@ -26,11 +26,6 @@ $container-max-widths: (
   xxl: 1320px
 );
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -16px;
-}
 .order_body {
   font-family: 'SCoreDream';
   font-weight: normal;
@@ -88,12 +83,6 @@ span.price {
 	margin-top : 2.3rem;
 }
 
-.add-adr {
-	border-bottom: 0.5px solid #dee2e6;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-}
-
 #modalAddrBtn {
 	display: none;
 }
@@ -110,8 +99,7 @@ span.price {
 }
 
 #paymentBtn {
-	float: none;
 	margin: 0 auto;
-	display: flex;
-	justify-content: center;
+	margin-top: 20px;
+	height: 50px;
 }

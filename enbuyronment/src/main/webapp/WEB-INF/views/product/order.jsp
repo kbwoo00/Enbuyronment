@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -11,160 +11,165 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="/resources/main/image/x-icon"
 	href="/resources/main/img/favicon.ico">
-<link rel="stylesheet" href="/resources/product/css/order_style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 
+<link rel="stylesheet" href="/resources/product/css/order_style.css">
 <style type="text/css">
+body {
+	font-size: 17px;
+}
+
 input {
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid #86A688;
-  outline: 0;
-  }
-  
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #86A688;
+	outline: 0;
+}
+
 .table th {
-	vertical-align: middle!important;
+	vertical-align: middle !important;
 }
 
-.total-price {
-	padding-right : 25px !important;
-	padding-left : 20px !important;
+#used-point {
+	padding-bottom: 27px;
 }
+
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
-button {
-	transform : translate(0px, -13px);
+input:not(.point) {
+	margin-bottom: 1.5em;
 }
 </style>
 
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-<br>
-	<div class="row order_body" style="display: flex; justify-content: center;">
+	<br>
+	<div class="row order_body"
+		style="display: flex; justify-content: center;">
 		<div class="col-6">
 			<div class="order_container">
 				<div class="page-wrapper">
 					<div class="wrapper">
-					
+
 						<!--================주문 상품 =================-->
-						<section class="confirmation_part section_padding" style="padding : 0px !important; padding-bottom: 50px !important;">
-					      <div class="row">
-					        <div class="col-lg-12">
-					          <div class="order_details_iner" style="padding: 3rem !important;">
-					            <h3 style="font-size:27px;">주문 상품</h3>
-					            <table class="table table-borderless text-center">
-					              <thead>
-					                <tr>
-					                  <th class="col-3" style="padding : 0px !important;">상품 이미지</th>
-					                  <th class="col-5" style="padding : 0px !important;">상품 이름</th>
-					                  <th class="col-2" style="padding : 0px !important;">개수</th>
-					                  <th class="col-2" style="padding : 0px !important;">가격</th>
-					                </tr>
-					              </thead>
-					              <tbody>
-					              <c:forEach var="order" items="${orderList }" varStatus="status">
-					                <tr>
-					                  <td class="col-3"><span><img src="../upload/${order.thumb }" width="50" height="50"></span></td>
-					                  <td class="col-5"><span>[${order.brandName}] ${order.prodName }</span></td>
-					                  <td class="col-2">x${order.amount }</td>
-					                  <td class="col-2" id="total-cost${status.index }">${order.price * order.amount }</td>
-					                 </tr>
-					               </c:forEach>
-					              </tbody>
-					            </table>
-					          </div>
-					        </div>
-					      </div>
-					  </section>
-					  <!--================주문 상품 =================-->
-					  
-					<div class="card card-4">
-						<div class="card-body" style="padding: 3rem">
-							<h3 class="col row mb-3">주문서</h3>
-							<div class="row" style="display: flex; justify-content: center;">
-						    	<div class="row justify-content-around">
-						          	<div class="col-md-12 row contact_form">
-							              <div class="row col-md-12 col-form-label order-input">
-								                <label for="name" class="col-sm-2"><i class="fa fa-user"></i>성함</label>
-												<div class="col-sm-10">
-													<input type="text" id="name" name="name" value="${userInfo.name }" disabled>
-								            	</div>
-							              </div>
-							              
-							              <div class="row col-md-12 col-form-label order-input">
-								                <label for="name" class="col-sm-2"><i class="fa fa-phone"></i>핸드폰</label>
-												<div class="col-sm-10">
-													<input type="text" id="phone" name="phone" value="${userInfo.phone }" disabled>
-								            	</div>
-							              </div>
-							              
-							              <div class="row col-md-12 col-form-label order-input">
-								                <label for="name" class="col-sm-2"><i class="fa fa-envelope"></i>이메일</label>
-												<div class="col-sm-10">
-													<input type="text" id="email" name="email" value="${userInfo.email }" disabled>
-								            	</div>
-							              </div>
-							              
-							              <div class="row col-md-12 col-form-label order-input">
-							                	<label for="name" class="col-md-auto"><i class="fas fa-map-marker"></i>수령인 정보</label>
-												<div class="col-sm-10" style="transform : translate(10px, 0px);">
-													<input type="text" id="email" class="receiver" name="email" value="${userInfo.name }">
-												</div>
-													<label for="name" class="col-sm-2"><i class=""></i></label>
-													<div class="col-sm-10" style="margin-top: 1rem;">
-													<input type="text" id="email" class="receiver-phone" name="email" value="${userInfo.phone }">
-												</div>
-							              </div>
-												
-										 <c:forEach var="addr" items="${userAddr }">
-											<c:if test="${addr.status eq 0 }">
-							                	<div class="row col-md-12 col-form-label order-input">
-								            		<label for="name" class="col-sm-2"><i class="fa fa-address-book"></i>배송지</label>
-													<div class="col-sm-7">
-														<input type="text" class="addrName" name="address" placeholder="배송지명" value="${addr.addrName }" readonly>
-									            	</div>
-									            	<div class="col-sm-3">
-											    		<input type="button" id="addrbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;" value="배송지 변경">
-									            	</div>
-									            	
-									            	<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="adr" name="address" placeholder="우편번호" value="${addr.postcode }" readonly>
-										            	</div>
-									                </div>
-									                
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="email" class="addr" name="email" placeholder="주소" value="${addr.addr }" readonly>
-										            	</div>
-									                </div>
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" id="email" class="dtaddr" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
-										            	</div>
-									                </div>
-									                <div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										                <label for="name" class="col-sm-2"><i class="#"></i></label>
-														<div class="col-sm-10">
-															<input type="text" class="exaddr" placeholder="참고항목" value="${addr.exAddr }" readonly>
-										            	</div>
-									                </div>
-								            	</div>
-							            	</c:if>
-							             </c:forEach>
-							              
-										<div class="row col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-								            <label for="name" class="col-sm-2"><i class="#"></i></label>
-							            	<div class="col-sm-3">
-												<select id="request" class="select-group col-md-auto" name="request">
+						<section class="confirmation_part section_padding"
+							style="padding: 0px !important; padding-bottom: 50px !important;">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="order_details_iner"
+										style="padding: 3rem !important;">
+										<h3 style="font-size: 27px; margin-bottom: 40px;">주문 상품</h3>
+										<table class="table table-borderless text-center">
+											<thead>
+												<tr>
+													<th class="col-3" style="padding: 0px !important;">상품 이미지</th>
+													<th class="col-5" style="padding: 0px !important;">상품 이름</th>
+													<th class="col-2" style="padding: 0px !important;">개수</th>
+													<th class="col-2" style="padding: 0px !important;">가격</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="order" items="${orderList }"
+													varStatus="status">
+													<tr>
+														<td class="col-3" style="vertical-align: middle;">
+															<span>
+																<img src="../upload/${order.thumb }" width="50" height="50">
+															</span>
+														</td>
+														<td class="col-5" style="vertical-align: middle;">
+															<span>[${order.brandName}] ${order.prodName }</span>
+														</td>
+														<td class="col-2" style="vertical-align: middle;">x${order.amount }</td>
+														<td class="col-2" id="total-cost${status.index }" style="vertical-align: middle;">
+															${order.price * order.amount }
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!--================주문 상품 =================-->
+
+						<div class="card card-4">
+							<div class="card-body" style="padding: 3rem">
+								<h3 class="col row mb-3">주문서</h3>
+								<div class="row" style="display: flex; justify-content: center;">
+									<div class="contact_form col-md-12">
+										<div class="row order-input">
+											<div class="col-md-3">
+												<label for="name"><i class="fa fa-user"></i>구매자 정보</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" id="name" name="name" value="${userInfo.name }" disabled>
+											</div>
+											<div class="col-md-3"></div>
+											<div class="col-md-9">
+												<input type="text" id="phone" name="phone" value="${userInfo.phone }" disabled>
+											</div>
+											<div class="col-md-3"></div>
+											<div class="col-md-9">
+												<input type="text" id="email" name="email" value="${userInfo.email }" disabled>
+											</div>
+										</div>
+										<div class="row order-input">
+											<div class="col-md-3">
+												<label><i class="fas fa-map-marker"></i>수령인 정보</label>
+											</div>
+											<div class="col-md-9">
+												<input type="text" id="email" class="receiver" value="${userInfo.name }">
+												<input type="text" id="email" class="receiver-phone" value="${userInfo.phone }">
+											</div>
+										</div>
+										<div class="row order-input">
+											<c:forEach var="addr" items="${userAddr }">
+												<c:if test="${addr.status eq 0 }">
+													<div class="col-md-3">
+														<label><i class="fa fa-address-book"></i>배송지 정보</label>
+													</div>
+													<div class="col-md-6">
+														<input type="text" class="addrName" name="address"
+																placeholder="배송지명" value="${addr.addrName }" readonly>
+													</div>
+													<div class="col-md-3">
+														<input type="button" id="addrbtn" class="btn enb-loginBtn"
+																style="padding: 1.0rem !important;" value="배송지 변경">
+													</div>
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<input type="text" id="adr" name="address"
+																placeholder="우편번호" value="${addr.postcode }" readonly>
+													</div>
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<input type="text" id="email" class="addr" name="email"
+																placeholder="주소" value="${addr.addr }" readonly>
+													</div>
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<input type="text" id="email" class="dtaddr" name="email"
+																placeholder="상세주소" value="${addr.dtAddr }" readonly>
+													</div>
+													<div class="col-md-3"></div>
+													<div class="col-md-9">
+														<input type="text" class="exaddr" placeholder="참고항목"
+																value="${addr.exAddr }" readonly>
+													</div>
+												</c:if>
+											</c:forEach>
+											
+											<div class="col-md-3"></div>
+											<div class="col-md-3">
+												<select id="request" class="select-group" name="request">
 													<option value="없음" selected="selected">요청사항을 선택해주세요</option>
 													<option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
 													<option value="집 앞에 놔주세요">집 앞에 놔주세요</option>
@@ -173,32 +178,34 @@ button {
 													<option value="배송전에 꼭 연락해주세요">배송전에 꼭 연락해주세요</option>
 													<option value="0">직접입력</option>
 												</select>
-							            	</div>
-											<div class="col-sm-6">
-												<input type="text" id="requestFree" name="requestFree" placeholder="직접입력" value="없음">
-							            	</div>
-							              </div>
-							              <div class="row col-md-12 col-form-label order-input">
-								                <label for="name" class="col-sm-2"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>포인트</label>
-												<div class="col-md-5">
-													<input type="number" id="email" name="email" class="point" value="0">
-													<p>잔여 포인트 : ${userInfo.point }p</p>
-								            	</div>
-								            	<div class="col-md-2">
-											    	<input type="button" id="pntbtn" class="btn enb-loginBtn col align-self-end" style="padding: 1.3rem 1.3rem !important;" value="사용">
-											    </div>
-							                </div>
-
-											<div id="orderPrice" class="total-price col mb-3">
-												 <div class="total-price" id="total-price"></div>
-												 <div class="total-price" id="ship-price" style="padding-top:0.5rem !important;"></div>
-												 <div class="total-price" id="used-point" style="padding-top:0.5rem !important;"></div>
-												 <hr>
-												 <div class="total-price" id="order-price" style="padding-top:0.5rem !important;"></div>
-												 <div class="total-price" id="total-point" style="padding-top:0.5rem !important;"></div>
-												 <br>
-										   		 <input type="button" id="paymentBtn" class="order_btn col-6 enb-loginBtn" value="결제하기">
 											</div>
+											<div class="col-md-6">
+												<input type="text" id="requestFree" name="requestFree" placeholder="직접입력" value="없음">
+											</div>
+										</div>
+										<div class="row order-input">
+											<div class="col-md-3">
+												<label><i class="fa fa-circle-o-notch" aria-hidden="true"></i>포인트</label>
+											</div>
+											<div class="col-md-6">
+												<input type="number" id="email" name="email" class="point" value="0">
+												<p>잔여 포인트 : ${userInfo.point }p</p>
+											</div>
+											<div class="col-md-3">
+												<input type="button" id="pntbtn" class="btn enb-loginBtn col align-self-end"
+														style="padding: 1.3rem 1.3rem !important;" value="사용">
+											</div>
+										</div>
+
+										<div id="orderPrice" class="total-price col mb-3">
+											<div class="total-price" id="total-price"></div>
+											<div class="total-price" id="ship-price"></div>
+											<div class="total-price" id="used-point"></div>
+											<hr>
+											<div class="total-price" id="order-price"></div>
+											<div class="total-price" id="total-point"></div>
+											<br>
+											<input type="button" id="paymentBtn" class="btn col-md-5 enb-loginBtn" value="결제하기">
 										</div>
 									</div>
 								</div>
@@ -209,81 +216,94 @@ button {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 모달창 -->
-<div class="row-cols-lg-auto">
-	<div class="modal fade" id="testModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-			<div class="modal-content">
-				<div class="modal-header">
-		        	<h5 class="modal-title" id="staticBackdropLabel">배송지 목록</h5>
-				</div>
-				<div class="modal-body" style="width:800px; display:flex; flex-wrap:wrap;">
-					<div class="row col-form-label order-input" style="margin-top: 0rem;">
-						<div class="col">
-							<select class="addrList" style="width:150px">
-								<c:forEach var="addr" items="${userAddr }">
-									<c:choose>
-										<c:when test="${addr.status eq 0 }">
-											<option value="${addr.addrName }" selected>${addr.addrName }</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${addr.addrName }">${addr.addrName }</option>
-										</c:otherwise>
-									</c:choose>
-			         			</c:forEach>
-			         			<option value="new-addr">신규 배송지</option>
-			         		</select>
-			         	</div>
-			      	</div>
-					<div class="row" style="width:650px; margin-right: 10px !important;">
-						<c:forEach var="addr" items="${userAddr }">
-							<c:if test="${addr.status eq 0 }">
-								<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-									<div class="col-md-auto col-form-label" style="transform : translate(15px, 0px); width:95% !important;">
-										<input type="text" class="addrName2" value="${addr.addrName }" readonly>
-										<div class="col-md-4" id="modalAddrBtn" style="transform:translate(388px, -43px);">
-											<input type="button" class="PostBtn btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-										</div>
-									</div>
-								</div>
-								<div class="col">
-									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										<div class="col">
-											<input type="text" id="sample6_postcode" class="adr2" name="email" placeholder="우편번호" value="${addr.postcode }" readonly>
-										</div>
-							        </div>
-									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										<div class="col">
-											<input type="text" id="sample6_address" class="addr2" name="email" placeholder="주소" value="${addr.addr }" readonly>
-										</div>
-							        </div>
-									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										<div class="col">
-											<input type="text" id="sample6_detailAddress" class="dtaddr2" name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
-										</div>
-									</div>
-									<div class="col-md-12 col-form-label order-input" style="margin-top: 0rem;">
-										<div class="col">
-											<input type="text" id="sample6_extraAddress" class="exaddr2" placeholder="참고항목" value="${addr.exAddr }" readonly>
-										</div>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
+	<div class="row-cols-lg-auto">
+		<div class="modal fade" id="testModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content ">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">배송지 목록</h5>
 					</div>
+					<div class="modal-body">
+						<div class="add-adr row">
+							<div class="row col-md-10 col-form-label order-input" style="margin-top: 0rem;">
+								<div class="col-md-8">
+									<select class="addrList" style="width: 80%;">
+										<c:forEach var="addr" items="${userAddr }">
+											<c:choose>
+												<c:when test="${addr.status eq 0 }">
+													<option value="${addr.addrName }" selected>${addr.addrName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${addr.addrName }">${addr.addrName }</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<option value="new-addr">신규 배송지</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="row justify-content-center">
+								<c:forEach var="addr" items="${userAddr }">
+									<c:if test="${addr.status eq 0 }">
+										<div class="col-md-10 col-form-label mb-2 mt-2">
+											<div class="input-group">
+												<label for="name" class="col-md-3">배송지명</label>
+												<input type="text" class="addrName2 col-md-9" placeholder="배송지명"
+														value="${addr.addrName }" readonly>
+											</div>
+										</div>
+										<div class="col-md-10 col-form-label">
+											<div class="input-group">
+												<label id="postcodeMargin" class="col-md-3">우편번호</label>
+												<input type="text" id="sample6_postcode" class="adr2 col-md-6"
+														name="email" placeholder="우편번호" value="${addr.postcode }" readonly>
+												<input type="button" id="modalAddrBtn" class="PostBtn col-md-3 btn enb-loginBtn mb-4"
+														style="padding: 1.0rem !important;"
+														onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+											</div>
+										</div>
+										
+										<div class="col-md-10 mb-2 mt-2 col-form-label">
+											<div class="input-group">
+												<label for="name" class="col-md-3">주소</label>
+												<input type="text" id="sample6_address" class="addr2 col-md-9"
+														name="email" placeholder="주소" value="${addr.addr }" readonly>
+											</div>
+										</div>
+										<div class="col-md-10 mb-2 mt-2 col-form-label">
+											<div class="input-group">
+												<label for="name" class="col-md-3">상세주소</label>
+												<input type="text" id="sample6_detailAddress" class="dtaddr2 col-md-9"
+														name="email" placeholder="상세주소" value="${addr.dtAddr }" readonly>
+											</div>
+										</div>
+										<div class="col-md-10 mb-2 mt-2 col-form-label">
+											<div class="input-group">
+												<label class="col-md-3">참고항목</label>
+												<input type="text" id="sample6_extraAddress" class="exaddr2 col-md-9"
+														placeholder="참고항목" value="${addr.exAddr }" readonly>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+					
+					<div class="modal-footer">
+						<input type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;" value="배송지 선택">
+						<input type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" value="닫기">
+					</div>
+
 				</div>
-				
-			      <div class="modal-footer">
-			        <input type="button" class="btn enb-loginBtn" id="selAddrBtn" style="padding: 1.3rem 1.3rem !important;" value="배송지 선택">
-			        <input type="button" id="closebtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" value="닫기">
-			      </div>
-			      
-			    </div>
-		  </div>
+			</div>
 		</div>
-  	</div>
-  	<!-- 모달창 -->
+	</div>
+	<!-- 모달창 -->
 
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
@@ -371,13 +391,13 @@ button {
 	
 	// 신규배송지
 	jQuery('#addrList').change(function() {
-		var state = jQuery('#addrList option:new-addr').val();
+		var state = jQuery('#addrList').val();
 		if ( state == 'new-addr' ) {
 			jQuery('.PostBtn').hide();
 		} else {
 			jQuery('.PostBtn').show();
 		}
-	})
+	});
 	
     
     //금액 및 포인트 정보
@@ -443,6 +463,11 @@ button {
     
     //배송지 선택
     $('#selAddrBtn').click(function() {
+    	if($('.adr2').val() == "") {
+    		alert('배송지를 입력해주세요');
+    		return false;
+    	}
+    	
     	$('.addrName').val($('.addrName2').val());
 		$('#adr').val($('.adr2').val());
 		$('.addr').val($('.addr2').val());
@@ -477,6 +502,19 @@ button {
     
     //결제하기
 	$('#paymentBtn').click(function() {
+		if($('.receiver').val() == "") {
+			alert('수령인을 입력해주세요');
+			return false;
+			
+		} else if($('.receiver-phone').val() == "") {
+			alert('수령인 연락처를 입력해주세요');
+			return false;
+			
+		} else if($('.addrName').val() == "") {
+			alert('배송지를 입력해주세요');
+			return false;
+		}
+		
 		var IMP = window.IMP; // 생략 가능
 		IMP.init("imp87815658");
 		
