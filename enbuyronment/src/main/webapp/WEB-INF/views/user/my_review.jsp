@@ -88,10 +88,10 @@
 								          </small>
 							          </div>
 							        </div>
-							        <div class="col-10 mb-1">
-							        	<p>한줄평</p>
-									</div>
 									<div class="d-flex w-100 align-items-center justify-content-end mb-3">
+										<div class="col-md-9 mb-1">
+								        	<p>${review.comment }</p>
+										</div>
 										<div class="col-md-3">
 											<div class="row justify-content-around">
 												<input type="hidden" id="reviewNo${status.count }" value="${review.reviewNo }">
