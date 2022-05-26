@@ -54,5 +54,9 @@ public interface UserDAO {
 
 	public ProdAndReviewVO getReview(Integer reviewNo);
 
-	public void modReview(ProdAndReviewVO review);
+	public void modReview(ReviewVO review);
+
+	public boolean isPresentReview(ReviewVO review);
+
+	public void writeReview(ReviewVO review);
 }

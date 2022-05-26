@@ -276,8 +276,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void modReview(ProdAndReviewVO review) {
+	public void modReview(ReviewVO review) {
 		userDao.modReview(review);
+	}
+
+	@Override
+	public boolean isPresentReview(ReviewVO review) {
+		return userDao.isPresentReview(review);
+	}
+
+	@Override
+	public void writeReview(ReviewVO review) {
+		userDao.writeReview(review);
 	}
 
 }

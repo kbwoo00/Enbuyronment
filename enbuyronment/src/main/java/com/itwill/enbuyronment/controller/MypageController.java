@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
+import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.paging.PageMaker;
@@ -193,10 +196,43 @@ public class MypageController {
 	@PostMapping("/review/{reviewNo}/update")
 	public void modReview(@PathVariable("reviewNo") String reviewNo,
 			@SessionAttribute(value = "userId", required = false) String uid,
-			@RequestBody ProdAndReviewVO review
+			@RequestBody ReviewVO review
 			) {
 		log.info("review = {}", review);
 		review.setReviewNo(Integer.parseInt(reviewNo));
 		userService.modReview(review);
 	}
+	
+	@GetMapping("review/write")
+	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
+		
+		ProductVO product = prodService.prodDetail(Integer.parseInt(prodNo));
+		log.info("상품 = {}", product);
+		model.addAttribute("product", product);
+		
+		return "/user/write_review";
+	}
+	
+	@ResponseBody
+	@PostMapping("review/write")
+	public void writeReview(@RequestParam("prodNo") String prodNo,
+			@RequestBody ReviewVO review, HttpServletResponse response,
+			@SessionAttribute(value = "userId", required = false) String uid){
+		
+		review.setProdNo(Integer.parseInt(prodNo));
+		review.setUid(uid);
+		
+		// 기존에 상품에 작성한 리뷰가 있으면 또 작성하게 하면 안됨.
+		if(userService.isPresentReview(review)) {
+			try {
+				response.sendError(400);
+				return;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		userService.writeReview(review);
+	}
+	
 }

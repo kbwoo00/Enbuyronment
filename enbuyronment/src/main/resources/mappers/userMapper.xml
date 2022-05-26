@@ -121,4 +121,17 @@
 		where review_no = #{reviewNo}
 	</update>
 	
+	<!-- 기존에 있는 리뷰인지 확인(상품 하나당 리뷰 한개만 가능하게 하기 위해) -->
+	<select id="isPresentReview" resultType="boolean">
+		select if(count(*) = 1, 1, 0)
+		from review
+		where uid = #{uid} and prod_no = #{prodNo}
+	</select>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="writeReview">
+		insert into review (uid, prod_no, star, comment)
+		values (#{uid}, #{prodNo}, #{star}, #{comment})
+	</insert>
+	
 </mapper> 

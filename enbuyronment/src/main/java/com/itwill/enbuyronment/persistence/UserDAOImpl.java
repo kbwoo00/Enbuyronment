@@ -169,8 +169,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void modReview(ProdAndReviewVO review) {
+	public void modReview(ReviewVO review) {
 		sqlSession.update(NAMESPACE + ".modReview", review);
+	}
+
+	@Override
+	public boolean isPresentReview(ReviewVO review) {
+		return sqlSession.selectOne(NAMESPACE + ".isPresentReview", review);
+	}
+
+	@Override
+	public void writeReview(ReviewVO review) {
+		sqlSession.insert(NAMESPACE + ".writeReview", review);
 	}
 	
 }
