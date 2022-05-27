@@ -498,7 +498,9 @@ input:not(.point) {
 	   	 	$('#total-point').text('적립 포인트 : '+Math.floor((totalPrice - $('.point').val())/100)+'p');
     	}
     });
+
     
+	var phoneRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
     
     //결제하기
 	$('#paymentBtn').click(function() {
@@ -512,6 +514,10 @@ input:not(.point) {
 			
 		} else if($('.addrName').val() == "") {
 			alert('배송지를 입력해주세요');
+			return false;
+			
+		} else if(!phoneRegExp.test($('.receiver-phone').val())) {
+			alert('번호를 형식에 맞게 입력해주세요');
 			return false;
 		}
 		
@@ -537,9 +543,10 @@ input:not(.point) {
     	          
 	      		  var data = {
 	      			  'orderNo' : rsp.merchant_uid,
+	      			  'totalPrice' : orderPrice,
   	                  'pointDown' : $('.point').val(),
   	                  'pointUp' : Math.floor((totalPrice - $('.point').val())/100),
-  	                  'addrName' : $('.addrName').text(),
+  	                  'addrName' : $('.addrName').val(),
   	                  'postcode' : $('#adr').val(),
   	                  'addr' : $('.addr').val(),
   	                  'dtAddr' : $('.dtaddr').val(),

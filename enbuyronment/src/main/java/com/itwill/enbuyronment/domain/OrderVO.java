@@ -13,6 +13,7 @@ public class OrderVO {
 
 	private String orderNo;
 	private Timestamp orderDate;
+	private Integer totalPrice;
 	
 	private String uid;
 	private String userName;
@@ -27,4 +28,6 @@ public class OrderVO {
 	private String receiver;
 	private String phone;
 	private String request;
+	private String status;
+	private String trackNo;
 }
