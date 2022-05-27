@@ -22,9 +22,8 @@
 								<nav>
 									<ul id="navigation" class="enb-mainNav">
 										<li><a href="/board/notice">공지사항</a></li>
-										<li><a href="/product/list">스토어</a></li>
 										<li><a href="/board/FAQ">FAQ</a></li>
-										<li><a href="/mypage/userinfo">마이 페이지</a></li>
+										<li><a href="/product/list">스토어</a></li>
 										<!-- js 컨트롤 -->
 										<c:if test="${sessionScope.mode eq 'adminMode' }">
 											<li><a>관리자</a>
@@ -44,12 +43,12 @@
 								class="header-right f-right d-lg-block d-flex justify-content-between main-userbox-liControl">
 								<c:choose>
 									<c:when test="${empty sessionScope.userId}">
-										<li class="d-lg-block"><a href="/user/login"
-											" class="btn header-btn enb-loginBtn"
-											style="padding: 1.3rem 1.3rem !important;">로그인</a></li>
-										<li class="d-lg-block"><a href="/user/join"
-											class="btn header-btn enb-loginBtn"
-											style="padding: 1.3rem 1.3rem !important;">회원가입</a></li>
+										<li class="d-lg-block"><input type="button" id="loginBtn"
+											 class="btn header-btn enb-loginBtn"
+											style="padding: 1.3rem 1.3rem !important;" value="로그인"></li>
+										<li class="d-lg-block"><input type="button"
+											class="btn header-btn enb-loginBtn" id="joinBtn"
+											style="padding: 1.3rem 1.3rem !important;" value="회원가입"></li>
 									</c:when>
 									<c:otherwise>
 										<li class="d-xl-block">
@@ -62,9 +61,10 @@
 												<a href="/cart/view"><i class="fas fa-shopping-cart"></i></a>
 											</div>
 										</li>
-										<li class="d-lg-block"><a href="#" id="logoutBtn"
+										<li><a id="myPageLink" style="color: black;" href="/mypage/userinfo">마이 페이지</a></li>
+										<li class="d-lg-block"><input type="button" id="logoutBtn"
 											class="btn header-btn enb-loginBtn"
-											style="padding: 1.3rem 1.3rem !important;">로그아웃</a></li>
+											style="padding: 1.3rem 1.3rem !important;" value="로그아웃"></li>
 									</c:otherwise>
 								</c:choose>
 
@@ -81,3 +81,8 @@
 	</div>
 	<!-- Header End -->
 </header>
+<c:if test="${sessionScope.userId eq 'admin'}">
+	<div id="changeModeBtn" class="admin-Mode-Icon">
+	  <img src="/resources/img/admin-icon2.png" alt="adminIcon">
+	</div>
+</c:if>
