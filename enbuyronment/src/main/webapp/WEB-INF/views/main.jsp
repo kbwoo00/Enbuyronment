@@ -11,7 +11,8 @@
 <link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
 <%@include file="/WEB-INF/views/include/css.jsp" %>
 </head>
-<%@include file="/WEB-INF/views/include/header.jsp"%>
+<%@include file="/WEB-INF/views/include/header.jsp" %>
+
 <body>
 	<!-- Preloader Start -->
     <div id="preloader-active">
@@ -929,8 +930,8 @@
 			</div>
 		</div>
 		<!-- Gallery End-->
-
 	</main>
+   
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
