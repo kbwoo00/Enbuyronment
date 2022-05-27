@@ -26,11 +26,6 @@ $container-max-widths: (
   xxl: 1320px
 );
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -16px;
-}
 .order_body {
   font-family: 'SCoreDream';
   font-weight: normal;
@@ -77,6 +72,7 @@ span.price {
 
 .confirmation_part .confirmation_tittle span {
   color: #86A688 !important;
+  font-size: 1.7em;
 }
 
 .total_price {
@@ -87,12 +83,23 @@ span.price {
 	margin-top : 2.3rem;
 }
 
-.add-adr {
-	border-bottom: 0.5px solid #dee2e6;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-}
-
 #modalAddrBtn {
 	display: none;
+}
+
+.confirmation_part .single_confirmation_details ul li {
+	text-transform: none !important;
+}
+
+#toDetailOrder {
+	float: none;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+#paymentBtn {
+	margin: 0 auto;
+	margin-top: 20px;
+	height: 50px;
 }

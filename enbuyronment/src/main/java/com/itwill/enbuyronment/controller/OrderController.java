@@ -1,7 +1,5 @@
 package com.itwill.enbuyronment.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -84,7 +82,6 @@ public class OrderController {
 		
 		model.addAttribute("orderInfo", orderService.getOrder(orderNo));
 		model.addAttribute("orderProdList", orderService.getOrderProd(orderNo));
-		model.addAttribute("userInfo", userService.getUserInfo(uid));
 		
 		return "/product/order_confirm";
 	}
