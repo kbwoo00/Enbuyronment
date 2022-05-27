@@ -217,7 +217,7 @@ main {
 .mypage_sidebar {
 	width: 300px !important;
 	margin-right: 20px;
-	margin-top: 50px;
+	margin-top: 10vh;
 }
 
 .select_option_dropdown {
