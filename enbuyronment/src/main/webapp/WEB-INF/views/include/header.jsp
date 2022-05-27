@@ -29,9 +29,9 @@
 											<li><a>관리자</a>
 												<ul class="submenu enb-submenu">
 													<li><a href="/board/write">글쓰기</a></li>
-													<li><a href="/userManagement">상품등록</a></li>
-													<li><a href="/product/regist">주문내역</a></li>
-													<li><a href="/orderManagement">회원관리</a></li>
+													<li><a href="/userManagement">회원관리</a></li>
+													<li><a href="/product/regist">상품등록</a></li>
+													<li><a href="/orderManagement">주문내역</a></li>
 												</ul></li>
 										</c:if>
 									</ul>
@@ -61,7 +61,11 @@
 												<a href="/cart/view"><i class="fas fa-shopping-cart"></i></a>
 											</div>
 										</li>
-										<li><a id="myPageLink" style="color: black;" href="/mypage/userinfo">마이 페이지</a></li>
+										<li class="d-lg-block">
+										<input type="button" id="myPageBtn"
+											class="btn header-btn enb-loginBtn"
+											style="padding: 1.3rem 1.3rem !important;" value="마이페이지">
+										</li>
 										<li class="d-lg-block"><input type="button" id="logoutBtn"
 											class="btn header-btn enb-loginBtn"
 											style="padding: 1.3rem 1.3rem !important;" value="로그아웃"></li>

@@ -28,7 +28,6 @@
     <!-- Preloader Start -->
 
 	<main>
-	
 		<!-- slider Area Start -->
         <div class="slider-area ">
             <div class="mainImg-area">

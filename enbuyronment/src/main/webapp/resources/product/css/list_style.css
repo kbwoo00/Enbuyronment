@@ -39,9 +39,9 @@
     color: #fff !important;
 }
 
-.brandSort:hover, .nav-link:hover {
+.brandSort:hover {
 	cursor: pointer;
-	color: #0b1c39 !important;
+	color: #F1EF86 !important;
 }
 
 .product-img {
@@ -64,18 +64,24 @@
 
 .product_sidebar .single_sedebar input {
 	background-color: #b3c8b4 !important;
+	color: white !important;
 }
 
 .product_sidebar .single_sedebar input::placeholder {
-	color: #0b1c39 !important;
+	color: white !important;
+}
+
+.ti-search{
+	color: white !important;
 }
 
 .ti-search:hover {
+	color: #F1EF86 !important;
 	cursor: pointer;
 }
 
 #on {
-	color: #0b1c39 !important;
+	color: #F1EF86 !important;	
 }
 
 .nav-link {
@@ -83,6 +89,10 @@
 }
 
 .nav-link[aria-selected=true] {
+	color: #0b1c39 !important;
+}
+.nav-link:hover {
+	cursor: pointer;
 	color: #0b1c39 !important;
 }
 
