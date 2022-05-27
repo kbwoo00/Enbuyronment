@@ -15,6 +15,15 @@
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+<style type="text/css">
+	button:hover {
+		cursor: pointer;
+	}
+	.heartImgBox>a {
+		display: flex;
+		justify-content: center;
+	}
+</style>
 <body>
 	<br>
 	<br>
@@ -25,13 +34,11 @@
 				<div class="row justify-content-between">
 					<h3 class="col-md-auto">관심상품 목록</h3>
 					<div class="col-md-auto">
-						<a id="delBtn" class="btn header-btn enb-loginBtn mb-2"
-						style="color: white; padding: 1.3rem 1.3rem !important;">선택상품
-						삭제</a>	
-						<a id="delAllBtn" class="btn header-btn enb-loginBtn mb-2"
-						style="color: white; padding: 1.3rem 1.3rem !important;">전체 삭제</a>
+						<input type="button" id="delBtn" class="btn header-btn enb-loginBtn mb-2" 
+								style="color: white; padding: 1.3rem 1.3rem !important;" value="선택상품 삭제">
+						<input type="button" id="delAllBtn" class="btn header-btn enb-loginBtn mb-2" 
+								style="color: white; padding: 1.3rem 1.3rem !important;" value="전체 삭제">
 					</div>
-					 
 				</div>
 			</div>
 			<table class="table">
@@ -49,23 +56,22 @@
 					 <c:forEach var="heart" items="${heartList }" varStatus="status">
 						<tr>
 							<td class="align-middle"><input class="check-input"
-								type="checkbox" value="${heart.prodNo }"></td>
-							<td><a href="/product/${heart.prodNo }">
-							 	<img
-								style="margin: 0 auto; width: 150px; height: 130px;"
-								src="../upload/${heart.thumb }">
+								type="checkbox" value="${heart.prodNo }">
+							</td>
+							<td class="heartImgBox">
+								<a href="/product/${heart.prodNo }">
+							 		<img style="margin: 0 auto; width: 150px; height: 130px;" src="../upload/${heart.thumb }">
 								</a>
 							</td>
 							<td class="align-middle"><a style="color:black;" href="/product/${heart.prodNo }"><span class="productName">${heart.prodName }</span><br>
 								 <span class="brandName">[${heart.brandName }]</span></a></td>
-							 <td class="align-middle text-center">
+							<td class="align-middle text-center">
 								<div class="row mb-3 justify-content-center" id="prodPrice${status.index }">${heart.price } 원</div>
 								<div class="row justify-content-center">
 									<input type="hidden" id="prodNo${status.index }"
 											value="${heart.prodNo }">
-									<button class="enb-loginBtn"
-										id="toCartBtn${status.index }" type="button"
-										name="button" style="border-radius: 5px !important;"> 장바구니 담기 </button>
+									<button class="enb-loginBtn" id="toCartBtn${status.index }" name="button"
+											style="border-radius: 5px !important;"> 장바구니 담기 </button>
 								</div>
 							</td>
 						</tr>

@@ -31,8 +31,18 @@
 		background-color : #86a688 !important;
 		backgroud: #86a688 !important;
 	}
-	#toCartBtn {
+	#toCartBtn, modProd {
 		margin-right: 20px;
+	}
+	.card_area .product_count {
+		border: 1px solid #86a688 !important;
+	}
+	.card_area .product_count input {
+		background-color: #86a688 !important;
+		border: 1px solid #86a688 !important;
+	}
+	#soldoutBtn {
+		cursor: default;
 	}
 </style>
 </head>
@@ -79,12 +89,14 @@
 									<span>수량</span>
 									<div class="product_count_area mt-2 mb-4">
 										<div class="product_count d-inline-block">
-											<span class="product_count_item inumber-decrement amount-btn"> <i
-												class="ti-minus amount-btn"></i></span> <input
-												class="product_count_item input-number" type="text"
-												value="1" min="0" max="10" id="amount"> <span
-												class="product_count_item number-increment amount-btn"> <i
-												class="ti-plus amount-btn"></i></span>
+											<span class="product_count_item inumber-decrement amount-btn">
+												<i class="ti-minus amount-btn"></i>
+											</span>
+											<input class="product_count_item input-number" type="text"
+													value="1" min="0" max="10" id="amount">
+											<span class="product_count_item number-increment amount-btn">
+												<i class="ti-plus amount-btn"></i>
+											</span>
 										</div>
 									</div>
 									<span>가격 : ${vo.price }</span><br>
@@ -96,22 +108,19 @@
 								<div class="col" style="display: flex; justify-content: center;">
 									<c:choose>
 										<c:when test="${vo.stock eq 0 }">
-											<button class="btn enb-loginBtn" disabled>일시품절</button>
+											<input type="button" class="btn enb-loginBtn" id="soldoutBtn" disabled value="일시품절">
 										</c:when>
 										<c:otherwise>
-											<button id="toCartBtn" class="btn enb-loginBtn">장바구니 담기</button>
-											<div id="heartArea">
-											
-											</div>
+											<input type="button" id="toCartBtn" class="btn enb-loginBtn" value="장바구니 담기">
+											<div id="heartArea"></div>
 										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
 							<c:if test="${sessionScope.mode eq 'adminMode' }">
 								<div class="row justify-content-center mt-5">
-								<input type="button" value="상품 수정" id="modProd"
-									class="btn enb-loginBtn"> <input type="button"
-									value="상품 삭제" id="delProd" class="btn enb-loginBtn">
+									<input type="button" value="상품 수정" id="modProd" class="btn enb-loginBtn">
+									<input type="button" value="상품 삭제" id="delProd" class="btn enb-loginBtn">
 								</div>
 							</c:if>
 							
@@ -126,9 +135,8 @@
 	<div class="product_script_area">
 		<div class="container">
 			<nav class="nav nav-pills nav-fill justify-content-center">
-				<a class="nav-link text-center border enb-active" href="javascript:void(0);" aria-current="page" id="prodScriptBtn">
-					상품상세 </a> <a class="nav-link text-center border" href="javascript:void(0);" aria-current="page"
-					id="reviewBtn"> 리뷰 </a>
+				<a class="nav-link text-center border enb-active" href="javascript:void(0);" aria-current="page" id="prodScriptBtn"> 상품상세 </a>
+				<a class="nav-link text-center border" href="javascript:void(0);" aria-current="page" id="reviewBtn"> 리뷰 </a>
 			</nav>
 			<div class="mt-5" id="content">
 				<div class="row justify-content-center">
@@ -367,15 +375,12 @@
 			  var isHeart = "${isHeart}";
 			  
 			  if(uid == ''){
-				  heartArea.html("<button class='btn enb-loginBtn heart-btn'>" + 
-					"관심상품 추가</button>");
+				  heartArea.html("<input type='button' class='btn enb-loginBtn heart-btn' value='관심상품 추가'>");
 			  } else{
 				  if(isHeart == 'true'){
-					  heartArea.html("<button class='btn enb-loginBtn heart-btn active'>" + 
-						"관심상품 제거</button>");
+					  heartArea.html("<input type='button' class='btn enb-loginBtn heart-btn active' value='관심상품 제거'>");
 				  } else{
-					  heartArea.html("<button class='btn enb-loginBtn heart-btn'>" + 
-						"관심상품 추가</button>");
+					  heartArea.html("<input type='button' class='btn enb-loginBtn heart-btn' value='관심상품 추가'>");
 				  }
 			  }
 			  
@@ -396,7 +401,7 @@
 								}),
 								success : function() {
 									heartBtn.removeClass('active');
-									heartBtn.text('관심상품 추가');
+									heartBtn.val('관심상품 추가');
 								}
 							});
 					  } else{
@@ -410,7 +415,7 @@
 								}),
 								success : function() {
 									heartBtn.addClass('active');
-									heartBtn.text('관심상품 제거');
+									heartBtn.val('관심상품 제거');
 								}
 							});
 					  }
