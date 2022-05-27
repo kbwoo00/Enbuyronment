@@ -203,7 +203,7 @@ public class MypageController {
 		userService.modReview(review);
 	}
 	
-	@GetMapping("review/write")
+	@GetMapping("/review/write")
 	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		
 		ProductVO product = prodService.prodDetail(Integer.parseInt(prodNo));
@@ -214,7 +214,7 @@ public class MypageController {
 	}
 	
 	@ResponseBody
-	@PostMapping("review/write")
+	@PostMapping("/review/write")
 	public void writeReview(@RequestParam("prodNo") String prodNo,
 			@RequestBody ReviewVO review, HttpServletResponse response,
 			@SessionAttribute(value = "userId", required = false) String uid){
@@ -233,6 +233,18 @@ public class MypageController {
 		}
 		
 		userService.writeReview(review);
+	}
+	
+	@GetMapping("/order")
+	public String myReviewList(
+			@SessionAttribute(value = "userId", required = false) String uid,
+			Model model
+			) {
+		
+		
+//		userService.getOrderList();
+		
+		return "/user/my_order";
 	}
 	
 }
