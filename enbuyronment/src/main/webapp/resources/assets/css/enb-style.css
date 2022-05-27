@@ -11,12 +11,17 @@
 
 /* main.html CSS */
 
+/* main-area 높이 */
+main {
+	min-height: 55vh;
+}
+
 /* 로딩창 막대 색상조절 */
 .preloader-circle{
-    border-top-color: #86a688 !important;
+    border-top-color: #485549 !important;
 }
 #scrollUp {
-    background: #86a688 !important;
+    background: #485549 !important;
 }
 .admin-Mode-Icon{
     width: 50px;
@@ -24,7 +29,7 @@
     position: fixed;
     bottom: 80px;
     right: 30px;
-    background-color: #86a688;
+    background-color: #485549;
     color: #fff;
     z-index: 99;
     border-radius: 50%;
@@ -84,7 +89,7 @@
 .enb-submenu{
     width: 100% !important;
     padding: 0.4rem !important;
-    border-top : 5px solid #86a688 !important;
+    border-top : 5px solid #485549 !important;
 }
 
 .enb-submenu>li{
@@ -116,7 +121,7 @@
 .enb-loginBtn{
     font-size: 0.9em !important;
     border-radius: 0.6rem !important;
-    background:#86a688 !important;
+    background:#485549 !important;
 }
 
 .enb-loginBtn::before{
@@ -156,7 +161,7 @@
 }
 
 .order_btn {
-  background: #86A688;
+  background: #485549;
   color: #fff !important;
   display: flex;
   padding: 0px 20px;
@@ -164,7 +169,7 @@
   font-size: 18px;
   font-weight: 400;
   border: 0;
-  border: 1px solid #86A688;
+  border: 1px solid #485549;
   letter-spacing: 3px;
   text-align: center;
   text-transform: uppercase;
@@ -174,8 +179,8 @@
 }
 
 .order_btn:hover {
-  background: #86A688;
-  border: 1px solid #86A688;
+  background: #485549;
+  border: 1px solid #485549;
 }
 
 .order_btn:focus {
@@ -225,7 +230,7 @@
 }
 
 .select_option .select_option_dropdown {
-    background-color: #86A688 !important;
+    background-color: #485549 !important;
 }
 
 .mypage-menu {
@@ -238,7 +243,7 @@
 }
 
 .product_sidebar .single_sedebar input {
-	background-color: #b3c8b4 !important;
+	background-color: #485549 !important;
 }
 
 /* footer 부분 */

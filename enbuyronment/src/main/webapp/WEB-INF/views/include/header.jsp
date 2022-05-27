@@ -29,9 +29,9 @@
 											<li><a>관리자</a>
 												<ul class="submenu enb-submenu">
 													<li><a href="/board/write">글쓰기</a></li>
-													<li><a href="/userManagement">상품등록</a></li>
-													<li><a href="/product/regist">주문내역</a></li>
-													<li><a href="/orderManagement">회원관리</a></li>
+													<li><a href="/userManagement">회원관리</a></li>
+													<li><a href="/product/regist">상품등록</a></li>
+													<li><a href="/orderManagement">주문내역</a></li>
 												</ul></li>
 										</c:if>
 									</ul>
