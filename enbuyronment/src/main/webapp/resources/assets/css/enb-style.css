@@ -82,7 +82,7 @@ main {
     text-align: center;
 }
 
-.enb-mainNav>li>a:hover, #myPageLink:hover{
+.enb-mainNav>li>a:hover {
     color: #ef9d3e !important;
 }
 
@@ -118,10 +118,13 @@ main {
     background: #f1b570 !important;
 }
 
-.enb-loginBtn{
+.enb-loginBtn {
     font-size: 0.9em !important;
     border-radius: 0.6rem !important;
     background:#485549 !important;
+}
+.enb-loginBtn:hover{
+	color: #F1EF86;
 }
 
 .enb-loginBtn::before{
@@ -239,7 +242,7 @@ main {
 
 .mypage-menu:hover {
 	cursor: pointer;
-	color: #0b1c39 !important;
+	color: #F1EF86 !important;
 }
 
 .product_sidebar .single_sedebar input {

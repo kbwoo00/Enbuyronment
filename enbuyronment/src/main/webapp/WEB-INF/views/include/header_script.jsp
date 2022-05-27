@@ -28,6 +28,9 @@
 			$('#joinBtn').click(function() {
 				location.href='/user/join';
 			});
+			$('#myPageBtn').click(function() {
+				location.href='/mypage/userinfo';
+			});
 
 		});
 </script>
