@@ -22,6 +22,18 @@ html {
 	display: none;
 }
 
-a {
+tbody {
 	color: black !important;
+}
+
+th {
+ font-weight:normal !important;
+}
+
+tr {
+	border-bottom:1px solid #BBBBBB;
+}
+
+.bTitle {
+	color:black !important;
 }
