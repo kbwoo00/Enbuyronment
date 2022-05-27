@@ -22,8 +22,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.persistence.UserDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -237,8 +239,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<ReviewVO> getReviewList(String uid) {
-		return userDao.getReviewList(uid);
+	public List<ProdAndReviewVO> getReviewList(String uid, Criteria cri) {
+		return userDao.getReviewList(uid, cri);
 	}
 
 	@Override
@@ -256,6 +258,36 @@ public class UserServiceImpl implements UserService {
 	public void modAddr(UserVO user) {
 		userDao.toNormalAddr(user);
 		userDao.toDefaultAddr(user);
+	}
+
+	@Override
+	public int getReviewTotalCnt(String uid) {
+		return userDao.getReviewTotalCnt(uid);
+	}
+
+	@Override
+	public void delReview(Integer reviewNo) {
+		userDao.delReview(reviewNo);
+	}
+
+	@Override
+	public ProdAndReviewVO getReview(Integer reviewNo) {
+		return userDao.getReview(reviewNo);
+	}
+
+	@Override
+	public void modReview(ReviewVO review) {
+		userDao.modReview(review);
+	}
+
+	@Override
+	public boolean isPresentReview(ReviewVO review) {
+		return userDao.isPresentReview(review);
+	}
+
+	@Override
+	public void writeReview(ReviewVO review) {
+		userDao.writeReview(review);
 	}
 
 }

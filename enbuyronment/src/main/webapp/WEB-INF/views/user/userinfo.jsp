@@ -30,25 +30,29 @@
 
 	<!-- sidebar include조각으로 넣어주기 -->
 	<div class="container justify-content-center mt-5">
-	<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
-		
-		<div class="row justify-content-between mt-5">
+	
+		<div class="row justify-content-around mt-5">
 			<div class="col-md-2 mt-5">
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
 			<div class="col-md-8">
-			<h3>회원 정보 조회 / 수정</h3>
-				<form class="form mt-3" action="/mypage/modUser" method="post"
+			<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
+			<div class="card mb-4 rounded-3 shadow-sm">
+					<div class="card-header py-3">
+						<h3 class="my-0 fw-normal">회원 정보 조회 / 수정</h3>
+					</div>
+					<div class="card-body">
+						<form class="form mt-3" action="/mypage/modUser" method="post"
 					onsubmit="return check()">
-					<div class="row g-3">
-						<div class="col-md-8 mb-3">
+					<div class="row g-3 justify-content-center">
+						<div class="col-md-10 mb-3">
 							<label for="staticEmail" class="form-label">아이디</label>
 							<div class="input-group">
 								<input type="text" readonly class="form-control"
 									id="staticEmail" name="uid" value="${userInfo.uid }">
 							</div>
 						</div>
-						<div class="col-md-8 mb-3">
+						<div class="col-md-10 mb-3">
 							<label for="staticEmail" class="form-label">이메일</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="email" name="email"
@@ -59,7 +63,7 @@
 								</div>
 							</div>
 						</div>
-						<div class='col-md-8 mb-3'>
+						<div class='col-md-10 mb-3'>
 							<input type="button" class="form-control mb-3"
 								id="emailCheckBtn" value="인증번호 보내기" disabled="disabled">
 							<div class='input-group'>
@@ -72,7 +76,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-8 mb-3">
+						<div class="col-md-10 mb-3">
 							<label for="inputPassword" class="form-label">현재 비밀번호</label>
 							<div class="input-group">
 								<input type="password" class="form-control" id="pass"
@@ -83,28 +87,28 @@
 								</div>
 							</div>
 						</div>
-						<div class='col-md-8 mb-3'>
+						<div class='col-md-10 mb-3'>
 							<label class='form-label'>새 비밀번호</label>
 							<div class='input-group'>
 								<input type='password' class='form-control' id='newPass' name="newPass"
 								placeholder='8 ~ 16자 영문, 숫자, 특수문자 조합' readonly="readonly" required="required">
 							</div>
 						</div>
-						<div class='col-md-8 mb-3'>
+						<div class='col-md-10 mb-3'>
 							<label class='form-label'>새 비밀번호 확인</label>
 							<div class='input-group'>
 								<input type='password' class='form-control' id='newPassConfirm' readonly="readonly" required="required">
 							</div>
 						</div>
 
-						<div class="col-md-8 mb-3">
+						<div class="col-md-10 mb-3">
 							<label for="inputPassword" class="form-label">이름</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="name" name="name"
 									value="${userInfo.name }">
 							</div>
 						</div>
-						<div class="col-md-8 mb-3">
+						<div class="col-md-10 mb-3">
 							<label for="inputPassword" class="form-label">연락처</label>
 							<div class="input-group">
 								<input type="tel" class="form-control" id="phone" name="phone"
@@ -113,7 +117,7 @@
 						</div>
 						<c:forEach var="addr" items="${userAddrList }">
 		         			<c:if test="${addr.status eq 0 }">
-	         					<div class="col-md-8 mb-3">
+	         					<div class="col-md-10 mb-3">
 									<label class="form-label fs-5 fw-bold">주소(기본 배송지)</label>
 									<input type="hidden" name="addrNo" value="${addr.addrNo }">
 									<input type="text" class="form-control mb-3" id="addrName" name="addrName"
@@ -125,22 +129,22 @@
 											value="기본 배송지 변경" />
 									</div>
 								</div>
-								<div class="col-md-8 mb-3">
+								<div class="col-md-10 mb-3">
 									<input type="text" class="form-control" id="addr" 
 										placeholder="주소" required readonly value="${addr.addr }">
 								</div>
-								<div class="col-md-8 mb-3">
+								<div class="col-md-10 mb-3">
 									<input type="text" class="form-control" id="dtAddr"
 										value="${addr.dtAddr }" placeholder="상세주소"  required readonly>
 								</div>
-								<div class="col-md-8 mb-3">
+								<div class="col-md-10 mb-3">
 									<input type="text" id="exAddr" class="form-control"
 										placeholder="기타항목" readonly value="${addr.exAddr }">
 								</div>
 		         			</c:if>
 						</c:forEach>
 						
-						<div class="col-md-8 mt-5 mb-3">
+						<div class="col-md-10 mt-5 mb-3">
 							<div class="input-group">
 								<input type="submit" class="form-control btn enb-loginBtn"
 									value="변경사항 적용하기">
@@ -148,6 +152,9 @@
 						</div>
 					</div>
 				</form>
+					</div>
+			</div>
+				
 			</div>
 		</div>
 	</div>
@@ -166,7 +173,6 @@
 								      	<div class="row col-md-10 col-form-label order-input" style="margin-top: 0rem;">
 								      		<div class="col-md-8">
 								      			<select id="addrList" style="width:80%">
-								      				
 							         				<c:forEach var="addr" items="${userAddrList }">
 							         					<c:choose>
 							         						<c:when test="${addr.status eq 0 }">

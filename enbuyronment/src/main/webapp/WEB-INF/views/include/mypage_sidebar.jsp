@@ -1,6 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!-- 사이드바  -->	
 <div class="mypage-sidebar ">
+	<div class="sub-title">
+		<h3>마이페이지</h3>
+	</div>
 	<div class="mypage_sidebar">
 		<div class="single_sedebar">
 			<div class="select_option">
