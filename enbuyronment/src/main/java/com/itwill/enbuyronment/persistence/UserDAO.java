@@ -3,8 +3,10 @@ package com.itwill.enbuyronment.persistence;
 import java.util.List;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 public interface UserDAO {
 	
@@ -36,7 +38,7 @@ public interface UserDAO {
 	public void modUser(UserVO user);
 
 	// 회원 리뷰 목록 가져오기 동작
-	public List<ReviewVO> getReviewList(String uid);
+	public List<ProdAndReviewVO> getReviewList(String uid, Criteria cri);
 
 	public void addAddr(AddressVO addr);
 
@@ -45,4 +47,16 @@ public interface UserDAO {
 	public void toDefaultAddr(UserVO user);
 
 	public void toNormalAddr(UserVO user);
+
+	public int getReviewTotalCnt(String uid);
+
+	public void delReview(Integer reviewNo);
+
+	public ProdAndReviewVO getReview(Integer reviewNo);
+
+	public void modReview(ReviewVO review);
+
+	public boolean isPresentReview(ReviewVO review);
+
+	public void writeReview(ReviewVO review);
 }

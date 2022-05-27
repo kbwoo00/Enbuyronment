@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
+import com.itwill.enbuyronment.domain.paging.PageMaker;
 import com.itwill.enbuyronment.service.ProdService;
 import com.itwill.enbuyronment.service.UserService;
 
@@ -109,9 +114,19 @@ public class MypageController {
 	}
 	
 	@GetMapping("/review")
-	public String myReview(@SessionAttribute(value = "userId", required = false) String uid) {
+	public String myReview(@SessionAttribute(value = "userId", required = false) String uid, 
+			@ModelAttribute Criteria cri, Model model
+			) {
 		
-		List<ReviewVO> reviewList = userService.getReviewList(uid);
+		cri.setPerDataCnt(5);
+		List<ProdAndReviewVO> reviewList = userService.getReviewList(uid, cri);
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(userService.getReviewTotalCnt(uid));
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
 		log.info("리뷰 목록 = {}", reviewList);
 		
 		return "/user/my_review";
@@ -158,5 +173,66 @@ public class MypageController {
 			userService.delAddr(delAddr);
 		}
 	}
-
+	
+	@ResponseBody
+	@PostMapping("/review/delete")
+	public void delReview(@RequestBody String reviewNo) {
+		userService.delReview(Integer.parseInt(reviewNo));
+	}
+	
+	@GetMapping("/review/{reviewNo}/update")
+	public String modReviewForm(@PathVariable("reviewNo") String reviewNo,
+			@SessionAttribute(value = "userId", required = false) String uid, Model model
+			) {
+		
+		ProdAndReviewVO review = userService.getReview(Integer.parseInt(reviewNo));
+		
+		model.addAttribute("review", review);
+		
+		return "/user/modify_review";
+	}
+	
+	@ResponseBody
+	@PostMapping("/review/{reviewNo}/update")
+	public void modReview(@PathVariable("reviewNo") String reviewNo,
+			@SessionAttribute(value = "userId", required = false) String uid,
+			@RequestBody ReviewVO review
+			) {
+		log.info("review = {}", review);
+		review.setReviewNo(Integer.parseInt(reviewNo));
+		userService.modReview(review);
+	}
+	
+	@GetMapping("review/write")
+	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
+		
+		ProductVO product = prodService.prodDetail(Integer.parseInt(prodNo));
+		log.info("상품 = {}", product);
+		model.addAttribute("product", product);
+		
+		return "/user/write_review";
+	}
+	
+	@ResponseBody
+	@PostMapping("review/write")
+	public void writeReview(@RequestParam("prodNo") String prodNo,
+			@RequestBody ReviewVO review, HttpServletResponse response,
+			@SessionAttribute(value = "userId", required = false) String uid){
+		
+		review.setProdNo(Integer.parseInt(prodNo));
+		review.setUid(uid);
+		
+		// 기존에 상품에 작성한 리뷰가 있으면 또 작성하게 하면 안됨.
+		if(userService.isPresentReview(review)) {
+			try {
+				response.sendError(400);
+				return;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		userService.writeReview(review);
+	}
+	
 }

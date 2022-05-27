@@ -225,4 +225,5 @@ public class UserTest {
 		newUser.setAddrName("학교");
 		userDao.toDefaultAddr(newUser);
 	}
+	
 }

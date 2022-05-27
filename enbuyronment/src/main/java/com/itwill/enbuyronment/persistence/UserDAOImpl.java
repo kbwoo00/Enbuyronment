@@ -10,8 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.enbuyronment.domain.AddressVO;
+import com.itwill.enbuyronment.domain.ProdAndReviewVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
+import com.itwill.enbuyronment.domain.paging.Criteria;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -121,8 +123,14 @@ public class UserDAOImpl implements UserDAO {
 
 	// 회원 리뷰 목록 가져오기 동작
 	@Override
-	public List<ReviewVO> getReviewList(String uid) {
-		return sqlSession.selectList(NAMESPACE + ".getUserReviews", uid);
+	public List<ProdAndReviewVO> getReviewList(String uid, Criteria cri) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("pageStart", cri.getPageStart());
+		map.put("perDataCnt", cri.getPerDataCnt());
+		
+		return sqlSession.selectList(NAMESPACE + ".getUserReviews", map);
 	}
 
 	@Override
@@ -143,6 +151,36 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void toNormalAddr(UserVO user) {
 		sqlSession.update(NAMESPACE + ".toNormalAddr", user);
+	}
+
+	@Override
+	public int getReviewTotalCnt(String uid) {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewTotalCnt", uid);
+	}
+
+	@Override
+	public void delReview(Integer reviewNo) {
+		sqlSession.delete(NAMESPACE + ".delReview", reviewNo);
+	}
+
+	@Override
+	public ProdAndReviewVO getReview(Integer reviewNo) {
+		return sqlSession.selectOne(NAMESPACE + ".getReview", reviewNo);
+	}
+
+	@Override
+	public void modReview(ReviewVO review) {
+		sqlSession.update(NAMESPACE + ".modReview", review);
+	}
+
+	@Override
+	public boolean isPresentReview(ReviewVO review) {
+		return sqlSession.selectOne(NAMESPACE + ".isPresentReview", review);
+	}
+
+	@Override
+	public void writeReview(ReviewVO review) {
+		sqlSession.insert(NAMESPACE + ".writeReview", review);
 	}
 	
 }

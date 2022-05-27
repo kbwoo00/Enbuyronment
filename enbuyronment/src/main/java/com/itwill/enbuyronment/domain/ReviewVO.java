@@ -11,8 +11,10 @@ import lombok.ToString;
 @ToString
 public class ReviewVO {
 
+	private Integer reviewNo;
 	private String uid;
 	private String star;
 	private String comment;
 	private Timestamp regdate;
+	private Integer prodNo;
 }
