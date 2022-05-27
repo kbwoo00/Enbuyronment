@@ -21,6 +21,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<!-- Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -77,7 +78,7 @@
 		</div>
 	</div>
 
-
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
@@ -131,6 +132,7 @@
 			});
 		});
 	</script>
+	<script src="/resources/user/js/mypage.js" type="text/javascript"></script>
 	
 	<script src="https://kit.fontawesome.com/58cff89876.js" crossorigin="anonymous"></script>
 </body>
