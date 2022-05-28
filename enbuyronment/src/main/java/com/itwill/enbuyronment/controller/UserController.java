@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.controller;
 
+import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -54,7 +56,9 @@ public class UserController {
 	@PostMapping(value = "/checkEmail", produces = "application/text; charset=UTF-8")
 	public String checkEmail(@RequestBody String email) {
 		log.info(email);
-		return userService.checkEmail(email);
+		String certiNum = String.valueOf(UUID.randomUUID()).substring(1, 8);
+		userService.checkEmail(email, certiNum);
+		return certiNum;
 	}
 
 	// 로그인
@@ -65,8 +69,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public String login(@RequestParam(defaultValue = "/", value = "redirectUrl") String redirectUrl,
-			@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr
-			) {
+			@ModelAttribute UserVO vo, HttpSession session, RedirectAttributes rttr) {
 		UserVO user = userService.login(vo);
 
 		if (user == null) {
@@ -126,9 +129,36 @@ public class UserController {
 		log.info("findPwPOST() 호출");
 		log.info(vo + "");
 
-		String result = userService.findPw(vo) + "";
+		UserVO voTmp = userService.isExistUser(vo);
 
-		return result;
+		if (voTmp == null) { // id 입력 오류
+			return "3";
+		}
+
+		if (voTmp.getEmail().equals(vo.getEmail())) { // id와 email 모두 일치
+			log.info("회원 확인됨, 임시비밀번호 생성");
+
+			String tempPass = String.valueOf(UUID.randomUUID()).substring(1, 8);
+			log.info("임시 비밀번호 : " + tempPass);
+
+			// 비밀번호 업데이트
+			voTmp.setPass(tempPass);
+
+			if (userService.canModPw(voTmp) == 1) {
+				log.info("DB 비밀번호 업데이트 성공");
+
+				userService.updatePw(voTmp, tempPass);
+
+				return "1";
+
+			} else { // 비밀번호 업데이트 실패
+				return "0";
+			}
+
+		} else { // email 입력 오류
+			return "2";
+		}
+
 	}
 
 	// 관리자 모드로 변경
