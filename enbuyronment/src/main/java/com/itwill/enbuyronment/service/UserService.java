@@ -1,11 +1,9 @@
 package com.itwill.enbuyronment.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
-import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
@@ -25,7 +23,9 @@ public interface UserService {
 	public String findId(UserVO vo);
 
 	// 비밀번호 찾기
-	public Integer findPw(UserVO vo);
+	public void updatePw(UserVO vo, String tempPass);
+	public UserVO isExistUser(UserVO vo);
+	public Integer canModPw(UserVO vo);
 
 	// 이메일 인증
 	public void checkEmail(String email, String certiNum);

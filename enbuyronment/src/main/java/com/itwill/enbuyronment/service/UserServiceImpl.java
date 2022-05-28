@@ -1,19 +1,14 @@
 package com.itwill.enbuyronment.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
-import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -80,90 +75,50 @@ public class UserServiceImpl implements UserService {
 
 	// 비밀번호 찾기
 	@Override
-	public Integer findPw(UserVO vo) {
-		log.info("findPw(vo)");
+	public void updatePw(UserVO vo, String tempPass) {
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587"); // 구글 포트번호
+		props.put("mail.smtp.auth", "true"); // 인증절차 필요함(앱 비밀번호)
+		props.put("mail.smtp.starttls.enable", "true"); // TLS
 
-		UserVO voTmp = userDao.getUser(vo.getUid());
-		
-		log.info(voTmp+"");
-
-		if (voTmp != null) {
-			if (voTmp.getEmail().equals(vo.getEmail())) { // id와 email 모두 일치
-
-				log.info("회원 확인됨, 임시비밀번호 생성");
-
-				// 임시 비밀번호 생성
-				int index = 0;
-				char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E',
-						'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-						'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-						'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-
-				StringBuffer password = new StringBuffer();
-				Random random = new Random();
-
-				for (int i = 0; i < 8; i++) {
-					double rd = random.nextDouble();
-					index = (int) (charSet.length * rd);
-
-					password.append(charSet[index]);
-				}
-				log.info("임시 비밀번호 : " + password);
-
-				// 비밀번호 업데이트
-				voTmp.setPass(password.toString());
-
-				if (userDao.modPw(voTmp) == 1) {
-					log.info("DB 비밀번호 업데이트 성공");
-
-					// 메일보내기
-					Properties props = new Properties();
-					props.put("mail.smtp.host", "smtp.gmail.com");
-					props.put("mail.smtp.port", "587"); // 구글 포트번호
-					props.put("mail.smtp.auth", "true"); // 인증절차 필요함(앱 비밀번호)
-					props.put("mail.smtp.starttls.enable", "true"); // TLS
-
+		/* 이메일로 업데이트 된 비밀번호 보내기(멀티쓰레딩) */
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(3000);
 					Session session = Session.getDefaultInstance(props, new Authenticator() {
-
 						@Override
 						protected PasswordAuthentication getPasswordAuthentication() {
 							return new PasswordAuthentication(sender, appPw); // 구글계정 및 앱 비밀번호 체크
 						}
-
 					});
+					
+					Message msg = new MimeMessage(session);
 
-					try {
-						Message msg = new MimeMessage(session);
+					msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
+					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getEmail(), vo.getUid())); // 받는계정
+					msg.setSubject("[ENBUYRONMENT] 임시 비밀번호입니다.");
+					msg.setText("회원님의 임시 비밀번호는 " + tempPass + " 입니다.");
+					Transport.send(msg);
 
-						msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
-						msg.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getEmail(), vo.getUid())); // 받는계정
-						msg.setSubject("[ENBUYRONMENT] 임시 비밀번호입니다.");
-						msg.setText("회원님의 임시 비밀번호는 " + password + " 입니다.");
-						Transport.send(msg);
+					log.info("메일 발송 완료");
 
-						log.info("메일 발송 완료");
-
-					} catch (AddressException e) {
-						e.printStackTrace();
-					} catch (MessagingException e) {
-						e.printStackTrace();
-					} catch (UnsupportedEncodingException e) {
-						e.printStackTrace();
-					}
-
-					return 1;
-
-				} else { // 비밀번호 업데이트 실패
-					return 0;
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-
-			} else { // email 입력 오류
-				return 2;
 			}
-
-		} else { // id 입력 오류
-			return 3;
-		}
+		}).start();;
+	}
+	
+	@Override
+	public UserVO isExistUser(UserVO vo) {
+		return userDao.getUser(vo.getUid());
+	}
+	@Override
+	public Integer canModPw(UserVO vo) {
+		return userDao.modPw(vo);
 	}
 
 	@Override
@@ -175,6 +130,7 @@ public class UserServiceImpl implements UserService {
 		props.put("mail.smtp.auth", "true"); // 인증절차 필요함(앱 비밀번호)
 		props.put("mail.smtp.starttls.enable", "true"); // TLS
 		
+		/*  회원인증 */
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -187,32 +143,23 @@ public class UserServiceImpl implements UserService {
 						}
 					});
 					
-					try {
-						Message msg = new MimeMessage(session);
+					Message msg = new MimeMessage(session);
 
-						msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
-						msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는계정
-						msg.setSubject("[ENBUYRONMENT] 인증번호 입니다.");
-						msg.setText("회원님의 인증번호는 " + certiNum + " 입니다.");
-						Transport.send(msg);
+					msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
+					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는계정
+					msg.setSubject("[ENBUYRONMENT] 인증번호 입니다.");
+					msg.setText("회원님의 인증번호는 " + certiNum + " 입니다.");
+					Transport.send(msg);
 
-						log.info("메일 발송 완료");
-						return;
-
-					} catch (Exception e) {
-						return;
-					}
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					log.info("메일 발송 완료");
+					return;
+					
+				} catch (Exception e) {
+					return;
 				}
 				
 			}
 		}).start();;
-		
-
-		
-		
 	}
 
 	// 회원정보 조회
@@ -300,5 +247,7 @@ public class UserServiceImpl implements UserService {
 	public void writeReview(ReviewVO review) {
 		userDao.writeReview(review);
 	}
+
+	
 
 }
