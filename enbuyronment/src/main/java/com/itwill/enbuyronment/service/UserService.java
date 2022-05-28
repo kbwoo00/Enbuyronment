@@ -28,7 +28,7 @@ public interface UserService {
 	public Integer findPw(UserVO vo);
 
 	// 이메일 인증
-	public String checkEmail(String email);
+	public void checkEmail(String email, String certiNum);
 
 	public void withdrawal(UserVO user);
 	

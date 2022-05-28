@@ -167,40 +167,51 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String checkEmail(String email) {
-		
-		String certiNum = String.valueOf(UUID.randomUUID()).substring(1,8); 
+	public void checkEmail(String email, String certiNum) {
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587"); // 구글 포트번호
 		props.put("mail.smtp.auth", "true"); // 인증절차 필요함(앱 비밀번호)
 		props.put("mail.smtp.starttls.enable", "true"); // TLS
-
-		Session session = Session.getDefaultInstance(props, new Authenticator() {
-
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(sender, appPw); // 구글계정 및 앱 비밀번호 체크
-			}
-
-		});
 		
-		try {
-			Message msg = new MimeMessage(session);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(5000);
+					Session session = Session.getDefaultInstance(props, new Authenticator() {
+						@Override
+						protected PasswordAuthentication getPasswordAuthentication() {
+							return new PasswordAuthentication(sender, appPw); // 구글계정 및 앱 비밀번호 체크
+						}
+					});
+					
+					try {
+						Message msg = new MimeMessage(session);
 
-			msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는계정
-			msg.setSubject("[ENBUYRONMENT] 인증번호 입니다.");
-			msg.setText("회원님의 인증번호는 " + certiNum + " 입니다.");
-			Transport.send(msg);
+						msg.setFrom(new InternetAddress(sender, "ENBUYRONMENT")); // 보내는 계정
+						msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는계정
+						msg.setSubject("[ENBUYRONMENT] 인증번호 입니다.");
+						msg.setText("회원님의 인증번호는 " + certiNum + " 입니다.");
+						Transport.send(msg);
 
-			log.info("메일 발송 완료");
-			return certiNum;
+						log.info("메일 발송 완료");
+						return;
 
-		} catch (Exception e) {
-			return "인증실패";
-		}
+					} catch (Exception e) {
+						return;
+					}
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		}).start();;
+		
+
+		
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.itwill.enbuyronment.controller;
 
+import java.util.UUID;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -54,7 +56,9 @@ public class UserController {
 	@PostMapping(value = "/checkEmail", produces = "application/text; charset=UTF-8")
 	public String checkEmail(@RequestBody String email) {
 		log.info(email);
-		return userService.checkEmail(email);
+		String certiNum = String.valueOf(UUID.randomUUID()).substring(1,8);
+		userService.checkEmail(email, certiNum);
+		return certiNum;
 	}
 
 	// 로그인
