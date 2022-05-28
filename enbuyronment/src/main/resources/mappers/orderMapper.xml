@@ -8,14 +8,16 @@
 
 	<!-- 주문정보 추가 동작 -->
 	<insert id="insertOrder">
-		insert into order_detail(order_no, uid, point_down, point_up, addr_name, postcode, addr, dt_addr, ex_addr, receiver, phone, request)
-		values(#{orderNo}, #{uid}, ${pointDown}, ${pointUp}, #{addrName}, ${postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{receiver}, #{phone}, #{request})
+		insert into order_detail(
+			order_no, total_price, uid, point_down, point_up, addr_name, postcode, addr, dt_addr, ex_addr, receiver, phone, request)
+			values(#{orderNo}, ${totalPrice}, #{uid}, ${pointDown}, ${pointUp},
+			#{addrName}, ${postcode}, #{addr}, #{dtAddr}, #{exAddr}, #{receiver}, #{phone}, #{request})
 	</insert>
 	
 	<!-- 주문상품 정보 추가 동작 -->
 	<insert id="insertOrderProd">
-		insert into order_product(order_no, prod_name, price, amount)
-		select order_no, #{prodName}, ${price}, ${amount} from order_detail
+		insert into order_product(order_no, prod_name, price, amount, prod_no)
+		values(#{orderNo}, #{cvo.prodName}, ${cvo.price}, ${cvo.amount}, ${cvo.prodNo})
 	</insert>
 	
 	<!-- 장바구니 삭제 동작 -->

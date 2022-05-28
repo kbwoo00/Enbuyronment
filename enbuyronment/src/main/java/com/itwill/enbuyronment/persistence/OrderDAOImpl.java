@@ -1,6 +1,8 @@
 package com.itwill.enbuyronment.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,8 +30,13 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		sqlSession.insert(NAMESPACE+".insertOrder", ovo);
 		
+		Map<String, Object> data = new HashMap();
+		data.put("orderNo", ovo.getOrderNo());
+		
 		for(int i=0; i<cvo.size(); i++) {
-			sqlSession.insert(NAMESPACE+".insertOrderProd", cvo.get(i));
+			data.put("cvo", cvo.get(i));
+			
+			sqlSession.insert(NAMESPACE+".insertOrderProd", data);
 			sqlSession.update(NAMESPACE+".minusStock", cvo.get(i));
 		}
 		
