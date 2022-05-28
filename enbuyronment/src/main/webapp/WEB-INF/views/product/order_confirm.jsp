@@ -85,7 +85,7 @@
                    <tr>
                      <th class="col-8"><span>${orderProd.prodName }</span></th>
                      <th class="col-2 text-center">${orderProd.amount }</th>
-                     <th class="col-2 text-center"><span class="price${status.index }">${orderProd.price }</span></th>
+                     <th class="col-2 text-center"><span class="price${status.index }">${orderProd.price*orderProd.amount }</span></th>
                    </tr>
                  </c:forEach>
                 <tr>
