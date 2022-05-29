@@ -271,12 +271,24 @@ public class UserServiceImpl implements UserService {
 
 		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new HashMap<OrderVO, List<OrderProdVO>>();
 		for (OrderVO userOrder : userOrders) {
-			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder.getOrderNo()));
+			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder));
 		}
 		
 		return orderAndProduct;
 	}
 
-	
+	@Override
+	public List<OrderProdVO> getOrderProdList(OrderVO order) {
+		return userDao.getProdsByOrderNo(order);
+	}
+
+	@Override
+	public Integer prodTotalprice(List<OrderProdVO> prodList) {
+		Integer prodTotalprice = 0;
+		for (OrderProdVO orderProd : prodList) {
+			prodTotalprice += (orderProd.getAmount() * orderProd.getPrice());
+		}
+		return prodTotalprice;
+	}
 
 }

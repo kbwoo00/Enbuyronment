@@ -78,5 +78,9 @@ public interface UserService {
 
 	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri);
 
+	public List<OrderProdVO> getOrderProdList(OrderVO order);
+
+	public Integer prodTotalprice(List<OrderProdVO> prodList);
+
 	
 }

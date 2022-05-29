@@ -12,13 +12,6 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="/resources/assets/img/favicon.ico">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-<style type="text/css">
-	.fa-star{
-		color: #ffd400;
-		cursor: pointer;
-	}
-
-</style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
@@ -76,7 +69,7 @@
 						</div>
 						
 						<c:forEach var="prod" items="${order.value }">
-							<div class="card">
+							<div class="card mb-3">
 						      <div class="card-body">
 						      	<div class="row justify-content-around">
 						      		<div class="col-md-auto">
@@ -126,7 +119,7 @@
 					<ul class="pagination">
 						<c:if test="${pageInfo.prev }">
 							<li class="page-item"><a class="page-link"
-								href="/mypage/order?page=${pageInfo.startPage - 1}"
+								href="/mypage/orderList?page=${pageInfo.startPage - 1}"
 								aria-label="Previous"> <i class="ti-angle-left"></i>
 							</a></li>
 						</c:if>
@@ -135,17 +128,17 @@
 							<c:choose>
 								<c:when test="${i == presentPage }">
 									<li class="page-item active"><a class="page-link "
-										href="/mypage/order?page=${i }">${i }</a></li>
+										href="/mypage/orderList?page=${i }">${i }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link active"
-										href="/mypage/order?page=${i }">${i }</a></li>
+										href="/mypage/orderList?page=${i }">${i }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:if test="${pageInfo.next && pageInfo.endPage > 0  }">
 							<li class="page-item"><a class="page-link"
-								href="/mypage/order?page=${pageInfo.endPage + 1}"
+								href="/mypage/orderList?page=${pageInfo.endPage + 1}"
 								aria-label="Next"> <i class="ti-angle-right"></i>
 							</a></li>
 						</c:if>

@@ -197,8 +197,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<OrderProdVO> getProdsByOrderNo(String orderNo) {
-		return sqlSession.selectList(NAMESPACE + ".getProdsByOrderNo", orderNo);
+	public List<OrderProdVO> getProdsByOrderNo(OrderVO order) {
+		return sqlSession.selectList(NAMESPACE + ".getProdsByOrderNo", order);
 	}
-	
 }

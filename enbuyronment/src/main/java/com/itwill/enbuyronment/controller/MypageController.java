@@ -33,6 +33,7 @@ import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.paging.PageMaker;
+import com.itwill.enbuyronment.service.OrderService;
 import com.itwill.enbuyronment.service.ProdService;
 import com.itwill.enbuyronment.service.UserService;
 
@@ -47,6 +48,8 @@ public class MypageController {
 	private UserService userService;
 	@Inject
 	private ProdService prodService;
+	@Inject
+	private OrderService orderService;
 
 	@ModelAttribute("userInfo")
 	public UserVO getUserInfo(@SessionAttribute(value = "userId", required = false) String uid) {
@@ -239,8 +242,8 @@ public class MypageController {
 		userService.writeReview(review);
 	}
 	
-	@GetMapping("/order")
-	public String myReviewList(
+	@GetMapping("/orderList")
+	public String myOrderList(
 			@SessionAttribute(value = "userId", required = false) String uid,
 			Model model, @ModelAttribute Criteria cri
 			) {
@@ -257,6 +260,22 @@ public class MypageController {
 		model.addAttribute("orderList", orderAndProdList);
 		log.info("주문번호, 상품내역 = {}", orderAndProdList);
 		return "/user/my_order";
+	}
+	
+	@GetMapping("/order/{orderNo}")
+	public String myOrderDetail(@PathVariable("orderNo") String orderNo, 
+			@SessionAttribute(value = "userId", required = false) String uid
+			,Model model) {
+		OrderVO order = orderService.getOrder(orderNo);
+		order.setUid(uid);
+		List<OrderProdVO> prodList = userService.getOrderProdList(order);
+		model.addAttribute("prodList", prodList);
+		model.addAttribute("orderInfo", order);
+		model.addAttribute("prodTotalPrice", userService.prodTotalprice(prodList));
+		log.info("주문상품목록 = {}", prodList);
+		log.info("주문정보 = {}", order);
+		
+		return "/user/my_orderDetail";
 	}
 	
 }

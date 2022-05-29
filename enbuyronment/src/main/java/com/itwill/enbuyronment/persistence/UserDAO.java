@@ -68,5 +68,5 @@ public interface UserDAO {
 
 	public List<OrderVO> getUserOrders(Map<String, Object> map);
 
-	public List<OrderProdVO> getProdsByOrderNo(String orderNo);
+	public List<OrderProdVO> getProdsByOrderNo(OrderVO order);
 }

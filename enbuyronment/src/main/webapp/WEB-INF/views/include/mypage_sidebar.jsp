@@ -10,7 +10,7 @@
 				<div class="select_option_dropdown" style="width:80% !important;">
 					<p><a class="mypage-menu" href="/mypage/userinfo">회원정보 조회 및 수정</a></p>
 					<p><a class="mypage-menu" href="/heart/view">찜 목록</a></p>
-					<p><a class="mypage-menu" href="/mypage/order">주문 내역</a></p>
+					<p><a id="orderLink" class="mypage-menu" href="/mypage/orderList">주문 내역</a></p>
 					<p><a class="mypage-menu" href="/mypage/review">나의 리뷰 관리</a></p>
 					<p><a class="mypage-menu" href="/mypage/withdrawal">회원 탈퇴</a></p>
 				</div>
