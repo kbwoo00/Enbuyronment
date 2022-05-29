@@ -1,6 +1,9 @@
 package com.itwill.enbuyronment.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.inject.Inject;
@@ -18,7 +21,10 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.OrderProdVO;
+import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.persistence.UserDAO;
@@ -246,6 +252,29 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void writeReview(ReviewVO review) {
 		userDao.writeReview(review);
+	}
+
+	@Override
+	public Integer getUserOrderTotalCnt(String uid) {
+		return userDao.getUserOrderTotalCnt(uid);
+	}
+
+	@Override
+	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("pageStart", cri.getPageStart());
+		map.put("perDataCnt", cri.getPerDataCnt());
+		List<OrderVO> userOrders = userDao.getUserOrders(map);
+		log.info("유저 주문내역 페이지당 개수 = {}", userOrders.size());
+		log.info("유저 주문내역 = {}", userOrders);
+
+		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new HashMap<OrderVO, List<OrderProdVO>>();
+		for (OrderVO userOrder : userOrders) {
+			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder.getOrderNo()));
+		}
+		
+		return orderAndProduct;
 	}
 
 	

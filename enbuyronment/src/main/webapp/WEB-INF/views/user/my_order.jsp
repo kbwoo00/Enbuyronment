@@ -50,10 +50,109 @@
 					<div class="card-header py-3">
 						<h3 class="my-0 fw-normal">주문 내역</h3>
 					</div>
-					<div class="card-body">
+					<div class="row justify-content-around mt-2 mb-2 align-items-center p-2">
+						<strong>기간별로 보기</strong>
+						<input class="btn enb-loginBtn" type="button" value="1주일" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+						<input class="btn enb-loginBtn" type="button" value="1개월" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+						<input class="btn enb-loginBtn" type="button" value="3개월" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+						<input class="btn enb-loginBtn" type="button" value="6개월" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+						<input class="btn enb-loginBtn" type="button" value="전체" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+					</div>
+					<div class="card-body border-top">
+					<div class="d-flex flex-column align-items-stretch flex-shrink-0">
+						<c:forEach var="order" items="${orderList }" varStatus="status">
+						<div class="list-group list-group-flush border-bottom scrollarea mt-3">
+						<div class="row justify-content-between mb-3">
+							<div class="col-md-auto">
+								<h4><fmt:formatDate value="${order.key.orderDate }" pattern="yyyy년 MM월 dd일"/> 주문</h4>
+								<h5>[${order.key.status }]</h5>
+							</div>
+							<div class="col-md-4">
+								<a style="color: blue; font-size: 20px;" href="/mypage/order/${order.key.orderNo }"><span class="align-middle">주문 상세</span></a>
+								<c:if test="${order.key.status == '배송 준비' }">
+									<input class="btn enb-loginBtn" id="cancelOrderBtn${status.count }" type="button" value="주문 취소" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+								</c:if>
+							</div>
+						</div>
 						
+						<c:forEach var="prod" items="${order.value }">
+							<div class="card">
+						      <div class="card-body">
+						      	<div class="row justify-content-around">
+						      		<div class="col-md-auto">
+						      			<a href="/product/${prod.prodNo }" style="color: black;">
+									      <img class="img-thumbnail" alt="#" src="/upload/${prod.thumb }" width="130px;" height="130px;">
+						      			</a>
+						      		</div>
+						      		<div class="col-md-8">
+					      				<div class="row mb-1">
+					      					<a href="/product/${prod.prodNo }" style="color: black; font-size: 20px; font-weight: bold;">
+					      						<span>[${prod.brandName}] ${prod.prodName }</span>
+					      					</a>
+					      				</div>
+				      					<a href="/product/${prod.prodNo }" style="color: black;">
+									        <div class="row justify-content-between mb-4">
+											        <span>${prod.price } 원</span>
+											        <span>${prod.amount } 개</span>
+									        </div>
+				      					</a>
+								       	<c:if test="${order.key.status == '배송 완료' }">
+									        <div class="row justify-content-end">
+									        	<div class="col-md-3">
+									        		<input type="hidden" value="${prod.prodNo }">
+										        <a href="/mypage/review/write?prodNo=${prod.prodNo }">
+											        <input class="btn enb-loginBtn me-1" type="button" value="리뷰 작성" style="padding: 1.3rem 1.3rem !important;">
+										        </a>	
+									        	</div>
+									        	<div class="col-md-3">
+										        	<input class="btn enb-loginBtn me-1" type="button" value="상품 문의" style="padding: 1.3rem 1.3rem !important;">
+									        	</div>
+									        </div>
+								       	</c:if>
+						      		</div>
+						      	</div>
+						      </div>
+					  	  	</div>
+						</c:forEach>
+						</div>
+						</c:forEach>
+					</div>
 					</div>
 				</div>
+				<!-- 페이지 버튼 그룹 -->
+			  <div class="row justify-content-center">
+				<nav class="blog-pagination d-flex"
+					aria-label="Page navigation example">
+					<ul class="pagination">
+						<c:if test="${pageInfo.prev }">
+							<li class="page-item"><a class="page-link"
+								href="/mypage/order?page=${pageInfo.startPage - 1}"
+								aria-label="Previous"> <i class="ti-angle-left"></i>
+							</a></li>
+						</c:if>
+						<c:forEach begin="${pageInfo.startPage }"
+							end="${pageInfo.endPage }" var="i">
+							<c:choose>
+								<c:when test="${i == presentPage }">
+									<li class="page-item active"><a class="page-link "
+										href="/mypage/order?page=${i }">${i }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link active"
+										href="/mypage/order?page=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${pageInfo.next && pageInfo.endPage > 0  }">
+							<li class="page-item"><a class="page-link"
+								href="/mypage/order?page=${pageInfo.endPage + 1}"
+								aria-label="Next"> <i class="ti-angle-right"></i>
+							</a></li>
+						</c:if>
+					</ul>
+				</nav>
+			</div>
+			<!-- 페이지 버튼 그룹 -->
 			</div>
 		</div>
 	</div>
