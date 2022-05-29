@@ -278,4 +278,16 @@ public class MypageController {
 		return "/user/my_orderDetail";
 	}
 	
+	@ResponseBody
+	@PostMapping("/order/cancel")
+	public void cancelOrder(@RequestBody String orderNo,
+			@SessionAttribute(value = "userId", required = false) String uid
+			) {
+		
+		OrderVO order = new OrderVO();
+		order.setOrderNo(orderNo);
+		order.setUid(uid);
+		
+	}
+	
 }

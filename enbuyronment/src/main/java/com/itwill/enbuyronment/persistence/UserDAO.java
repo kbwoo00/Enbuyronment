@@ -69,4 +69,6 @@ public interface UserDAO {
 	public List<OrderVO> getUserOrders(Map<String, Object> map);
 
 	public List<OrderProdVO> getProdsByOrderNo(OrderVO order);
+
+	public void cancelOrder(OrderVO order);
 }

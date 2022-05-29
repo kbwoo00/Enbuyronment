@@ -63,7 +63,8 @@
 							<div class="col-md-4">
 								<a style="color: blue; font-size: 20px;" href="/mypage/order/${order.key.orderNo }"><span class="align-middle">주문 상세</span></a>
 								<c:if test="${order.key.status == '배송 준비' }">
-									<input class="btn enb-loginBtn" id="cancelOrderBtn${status.count }" type="button" value="주문 취소" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
+									<input type="hidden" id="cancelOrderNo${status.index }" value="${order.key.orderNo }">
+									<input class="btn enb-loginBtn" id="cancelOrderBtn${status.index }" type="button" value="주문 취소" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
 								</c:if>
 							</div>
 						</div>
@@ -157,6 +158,24 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			const length = "${orderList.size() }";
+			
+			for (let i = 0; i < length; i++) {
+				$('#cancelOrderBtn' + i).click(function() {
+					if(confirm('정말 주문을 취소하시겠습니까?')){
+						$.ajax({
+						      url: "/mypage/order/cancel",
+						      type: "post",
+						      contentType: "text/plain; charset=utf-8",
+						      data: $('#cancelOrderNo' + i).val(),
+						      success: function () {
+						    	  location.reload();
+						      }
+					    });
+					}
+				});
+			}
+			
 			
 		});
 	</script>

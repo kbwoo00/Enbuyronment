@@ -200,4 +200,9 @@ public class UserDAOImpl implements UserDAO {
 	public List<OrderProdVO> getProdsByOrderNo(OrderVO order) {
 		return sqlSession.selectList(NAMESPACE + ".getProdsByOrderNo", order);
 	}
+
+	@Override
+	public void cancelOrder(OrderVO order) {
+		sqlSession.update(NAMESPACE + ".cancelOrder",order);
+	}
 }

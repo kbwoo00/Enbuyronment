@@ -81,6 +81,5 @@ public interface UserService {
 	public List<OrderProdVO> getOrderProdList(OrderVO order);
 
 	public Integer prodTotalprice(List<OrderProdVO> prodList);
-
 	
 }

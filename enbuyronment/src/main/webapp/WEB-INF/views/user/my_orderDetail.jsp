@@ -65,7 +65,8 @@
 
 										<div class="col-md-3">
 											<c:if test="${orderInfo.status == '배송 준비' }">
-												<input class="btn enb-loginBtn" type="button" value="주문 취소"
+												<input type="hidden" id="cancelOrderNo" value="${orderInfo.orderNo }">
+												<input class="btn enb-loginBtn" type="button" value="주문 취소" id="cancelOrderBtn"
 													style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">
 											</c:if>
 										</div>
@@ -223,6 +224,20 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#orderLink').attr('class', 'mypage-menu-active');
+			
+			$('#cancelOrderBtn').click(function() {
+				if(confirm('정말 주문을 취소하시겠습니까?')){
+					$.ajax({
+					      url: "/mypage/order/cancel",
+					      type: "post",
+					      contentType: "text/plain; charset=utf-8",
+					      data: $('#cancelOrderNo').val(),
+					      success: function () {
+					    	  location.reload();
+					      }
+				    });
+				}
+			});
 		});
 	</script>
 	<script src="/resources/user/js/mypage.js" type="text/javascript"></script>
