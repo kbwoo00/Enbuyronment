@@ -2,6 +2,7 @@ package com.itwill.enbuyronment.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -263,13 +264,12 @@ public class UserServiceImpl implements UserService {
 	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uid", uid);
-		map.put("pageStart", cri.getPageStart());
-		map.put("perDataCnt", cri.getPerDataCnt());
+		map.put("cri", cri);
 		List<OrderVO> userOrders = userDao.getUserOrders(map);
 		log.info("유저 주문내역 페이지당 개수 = {}", userOrders.size());
 		log.info("유저 주문내역 = {}", userOrders);
 
-		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new HashMap<OrderVO, List<OrderProdVO>>();
+		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new LinkedHashMap<OrderVO, List<OrderProdVO>>();
 		for (OrderVO userOrder : userOrders) {
 			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder));
 		}

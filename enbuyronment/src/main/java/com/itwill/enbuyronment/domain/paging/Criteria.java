@@ -1,5 +1,8 @@
 package com.itwill.enbuyronment.domain.paging;
 
+
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -8,12 +11,14 @@ import lombok.ToString;
 public class Criteria {
 	private int page;
 	private int perDataCnt;
+	private String startDate;
+	private String endDate;
 
 	public Criteria() {
 		this.page = 1;
 		this.perDataCnt = 10;
 	}
-
+	
 	public void setPage(int page) {
 		if (page <= 0) {
 			this.page = 1;
@@ -36,5 +41,11 @@ public class Criteria {
 		return (this.page - 1) * perDataCnt;
 	}
 
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
 
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 }

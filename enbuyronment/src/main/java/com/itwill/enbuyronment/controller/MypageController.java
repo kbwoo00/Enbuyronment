@@ -2,6 +2,7 @@ package com.itwill.enbuyronment.controller;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -247,6 +248,7 @@ public class MypageController {
 			@SessionAttribute(value = "userId", required = false) String uid,
 			Model model, @ModelAttribute Criteria cri
 			) {
+		log.info("주문내역 기간 = {}", cri);
 		cri.setPerDataCnt(5);
 		
 		PageMaker pm = new PageMaker();
@@ -254,7 +256,7 @@ public class MypageController {
 		pm.setTotalCount(userService.getUserOrderTotalCnt(uid));
 		log.info("유저 주문내역 총 개수 = {}", userService.getUserOrderTotalCnt(uid));
 		model.addAttribute("pageInfo", pm);
-		model.addAttribute("presentPage", cri.getPage());
+		model.addAttribute("cri", cri);
 		
 		Map<OrderVO, List<OrderProdVO>> orderAndProdList = userService.getOrders(uid, cri);
 		model.addAttribute("orderList", orderAndProdList);
@@ -287,7 +289,7 @@ public class MypageController {
 		OrderVO order = new OrderVO();
 		order.setOrderNo(orderNo);
 		order.setUid(uid);
-		
 	}
+	
 	
 }

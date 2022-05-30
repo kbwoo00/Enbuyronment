@@ -145,8 +145,11 @@
 	<select id="getUserOrders" resultType="OrderVO">
 		select * 
 		from order_detail
-		where uid = #{uid}
-		order by order_date desc limit #{pageStart}, #{perDataCnt}
+		where uid = #{uid} 
+		<if test="cri.startDate != null and cri.endDate != null">
+			and order_date between str_to_date(#{cri.startDate},'%Y-%m-%d') and str_to_date(#{cri.endDate},'%Y-%m-%d') + 1
+		</if>
+		order by order_date desc limit #{cri.pageStart}, #{cri.perDataCnt}
 	</select>
 	
 	<!-- 유저의 주문번호당 상품목록 가져오기 -->
