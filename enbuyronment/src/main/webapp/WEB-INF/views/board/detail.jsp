@@ -8,20 +8,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/board/css/board_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-<style>
 
+<style>
 input {
   width: 98%;
   border: 0;
   border-bottom: 1px solid #485549;
-  border-bottom: 1px solid #86A688;
   outline: 0;
   }
-  
-th {
-	font-weight:normal;
-}
-
 </style>
 
 </head>
@@ -45,13 +39,10 @@ th {
 			</div>
 		</div>
 	</main>
-
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
-
 </body>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		if('${boardDetail.boardName}' == 'notice') {

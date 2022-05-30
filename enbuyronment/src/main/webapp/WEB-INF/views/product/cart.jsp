@@ -16,6 +16,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<div class="container mt-5" style="display: flex; justify-content: center;">
 		<div class="page-wrapper" style="width: 80vw;">
 			<div class="wrapper">
@@ -100,8 +101,8 @@
 			<button id="paymentBtn" class="cart_btn col-6 enb-loginBtn mt-5" style="margin: 0 auto;">결제하기</button>
 		</div>
 	</div>
-</body>
-
+	</main>
+	
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 <%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@include file="/WEB-INF/views/include/header_script.jsp"%>
@@ -285,4 +286,5 @@
 		
 	});
 </script>
+</body>
 </html>

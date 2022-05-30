@@ -25,6 +25,7 @@
 	}
 </style>
 <body>
+	<main>
 	<br>
 	<br>
 	<br>
@@ -80,7 +81,7 @@
 			</table>
 		</div>
 	</div>
-
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>

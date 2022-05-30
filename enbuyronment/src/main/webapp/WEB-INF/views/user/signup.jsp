@@ -179,7 +179,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<!-- jQuery -->
 	<script src="/resources/user/js/jquery.min.js"></script>
 	<!-- Bootstrap -->

@@ -21,20 +21,6 @@
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
 	<main>
-		<!-- Preloader Start -->
-		<div id="preloader-active">
-			<div
-				class="preloader d-flex align-items-center justify-content-center">
-				<div class="preloader-inner position-relative">
-					<div class="preloader-circle"></div>
-					<div class="preloader-img pere-text">
-						<img src="/resources/img/loading.png" alt="loding_logo">
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Preloader Start -->
-
 		<!-- sidebar include조각으로 넣어주기 -->
 		<div class="container justify-content-center mt-5">
 			<div class="row justify-content-around mt-5">
@@ -215,6 +201,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>

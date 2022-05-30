@@ -15,7 +15,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
-
+<main>
 <section class="latest-product-area mt-5">
     <div class="product_sidebar">
         <div class="single_sedebar">
@@ -70,7 +70,7 @@
         <!-- End Nav Card -->
 	</div>
 </section>
-
+</main>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 <%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@include file="/WEB-INF/views/include/header_script.jsp"%>

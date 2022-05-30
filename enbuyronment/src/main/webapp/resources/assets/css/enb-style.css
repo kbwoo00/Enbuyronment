@@ -19,10 +19,10 @@ main {
 
 /* 로딩창 막대 색상조절 */
 .preloader-circle{
-    border-top-color: #485549 !important;
+    border-top-color: #86a688 !important;
 }
 #scrollUp {
-    background: #485549 !important;
+    background: #86a688 !important;
 }
 .admin-Mode-Icon{
     width: 50px;
@@ -30,7 +30,7 @@ main {
     position: fixed;
     bottom: 80px;
     right: 30px;
-    background-color: #485549;
+    background-color: #86a688;
     color: #fff;
     z-index: 99;
     border-radius: 50%;
@@ -90,7 +90,7 @@ main {
 .enb-submenu{
     width: 100% !important;
     padding: 0.4rem !important;
-    border-top : 5px solid #485549 !important;
+    border-top : 5px solid #86a688 !important;
 }
 
 .enb-submenu>li{
@@ -122,7 +122,7 @@ main {
 .enb-loginBtn {
     font-size: 0.9em !important;
     border-radius: 0.6rem !important;
-    background:#485549 !important;
+    background:#86a688 !important;
 }
 .enb-loginBtn:hover{
 	color: #F1EF86;
@@ -137,15 +137,11 @@ main {
     font-weight: bold;
     border-radius: 0.6rem !important;
     background: white !important;
-    border: 1px solid #485549 !important;
-    color: #485549 !important;
+    border: 1px solid #86a688 !important;
+    color: #86a688 !important;
 }
 .enb-whiteBtn:hover{
 	color: #F1EF86 !important;
-	background-color :#485549 !important;
-}
-.enb-whiteBtn::before {
-    background:#39533b !important;
 }
 
 /* 메인이미지 */
@@ -181,7 +177,7 @@ main {
 }
 
 .order_btn {
-  background: #485549;
+  background: #86a688;
   color: #fff !important;
   display: flex;
   padding: 0px 20px;
@@ -189,7 +185,7 @@ main {
   font-size: 18px;
   font-weight: 400;
   border: 0;
-  border: 1px solid #485549;
+  border: 1px solid #86a688;
   letter-spacing: 3px;
   text-align: center;
   text-transform: uppercase;
@@ -199,8 +195,8 @@ main {
 }
 
 .order_btn:hover {
-  background: #485549;
-  border: 1px solid #485549;
+  background: #86a688;
+  border: 1px solid #86a688;
 }
 
 .order_btn:focus {
@@ -250,7 +246,7 @@ main {
 }
 
 .select_option .select_option_dropdown {
-    background-color: #485549 !important;
+    background-color: #86a688 !important;
 }
 
 .mypage-menu {
@@ -267,7 +263,7 @@ main {
 }
 
 .product_sidebar .single_sedebar input {
-	background-color: #485549 !important;
+	background-color: #86a688 !important;
 }
 
 /* footer 부분 */
@@ -275,7 +271,7 @@ main {
 .footer-width{
     width: 100%;
     height: 300px;
-    background-color: #485549;
+    background-color: #86a688;
     display: flex;
     justify-content: center;
 }
