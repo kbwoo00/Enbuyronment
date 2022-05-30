@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>enbuyronment</title>
-<link rel="stylesheet" href="/resources/board/css/board_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
+<link rel="stylesheet" href="/resources/board/css/board_style.css">
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
@@ -18,7 +18,7 @@
 				<div id="board-name" style="font-size:30px;"></div>
 
 				<table class="table table-sm mt-1" style="text-align : center;">
-					<thead style="background-color:#485549; color:white;">
+					<thead style="background-color:#86a688; color:white;">
 						<tr>
 							<th style="width:800px;">제목</th>
 							<th style="width:200px;">작성자</th>
@@ -28,14 +28,14 @@
 					<tbody>
 						<c:forEach var="notice" items="${fixedNotice }">
 							<tr style="background-color:#DCDCDC;">
-								<th><a class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a></th>
+								<th><a style="color: black;" class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a></th>
 								<th>관리자</th>
 								<th><fmt:formatDate type="date" value="${notice.regdate }"/></th>
 							</tr>
 						</c:forEach>
 						<c:forEach var="board" items="${boardList }">
 							<tr>
-								<td><a class="bTitle" href="/board/${board.boardName }/${board.boardNo }">${board.title }</a></td>
+								<td><a style="color: black;" class="bTitle" href="/board/${board.boardName }/${board.boardNo }">${board.title }</a></td>
 								<td>관리자</td>
 								<td><fmt:formatDate type="date" value="${board.regdate }"/></td>
 							</tr>

@@ -71,8 +71,12 @@
 								<h4><fmt:formatDate value="${order.key.orderDate }" pattern="yyyy년 MM월 dd일"/> 주문</h4>
 								<h5>[${order.key.status }]</h5>
 							</div>
-							<div class="col-md-4">
-								<a style="color: blue; font-size: 20px;" href="/mypage/order/${order.key.orderNo }"><span class="align-middle">주문 상세</span></a>
+							<div class="col-md-5">
+								<a style="color: #485549; font-size: 20px;" href="/mypage/order/${order.key.orderNo }"><span class="align-middle">주문 상세</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+									  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+									</svg>
+								 </a>
 								<c:if test="${order.key.status == '배송 준비' }">
 									<input type="hidden" id="cancelOrderNo${status.index }" value="${order.key.orderNo }">
 									<input class="btn enb-loginBtn" id="cancelOrderBtn${status.index }" type="button" value="주문 취소" style="margin-left: 1.3rem; padding: 1.3rem 1.3rem !important;">

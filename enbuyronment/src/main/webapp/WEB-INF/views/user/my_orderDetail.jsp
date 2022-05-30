@@ -31,7 +31,7 @@
 					<%@include file="/WEB-INF/views/include/mypage_navbar.jsp"%>
 					<div class="card mb-4 rounded-3 shadow-sm">
 						<div class="card-header py-3">
-							<h3 class="my-0 fw-normal">주문 상세</h3>
+							<h3 style="color: #485549;" class="my-0 fw-normal">주문 상세</h3>
 						</div>
 						<div class="card-body border-top">
 							<div class="d-flex flex-column align-items-stretch flex-shrink-0">
