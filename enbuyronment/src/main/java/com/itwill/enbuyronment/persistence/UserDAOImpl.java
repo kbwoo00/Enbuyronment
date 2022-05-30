@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.OrderProdVO;
+import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 
@@ -182,5 +185,24 @@ public class UserDAOImpl implements UserDAO {
 	public void writeReview(ReviewVO review) {
 		sqlSession.insert(NAMESPACE + ".writeReview", review);
 	}
-	
+
+	@Override
+	public Integer getUserOrderTotalCnt(String uid) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserOrderTotalCnt", uid);
+	}
+
+	@Override
+	public List<OrderVO> getUserOrders(Map<String, Object> map) {
+		return sqlSession.selectList(NAMESPACE + ".getUserOrders", map);
+	}
+
+	@Override
+	public List<OrderProdVO> getProdsByOrderNo(OrderVO order) {
+		return sqlSession.selectList(NAMESPACE + ".getProdsByOrderNo", order);
+	}
+
+	@Override
+	public void cancelOrder(OrderVO order) {
+		sqlSession.update(NAMESPACE + ".cancelOrder",order);
+	}
 }

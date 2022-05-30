@@ -14,13 +14,14 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<div class="container justify-content-center mt-5">
 		<div class="row justify-content-around mt-5">
 			<div class="col-md-2 mt-5">
 				<%@include file="/WEB-INF/views/include/mypage_sidebar.jsp"%>
 			</div>
 
-			<div class="col-md-8">
+			<div class="col-md-8 mt-5">
 				<div class="card mb-4 rounded-3 shadow-sm">
 					<div class="card-header py-3">
 						<h3 class="my-0 fw-normal">회원 탈퇴</h3>
@@ -55,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
@@ -66,5 +67,6 @@
 			alert('비밀번호가 틀렸습니다. 다시 입력해주세요');
 		}
 	</script>
+	<script src="/resources/user/js/mypage.js" type="text/javascript"></script>
 </body>
 </html>

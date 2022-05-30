@@ -2,7 +2,9 @@ package com.itwill.enbuyronment.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +28,12 @@ import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
 import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.OrderProdVO;
+import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 import com.itwill.enbuyronment.domain.paging.PageMaker;
+import com.itwill.enbuyronment.service.OrderService;
 import com.itwill.enbuyronment.service.ProdService;
 import com.itwill.enbuyronment.service.UserService;
 
@@ -43,6 +48,8 @@ public class MypageController {
 	private UserService userService;
 	@Inject
 	private ProdService prodService;
+	@Inject
+	private OrderService orderService;
 
 	@ModelAttribute("userInfo")
 	public UserVO getUserInfo(@SessionAttribute(value = "userId", required = false) String uid) {
@@ -203,7 +210,7 @@ public class MypageController {
 		userService.modReview(review);
 	}
 	
-	@GetMapping("review/write")
+	@GetMapping("/review/write")
 	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		
 		ProductVO product = prodService.prodDetail(Integer.parseInt(prodNo));
@@ -214,7 +221,7 @@ public class MypageController {
 	}
 	
 	@ResponseBody
-	@PostMapping("review/write")
+	@PostMapping("/review/write")
 	public void writeReview(@RequestParam("prodNo") String prodNo,
 			@RequestBody ReviewVO review, HttpServletResponse response,
 			@SessionAttribute(value = "userId", required = false) String uid){
@@ -233,6 +240,54 @@ public class MypageController {
 		}
 		
 		userService.writeReview(review);
+	}
+	
+	@GetMapping("/orderList")
+	public String myOrderList(
+			@SessionAttribute(value = "userId", required = false) String uid,
+			Model model, @ModelAttribute Criteria cri
+			) {
+		cri.setPerDataCnt(5);
+		
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(userService.getUserOrderTotalCnt(uid));
+		log.info("유저 주문내역 총 개수 = {}", userService.getUserOrderTotalCnt(uid));
+		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
+		
+		Map<OrderVO, List<OrderProdVO>> orderAndProdList = userService.getOrders(uid, cri);
+		model.addAttribute("orderList", orderAndProdList);
+		log.info("주문번호, 상품내역 = {}", orderAndProdList);
+		return "/user/my_order";
+	}
+	
+	@GetMapping("/order/{orderNo}")
+	public String myOrderDetail(@PathVariable("orderNo") String orderNo, 
+			@SessionAttribute(value = "userId", required = false) String uid
+			,Model model) {
+		OrderVO order = orderService.getOrder(orderNo);
+		order.setUid(uid);
+		List<OrderProdVO> prodList = userService.getOrderProdList(order);
+		model.addAttribute("prodList", prodList);
+		model.addAttribute("orderInfo", order);
+		model.addAttribute("prodTotalPrice", userService.prodTotalprice(prodList));
+		log.info("주문상품목록 = {}", prodList);
+		log.info("주문정보 = {}", order);
+		
+		return "/user/my_orderDetail";
+	}
+	
+	@ResponseBody
+	@PostMapping("/order/cancel")
+	public void cancelOrder(@RequestBody String orderNo,
+			@SessionAttribute(value = "userId", required = false) String uid
+			) {
+		
+		OrderVO order = new OrderVO();
+		order.setOrderNo(orderNo);
+		order.setUid(uid);
+		
 	}
 	
 }

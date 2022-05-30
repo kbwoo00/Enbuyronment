@@ -1,10 +1,14 @@
 package com.itwill.enbuyronment.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.OrderProdVO;
+import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 
@@ -70,5 +74,12 @@ public interface UserService {
 
 	public void writeReview(ReviewVO review);
 
+	public Integer getUserOrderTotalCnt(String uid);
+
+	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri);
+
+	public List<OrderProdVO> getOrderProdList(OrderVO order);
+
+	public Integer prodTotalprice(List<OrderProdVO> prodList);
 	
 }

@@ -134,4 +134,33 @@
 		values (#{uid}, #{prodNo}, #{star}, #{comment})
 	</insert>
 	
+	<!-- 유저 주문 내역 총 개수 -->
+	<select id="getUserOrderTotalCnt" resultType="Integer">
+		select count(*) 
+		from order_detail
+		where uid = #{uid}
+	</select>
+	
+	<!-- 유저 주문 내역 목록 중 주문번호 가져오기 -->
+	<select id="getUserOrders" resultType="OrderVO">
+		select * 
+		from order_detail
+		where uid = #{uid}
+		order by order_date desc limit #{pageStart}, #{perDataCnt}
+	</select>
+	
+	<!-- 유저의 주문번호당 상품목록 가져오기 -->
+	<select id="getProdsByOrderNo" resultType="OrderProdVO">
+		select *
+		from order_product
+		where order_no = #{orderNo}
+	</select>
+	
+	<!-- 유저가 주문취소 -->
+	<update id="cancelOrder">
+		update order_detail
+		set status = "주문 취소"
+		where order_no =  #{orderNo} and uid = #{uid}
+	</update>
+	
 </mapper> 

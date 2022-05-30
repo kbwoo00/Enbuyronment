@@ -239,6 +239,10 @@ main {
 .mypage-menu {
     color: #fff !important;
 }
+.mypage-menu-active {
+	color: #F1EF86 !important;
+	cursor: pointer;
+}
 
 .mypage-menu:hover {
 	cursor: pointer;

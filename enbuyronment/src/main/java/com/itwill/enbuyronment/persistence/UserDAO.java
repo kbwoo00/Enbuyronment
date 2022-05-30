@@ -1,10 +1,14 @@
 package com.itwill.enbuyronment.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.enbuyronment.domain.AddressVO;
 import com.itwill.enbuyronment.domain.ProdAndReviewVO;
+import com.itwill.enbuyronment.domain.ProductVO;
 import com.itwill.enbuyronment.domain.ReviewVO;
+import com.itwill.enbuyronment.domain.OrderProdVO;
+import com.itwill.enbuyronment.domain.OrderVO;
 import com.itwill.enbuyronment.domain.UserVO;
 import com.itwill.enbuyronment.domain.paging.Criteria;
 
@@ -59,4 +63,12 @@ public interface UserDAO {
 	public boolean isPresentReview(ReviewVO review);
 
 	public void writeReview(ReviewVO review);
+
+	public Integer getUserOrderTotalCnt(String uid);
+
+	public List<OrderVO> getUserOrders(Map<String, Object> map);
+
+	public List<OrderProdVO> getProdsByOrderNo(OrderVO order);
+
+	public void cancelOrder(OrderVO order);
 }
