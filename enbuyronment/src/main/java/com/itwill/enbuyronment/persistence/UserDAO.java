@@ -71,4 +71,11 @@ public interface UserDAO {
 	public List<OrderProdVO> getProdsByOrderNo(OrderVO order);
 
 	public void cancelOrder(OrderVO order);
+
+	public List<OrderVO> getUserOrdersByKeyword(Map<String, Object> map);
+
+	public Integer getUserOrderTotalCntByKeyword(Map<String, String> map);
+
+	public Integer getUserOrderTotalCntByPeriod(Map<String, String> map);
+	
 }

@@ -250,9 +250,19 @@
 				    });
 				 // 데이트 피커
 				 
+				 
+				 //상품이름 검색시 (엔터)
+				 $('#searchProdName').keyup(function(e) {    
+					 if (e.keyCode == 13) {
+						let keyword = $('#searchProdName').val();
+				 		location.replace("/mypage/orderList?keyword=" + keyword);
+					 }      
+				 });
+				 
+				//상품이름 검색시 (검색버튼)
 				 $('#searchByProdNameBtn').click(function() {
 			 		let keyword = $('#searchProdName').val();
-			 		location.replace("/mypage/orderList?prodName=" + keyword);
+			 		location.replace("/mypage/orderList?keyword=" + keyword);
 				 });
 				 
 				 

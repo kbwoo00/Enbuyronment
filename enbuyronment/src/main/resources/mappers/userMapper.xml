@@ -140,6 +140,18 @@
 		from order_detail
 		where uid = #{uid}
 	</select>
+	<select id="getUserOrderTotalCntByKeyword" resultType="Integer">
+		select count(distinct od.order_no)
+		from order_detail od join order_product op
+		on od.order_no = op.order_no
+		where od.uid = #{uid} and op.prod_name like concat('%', #{keyword}, '%')
+	</select>
+	<select id="getUserOrderTotalCntByPeriod" resultType="Integer">
+		select count(*) 
+		from order_detail
+		where uid = #{uid} and 
+		order_date between str_to_date(#{startDate},'%Y-%m-%d') and str_to_date(#{endDate},'%Y-%m-%d') + 1
+	</select>
 	
 	<!-- 유저 주문 내역 목록 중 주문번호 가져오기 -->
 	<select id="getUserOrders" resultType="OrderVO">
@@ -149,6 +161,14 @@
 		<if test="cri.startDate != null and cri.endDate != null">
 			and order_date between str_to_date(#{cri.startDate},'%Y-%m-%d') and str_to_date(#{cri.endDate},'%Y-%m-%d') + 1
 		</if>
+		order by order_date desc limit #{cri.pageStart}, #{cri.perDataCnt}
+	</select>
+	<!-- 유저 주문 내역 목록 중 상품이름으로 검색하기 -->
+	<select id="getUserOrdersByKeyword" resultType="OrderVO">
+		select distinct od.order_no, od.uid, od.order_date, od.status, od.track_no
+		from order_detail od join order_product op
+		on od.order_no = op.order_no
+		where od.uid = #{uid} and op.prod_name like concat('%', #{keyword}, '%')
 		order by order_date desc limit #{cri.pageStart}, #{cri.perDataCnt}
 	</select>
 	

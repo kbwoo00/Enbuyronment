@@ -197,6 +197,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public List<OrderVO> getUserOrdersByKeyword(Map<String, Object> map) {
+		return sqlSession.selectList(NAMESPACE + ".getUserOrdersByKeyword", map);
+	}
+	@Override
 	public List<OrderProdVO> getProdsByOrderNo(OrderVO order) {
 		return sqlSession.selectList(NAMESPACE + ".getProdsByOrderNo", order);
 	}
@@ -205,4 +209,15 @@ public class UserDAOImpl implements UserDAO {
 	public void cancelOrder(OrderVO order) {
 		sqlSession.update(NAMESPACE + ".cancelOrder",order);
 	}
+
+	@Override
+	public Integer getUserOrderTotalCntByKeyword(Map<String, String> map) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserOrderTotalCntByKeyword", map);
+	}
+
+	@Override
+	public Integer getUserOrderTotalCntByPeriod(Map<String, String> map) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserOrderTotalCntByPeriod", map);
+	}
+
 }
