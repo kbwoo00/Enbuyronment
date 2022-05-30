@@ -90,3 +90,16 @@
 	  <img src="/resources/img/admin-icon2.png" alt="adminIcon">
 	</div>
 </c:if>
+<!-- Preloader Start -->
+	<div id="preloader-active">
+		<div
+			class="preloader d-flex align-items-center justify-content-center">
+			<div class="preloader-inner position-relative">
+				<div class="preloader-circle"></div>
+				<div class="preloader-img pere-text">
+					<img src="/resources/img/loading.png" alt="loding_logo">
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Preloader Start -->

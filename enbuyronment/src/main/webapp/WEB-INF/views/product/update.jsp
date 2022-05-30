@@ -14,6 +14,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+<main>
 	<br>
 	<br>
 	<br>
@@ -136,6 +137,7 @@
 			</div>
 		</div>
 	</div>
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>

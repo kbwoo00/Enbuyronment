@@ -17,9 +17,7 @@
    ==========================================================================
 */
 
-* {
-	box-sizing: unset !important;
-}
+
 
 html {
   -webkit-box-sizing: border-box;
@@ -47,6 +45,10 @@ fieldset, legend {
   font-style: normal;
   font-weight: 500;
   text-transform: normal;
+}
+
+.pmBtn {
+	box-sizing: unset !important;
 }
 
 .shopping-cart {

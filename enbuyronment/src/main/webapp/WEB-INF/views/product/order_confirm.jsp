@@ -17,6 +17,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+<main>
   <!--================ confirmation part start =================-->
   <section class="confirmation_part section_padding" style="padding: 100px 0px !important;">
     <div class="container">
@@ -120,7 +121,7 @@
     </div>
   </section>
   <!--================ confirmation part end =================-->
-	
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
