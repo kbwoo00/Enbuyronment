@@ -16,8 +16,8 @@
 	
 	<!-- 주문상품 정보 추가 동작 -->
 	<insert id="insertOrderProd">
-		insert into order_product(order_no, prod_name, price, amount, prod_no)
-		values(#{orderNo}, #{cvo.prodName}, ${cvo.price}, ${cvo.amount}, ${cvo.prodNo})
+		insert into order_product(order_no, prod_name, brand_name, price, amount, prod_no, thumb)
+		values(#{orderNo}, #{cvo.prodName}, #{brandName}, ${cvo.price}, ${cvo.amount}, ${cvo.prodNo}, #{thumb})
 	</insert>
 	
 	<!-- 장바구니 삭제 동작 -->
