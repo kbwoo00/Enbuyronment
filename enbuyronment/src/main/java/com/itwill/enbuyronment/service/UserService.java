@@ -73,13 +73,15 @@ public interface UserService {
 	public boolean isPresentReview(ReviewVO review);
 
 	public void writeReview(ReviewVO review);
-
-	public Integer getUserOrderTotalCnt(String uid);
+	public Integer getUserOrderTotalCnt(String uid, String keyword, Criteria cri);
+	
 
 	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri);
 
 	public List<OrderProdVO> getOrderProdList(OrderVO order);
 
 	public Integer prodTotalprice(List<OrderProdVO> prodList);
+
+	public Map<OrderVO, List<OrderProdVO>> getOrdersByKeyword(String uid, Criteria cri, String keyword);
 	
 }

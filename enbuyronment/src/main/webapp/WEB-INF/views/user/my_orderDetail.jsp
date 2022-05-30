@@ -82,7 +82,7 @@
 															height="130px;">
 														</a>
 													</div>
-													<div class="col-md-8">
+													<div class="col-md-9">
 														<div class="row mb-1">
 															<a href="/product/${prod.prodNo }"
 																style="color: black; font-size: 20px; font-weight: bold;">

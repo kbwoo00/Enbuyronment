@@ -2,6 +2,8 @@ package com.itwill.enbuyronment.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -255,7 +257,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Integer getUserOrderTotalCnt(String uid) {
+	public Integer getUserOrderTotalCnt(String uid, String keyword, Criteria cri) {
+		
+		if(keyword != null) {
+			log.info("키워드 = {}", keyword);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("uid", uid);
+			map.put("keyword", keyword);
+			return userDao.getUserOrderTotalCntByKeyword(map);
+		}
+		
+		if(keyword == null && cri.getStartDate() != null && cri.getEndDate() != null) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("uid", uid);
+			map.put("startDate", cri.getStartDate());
+			map.put("endDate", cri.getEndDate());
+			return userDao.getUserOrderTotalCntByPeriod(map);
+		}
+		
 		return userDao.getUserOrderTotalCnt(uid);
 	}
 
@@ -263,13 +282,12 @@ public class UserServiceImpl implements UserService {
 	public Map<OrderVO, List<OrderProdVO>> getOrders(String uid, Criteria cri) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uid", uid);
-		map.put("pageStart", cri.getPageStart());
-		map.put("perDataCnt", cri.getPerDataCnt());
+		map.put("cri", cri);
 		List<OrderVO> userOrders = userDao.getUserOrders(map);
 		log.info("유저 주문내역 페이지당 개수 = {}", userOrders.size());
 		log.info("유저 주문내역 = {}", userOrders);
 
-		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new HashMap<OrderVO, List<OrderProdVO>>();
+		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new LinkedHashMap<OrderVO, List<OrderProdVO>>();
 		for (OrderVO userOrder : userOrders) {
 			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder));
 		}
@@ -289,5 +307,21 @@ public class UserServiceImpl implements UserService {
 			prodTotalprice += (orderProd.getAmount() * orderProd.getPrice());
 		}
 		return prodTotalprice;
+	}
+
+	@Override
+	public Map<OrderVO, List<OrderProdVO>> getOrdersByKeyword(String uid, Criteria cri, String keyword) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uid", uid);
+		map.put("cri", cri);
+		map.put("keyword", keyword);
+		List<OrderVO> userOrders = userDao.getUserOrdersByKeyword(map);
+		
+		Map<OrderVO, List<OrderProdVO>> orderAndProduct = new LinkedHashMap<OrderVO, List<OrderProdVO>>();
+		for (OrderVO userOrder : userOrders) {
+			orderAndProduct.put(userOrder, userDao.getProdsByOrderNo(userOrder));
+		}
+		
+		return orderAndProduct;
 	}
 }

@@ -2,6 +2,7 @@ package com.itwill.enbuyronment.controller;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -245,20 +246,28 @@ public class MypageController {
 	@GetMapping("/orderList")
 	public String myOrderList(
 			@SessionAttribute(value = "userId", required = false) String uid,
-			Model model, @ModelAttribute Criteria cri
+			Model model, @ModelAttribute Criteria cri,
+			@RequestParam(value = "keyword", required = false) String keyword
 			) {
+		log.info("주문내역 기간 = {}", cri);
 		cri.setPerDataCnt(5);
 		
 		PageMaker pm = new PageMaker();
 		pm.setCri(cri);
-		pm.setTotalCount(userService.getUserOrderTotalCnt(uid));
-		log.info("유저 주문내역 총 개수 = {}", userService.getUserOrderTotalCnt(uid));
+		pm.setTotalCount(userService.getUserOrderTotalCnt(uid, keyword, cri));
+		log.info("주문내역 총 개수 = {}", pm.getTotalCount());
 		model.addAttribute("pageInfo", pm);
-		model.addAttribute("presentPage", cri.getPage());
+		model.addAttribute("cri", cri);
 		
-		Map<OrderVO, List<OrderProdVO>> orderAndProdList = userService.getOrders(uid, cri);
+		Map<OrderVO, List<OrderProdVO>> orderAndProdList;
+		if(keyword == null) {
+			orderAndProdList = userService.getOrders(uid, cri);
+		} else {
+			orderAndProdList = userService.getOrdersByKeyword(uid, cri, keyword);
+			model.addAttribute("keyword", keyword);
+		}
 		model.addAttribute("orderList", orderAndProdList);
-		log.info("주문번호, 상품내역 = {}", orderAndProdList);
+		
 		return "/user/my_order";
 	}
 	
@@ -287,7 +296,7 @@ public class MypageController {
 		OrderVO order = new OrderVO();
 		order.setOrderNo(orderNo);
 		order.setUid(uid);
-		
 	}
+	
 	
 }
