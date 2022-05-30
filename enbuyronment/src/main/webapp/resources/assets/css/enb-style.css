@@ -14,6 +14,7 @@
 /* main-area 높이 */
 main {
 	min-height: 55vh;
+	margin-bottom: 10rem;
 }
 
 /* 로딩창 막대 색상조절 */
@@ -128,6 +129,22 @@ main {
 }
 
 .enb-loginBtn::before{
+    background:#39533b !important;
+}
+
+.enb-whiteBtn {
+    font-size: 0.9em !important;
+    font-weight: bold;
+    border-radius: 0.6rem !important;
+    background: white !important;
+    border: 1px solid #485549 !important;
+    color: #485549 !important;
+}
+.enb-whiteBtn:hover{
+	color: #F1EF86 !important;
+	background-color :#485549 !important;
+}
+.enb-whiteBtn::before {
     background:#39533b !important;
 }
 
