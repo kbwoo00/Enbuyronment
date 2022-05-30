@@ -63,7 +63,7 @@
 										</li>
 										<li class="d-lg-block">
 										<input type="button" id="myPageBtn"
-											class="btn header-btn enb-loginBtn"
+											class="btn header-btn enb-whiteBtn"
 											style="padding: 1.3rem 1.3rem !important;" value="마이페이지">
 										</li>
 										<li class="d-lg-block"><input type="button" id="logoutBtn"
