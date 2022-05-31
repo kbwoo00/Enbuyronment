@@ -113,9 +113,6 @@
 											        <input class="btn enb-loginBtn me-1" type="button" value="리뷰 작성" style="padding: 1.3rem 1.3rem !important;">
 										        </a>	
 									        	</div>
-									        	<div class="col-md-3">
-										        	<input class="btn enb-loginBtn me-1" type="button" value="상품 문의" style="padding: 1.3rem 1.3rem !important;">
-									        	</div>
 									        </div>
 								       	</c:if>
 						      		</div>
@@ -195,11 +192,15 @@
 					});
 				}
 
-				$('#searchByDateBtn').click(
-						function() {
-							let startDate = $('#sdate').val();
-							let endDate = $('#edate').val();
-							location.replace("/mypage/orderList?startDate=" + startDate + "&endDate=" + endDate);
+				$('#searchByDateBtn').click(function() {
+					let startDate = $('#sdate').val();
+					let endDate = $('#edate').val();
+					if(startDate == '' || endDate == ''){
+						alert('기간을 모두 입력해주세요');
+						return;
+					}
+					
+					location.replace("/mypage/orderList?startDate=" + startDate + "&endDate=" + endDate);
 				});
 				
 				// 데이트 피커

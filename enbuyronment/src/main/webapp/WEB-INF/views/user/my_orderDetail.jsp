@@ -91,11 +91,6 @@
 																		style="padding: 1.3rem 1.3rem !important;">
 																	</a>
 																</div>
-																<div class="col-md-3">
-																	<input class="btn enb-loginBtn me-1" type="button"
-																		value="상품 문의"
-																		style="padding: 1.3rem 1.3rem !important;">
-																</div>
 															</div>
 														</c:if>
 													</div>
