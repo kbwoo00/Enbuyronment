@@ -6,19 +6,80 @@
 
 <mapper namespace="com.itwill.enbuyronment.mapper.AdminMapper">
 	
+	<!-- 총 유저수 카운트 -->
 	<select id="userTotalCnt" resultType="int">
 		select count(*) from user
 	</select>
 	
+	<!-- 유저 목록 가져오기 -->
 	<select id="userList" resultType="UserVO">
 	  select * from user
 	  order by regdate desc
 	  limit #{pageStart},#{perDataCnt}	
 	</select>
 	
+	<!-- 유저 삭제하기 -->
 	<delete id="deleteUsers">
 		delete from user
 		where uid = #{uid}
 	</delete>
+	
+	<!-- 유저 주문목록 수 카운트 -->
+	<select id="userOrderCnt" resultType="Integer">
+		select count(*) from order_detail
+	</select>
+	
+	<!-- 유저 주문목록 가져오기 -->
+	<select id="userOrderList" resultType="OrderVO">
+		select * from order_detail order by order_no desc limit #{pageStart},#{perDataCnt}	
+	</select>
+	
+	<!-- 유저 주문품목수 카운트 -->
+	<select id="orderProdCnt" resultType="Integer">
+		select count(*) from order_product group by order_no order by order_no desc
+	</select>
+	
+	<!-- 주문번호 검색하기 -->
+	<select id="getOrderWithNo" resultType="OrderVO">
+		select * from order_detail where order_no = #{orderNo}
+	</select>
+	
+	<!-- 주문번호 검색 주문품목수 카운트 -->
+	<select id="orderProdCntWithNo" resultType="Integer">
+		select count(*) from order_product where order_no = #{orderNo}
+	</select>
+	
+	<!-- 상세검색 주문목록 수 카운트 -->
+	<select id="searchOrderCnt" resultType="Integer">
+		select count(*) from order_detail where DATE_FORMAT(order_date, '%Y-%m-%d') between ${date1} and ${date2}
+		${uid} ${status}
+	</select>
+	
+	<!-- 상세검색 주문목록 가져오기 -->
+	<select id="searchOrderList" resultType="OrderVO">
+		select * from order_detail
+		where DATE_FORMAT(order_date, '%Y-%m-%d') between ${date1} and ${date2}
+		${uid} ${status}
+		order by order_no desc limit #{cri.pageStart},#{cri.perDataCnt}
+	</select>
+	
+	<!-- 상세검색 주문품목수 카운트 -->
+	<select id="searchOrderProdCnt" resultType="Integer">
+		select count(*) from order_product group by order_no having order_no in(
+			select order_no from order_detail
+    		where DATE_FORMAT(order_date, '%Y-%m-%d') between ${date1} and ${date2}
+			${uid} ${status}
+		) order by order_no desc;
+	</select>
+	
+	<!-- 주문상태 변경하기 -->
+	<update id="updateStatus">
+		update order_detail set status = #{status} where order_no in(${orderNo})
+	</update>
+	
+	<!-- 운송장번호 입력하기 -->
+	<update id="updateTrackNo">
+		update order_detail set track_no = ${trackNo} where order_no = #{orderNo}
+	</update>
 
 </mapper> 
