@@ -8,25 +8,27 @@
 <title>enbuyronment</title>
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 </head>
-<%@include file="/WEB-INF/views/include/header.jsp"%>
+<%@include file="/WEB-INF/views/include/header.jsp" %>
 <body>
 	<main>
-		<div
-			style="text-align: center; padding-top: 150px; padding-bottom: 100px;">
-			<img src="/resources/img/404.png"> <br> <br>
-			<h2 style="text-align: center; color: #86A688">에러가 발생했어요 :/</h2>
-			<div class="col-form-label align-middle mt-5">
-				<input type="button" class="btn enb-loginBtn"
-					style="padding: 1.3rem 1.3rem !important;"
-					onclick="location.href ='/'" value="메인으로 돌아가기">
-				<input type="button" class="btn enb-loginBtn"
-					style="padding: 1.3rem 1.3rem !important;"
-					onclick="javascript:history.back();" value="이전으로 돌아가기">
+		<div class="container" style="max-width:1000px; text-align: center; height: 80vh;  display: flex;
+    align-items: center;">
+			<div class="row justify-content-center">
+				<div class="col-md-5" style="width:500px;">
+					<img src="/resources/assets/img/error.png" style="padding-bottom:2rem; width:20rem; height:15rem;">
+					<h4 class="mt-3" style="color:#212529;">오류가 발생했어요 ;/</h4>
+					<p style="color:#212529;">요청하신 페이지를 찾을 수 없어요</p>
+					<input type="button" class="btn enb-loginBtn" style="padding: 1.3rem 2.8rem !important;" value="메인으로">
+				</div>
+				<div class="col-md-5" style="width:400px;">
+					<img src="/resources/assets/img/ahgo.png" style="width:16rem; height:16rem; margin-bottom: 4.8rem;">
+					<input type="button" class="btn enb-loginBtn" style="padding: 1.3rem 2.8rem !important;" value="뒤로가기">
+				</div>
 			</div>
-
 		</div>
 	</main>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
+
 </body>
 </html>
