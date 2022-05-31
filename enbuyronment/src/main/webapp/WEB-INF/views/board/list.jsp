@@ -7,15 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>enbuyronment</title>
-<link rel="stylesheet" href="/resources/board/css/board_style.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
-
-<style>
-th {
-	font-weight:normal;
-}
-</style>
-
+<link rel="stylesheet" href="/resources/board/css/board_style.css">
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
@@ -23,9 +16,9 @@ th {
 		<div class="container mt-5" style="max-width: 1200px;">
 			<div class="row">
 				<div id="board-name" style="font-size:30px;"></div>
-			
+
 				<table class="table table-sm mt-1" style="text-align : center;">
-					<thead style="background-color:#485549; color:white;">
+					<thead style="background-color:#86a688; color:white;">
 						<tr>
 							<th style="width:800px;">제목</th>
 							<th style="width:200px;">작성자</th>
@@ -34,22 +27,22 @@ th {
 					</thead>
 					<tbody>
 						<c:forEach var="notice" items="${fixedNotice }">
-							<tr style="background-color:#D7D7D7;">
-								<th><a class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a></th>
+							<tr style="background-color:#DCDCDC;">
+								<th><a style="color: black;" class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a></th>
 								<th>관리자</th>
 								<th><fmt:formatDate type="date" value="${notice.regdate }"/></th>
 							</tr>
 						</c:forEach>
 						<c:forEach var="board" items="${boardList }">
 							<tr>
-								<td><a class="bTitle" href="/board/${board.boardName }/${board.boardNo }">${board.title }</a></td>
+								<td><a style="color: black;" class="bTitle" href="/board/${board.boardName }/${board.boardNo }">${board.title }</a></td>
 								<td>관리자</td>
 								<td><fmt:formatDate type="date" value="${board.regdate }"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			
+
 				<div class="row col-md-12" style="display:flex; justify-content: center;">
 					<nav class="blog-pagination d-flex" aria-label="Page navigation example">
 						<ul class="pagination">
@@ -84,13 +77,10 @@ th {
 			</div>
 		</div>
 	</main>
-
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
-
 </body>
-
 <script type="text/javascript">
 	if('${msg}' == 'writeOK') {
 		alert('글 작성 완료');

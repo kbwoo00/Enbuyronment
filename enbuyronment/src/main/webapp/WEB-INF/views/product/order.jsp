@@ -49,6 +49,7 @@ input:not(.point) {
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<br>
 	<div class="row order_body"
 		style="display: flex; justify-content: center;">
@@ -304,7 +305,7 @@ input:not(.point) {
 		</div>
 	</div>
 	<!-- 모달창 -->
-
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>

@@ -16,6 +16,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<div class="container mt-5" style="display: flex; justify-content: center;">
 		<div class="page-wrapper" style="width: 80vw;">
 			<div class="wrapper">
@@ -73,12 +74,12 @@
 							</td>
 							<td class="align-middle">
 								<div class="quantity row justify-content-center" style="margin-right:-16px !important;">
-									<button id="minusBtn${status.index }" class="minus-btn" type="button" name="button">
+									<button id="minusBtn${status.index }" class="minus-btn pmBtn" type="button" name="button">
 										<svg style="height: 22px; width: 22px; color: rgb(255, 255, 255);" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#BBBBBB"></rect> <path d="M6 12H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="#ffffFF"></path> </svg>
 										</button>
 									<input type="number" name="name" id="amount${status.index }" value="${cart.amount }">
 									<input type="hidden" id="prodNo${status.index }" value="${cart.prodNo }">
-									<button id="plusBtn${status.index }" class="plus-btn" type="button" name="button">
+									<button id="plusBtn${status.index }" class="plus-btn pmBtn" type="button" name="button">
 										<svg style="height: 22px; width: 22px; color: rgb(255, 255, 255);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"><rect width="100%" height="100%" fill="#BBBBBB"></rect> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" fill="#ffffff"></path> </svg>
 									</button>
 								</div>
@@ -100,8 +101,8 @@
 			<button id="paymentBtn" class="cart_btn col-6 enb-loginBtn mt-5" style="margin: 0 auto;">결제하기</button>
 		</div>
 	</div>
-</body>
-
+	</main>
+	
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 <%@include file="/WEB-INF/views/include/script.jsp"%>
 <%@include file="/WEB-INF/views/include/header_script.jsp"%>
@@ -285,4 +286,5 @@
 		
 	});
 </script>
+</body>
 </html>

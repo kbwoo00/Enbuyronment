@@ -48,6 +48,7 @@
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <body>
+	<main>
 	<div class="product_image_area mb-5">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -148,7 +149,7 @@
 	</div>
 
 	<hr>
-
+	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>

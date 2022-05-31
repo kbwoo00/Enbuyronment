@@ -11,22 +11,6 @@
 <meta name="keywords"
 	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FreeHTML5.co" />
-
-<!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
 
 <link rel="stylesheet" href="/resources/user/css/bootstrap.min.css">
@@ -38,22 +22,18 @@
 
 </head>
 <body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<div class="container">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<div class="row">
 			<a class="col-md-5 col-md-offset-4" href="/"><img class="logo"
 				src="/resources/user/images/enbuyronment.png"
 				style="cursor: pointer;"> </a>
 			<div class="col-md-12 text-center"></div>
-		</div>
-		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<!-- Start Sign In Form -->
 				<form action="" method="post"
