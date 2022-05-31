@@ -18,11 +18,16 @@
 						</div>
 						<div class="main-menubox">
 							<!-- Main-menu -->
-							<div class="main-menu f-right d-lg-block" style="width: 100%;">
+							<div class="main-menu d-lg-block" style="width: 100%;">
 								<nav>
 									<ul id="navigation" class="enb-mainNav">
-										<li><a href="/board/notice">공지사항</a></li>
-										<li><a href="/board/FAQ">FAQ</a></li>
+										<li><a>게시판</a>
+											<ul class="submenu enb-submenu">
+													<li><a href="/board/notice">공지사항</a></li>
+													<li><a href="/board/FAQ">FAQ</a></li>
+													<li><a href="/board/productQnA">상품문의</a></li>
+											</ul>
+										</li>
 										<li><a href="/product/list">스토어</a></li>
 										<!-- js 컨트롤 -->
 										<c:if test="${sessionScope.mode eq 'adminMode' }">
