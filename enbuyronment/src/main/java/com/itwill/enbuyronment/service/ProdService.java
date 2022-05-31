@@ -37,4 +37,7 @@ public interface ProdService {
 	
 	//상품목록 가져오기
 	public List<ProductVO> prodList(Criteria cri, String brand, String cate, Integer sort, String keyword) throws Exception;
+	
+	//메인페이지 상품목록 가져오기
+	public List<ProductVO> getMainProd(String brand);
 }

@@ -165,5 +165,13 @@ public class ProdDAOImpl implements ProdDAO {
 			return sqlSession.selectList(NAMESPACE+".getProductBrCa", data);
 		}
 	}
+
+	//메인페이지 상품목록 가져오기 동작
+	@Override
+	public List<ProductVO> getMainProd(String brand) {
+		log.info("DAO : getMainProd(brand) 호출");
+		
+		return sqlSession.selectList(NAMESPACE+".getMainProd", brand);
+	}
 	
 }
