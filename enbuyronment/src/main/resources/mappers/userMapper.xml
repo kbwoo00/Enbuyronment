@@ -150,7 +150,7 @@
 		select count(*) 
 		from order_detail
 		where uid = #{uid} and 
-		order_date between str_to_date(#{startDate},'%Y-%m-%d') and str_to_date(#{endDate},'%Y-%m-%d') + 1
+		order_date between str_to_date(#{startDate},'%Y-%m-%d') and date_add(str_to_date(#{endDate},'%Y-%m-%d'), interval 1 day)
 	</select>
 	
 	<!-- 유저 주문 내역 목록 중 주문번호 가져오기 -->
@@ -159,7 +159,7 @@
 		from order_detail
 		where uid = #{uid} 
 		<if test="cri.startDate != null and cri.endDate != null">
-			and order_date between str_to_date(#{cri.startDate},'%Y-%m-%d') and str_to_date(#{cri.endDate},'%Y-%m-%d') + 1
+			and order_date between str_to_date(#{cri.startDate},'%Y-%m-%d') and date_add(str_to_date(#{cri.endDate},'%Y-%m-%d'), interval 1 day)
 		</if>
 		order by order_date desc limit #{cri.pageStart}, #{cri.perDataCnt}
 	</select>
