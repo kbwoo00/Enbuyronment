@@ -125,7 +125,7 @@ $(document).ready(function() {
 							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
-							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'>"+
+							             "<div class='product-img'><img class='img-thumbnail' src='../upload/"+data.prodList[i].thumb+"'>"+
 							             "<img class='soldout-img' src='../resources/assets/img/soldout.png'></div>"+
 							             "<div class='product-caption'>"+
 							                 "<div class='product-ratting'>"+
@@ -140,7 +140,7 @@ $(document).ready(function() {
 							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
-							             "<div class='product-img'><img src='../upload/"+data.prodList[i].thumb+"'></div>"+
+							             "<div class='product-img'><img class='img-thumbnail' src='../upload/"+data.prodList[i].thumb+"'></div>"+
 							             "<div class='product-caption'>"+
 							                 "<div class='product-ratting'>"+
 								                 "<i class='fa-solid fa-star'></i><i class='far'>"+data.prodList[i].star+"</i></div>"+
@@ -163,7 +163,7 @@ $(document).ready(function() {
 	var page = 1;
 	
 	$(window).scroll(function() {
-	    if($(window).scrollTop() > $(document).height() - $(window).height() - 150) {
+		if (Math.round( $(window).scrollTop()) == $(document).height() - $(window).height()) {
 	      ++page;
 	      getProdList(page, $('#on').text(), $("a[aria-selected='true']").text(), $('#select1').val(), $('#searchKeyword').val(), true);
 	    }

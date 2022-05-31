@@ -169,5 +169,13 @@ public class ProdServiceImpl implements ProdService {
 		
 		return prodDao.getProductList(cri, brand, cate, sort, keyword);
 	}
+
+	//메인페이지 상품목록 가져오기 동작
+	@Override
+	public List<ProductVO> getMainProd(String brand) {
+		log.info("getMainProd(brand) 호출");
+		
+		return prodDao.getMainProd(brand);
+	}
 	
 }

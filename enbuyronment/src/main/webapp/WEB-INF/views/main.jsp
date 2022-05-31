@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -10,23 +11,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon" href="/resources/assets/img/favicon.ico">
 <%@include file="/WEB-INF/views/include/css.jsp" %>
+<style type="text/css">
+	.product-img {
+		width: 300px;
+		height: 300px;
+		position: relative;
+	}
+	
+	.product-img img {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp" %>
 
 <body>
-	<!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="/resources/img/loading.png" alt="loding_logo"> 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
-
 	<main>
 		<!-- slider Area Start -->
         <div class="slider-area ">
@@ -55,11 +58,9 @@
 							<!--Nav Button  -->
 							<nav>
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<a class="nav-item nav-link active" data-toggle="tab" href="#nav-home" role="tab" aria-selected="true">동구밭</a>
-									<a class="nav-item nav-link" data-toggle="tab" href="#nav-profile" role="tab" aria-selected="false">톤28</a>
-									<a class="nav-item nav-link" data-toggle="tab" href="#nav-contact" role="tab" aria-selected="false">슈가랩몰</a>
-									<a class="nav-item nav-link" data-toggle="tab" href="#nav-last" role="tab" aria-selected="false">자연상점</a>
-									<a class="nav-item nav-link" data-toggle="tab" href="#nav-last" role="tab" aria-selected="false">더피커</a>
+									<c:forEach var="brandName" items="${brand }">
+										<a class="nav-item nav-link" data-toggle="tab" href="" role="tab" aria-selected="false">${brandName }</a>
+			                        </c:forEach>
 								</div>
 							</nav>
 							<!--End Nav Button  -->
@@ -70,33 +71,7 @@
 				<div class="tab-content" id="nav-tabContent">
 					<!-- card one -->
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-						<div class="row">
-							<div class="col-xl-4 col-lg-4 col-md-6">
-								<div class="single-product mb-60">
-									<div class="product-img">
-										<img src="/resources/assets/img/categori/product1.png" style="width:20rem; height:20rem;">
-									</div>
-									<div class="product-caption">
-										<div class="product-ratting">
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-											<i class="far fa-star low-star"></i>
-											<i class="far fa-star low-star"></i>
-										</div>
-										<h4>
-											<a href="#">Green Dress with details</a>
-										</h4>
-										<div class="price">
-											<ul>
-												<li>$40.00</li>
-												<li class="discount">$60.00</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<div class="row" id="mainProd"></div>
 					</div>
 				</div>
 				<!-- End Nav Card -->
@@ -108,12 +83,57 @@
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 	<%@include file="/WEB-INF/views/include/script.jsp"%>
 	<%@include file="/WEB-INF/views/include/header_script.jsp"%>
-
-	<script type="text/javascript">
-		var msg = '${msg }'
-		if (msg == 'success') {
-			alert('로그인 되었습니다.');
-		}
-	</script>
 </body>
+
+<script src="https://kit.fontawesome.com/58cff89876.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	var msg = '${msg }'
+	if (msg == 'success') {
+		alert('로그인 되었습니다.');
+	}
+	
+	$(document).ready(function() {
+		$('.nav-item').first().addClass('active');
+		$('.nav-item').first().attr('aria-selected','true');
+		
+		function listCall(brandVal) {
+			$('#mainProd').empty();
+			
+			$.ajax({
+				url: '/mainProd',
+				type: 'post',
+				data: {
+					'brand' : brandVal
+				},
+				dataType: 'json',
+				success: function(data) {
+					$.each(data, function(index,item) {
+						if(item.star == null) {
+							item.star = 0;
+						}
+						
+						$('#mainProd').append("<div class='col-xl-4 col-lg-4 col-md-9 justify-content-center' style='display:flex;'>"+
+							             "<div class='single-product mb-6'>"+
+							             "<a href='/product/"+item.prodNo+"'>"+
+									        "<div class='product-img'><img class='img-thumbnail' src='../upload/"+item.thumb+"'></div>"+
+									        "<div class='product-caption'>"+
+									            "<div class='product-ratting'>"+
+									                "<i class='fa-solid fa-star'></i><i class='far'>"+item.star+"</i></div>"+
+									            "<h6>["+item.brandName+"] "+item.prodName+"</h6>"+
+									            "<h6>"+item.price.toLocaleString()+"원</h6><div><div><div>");
+						
+					});
+				}
+			});
+		}
+		
+		//페이지 로딩 시
+		listCall('동구밭');
+		
+		//브랜드 클릭 시
+		$('.nav-link').click(function() {
+			listCall($(this).text());
+		});
+	});
+</script>
 </html>

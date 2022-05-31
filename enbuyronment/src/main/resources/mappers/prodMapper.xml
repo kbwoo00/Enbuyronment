@@ -134,5 +134,12 @@
 		and p.cate_no = (select cate_no from category where cate_name = #{cate}) and p.prod_name like '%${keyword}%'
 		group by p.prod_no order by ${sortby} limit #{pageStart}, #{perDataCnt}
 	</select>
+	
+	<!-- 메인페이지 상품목록 가져오기 동작 -->
+	<select id="getMainProd" resultType="ProductVO" resultMap="productMap">
+		select p.*, b.brand_name, avg(star) from product p join brand b on p.brand_no = b.brand_no
+		left join review r on p.prod_no = r.prod_no where b.brand_name = #{brand} and p.stock > 0
+		group by p.prod_no order by prod_no limit 0,9
+	</select>
 
 </mapper>
