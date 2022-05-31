@@ -142,7 +142,7 @@
 	<script type="text/javascript">
 	$(document).ready(function () {
 		let reviewLength = ${reviewList.size() };
-		for(let i = 1; i < reviewLength; i++){
+		for(let i = 1; i <= reviewLength; i++){
 			$('#delBtn' + i).click(function() {
 				if(confirm('정말 리뷰를 삭제하시겠습니까? 재작성은 불가능합니다.')){
 					$.ajax({
@@ -157,7 +157,7 @@
 				}
 			});
 		}
-		for(let i = 1; i < reviewLength; i++){
+		for(let i = 1; i <= reviewLength; i++){
 			$('#modBtn' + i).click(function() {
 				location.href = "/mypage/review/" + $('#reviewNo' + i).val() + "/update";
 			});
