@@ -11,7 +11,7 @@
 			$('#changeModeBtn').click(function() {
 				$.post('/user/changeMode', function(msg) {
 					alert(msg);
-					location.replace('/');
+					location.reload();
 				});
 
 			});
@@ -23,7 +23,7 @@
 		    });
 			
 			$('#loginBtn').click(function() {
-				location.href='/user/login';
+				location.href='/user/login?redirectUrl=' + location.pathname;
 			});
 			$('#joinBtn').click(function() {
 				location.href='/user/join';
