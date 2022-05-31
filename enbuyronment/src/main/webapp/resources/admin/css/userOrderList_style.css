@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.table thead th {
+	border-bottom: 1px solid #dee2e6 !important;
+}
+.userOrder-title{
+	width: 100%;
+	background-color: rgba(0,0,0,.03);
+	height: 50px;
+	line-height: 50px;
+	margin: 0px;
+	border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.order-searchTable{
+	padding: 0 !important;
+	vertical-align: middle;
+	width: 100%;
+}
+.order-searchTable td{
+	padding: 0.8rem 0.5rem;
+}
+.order-input{
+	padding: 0.5rem 0.5rem;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: 5px;
+}
+.search-btn{
+	width: 100px;
+	padding: 0.5rem 0rem;
+	background:#485549;
+	color: #fff;
+	border-radius: 0.5rem;
+	border: none;
+	cursor: pointer;
+	margin-left: 10px;
+}
+.addrList{
+	width: 210px;
+	padding: 0.5rem 0.5rem;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: 5px;
+	line-height: 25px !important;
+}
+.orderListBox {
+	border-bottom: 1px solid #dee2e6;
+}
+.trackNo-input{
+	width: 60%;
+	padding: 0.3rem 0.3rem;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: 5px;
+} 
+.trackNo-inputBtn{
+	width: 65px;
+	margin-left: 5px;
+	font-size: 0.9em;
+	padding: 0.3rem 0rem;
+	background:#485549;
+	color: #fff;
+	border-radius: 0.5rem;
+	border: none;
+	cursor: pointer;
+}
