@@ -110,7 +110,7 @@
 							</div>
 							<div class="btn_submit row mt-4 justify-content-center">
 									<div class="col-md-auto">
-										<button class="btn header-btn enb-loginBtn" type="submit">등록</button>
+										<input class="btn header-btn enb-loginBtn" type="submit" value="등록">
 									</div>
 								</div>
 						</form>

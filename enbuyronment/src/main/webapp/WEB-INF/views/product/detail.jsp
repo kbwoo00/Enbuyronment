@@ -85,6 +85,18 @@
 								</div>
 							</c:if>
 						</div>
+						<c:if test="${sessionScope.mode eq 'adminMode' }">
+									<div class="row justify-content-around mt-5">
+										<div class="col-md-auto">
+											<input type="button" value="상품 수정" id="modProd"
+											class="btn enb-loginBtn">
+										</div>
+										<div class="col-md-auto">
+											<input type="button"
+												value="상품 삭제" id="delProd" class="btn enb-loginBtn">
+										</div>
+									</div>
+								</c:if>
 					</div>
 					<div class="col-md-6">
 						<div class="text-center">
@@ -133,14 +145,6 @@
 										</c:choose>
 									</div>
 								</div>
-								<c:if test="${sessionScope.mode eq 'adminMode' }">
-									<div class="row justify-content-center mt-5">
-										<input type="button" value="상품 수정" id="modProd"
-											class="btn enb-loginBtn"> <input type="button"
-											value="상품 삭제" id="delProd" class="btn enb-loginBtn">
-									</div>
-								</c:if>
-
 							</div>
 						</div>
 
@@ -435,16 +439,16 @@
 
 		  if (uid == "") {
 		    heartArea.html(
-		      "<input type='button' class='btn enb-loginBtn heart-btn' value='관심상품 추가'>"
+		      "<input type='button' class='btn enb-whiteBtn heart-btn' value='관심상품 추가'>"
 		    );
 		  } else {
 		    if (isHeart == "true") {
 		      heartArea.html(
-		        "<input type='button' class='btn enb-loginBtn heart-btn active' value='관심상품 제거'>"
+		        "<input type='button' class='btn enb-whiteBtn heart-btn active' value='관심상품 제거'>"
 		      );
 		    } else {
 		      heartArea.html(
-		        "<input type='button' class='btn enb-loginBtn heart-btn' value='관심상품 추가'>"
+		        "<input type='button' class='btn enb-whiteBtn heart-btn' value='관심상품 추가'>"
 		      );
 		    }
 		  }
