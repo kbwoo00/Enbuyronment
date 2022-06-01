@@ -24,17 +24,8 @@
 	<main>
 		<div class="container mt-5 col-md-12">
 			<form method="post" id="boardForm">
-				<select id="selBoard" name="boardName">
-					<option value="" selected>게시판을 선택하세요</option>
-					<option value="notice">공지사항</option>
-					<option value="FAQ">FAQ</option>
-				</select>
-				<div class="col-md-3" style="padding-left:110px; padding-top:8px;">
-					<div id="fixNoticeBox" style="width:350px;">
-						<input type="checkbox" id="fixNotice">  공지 상단고정
-					</div>
-				</div>
-				<input type="hidden" id="boardStatus" name="status"><br><br>
+				<input type="hidden" id="boardName" name="boardName" value="QnA">
+				<input type="hidden" id="boardStatus" name="status" value="1">
 					<div class="row" style="display:flex; justify-content: center;">
 						<div class="col-md-10 mt-4">
 							<div class="col-md-12 mb-3" style="padding-left:0px;">
@@ -56,20 +47,15 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#selBoard').change(function() {
-			if($('#selBoard').val() == 'notice') {
-				$('#fixNoticeBox').css('display','block');
-			} else {
-				$('#fixNotice').prop('checked',false);
-				$('#fixNoticeBox').css('display','none');
-			}
-		});
+		var uid = '${sessionScope.userId}';
+		
+		if(uid == 'admin') {
+			$('#boardStatus').val(2);
+			$('#boardTit').val('[답변] ');
+			$('#boardTit').focus();
+		}
 		
 		$('#boardBtn').click(function() {
-			if($('#selBoard').val() == "") {
-				alert('게시판을 선택해주세요');
-				return false;
-			}
 			if($('#boardTit').val() == "") {
 				alert('제목을 작성해주세요');
 				$('#boardTit').focus();
@@ -79,12 +65,6 @@
 				alert('내용을 작성해주세요');
 				$('#boardCont').focue();
 				return false;
-			}
-			
-			if($('#fixNotice').is(':checked')) {
-				$('#boardStatus').val(0);
-			} else {
-				$('#boardStatus').val(1);
 			}
 			
 			$('#boardForm').submit();

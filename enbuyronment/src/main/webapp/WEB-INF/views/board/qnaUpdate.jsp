@@ -23,14 +23,9 @@ input {
 <body>
 	<main>
 		<div class="container mt-5 col-md-12">
-			<div id="board-name" style="font-size:30px;"></div><br>
+			<div id="board-name" style="font-size:30px;">QnA</div><br>
 			<form method="post">
-				<div class="col-md-3" style="display:flex; width:300px; padding-left:100px;">
-					<div id="fixNoticeBox" style="display:flex;">
-						<input type="checkbox" id="fixNotice" style="width:15px;">  공지 상단고정
-					</div>
-					<input type="hidden" id="boardStatus" name="status">
-				</div>
+				<input type="hidden" id="boardStatus" name="status" value="1">
 				<div class="row" style="display:flex; justify-content: center;">
 					<div class="col-md-10 mt-4">
 						<div class="col-md-12 mb-3" style="padding-left:0px;">
@@ -54,19 +49,6 @@ input {
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		if('${boardDetail.boardName}' == 'notice') {
-			$('#board-name').text('공지사항');
-			$('#fixNoticeBox').css('display','block');
-			
-			if(${boardDetail.status} == 0) {
-				$('#fixNotice').prop('checked',true);
-			}
-			
-		} else {
-			$('#board-name').text('FAQ');
-			$('#fixNoticeBox').css('display','none');
-		}
-		
 		$('#updateBtn').click(function() {
 			if($('#boardTit').val() == "") {
 				alert('제목을 작성해주세요');
@@ -79,10 +61,8 @@ input {
 				return false;
 			}
 			
-			if($('#fixNotice').is(':checked')) {
-				$('#boardStatus').val(0);
-			} else {
-				$('#boardStatus').val(1);
+			if('${sessionScope.userId}' == 'admin') {
+				$('#boardStatus').val(2);
 			}
 		});
 	});

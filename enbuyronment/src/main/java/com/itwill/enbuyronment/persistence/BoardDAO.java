@@ -27,4 +27,7 @@ public interface BoardDAO {
 	
 	//글 삭제 동작
 	public void deleteBoard(BoardVO vo);
+	
+	//답변여부 확인 동작
+	public Integer checkAns(BoardVO vo);
 }
