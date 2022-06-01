@@ -28,6 +28,21 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertBoard(BoardVO vo) {
 		log.info("DAO : insertBoard(vo) 호출");
 		
+		Integer maxNo = sqlSession.selectOne(NAMESPACE+".selMaxBno");
+		
+		if(maxNo != null) {
+			if(vo.getBoardNo() != null) {
+				vo.setReRef(vo.getBoardNo());
+			} else {
+				vo.setReRef(maxNo+1);
+			}
+			vo.setBoardNo(maxNo+1);
+			
+		} else {
+			vo.setBoardNo(1);
+			vo.setReRef(1);
+		}
+		
 		sqlSession.insert(NAMESPACE+".insertBoard", vo);
 	}
 	
@@ -83,4 +98,16 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(NAMESPACE+".deleteBoard", vo);
 	}
 	
+	//답변여부 확인 동작
+	@Override
+	public Integer checkAns(BoardVO vo) {
+		log.info("DAO : checkAns(vo) 호출");
+		
+		if(sqlSession.selectOne(NAMESPACE+".checkAnswer", vo) != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 }

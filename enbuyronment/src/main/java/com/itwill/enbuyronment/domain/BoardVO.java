@@ -15,8 +15,11 @@ public class BoardVO {
 
 	private Integer boardNo;
 	private String boardName;
+	private String uid;
+	private String writer;
 	private String title;
 	private String content;
+	private Integer reRef;
 	private Timestamp regdate;
 	private Integer status;
 }

@@ -27,4 +27,7 @@ public interface BoardService {
 	
 	//글 삭제
 	public void deleteBoard(BoardVO vo);
+	
+	//답변여부 확인
+	public Integer checkAns(BoardVO vo);
 }

@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	//글 목록 호출
 	@Override
 	public List<BoardVO> getBoardList(Criteria cri, String boardName) {
-		log.info("writeBoard(cri,boardName) 호출");
+		log.info("getBoardList(cri,boardName) 호출");
 		
 		return boardDao.getBoardList(cri, boardName);
 	}
@@ -70,9 +70,17 @@ public class BoardServiceImpl implements BoardService {
 	//글 삭제
 	@Override
 	public void deleteBoard(BoardVO vo) {
-		log.info("DAO : deleteBoard(vo) 호출");
+		log.info("deleteBoard(vo) 호출");
 		
 		boardDao.deleteBoard(vo);
 	}
-	
+
+	//답변여부 확인
+	@Override
+	public Integer checkAns(BoardVO vo) {
+		log.info("checkAns(vo) 호출");
+		
+		return boardDao.checkAns(vo);
+	}
+
 }
