@@ -6,9 +6,15 @@
 
 <mapper namespace="com.itwill.enbuyronment.mapper.BoardMapper">
 	
+	<!-- 마지막 글번호 가져오기 -->
+	<select id="selMaxBno" resultType="Integer">
+		select max(board_no) from board
+	</select>
+	
 	<!-- 글 작성 동작 -->
 	<insert id="insertBoard">
-		insert into board(board_name, title, content, status) values(#{boardName}, #{title}, #{content}, ${status})
+		insert into board(board_no, board_name, uid, writer, title, content, re_ref, status)
+		values(${boardNo}, #{boardName}, #{uid}, #{writer}, #{title}, #{content}, ${reRef}, ${status})
 	</insert>
 	
 	<!-- 상단고정 공지 불러오기 동작 -->
@@ -23,8 +29,8 @@
 	
 	<!-- 글 목록 불러오기 동작 -->
 	<select id="getBoardList" resultType="BoardVO">
-		select * from board where board_name = #{boardName} and status = 1
-		order by board_no desc limit ${cri.pageStart}, ${cri.perDataCnt}
+		select * from board where board_name = #{boardName} and status in (1,2)
+		order by re_ref desc, board_no limit ${cri.pageStart}, ${cri.perDataCnt}
 	</select>
 	
 	<!-- 글 상세정보 가져오기 동작 -->
@@ -42,5 +48,10 @@
 	<delete id="deleteBoard">
 		delete from board where board_name = #{boardName} and board_no = ${boardNo}
 	</delete>
-
+	
+	<!-- 답변여부 확인 동작 -->
+	<select id="checkAnswer" resultType="BoardVO">
+		select * from board where re_ref = ${reRef} and status = 2;
+	</select>
+	
 </mapper> 

@@ -15,34 +15,51 @@
 	<main>
 		<div class="container mt-5" style="max-width: 1200px;">
 			<div class="row">
-				<div id="board-name" style="font-size:30px;"></div>
+				<div id="board-name" style="font-size:30px;">QnA</div>
 
 				<table class="table table-sm mt-1" style="text-align : center;">
 					<thead style="background-color:#86a688; color:white;">
 						<tr>
-							<th style="width:1000px;">제목</th>
+							<th style="width:800px;">제목</th>
+							<th style="width:200px;">작성자</th>
 							<th style="width:200px;">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="notice" items="${fixedNotice }">
-							<tr style="background-color:#DCDCDC;">
-								<th style="text-align: left; padding-left: 20px;">
-									<a style="color: black;" class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a>
-								</th>
-								<th><fmt:formatDate type="date" value="${notice.regdate }"/></th>
-							</tr>
-						</c:forEach>
-						<c:forEach var="board" items="${boardList }">
-							<tr>
-								<td style="text-align: left; padding-left: 20px;">
-									<a style="color: black;" class="bTitle" href="/board/${board.boardName }/${board.boardNo }">${board.title }</a>
-								</td>
-								<td><fmt:formatDate type="date" value="${board.regdate }"/></td>
-							</tr>
+						<c:forEach var="qna" items="${boardList }">
+							<c:choose>
+								<c:when test="${qna.status eq 1 }">
+									<tr>
+										<td style="text-align: left; padding-left: 20px;">
+											<a style="color: black;" class="bTitle" href="/board/QnA/${qna.boardNo }">
+												${qna.title }
+											</a>
+										</td>
+										<td>${qna.writer }</td>
+										<td><fmt:formatDate type="date" value="${qna.regdate }"/></td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td style="text-align: left; padding-left: 20px;">
+											<a style="color: black;" class="bTitle" href="/board/QnA/${qna.boardNo }">
+												&nbsp;&nbsp; ↳ ${qna.title }
+											</a>
+										</td>
+										<td>관리자</td>
+										<td><fmt:formatDate type="date" value="${qna.regdate }"/></td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</tbody>
 				</table>
+				
+				<c:if test="${sessionScope.userId ne null and sessionScope.userId ne 'admin'}">
+					<div class="col-md-2" style="display:flex; display-wrap:wrap; float:right;">
+						<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" value="문의하기" onclick="location.href='/board/writeQnA';">
+					</div>
+				</c:if>
 
 				<div class="row col-md-12" style="display:flex; justify-content: center;">
 					<nav class="blog-pagination d-flex" aria-label="Page navigation example">
@@ -92,13 +109,5 @@
 	if('${msg}' == 'deleteOK') {
 		alert('글 삭제 완료');
 	}
-	
-	$(document).ready(function() {
-		if('${boardName}' == 'notice') {
-			$('#board-name').text('공지사항');
-		} else {
-			$('#board-name').text('FAQ');
-		}
-	});
 </script>
 </html>
