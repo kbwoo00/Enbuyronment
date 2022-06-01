@@ -346,3 +346,12 @@ main {
     height: 50px;
     /* background-color: #ef9d3e; */
 }
+
+textarea {
+	resize: none;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

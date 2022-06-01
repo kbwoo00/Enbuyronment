@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="/resources/product/css/main.css">
 <%@include file="/WEB-INF/views/include/css.jsp"%>
 <style type="text/css">
+	.owl-carousel {
+		z-index: auto !important;
+	}
 	.nav-link{
 		color: black;
 		width: 50%;
