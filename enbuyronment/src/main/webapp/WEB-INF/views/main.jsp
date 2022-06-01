@@ -35,8 +35,10 @@
         <div class="slider-area ">
             <div class="mainImg-area">
                 <div class="mainimg-Box">
-                    <a href="#">
+                    <a href="">
                         <img src="/resources/img/enb-mainimg.jpg" alt="mainImg">
+                        <img src="/resources/img/enb-mainimg2.jpg" alt="mainImg">
+                        <img src="/resources/img/enb-mainimg3.jpg" alt="mainImg">
                     </a>
                 </div>
             </div>

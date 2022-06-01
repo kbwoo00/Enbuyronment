@@ -36,11 +36,6 @@ input {
 	padding-bottom: 27px;
 }
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
 input:not(.point) {
 	margin-bottom: 1.5em;
 }

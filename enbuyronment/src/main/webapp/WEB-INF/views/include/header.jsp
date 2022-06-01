@@ -25,7 +25,7 @@
 											<ul class="submenu enb-submenu">
 													<li><a href="/board/notice">공지사항</a></li>
 													<li><a href="/board/FAQ">FAQ</a></li>
-													<li><a href="/board/productQnA">상품문의</a></li>
+													<li><a href="/board/QnA">상품문의</a></li>
 											</ul>
 										</li>
 										<li><a href="/product/list">스토어</a></li>

@@ -91,6 +91,7 @@ public class AdminController {
 			model.addAttribute("userOrderProdCnt", prod);
 		}
 		
+		model.addAttribute("presentPage", cri.getPage());
 		model.addAttribute("pageInfo", pm);
 		return "/admin/orderList";
 	}
@@ -119,6 +120,7 @@ public class AdminController {
 		model.addAttribute("userOrderList", order);
 		model.addAttribute("userOrderProdCnt", prod);
 		model.addAttribute("pageInfo", pm);
+		model.addAttribute("presentPage", cri.getPage());
 		
 		return "/admin/orderList";
 	}
