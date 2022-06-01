@@ -403,8 +403,11 @@
 		          amount: amount.val(),
 		        }),
 		        success: function () {
-		          alert("장바구니에 상품이 담겼습니다.");
-		          amount.val(1);
+		        	if(confirm('장바구니에 상품이 담겼습니다. 장바구니로 이동하시겠습니까?')){
+		        		location.href='/cart/view';
+		        	} else{
+		         	 amount.val(1);
+		        	}
 		        },
 		        error: function () {
 		          if (confirm("회원만 가능한 서비스입니다. 로그인 하시겠습니까?")) {

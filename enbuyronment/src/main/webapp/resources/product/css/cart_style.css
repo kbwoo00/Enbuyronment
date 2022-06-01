@@ -250,3 +250,6 @@ input::-webkit-inner-spin-button {
   border-radius : 100%;
   border: none;
 }
+span{
+	color: black;
+}
