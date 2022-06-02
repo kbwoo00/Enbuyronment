@@ -15,4 +15,6 @@ public interface OrderDAO {
 	
 	//주문상품정보 가져오기 동작
 	public List<CartVO> orderProdList(String orderNo);
+	
+	public void cancelOrder(OrderVO order);
 }

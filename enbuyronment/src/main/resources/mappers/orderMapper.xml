@@ -44,5 +44,12 @@
 	<select id="selectOrderProdList" resultType="CartVO">
 		select * from order_product where order_no = #{orderNo}
 	</select>
+	
+	<!-- 주문 취소 -->
+	<update id="cancelOrder">
+		update order_detail 
+		set status = '주문 취소'
+		where uid = #{uid} and order_no = #{orderNo}
+	</update>
 
 </mapper>

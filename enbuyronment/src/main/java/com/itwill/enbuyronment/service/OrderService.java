@@ -15,4 +15,6 @@ public interface OrderService {
 	
 	//주문상품정보 가져오기
 	public List<CartVO> getOrderProd(String orderNo);
+	
+	public void cancelOrder(OrderVO order);
 }

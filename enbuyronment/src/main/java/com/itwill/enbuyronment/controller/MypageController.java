@@ -307,6 +307,8 @@ public class MypageController {
 		OrderVO order = new OrderVO();
 		order.setOrderNo(orderNo);
 		order.setUid(uid);
+		
+		orderService.cancelOrder(order);
 	}
 	
 	
