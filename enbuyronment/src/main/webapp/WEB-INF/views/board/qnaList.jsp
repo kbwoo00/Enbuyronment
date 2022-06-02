@@ -125,10 +125,11 @@
 			    return strName.replace(pattern, '*');
 			  }
 			};
+			console.log('ㅌㅌ');
 		
-		$('.writer').each(){
-			$(this).text(maskingName($(this).text()));
-		};
+		$('.writer').each(function (index, item) {
+			$(item).text(maskingName($(item).text()));
+		});
 		
 	});
 </script>
