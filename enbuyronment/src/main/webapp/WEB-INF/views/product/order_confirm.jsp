@@ -130,6 +130,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var totalPrice = 0;
+		const orderNo = "${orderInfo.orderNo }";
 		
 		for(var i=0; i<${orderProdList.size()}; i++) {
 			totalPrice += Number($('.price'+i).text());
@@ -145,6 +146,10 @@
 			$('.totalShipcost').text(0+'원');
 			$('.orderPrice').text((totalPrice - ${orderInfo.pointDown}).toLocaleString()+'원');
 		}
+		
+		$('#toDetailOrder').click(function() {
+			location.replace('/mypage/order/' + orderNo);
+		});
 	});
 </script>
 
