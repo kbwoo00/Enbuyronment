@@ -41,10 +41,12 @@ textarea {
 				</div>
 			</div>
 			<hr>
-			<div class="col-md-2" style="display:flex; display-wrap:wrap; float:right;">
-				<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" value="수정" onclick="location.href='/board/${boardDetail.boardName}/${boardDetail.boardNo }/update';"> &nbsp;
-				<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" id="deleteBtn" value="삭제">
-			</div>
+			<c:if test="${sessionScope.mode eq 'adminMode' }">
+				<div class="col-md-2" style="display:flex; display-wrap:wrap; float:right;">
+					<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" value="수정" onclick="location.href='/board/${boardDetail.boardName}/${boardDetail.boardNo }/update';"> &nbsp;
+					<input class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important;" type="button" id="deleteBtn" value="삭제">
+				</div>
+			</c:if>
 		</div>
 	</main>
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>

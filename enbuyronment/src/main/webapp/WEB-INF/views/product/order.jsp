@@ -168,7 +168,7 @@ input:not(.point) {
 												<select id="request" class="select-group" name="request">
 													<option value="없음" selected="selected">요청사항을 선택해주세요</option>
 													<option value="부재시 경비실에 맡겨주세요">부재시 경비실에 맡겨주세요</option>
-													<option value="집 앞에 놔주세요">집 앞에 놔주세요</option>
+													<option value="문 앞에 놔주세요">문 앞에 놔주세요</option>
 													<option value="택배함에 넣어주세요">택배함에 넣어주세요</option>
 													<option value="직접 배송해주세요">직접 배송해주세요</option>
 													<option value="배송전에 꼭 연락해주세요">배송전에 꼭 연락해주세요</option>
