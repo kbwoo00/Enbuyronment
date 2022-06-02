@@ -22,6 +22,10 @@
 	width: 50%;
 }
 
+.nav-link:hover {
+	color: #F1EF86 !important;
+}
+
 .enb-active {
 	background: #86a688;
 	color: white;
@@ -55,6 +59,11 @@
 
 #soldoutBtn {
 	cursor: default;
+}
+
+.product_image_area .owl-nav button.owl-prev, .product_image_area .owl-nav button.owl-next {
+	background-color: #BBBBBB !important;
+	border: 1px solid #BBBBBB !important;
 }
 </style>
 </head>
@@ -156,11 +165,12 @@
 		<div class="product_script_area">
 			<div class="container">
 				<nav class="nav nav-pills nav-fill justify-content-center">
-					<a class="nav-link text-center border enb-active"
-						href="javascript:void(0);" aria-current="page" id="prodScriptBtn">
-						상품상세 </a> <a class="nav-link text-center border"
-						href="javascript:void(0);" aria-current="page" id="reviewBtn">
-						리뷰 </a>
+					<a class="nav-link text-center border enb-active" href="javascript:void(0);" aria-current="page" id="prodScriptBtn">
+						상품상세
+					</a>
+					<a class="nav-link text-center border" href="javascript:void(0);" aria-current="page" id="reviewBtn">
+						리뷰
+					</a>
 				</nav>
 				<div class="mt-5" id="content">
 					<div class="row justify-content-center">

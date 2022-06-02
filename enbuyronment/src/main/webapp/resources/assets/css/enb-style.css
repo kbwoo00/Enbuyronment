@@ -18,6 +18,9 @@ main {
 }
 
 /* 로딩창 막대 색상조절 */
+.preloader {
+    background-color: white !important;
+}
 .preloader-circle{
     border-top-color: #86a688 !important;
 }
@@ -95,6 +98,8 @@ main {
 
 .enb-submenu>li{
     margin-left: 0px !important;
+    line-height: 2.7rem;
+    z-index: 999 !important;
 }
 
 .enb-submenu>li:hover{
@@ -112,7 +117,11 @@ main {
 }
 
 .main-userbox-liControl>li{
-    padding-left: 0.5rem !important;
+    padding-left: 0.3rem !important;
+}
+
+.header-sticky ul li a {
+	padding: 0 !important;
 }
 
 .enb-loginBtn {

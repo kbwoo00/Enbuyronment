@@ -205,7 +205,7 @@
 		var phone = $('#phone');
 		var jumin = $('#jumin');
 
-		var idRegExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+		var idRegExp = /^[a-z]+[a-z0-9]{5,14}$/g;
 		var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		var passRegExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 		var phoneRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;

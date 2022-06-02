@@ -122,7 +122,7 @@ $(document).ready(function() {
 						}
 						
 						if(data.prodList[i].stock < 1) {
-							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6 justify-content-center' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
 							             "<div class='product-img'><img class='img-thumbnail' src='../upload/"+data.prodList[i].thumb+"'>"+
@@ -137,7 +137,7 @@ $(document).ready(function() {
 						     );
 							
 						} else {
-							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6' style='display:flex;'>"+
+							$('#prodBox').append("<div class='col-xl-4 col-lg-4 col-md-6 justify-content-center' style='display:flex;'>"+
 					             "<div class='single-product mb-6'>"+
 						             "<a href='/product/"+data.prodList[i].prodNo+"'>"+
 							             "<div class='product-img'><img class='img-thumbnail' src='../upload/"+data.prodList[i].thumb+"'></div>"+

@@ -23,7 +23,7 @@ th {
 			<h3 class="mt-5">유저정보</h3>
 			<div class="table-responsive mb-5">
 				<table class="table table-sm mt-1 table-striped" style="text-align : center;">
-					<thead style="background-color:#485549; color:white; font-weight:normal !important;">
+					<thead style="background-color:#86a688; color:white; font-weight:normal !important;">
 						<tr>
 							<th style="width:5rem;">
 								<div class="form-check justify-content-center">
@@ -52,7 +52,7 @@ th {
 						</c:forEach>
 					</tbody>
 				</table>
-				<button id="deleteBtn" type="button" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important; margin-top: 15px; display:flex; float:right"">선택된 회원 삭제</button>
+				<input type="button" id="deleteBtn" class="btn enb-loginBtn" style="padding: 1.3rem 1.3rem !important; margin-top: 15px; display:flex; float:right" value="선택된 회원 삭제">
 			</div>
 	
 			<div class="row justify-content-center">

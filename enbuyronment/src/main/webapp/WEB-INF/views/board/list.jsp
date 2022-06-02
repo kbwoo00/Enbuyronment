@@ -26,7 +26,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="notice" items="${fixedNotice }">
-							<tr style="background-color:#DCDCDC;">
+							<tr style="background-color:#eeeeee;">
 								<th style="text-align: left; padding-left: 20px;">
 									<a style="color: black;" class="bTitle" href="/board/notice/${notice.boardNo }">${notice.title }</a>
 								</th>
