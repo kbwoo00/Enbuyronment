@@ -35,7 +35,7 @@
 												${qna.title }
 											</a>
 										</td>
-										<td>${qna.writer }</td>
+										<td class="writer">${qna.writer }</td>
 										<td><fmt:formatDate type="date" value="${qna.regdate }"/></td>
 									</tr>
 								</c:when>
@@ -109,5 +109,27 @@
 	if('${msg}' == 'deleteOK') {
 		alert('글 삭제 완료');
 	}
+	
+	$(document).ready(function() {
+		var maskingName = function(strName) {
+			  if (strName.length > 2) {
+			    var originName = strName.split('');
+			    originName.forEach(function(name, i) {
+			      if (i === 0 || i === originName.length - 1) return;
+			      originName[i] = '*';
+			    });
+			    var joinName = originName.join();
+			    return joinName.replace(/,/g, '');
+			  } else {
+			    var pattern = /.$/; // 정규식
+			    return strName.replace(pattern, '*');
+			  }
+			};
+		
+		$('.writer').each(){
+			$(this).text(maskingName($(this).text()));
+		};
+		
+	});
 </script>
 </html>
