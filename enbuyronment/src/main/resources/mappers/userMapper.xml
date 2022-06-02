@@ -115,6 +115,11 @@
 		where r.review_no = #{reviewNo}
 	</select>
 	
+	<select id="getReviewByUidAndProdNo" resultType="ReviewVO">
+		select * from review
+		where uid = #{uid} and prod_no = #{prodNo}
+	</select>
+	
 	<!-- 리뷰 수정하기 -->
 	<update id="modReview">
 		update review set comment = #{comment}, star = #{star}

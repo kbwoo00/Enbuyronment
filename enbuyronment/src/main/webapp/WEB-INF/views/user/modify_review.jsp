@@ -113,6 +113,11 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			let msg = "${msg }";
+			if(msg != ''){
+				alert(msg);
+			}
+			
 			// 별점 클릭시 색칠
 			$('.fa-star').each(function(index, item) {
 				$(item).click(function() {

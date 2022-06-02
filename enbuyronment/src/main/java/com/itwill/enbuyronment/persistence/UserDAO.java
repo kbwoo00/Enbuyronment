@@ -78,4 +78,5 @@ public interface UserDAO {
 
 	public Integer getUserOrderTotalCntByPeriod(Map<String, String> map);
 	
+	public ReviewVO getReview(String uid, String prodNo);
 }

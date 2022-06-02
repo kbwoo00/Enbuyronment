@@ -324,4 +324,9 @@ public class UserServiceImpl implements UserService {
 		
 		return orderAndProduct;
 	}
+	
+	@Override
+	public ReviewVO getReview(String uid, String prodNo) {
+		return userDao.getReview(uid, prodNo);
+	}
 }

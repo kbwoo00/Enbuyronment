@@ -212,7 +212,18 @@ public class MypageController {
 	}
 	
 	@GetMapping("/review/write")
-	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
+	public String writeReviewForm(@RequestParam("prodNo") String prodNo, Model model,
+			@SessionAttribute(value = "userId", required = false) String uid, RedirectAttributes rttr
+			) throws Exception {
+
+		ReviewVO review = userService.getReview(uid, prodNo);
+
+		log.info("리뷰 = {}", review);
+
+		if(review != null) {
+			rttr.addFlashAttribute("msg","상품 하나당 하나의 리뷰만 가능합니다. 수정페이지로 이동합니다.");
+			return "redirect:/mypage/review/" + review.getReviewNo() + "/update";
+		}
 		
 		ProductVO product = prodService.prodDetail(Integer.parseInt(prodNo));
 		log.info("상품 = {}", product);
