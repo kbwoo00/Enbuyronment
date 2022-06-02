@@ -37,7 +37,7 @@
 		});
 		
 		$('#toBackBtn').click(function() {
-			location.history.back();
+			history.back();
 		});
 	});
 	</script>
