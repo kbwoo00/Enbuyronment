@@ -66,7 +66,7 @@
 						<c:otherwise>
 						<c:forEach var="order" items="${orderList }" varStatus="status">
 						<div class="list-group list-group-flush border-bottom scrollarea mt-3">
-						<div class="row justify-content-between mb-3">
+						<div class="row justify-content-between">
 							<div class="col-md-auto">
 								<h4><fmt:formatDate value="${order.key.orderDate }" pattern="yyyy년 MM월 dd일"/> 주문</h4>
 								<h5>[${order.key.status }]</h5>
@@ -83,9 +83,14 @@
 								</c:if>
 							</div>
 						</div>
+						<c:if test="${not empty order.key.trackNo }">
+								<h5 style="text-align: right;">운송장 번호</h5>
+								<strong style="text-align: right;">${order.key.trackNo }</strong>
+						</c:if>
+						
 						
 						<c:forEach var="prod" items="${order.value }">
-							<div class="card mb-3">
+							<div class="card mb-3 mt-3">
 						      <div class="card-body">
 						      	<div class="row justify-content-around">
 						      		<div class="col-md-auto">

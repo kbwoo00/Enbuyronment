@@ -47,7 +47,15 @@
 											</h4>
 											<h5>[${orderInfo.status }]</h5>
 										</div>
-										<div class="col-md-auto"><h5>주문번호</h5><strong>${orderInfo.orderNo }</<strong></div>
+										<div class="col-md-auto">
+											<h5>주문번호</h5>
+											<strong>${orderInfo.orderNo }</<strong>
+										</div>
+										<c:if test="${not empty orderInfo.trackNo }">
+											<div class="col-md-auto">
+												<strong class="text-right"><h5>운송장번호</h5> ${orderInfo.trackNo }</strong>
+											</div>
+										</c:if>
 
 										<div class="col-md-3">
 											<c:if test="${orderInfo.status == '배송 준비' }">
@@ -98,9 +106,10 @@
 											</div>
 										</div>
 									</c:forEach>
+									
 								</div>
 								<!-- 주문 상품들 -->
-
+								
 								<!-- 수령인 정보 -->
 								<h5>수령인 정보</h5>
 								<div class="col-md-12 mb-5">
