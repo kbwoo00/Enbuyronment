@@ -111,7 +111,7 @@
 	}
 	
 	$(document).ready(function() {
-		var maskingName = function(strName) {
+		 function maskingName(strName)  {
 			  if (strName.length > 2) {
 			    var originName = strName.split('');
 			    originName.forEach(function(name, i) {
