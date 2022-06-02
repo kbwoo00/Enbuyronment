@@ -25,6 +25,31 @@
 		top: 0;
 		left: 0;
 	}
+	
+	 #slider {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
+      #slider > li {
+        width: 100%;
+        height: 100%;
+
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        font-size: 15px;
+        font-size: initial;
+        line-height: normal;
+        transition: all 0.5s cubic-bezier(0.4, 1.3, 0.65, 1); /* Slide css animation */
+        background-size: cover;
+        vertical-align: top;
+        box-sizing: border-box;
+        white-space: normal;
+      }
+     
 </style>
 </head>
 <%@include file="/WEB-INF/views/include/header.jsp" %>
@@ -35,11 +60,19 @@
         <div class="slider-area ">
             <div class="mainImg-area">
                 <div class="mainimg-Box">
-                    <a href="">
-                        <img src="/resources/img/enb-mainimg.jpg" alt="mainImg">
-                        <img src="/resources/img/enb-mainimg2.jpg" alt="mainImg">
-                        <img src="/resources/img/enb-mainimg3.jpg" alt="mainImg">
-                    </a>
+                	<div class="owl-nav">
+                        <ul id="slider">
+					      <li>
+					          <img src="/resources/img/enb-mainimg.jpg" alt="mainImg">
+					      </li>
+					      <li>
+					          <img src="/resources/img/enb-mainimg2.jpg" alt="mainImg">
+					      </li>
+					      <li>
+					        <img src="/resources/img/enb-mainimg3.jpg" alt="mainImg">
+					      </li>
+					    </ul>
+                	</div>
                 </div>
             </div>
         </div>
@@ -137,5 +170,23 @@
 			listCall($(this).text());
 		});
 	});
+	
+	
+	 // 메인 슬라이드
+    const slideDelay = 5000;
+
+    const dynamicSlider = document.getElementById("slider");
+
+    var curSlide = 0;
+    window.setInterval(()=>{
+      curSlide++;
+      if (curSlide === dynamicSlider.childElementCount) {
+        curSlide = 0;
+      }
+
+      // Actual slide
+      dynamicSlider.firstElementChild.style.setProperty("margin-left", "-" + curSlide + "00%");
+    }, slideDelay);
+
 </script>
 </html>

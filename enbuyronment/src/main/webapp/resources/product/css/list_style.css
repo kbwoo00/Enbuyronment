@@ -58,10 +58,6 @@
 	left: 0;
 }
 
-.product-img .soldout-img {
-	z-index: 999;
-}
-
 .product_sidebar .single_sedebar input {
 	background-color: #b3c8b4 !important;
 	color: white !important;
@@ -98,4 +94,9 @@
 
 .fa-star {
 	color: #ffd400;
+}
+
+.latest-product-area .nice-select .option:hover, .latest-product-area .nice-select .option.focus, 
+.latest-product-area .nice-select .option.selected.focus {
+	background-color: #e5ede6b0 !important;
 }

@@ -11,11 +11,12 @@
 
 <style>
 #boardTit {
-  width: 98%;
-  border: 0;
-  border-bottom: 1px solid #485549;
+  width: 100%;
   outline: 0;
-  }
+}
+textarea {
+  width: 100%;
+}
 </style>
 
 </head>
@@ -29,15 +30,16 @@
 					<option value="notice">공지사항</option>
 					<option value="FAQ">FAQ</option>
 				</select>
-				<div class="col-md-3" style="padding-left:110px; padding-top:8px;">
-					<div id="fixNoticeBox" style="width:350px;">
-						<input type="checkbox" id="fixNotice">  공지 상단고정
+				<br><br><br>
+				<div class="col-md-3" style="display:flex; width:300px; padding-left:100px;">
+					<div id="fixNoticeBox">
+						<input type="checkbox" id="fixNotice" style="width:15px;">  공지 상단고정
 					</div>
+					<input type="hidden" id="boardStatus" name="status">
 				</div>
-				<input type="hidden" id="boardStatus" name="status"><br><br>
-					<div class="row" style="display:flex; justify-content: center;">
+					<div class="row" style="justify-content: center;">
 						<div class="col-md-10 mt-4">
-							<div class="col-md-12 mb-3" style="padding-left:0px;">
+							<div class="col-md-12 mb-3" style="padding-left:0px; padding-right: 0px;">
 								<input type="text" id="boardTit" name="title" placeholder="제목을 입력하세요"><br>
 							</div>
 							<textarea rows="10" cols="110" id="boardCont" name="content" placeholder="내용을 입력하세요"></textarea>

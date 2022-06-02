@@ -11,11 +11,12 @@
 
 <style>
 #boardTit {
-  width: 98%;
-  border: 0;
-  border-bottom: 1px solid #485549;
+  width: 100%;
   outline: 0;
-  }
+}
+textarea {
+  width: 100%;
+}
 </style>
 
 </head>
@@ -26,9 +27,9 @@
 			<form method="post" id="boardForm">
 				<input type="hidden" id="boardName" name="boardName" value="QnA">
 				<input type="hidden" id="boardStatus" name="status" value="1">
-					<div class="row" style="display:flex; justify-content: center;">
+					<div class="row" style="justify-content: center;">
 						<div class="col-md-10 mt-4">
-							<div class="col-md-12 mb-3" style="padding-left:0px;">
+							<div class="col-md-12 mb-3" style="padding-left:0px; padding-right: 0px;">
 								<input type="text" id="boardTit" name="title" placeholder="제목을 입력하세요"><br>
 							</div>
 							<textarea rows="10" cols="110" id="boardCont" name="content" placeholder="내용을 입력하세요"></textarea>

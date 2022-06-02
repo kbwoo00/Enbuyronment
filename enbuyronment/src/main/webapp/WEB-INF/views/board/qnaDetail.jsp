@@ -11,11 +11,19 @@
 
 <style>
 input {
-  width: 98%;
+  width: 100%;
   border: 0;
   border-bottom: 1px solid #485549;
   outline: 0;
-  }
+}
+textarea {
+  width: 100%;
+  border: 0;
+}
+#boardTit {
+  font-weight: 600;
+  padding-bottom: 20px;
+}
 </style>
 
 </head>
@@ -29,7 +37,7 @@ input {
 					<div class="col-md-12 mb-3" style="padding-left:0px;">
 						<input type="text" id="boardTit" name="title" value="${boardDetail.title }" readonly><br>
 					</div>
-					<textarea id="boardCont" style="min-height:300px;">${boardDetail.content }</textarea>
+					<textarea id="boardCont" style="min-height:300px;" readonly>${boardDetail.content }</textarea>
 				</div>
 			</div>
 			<hr>

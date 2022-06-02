@@ -48,32 +48,37 @@
 								class="header-right f-right d-lg-block d-flex justify-content-between main-userbox-liControl">
 								<c:choose>
 									<c:when test="${empty sessionScope.userId}">
-										<li class="d-lg-block"><input type="button" id="loginBtn"
-											 class="btn header-btn enb-loginBtn"
-											style="padding: 1.3rem 1.3rem !important;" value="로그인"></li>
-										<li class="d-lg-block"><input type="button"
-											class="btn header-btn enb-loginBtn" id="joinBtn"
-											style="padding: 1.3rem 1.3rem !important;" value="회원가입"></li>
+										<li class="d-lg-block">
+											<input type="button" id="loginBtn" class="btn header-btn enb-loginBtn"
+													style="padding: 1.3rem 1.3rem !important;" value="로그인">
+										</li>
+										<li class="d-lg-block">
+											<input type="button" class="btn header-btn enb-loginBtn" id="joinBtn"
+													style="padding: 1.3rem 1.3rem !important;" value="회원가입">
+										</li>
 									</c:when>
 									<c:otherwise>
-										<li class="d-xl-block">
-											<div class="favorit-items">
+										<li class="d-xl-block" style="width:240px; font-size: 0.9em; padding-right: 20px; text-align: right;">
+											${sessionScope.userId }님
+										</li>
+										<li>
+											<div class="favorit-items" style="width:70px;">
 												<a href="/heart/view"><i class="far fa-heart"></i></a>
 											</div>
 										</li>
 										<li>
-											<div class="shopping-card">
+											<div class="shopping-card" style="width:70px;">
 												<a href="/cart/view"><i class="fas fa-shopping-cart"></i></a>
 											</div>
 										</li>
 										<li class="d-lg-block">
-										<input type="button" id="myPageBtn"
-											class="btn header-btn enb-whiteBtn"
-											style="padding: 1.3rem 1.3rem !important;" value="마이페이지">
+											<input type="button" id="myPageBtn" class="btn header-btn enb-whiteBtn"
+													style="padding: 1.3rem 1.3rem !important;" value="마이페이지">
 										</li>
-										<li class="d-lg-block"><input type="button" id="logoutBtn"
-											class="btn header-btn enb-loginBtn"
-											style="padding: 1.3rem 1.3rem !important;" value="로그아웃"></li>
+										<li class="d-lg-block">
+											<input type="button" id="logoutBtn" class="btn header-btn enb-loginBtn"
+													style="padding: 1.3rem 1.3rem !important;" value="로그아웃">
+										</li>
 									</c:otherwise>
 								</c:choose>
 
@@ -97,8 +102,7 @@
 </c:if>
 <!-- Preloader Start -->
 	<div id="preloader-active">
-		<div
-			class="preloader d-flex align-items-center justify-content-center">
+		<div class="preloader d-flex align-items-center justify-content-center">
 			<div class="preloader-inner position-relative">
 				<div class="preloader-circle"></div>
 				<div class="preloader-img pere-text">
