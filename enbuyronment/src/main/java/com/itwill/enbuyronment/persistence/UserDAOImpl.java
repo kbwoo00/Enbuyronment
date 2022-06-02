@@ -170,6 +170,14 @@ public class UserDAOImpl implements UserDAO {
 	public ProdAndReviewVO getReview(Integer reviewNo) {
 		return sqlSession.selectOne(NAMESPACE + ".getReview", reviewNo);
 	}
+	
+	@Override
+	public ReviewVO getReview(String uid, String prodNo) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("uid", uid);
+		map.put("prodNo", prodNo);
+		return sqlSession.selectOne(NAMESPACE + ".getReviewByUidAndProdNo", map);
+	}
 
 	@Override
 	public void modReview(ReviewVO review) {

@@ -60,4 +60,8 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(NAMESPACE+".selectOrderProdList", orderNo);
 	}
 	
+	@Override
+	public void cancelOrder(OrderVO order) {
+		sqlSession.update(NAMESPACE + ".cancelOrder", order);
+	}
 }

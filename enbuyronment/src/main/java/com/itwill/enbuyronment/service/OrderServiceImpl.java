@@ -42,4 +42,9 @@ public class OrderServiceImpl implements OrderService {
 		
 		return orderDao.orderProdList(orderNo);
 	}
+	
+	@Override
+	public void cancelOrder(OrderVO order) {
+		orderDao.cancelOrder(order);
+	}
 }
