@@ -58,7 +58,7 @@
 					<c:forEach var="cart" items="${cartList }" varStatus="status">
 						<tr>
 							<td class="align-middle" style="text-align: center;">
-								<input class="check-input" type="checkbox" id="prodNo${status.index }" value="${cart.prodNo }" checked>
+								<input class="check-input" type="checkbox" id="checkNo${status.index }" value="${cart.prodNo }" checked>
 							</td>
 							<td class="align-middle" style="text-align: center;">
 								<a href="/product/${cart.prodNo }">
@@ -109,7 +109,50 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		var cartLength = "${fn:length(cartList) }";
+
+		//목록 불러오기
+		function listCall() {
+			if(cartLength == 0){
+				$('#tbody').html("<tr><td colspan='6'><h4 class='text-center'>장바구니가 비어 있습니다.</h4></td></tr>");
+				$('#cartPrice').empty();
+				$('#shipCost').empty();
+				$('#totalCost').empty();
+				
+			} else {
+				let ckCnt = 0;
+				for(let i = 0; i< cartLength; i++){
+					if($('#checkNo' + i).is(':checked')){
+						ckCnt++;
+					}
+				}
+				if(ckCnt == 0){
+					$('.total-price').empty();
+					$('#cartPrice').html('<p>선택된 상품이 없습니다. 상품을 선택해주세요</p>');
+					return;
+				}
+				
+				var cartPrice = 0;
+				
+				for(let i = 0; i < cartLength; i++) {
+					$('#prodTotalPrice' + i).text(Number($('#prodPrice' + i).text()) * Number($('#amount' + i).val()));
+					if($('#checkNo' + i).is(':checked')){
+						cartPrice += Number($('#prodTotalPrice' + i).text());
+					}
+				}
+				
+				$('#cartPrice').text('총 상품 금액 : ' + cartPrice + '원');
+				
+				if(cartPrice >= 20000) {
+					$('#shipCost').text('배송비 : 0원');
+					$('#totalCost').text('결제 예상 금액 : ' + cartPrice + '원');
+					
+				} else {
+					$('#shipCost').text('배송비 : 2,000원');
+					$('#totalCost').text('결제 예상 금액 : ' + (cartPrice+2000) + '원');
+				}
+			}
+		}
 		// 체크박스
 		var ckedArr = [];
 		delBtn = $('#delBtn');
@@ -117,10 +160,18 @@
 		$('#ckAll').click(function() {
 			if($('#ckAll').is(':checked')){
 				$("input[type=checkbox]").prop("checked", true);
+				listCall();
 			} else {
 				$("input[type=checkbox]").prop("checked", false);
+				listCall();
 			}
 		});
+		
+		for(let i = 0; i < cartLength; i++){
+			$('#checkNo' + i).click(function() {
+				listCall();
+			});
+		}
 		
 		//상품 전체삭제
 		delAllBtn.click(function() {
@@ -164,38 +215,6 @@
 			}
 		});
 		
-		var cartLength = "${fn:length(cartList) }";
-
-		//목록 불러오기
-		function listCall() {
-			
-			if(cartLength == 0){
-				$('#tbody').html("<tr><td colspan='6'><h4 class='text-center'>장바구니가 비어 있습니다.</h4></td></tr>");
-				$('#cartPrice').empty();
-				$('#shipCost').empty();
-				$('#totalCost').empty();
-				
-			} else {
-				var cartPrice = 0;
-				
-				for(let i = 0; i < cartLength; i++) {
-					$('#prodTotalPrice' + i).text(Number($('#prodPrice' + i).text()) * Number($('#amount' + i).val()));
-					cartPrice += Number($('#prodTotalPrice' + i).text());
-				}
-				
-				$('#cartPrice').text('총 상품 금액 : ' + cartPrice + '원');
-				
-				if(cartPrice >= 20000) {
-					$('#shipCost').text('배송비 : 0원');
-					$('#totalCost').text('결제 예상 금액 : ' + cartPrice + '원');
-					
-				} else {
-					$('#shipCost').text('배송비 : 2,000원');
-					$('#totalCost').text('결제 예상 금액 : ' + (cartPrice+2000) + '원');
-				}
-			}
-		}
-		
 		//페이지 로딩 시
 		listCall();
 		
@@ -204,52 +223,94 @@
 			
 			//플러스
 			$('#plusBtn' + i).click(function() {
-				if($('#amount' + i).val() < 10) {
-					$('#amount' + i).val(Number($('#amount' + i).val()) + 1);
-				}
-				
-				var data = {
-					'prodNo' : $('#prodNo' + i).val(),
-					'amount' : $('#amount' + i).val(),
-				};
-				
-				$.ajax({
-					url: '/cart/modAmount',
-					type: 'post',
-					data:  JSON.stringify(data),
-					contentType : "application/json; charset=utf-8",
-					success: function(data) {
-						$('#cartPrice').empty();
-						$('#shipCost').empty();
-						$('#totalCost').empty();
-						listCall();
+				if(!$('#checkNo' + i).is(':checked')){
+					if($('#amount' + i).val() < 10) {
+						$('#amount' + i).val(Number($('#amount' + i).val()) + 1);
 					}
-				});
+					
+					var data = {
+						'prodNo' : $('#prodNo' + i).val(),
+						'amount' : $('#amount' + i).val(),
+					};
+					
+					$.ajax({
+						url: '/cart/modAmount',
+						type: 'post',
+						data:  JSON.stringify(data),
+						contentType : "application/json; charset=utf-8",
+						success: function(data) {
+							$('#prodTotalPrice' + i).text(Number($('#prodPrice' + i).text()) * Number($('#amount' + i).val()));
+						}
+					});
+				} else{
+					if($('#amount' + i).val() < 10) {
+						$('#amount' + i).val(Number($('#amount' + i).val()) + 1);
+					}
+					
+					var data = {
+						'prodNo' : $('#prodNo' + i).val(),
+						'amount' : $('#amount' + i).val(),
+					};
+					
+					$.ajax({
+						url: '/cart/modAmount',
+						type: 'post',
+						data:  JSON.stringify(data),
+						contentType : "application/json; charset=utf-8",
+						success: function(data) {
+							$('#cartPrice').empty();
+							$('#shipCost').empty();
+							$('#totalCost').empty();
+							listCall();
+						}
+					});
+				}
 			});
 			
 			//마이너스
 			$('#minusBtn' + i).click(function() {
-				if($('#amount' + i).val() > 1) {
-					$('#amount' + i).val(Number($('#amount' + i).val()) - 1);
-				}
-				
-				var data = {
-					'prodNo' : $('#prodNo' + i).val(),
-					'amount' : $('#amount' + i).val(),
-				};
-				
-				$.ajax({
-					url: '/cart/modAmount',
-					type: 'post',
-					data: JSON.stringify(data),
-					contentType : "application/json; charset=utf-8",
-					success: function(data) {
-						$('#cartPrice').empty();
-						$('#shipCost').empty();
-						$('#totalCost').empty();
-						listCall();
+				if(!$('#checkNo' + i).is(':checked')){
+					if($('#amount' + i).val() > 1) {
+						$('#amount' + i).val(Number($('#amount' + i).val()) - 1);
 					}
-				});
+					
+					var data = {
+						'prodNo' : $('#prodNo' + i).val(),
+						'amount' : $('#amount' + i).val(),
+					};
+					
+					$.ajax({
+						url: '/cart/modAmount',
+						type: 'post',
+						data: JSON.stringify(data),
+						contentType : "application/json; charset=utf-8",
+						success: function(data) {
+							$('#prodTotalPrice' + i).text(Number($('#prodPrice' + i).text()) * Number($('#amount' + i).val()));
+						}
+					});
+				} else{
+					if($('#amount' + i).val() > 1) {
+						$('#amount' + i).val(Number($('#amount' + i).val()) - 1);
+					}
+					
+					var data = {
+						'prodNo' : $('#prodNo' + i).val(),
+						'amount' : $('#amount' + i).val(),
+					};
+					
+					$.ajax({
+						url: '/cart/modAmount',
+						type: 'post',
+						data: JSON.stringify(data),
+						contentType : "application/json; charset=utf-8",
+						success: function(data) {
+							$('#cartPrice').empty();
+							$('#shipCost').empty();
+							$('#totalCost').empty();
+							listCall();
+						}
+					});
+				}
 			});
 		}
 		
