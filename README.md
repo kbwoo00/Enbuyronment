@@ -1,5 +1,6 @@
 # Enbuyronment
 환경돌이 팀의 친환경제품 쇼핑몰 'Enbuyronment' 프로젝트
+배포된 주소 : http://itwillbs2.cafe24.com/
 
 ## 목차
 1. [서비스 소개](#서비스-소개)
