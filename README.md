@@ -39,12 +39,15 @@
 ## 설계
 - ### [구글 docs로 작성한 HTTP API 설계](https://docs.google.com/document/d/13xFg6rb-ijE4OgyMSpTWLmfi9NQ_jvxKPYn1LjvEivw/edit?usp=sharing) 
 
-## 깃 커밋 규칙
-<img src="https://user-images.githubusercontent.com/59406944/169728755-af9b1160-b3dd-4566-b473-d11900f5ab2e.png" width="50%" height="50%">
-
-
 ## 프로젝트 화면
-
+![image](https://user-images.githubusercontent.com/59406944/172750733-a0a3ff5e-7810-4923-8ff4-990130e7a192.png)
+![image](https://user-images.githubusercontent.com/59406944/172750786-103f4956-e404-4069-a4f1-dce4bfa2291f.png)
+![image](https://user-images.githubusercontent.com/59406944/172750818-72d30730-83e6-4df2-bf63-0a247987239e.png)
+![image](https://user-images.githubusercontent.com/59406944/172750844-8e3a02f2-6e6e-45c7-9624-f56de1f660c8.png)
+![image](https://user-images.githubusercontent.com/59406944/172750872-f8bb3728-eda2-4cab-bdab-ca33c0272190.png)
+![image](https://user-images.githubusercontent.com/59406944/172750896-437c5407-8e83-4d2d-affd-41a31f5775fe.png)
+![image](https://user-images.githubusercontent.com/59406944/172750936-272d4aa3-feb0-42b9-8d72-1505231d0723.png)
+![image](https://user-images.githubusercontent.com/59406944/172750979-0a8de2cc-ec5d-451f-a8c4-02946bcabcef.png)
 
 
 ## 구현 목록
